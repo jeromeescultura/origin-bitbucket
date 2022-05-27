@@ -5,7 +5,6 @@ import Router, { useRouter } from "next/router";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 import ButtonComponent from "../components/ButtonComponent";
-import ButtonBorder from "../components/ButtonBorder";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import CardScroll from "../components/CardScroll";
