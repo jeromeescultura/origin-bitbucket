@@ -15,12 +15,11 @@ const StepThreeContainer = ({
         <IconsRadioQuestion qst={iconsRadioQsts?.options} />
       </QuestionContainer>
       {/* STEP THREE - QUESTION 2 */}
-      <QuestionContainer
-        id={investmentQsts?.id}
-        text={investmentQsts?.text}
-      >{investmentQsts.options?.map((item) => (
-          <RadioQuestion text={}/>
-      ))}</QuestionContainer>
+      <QuestionContainer id={investmentQsts?.id} text={investmentQsts?.text}>
+        {investmentQsts.options?.map((item) => (
+          <RadioQuestion text={item.text} />
+        ))}
+      </QuestionContainer>
     </>
   );
 };
