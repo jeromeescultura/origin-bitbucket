@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import QuestionContainer from "./QuestionContainer";
 import DropdownQuestion from "../components/DropdownQuestion";
 import RadioQuestion from "../components/RadioQuestion";
@@ -12,15 +12,30 @@ const StepTwoContainer = ({
   iconQsts,
   chkBoxQsts,
   btnQsts,
+  stepTwoAns,
+  setStepTwoAns,
 }) => {
+  useEffect(() => {
+    console.log(stepTwoAns);
+  }, [stepTwoAns]);
   return (
     <>
       {/* STEP TWO - QUESTION 1 */}
       <QuestionContainer id={dropDwnQsts?.id} text={dropDwnQsts?.text}>
-        <DropdownQuestion qst={dropDwnQsts?.options} />
+        <DropdownQuestion
+          qst={dropDwnQsts?.options}
+          answer={setStepTwoAns}
+          answers={stepTwoAns}
+        />
         <QuestionContainer style={"px-0"} text={radioQsts?.text}>
           {radioQsts.options?.map((item, index) => (
-            <RadioQuestion id={index} text={item.text} key={index} />
+            <RadioQuestion
+              id={index}
+              text={item.text}
+              key={index}
+              answer={setStepTwoAns}
+              answers={stepTwoAns}
+            />
           ))}
         </QuestionContainer>
       </QuestionContainer>
@@ -58,7 +73,11 @@ const StepTwoContainer = ({
       </QuestionContainer>
       {/* STEP TWO - QUESTION 4 */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <ButtonQuestion options={btnQsts?.options} />
+        <ButtonQuestion
+          options={btnQsts?.options}
+          answer={setStepTwoAns}
+          answers={stepTwoAns}
+        />
       </QuestionContainer>
     </>
   );

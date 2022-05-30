@@ -22,11 +22,25 @@ const Assessment = ({ questions }) => {
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
 
-  // STORED ANSWERS
+  // STORED ANSWERS //
+  // STEP ONE
   const [stepOneAns, setStepOneAns] = useState({
     QOne: { goals: "", choice: null },
     QTwo: {},
     QThree: 3,
+  });
+  // STEP TWO
+  const [stepTwoAns, setStepTwoAns] = useState({
+    QOne: { industry: "", sites: null },
+    QTwo: {},
+    QThree: {},
+    QFour: 0,
+  });
+  // STEP THREE
+  const [stepThreeAns, setStepThreeAns] = useState({
+    QOne: 1,
+    QTwo: null,
+    QThree: null,
   });
 
   useEffect(() => {
@@ -158,6 +172,8 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
+                stepTwoAns={stepTwoAns}
+                setStepTwoAns={setStepTwoAns}
               />
             )}
 
@@ -167,6 +183,8 @@ const Assessment = ({ questions }) => {
                 iconsRadioQsts={iconsRadioQuestion}
                 investmentQsts={investmentQuestion}
                 largerInvQsts={largerInvestmentQuestion}
+                stepThreeAns={stepThreeAns}
+                setStepThreeAns={setStepThreeAns}
               />
             )}
           </div>
@@ -190,6 +208,19 @@ const Assessment = ({ questions }) => {
                 />
               )}
             </div>
+          </div>
+          <div>
+            <button
+              className="border border-black mt-2"
+              onClick={() => {
+                console.clear();
+                console.log("Step One Answers", stepOneAns);
+                console.log("Step Two Answers", stepTwoAns);
+                console.log("Step Three Answers", stepThreeAns);
+              }}
+            >
+              Show answers
+            </button>
           </div>
         </div>
       </div>

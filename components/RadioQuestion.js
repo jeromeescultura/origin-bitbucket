@@ -1,4 +1,14 @@
-function RadioQuestion({ id, text, action }) {
+function RadioQuestion({ id, text, action, answer, answers }) {
+  const changeHandler = () => {
+    if (typeof answers.QOne !== "number") {
+      if ("sites" in answers.QOne) {
+        answer({ ...answers, QOne: { ...answers.QOne, sites: id } });
+      }
+    } else {
+      answer({ ...answers, QTwo: id });
+    }
+  };
+
   return (
     <div className="form-check flex items-center mt-8">
       <div>
@@ -7,6 +17,7 @@ function RadioQuestion({ id, text, action }) {
           type="radio"
           name="flexRadioDefault"
           id={text}
+          onChange={changeHandler}
         />
       </div>
       <label

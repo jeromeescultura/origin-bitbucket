@@ -12,37 +12,58 @@ function ButtonQuestion({ options, action, answer, answers }) {
     "text-sm max-w-[200px] lg:text-base w-full h-[48px] bg-white  text-[#505050] font-light text-center border   transition duration-200";
 
   useEffect(() => {
-    handleClick(answers?.QOne?.choice);
+    if ("QFour" in answers) {
+      handleClick(answers?.QFour);
+    } else if (typeof answers?.QOne !== "number") {
+      if ("choice" in answers?.QOne) {
+        handleClick(answers?.QOne?.choice);
+      }
+    } else {
+      handleClick(answers?.QThree);
+    }
   }, []);
 
   const handleClick = (value) => {
+    if ("QFour" in answers) {
+      console.log("four");
+      answer({
+        ...answers,
+        QFour: value,
+      });
+    } else if (typeof answers?.QOne !== "number") {
+      if ("choice" in answers?.QOne) {
+        console.log("one");
+        answer({
+          ...answers,
+          QOne: { ...answers?.QOne, choice: value },
+        });
+      }
+    } else {
+      console.log("three");
+      answer({
+        ...answers,
+        QThree: value,
+      });
+    }
+
     switch (value) {
       case 1:
         setBtn1(!btn1);
         setBtn2(false);
         setBtn3(false);
-        answer({
-          ...answers,
-          QOne: { ...answers.QOne, choice: 1 },
-        });
+
         break;
       case 2:
         setBtn2(!btn2);
         setBtn1(false);
         setBtn3(false);
-        answer({
-          ...answers,
-          QOne: { ...answers.Qone, choice: 2 },
-        });
+
         break;
       case 3:
         setBtn3(!btn3);
         setBtn1(false);
         setBtn2(false);
-        answer({
-          ...answers,
-          QOne: { ...answers.Qone, choice: 3 },
-        });
+
         break;
       default:
         break;
