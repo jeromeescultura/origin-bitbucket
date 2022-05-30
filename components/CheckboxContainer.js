@@ -35,6 +35,7 @@ function CheckboxContainer({ icon, title, questionsList }) {
                   id={item.id}
                   text={item.text}
                   key={item.id}
+                  ans={item.value}
                 />
               ))}
           </div>

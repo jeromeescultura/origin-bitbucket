@@ -22,6 +22,13 @@ const Assessment = ({ questions }) => {
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
 
+  // STORED ANSWERS
+  const [stepOneAns, setStepOneAns] = useState({
+    QOne: { goals: "", choice: null },
+    QTwo: {},
+    QThree: 3,
+  });
+
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -138,6 +145,8 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
+                stepOneAns={stepOneAns}
+                setStepOneAns={setStepOneAns}
               />
             )}
 
@@ -175,7 +184,6 @@ const Assessment = ({ questions }) => {
               {stepNo !== 3 ? (
                 <ButtonComponent text="Next" action={stepForwardHandler} />
               ) : (
-
                 <ButtonComponent
                   text="View recommendations"
                   action={stepForwardHandler}

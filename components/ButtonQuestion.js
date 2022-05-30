@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function ButtonQuestion({ options, action }) {
+function ButtonQuestion({ options, action, answer, answers }) {
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
   const [btn3, setBtn3] = useState(false);
@@ -11,22 +11,38 @@ function ButtonQuestion({ options, action }) {
   const notActiveStyles =
     "text-sm max-w-[200px] lg:text-base w-full h-[48px] bg-white  text-[#505050] font-light text-center border   transition duration-200";
 
+  useEffect(() => {
+    handleClick(answers?.QOne?.choice);
+  }, []);
+
   const handleClick = (value) => {
     switch (value) {
       case 1:
         setBtn1(!btn1);
         setBtn2(false);
         setBtn3(false);
+        answer({
+          ...answers,
+          QOne: { ...answers.QOne, choice: 1 },
+        });
         break;
       case 2:
         setBtn2(!btn2);
         setBtn1(false);
         setBtn3(false);
+        answer({
+          ...answers,
+          QOne: { ...answers.Qone, choice: 2 },
+        });
         break;
       case 3:
         setBtn3(!btn3);
         setBtn1(false);
         setBtn2(false);
+        answer({
+          ...answers,
+          QOne: { ...answers.Qone, choice: 3 },
+        });
         break;
       default:
         break;

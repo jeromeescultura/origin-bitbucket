@@ -34,26 +34,32 @@ const questions = [
         questionsList: [
           {
             id: 1,
+            value: "chk_1",
             text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
           },
           {
             id: 2,
+            value: "chk_2",
             text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
             id: 3,
+            value: "chk_3",
             text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
           },
           {
             id: 4,
+            value: "chk_4",
             text: "Installed solar at your site(s)",
           },
           {
             id: 5,
+            value: "chk_5",
             text: "Added battery storage to your solar system",
           },
           {
             id: 6,
+            value: "chk_6",
             text: "Replaced some or all of your vehicle fleet with electric vehicles",
           },
         ],
