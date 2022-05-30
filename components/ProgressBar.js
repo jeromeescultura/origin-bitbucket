@@ -1,6 +1,4 @@
-import React from "react";
 import Image from "next/image";
-import logo from "../assets/logo.png";
 import { useRouter } from "next/router";
 
 const ProgressBar = ({ step, stepNo }) => {
@@ -12,7 +10,13 @@ const ProgressBar = ({ step, stepNo }) => {
   return (
     <div className="flex flex-col items-start mt-6 lg:mt-14">
       <div className="w-10 h-10 lg:hidden cursor-pointer">
-        <Image src={logo} alt="logo" height={107} width={87} onClick={handleClick}/>
+        <Image
+          src="/images/origin-logo.svg"
+          alt="logo"
+          height={107}
+          width={87}
+          onClick={handleClick}
+        />
       </div>
       <div className="flex w-full gap-16 mt-12">
         <div className="flex items-center grow mb-6 justify-between md:grow-0 md:w-[50%]">
@@ -30,7 +34,13 @@ const ProgressBar = ({ step, stepNo }) => {
           </button>
         </div>
         <div className="w-10 h-10 md:w-20 md:h-20 hidden lg:inline ml-auto cursor-pointer">
-          <Image src={logo} alt="logo" height={107} width={87}  onClick={handleClick}/>
+          <Image
+            src="/images/origin-logo.svg"
+            alt="logo"
+            height={107}
+            width={87}
+            onClick={handleClick}
+          />
         </div>
       </div>
       <div className="w-full md:w-[50%] h-[8px] flex flex-row justify-between gap-2 md:gap-2">
