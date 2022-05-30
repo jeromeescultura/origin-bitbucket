@@ -2,7 +2,9 @@ function QuestionContainer(props) {
   return (
     <div
       className={`${
-        props.style ? `${props.style} pt-12` : "px-4 lg:pl-16 lg:pr-24 md:px-6 lg:py-24 py-8"
+        props.style
+          ? `${props.style} pt-12`
+          : "px-8 py-9 lg:pl-16 lg:pr-24 lg:py-24 "
       } bg-white rounded-3xl`}
     >
       <div
