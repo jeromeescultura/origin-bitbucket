@@ -1,7 +1,7 @@
 import Slider from "react-slick";
-import ScrollCard from "../components/ScrollCard";
+import ProductCard from "../components/ProductCard";
 
-function CardsScrollContainer() {
+function ProductContainer() {
   var settings = {
     centerMode: false,
     infinite: false,
@@ -60,12 +60,12 @@ function CardsScrollContainer() {
   return (
     <div className="py-8 lg:w-[80vw] mx-auto mb-16 sm:mt-[110px] md:mt-[48px]">
       <Slider {...settings}>
-        <ScrollCard />
-        <ScrollCard />
-        <ScrollCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </Slider>
     </div>
   );
 }
 
-export default CardsScrollContainer;
+export default ProductContainer;

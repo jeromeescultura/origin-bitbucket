@@ -4,7 +4,7 @@ function QuestionContainer(props) {
       className={`${
         props.style
           ? `${props.style} pt-12`
-          : "px-8 py-9 lg:pl-16 lg:pr-24 lg:py-24 "
+          : "px-8 py-9 lg:pl-16 lg:pr-24 lg:py-16 "
       } bg-white rounded-3xl`}
     >
       <div

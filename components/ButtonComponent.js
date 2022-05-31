@@ -1,4 +1,4 @@
-function ButtonComponent({ text, action, type }) {
+function ButtonComponent({ text, action, type, style }) {
   let mainBtn = "bg-secondaryBG text-white hover:bg-red-600";
 
   let borderBtn =
@@ -8,7 +8,7 @@ function ButtonComponent({ text, action, type }) {
     <button
       className={`${
         type ? borderBtn : mainBtn
-      } w-full min-w-[120px] py-3 px-8 rounded-full whitespace-nowrap`}
+      } ${style} w-full min-w-[120px] py-3 px-8 rounded-full whitespace-nowrap`}
       onClick={action}
     >
       {text}

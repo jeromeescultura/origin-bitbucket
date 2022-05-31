@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
 
-function ScrollCard() {
+function ProductCard() {
   return (
     <div className="bg-white px-8 py-10 rounded-xl flex flex-col gap-2 items-center text-center space-y-6">
       <div className="w-12 h-12">
@@ -63,4 +63,4 @@ function ScrollCard() {
   );
 }
 
-export default ScrollCard;
+export default ProductCard;
