@@ -58,7 +58,9 @@ function ProductCard() {
           <p> Business club exclusive services</p>
         </li>
       </ul>
-      <ButtonComponent type="border" text="Find out more" />
+      <div className="">
+        <ButtonComponent type="border" text="Find out more" />
+      </div>
     </div>
   );
 }

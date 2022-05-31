@@ -8,7 +8,7 @@ function ButtonComponent({ text, action, type, style }) {
     <button
       className={`${
         type ? borderBtn : mainBtn
-      } ${style} w-full min-w-[120px] py-3 px-8 rounded-full whitespace-nowrap`}
+      } ${style} text-base w-full min-w-[120px] py-3 px-8 rounded-full whitespace-nowrap`}
       onClick={action}
     >
       {text}

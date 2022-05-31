@@ -83,7 +83,7 @@ export default function Home() {
               <div className="flex gap-6 ">
                 <h2 className="text-primaryText font-bold">1</h2>
                 <div className="flex flex-col gap-2">
-                  <div className="bg-[#00B9D7] text-white p-1 rounded-md w-[90px] text-xs">
+                  <div className="bg-[#00B9D7] text-white p-1 rounded-md w-[90px] text-center text-xs">
                     in 5 minutes
                   </div>
                   <p className="font-bold">Complete assessment</p>
