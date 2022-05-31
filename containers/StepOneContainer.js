@@ -1,8 +1,7 @@
 import React from "react";
 import ButtonQuestion from "../components/ButtonQuestion";
-import CheckboxComponent from "../components/CheckboxComponent";
-import CheckboxContainer from "../components/CheckboxContainer";
 import SliderQuestion from "../components/SliderQuestion";
+import CheckboxContainer from "./CheckboxContainer";
 import QuestionContainer from "./QuestionContainer";
 
 const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
@@ -15,7 +14,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
             <textarea
               name=""
               id=""
-              className="w-full h-full border-2 rounded-xl resize-none focus:outline-none p-1"
+              className="w-full h-full border-2 rounded-xl resize-none focus:outline-none p-4 font-light"
             ></textarea>
           </div>
         </QuestionContainer>

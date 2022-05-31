@@ -8,7 +8,7 @@ function CheckboxComponent({ id, text, subText, action }) {
     setSelected(!selected);
   };
   return (
-    <div className="form-check flex items-start gap-4">
+    <div className="form-check flex items-start gap-4 lg:ml-16">
       <input
         className="form-check-input appearance-none min-h-g[24px] min-w-[24px] w-6 h-6 border-2 border-[#737373] rounded-sm bg-white checked:bg-accentColor checked:border-accentColor focus:outline-none transition duration-200 cursor-pointer"
         type="checkbox"
@@ -31,7 +31,7 @@ function CheckboxComponent({ id, text, subText, action }) {
         />
       </div>
       <label
-        className="form-check-label inline-block text-secondaryText font-light text-xl"
+        className="form-check-label inline-block text-secondaryText font-light text-sm lg:text-base"
         htmlFor={text}
       >
         {text}

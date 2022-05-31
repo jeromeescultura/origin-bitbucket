@@ -1,22 +1,47 @@
 import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import Router, { useRouter } from "next/router";
+
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 import ButtonComponent from "../components/ButtonComponent";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import CardScroll from "../components/CardScroll";
+import CardsScrollContainer from "../containers/CardsScrollContainer";
+import FullWidth from "../containers/FullWidth";
+import ContentContainer from "../containers/ContentContainer";
+import HeroComponent from "../components/HeroComponent";
+import ExclusiveCard from "../containers/ExclusiveCard";
 
 export default function Home() {
-  const router = useRouter();
   const [show, setShow] = useState(false);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.push("/assessment");
-  };
+  const exclusiveAccess = [
+    {
+      id: 1,
+      icon: "/icons/personalized.svg",
+      text: "Personalized support",
+      desc: "You can get guidance from one of our accredited sustainability support managers.",
+    },
+    {
+      id: 2,
+      icon: "/icons/marketing.svg",
+      text: "Marketing toolkit",
+      desc: "Communicate the sustainable impact you’re making to your customers and stakeholders.",
+    },
+    {
+      id: 3,
+      icon: "/icons/flame.svg",
+      text: "Green accreditation",
+      desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
+    },
+    {
+      id: 4,
+      icon: "/icons/discount.svg",
+      text: "Discounts",
+      desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
+    },
+  ];
 
   const test = () => {
     setShow(true);
@@ -25,39 +50,11 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-
       <div className="w-full bg-white overflow-auto h-full">
-        <div className="w-[90%] relative lg:w-[95%] xl:w-[80%] mx-auto pb-24 space-y-16 lg:space-y-32">
-          {/* Cover Photo */}
-          <div className="flex justify-center flex-grow rounded-lg w-full ">
-            <div className="w-full sm:w-[90%] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]">
-              <Image
-                src="/images/hero.png"
-                layout="fill"
-                objectFit="cover"
-                alt="bg-image"
-                className="rounded-2xl"
-                objectPosition="left"
-              />
-            </div>
-            <div className="absolute pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
-              <h2 className="text-4xl lg:text-[56px] lg:leading-snug  text-primaryText font-bold px-10 sm:px-10 lg:px-0 lg:w-[500px]">
-                Business energy that&#39;s affordable <br />
-                &amp; future proof
-              </h2>
-              <p className="text-secondaryText mt-8 font-light px-4 sm:px-4 lg:px-0 lg:w-[70%]">
-                By taking our sustainability assessment, we will connect your
-                business to the right products and services that drive value for
-                you and the environment.
-              </p>
-              <div className="flex flex-col w-[60%] md:flex-row sm:w-[80%] md:w-[80%] lg:w-[60%] mx-auto lg:mx-0 gap-4 mt-10 lg:mt-16 items-center sm:flex-row justify-center lg:justify-start">
-                <ButtonComponent text="Start assessment" action={handleClick} />
-                <ButtonComponent type="border" text="Let's have a chat" />
-              </div>
-            </div>
-          </div>
-          <div className="text-center font-light sm:w-[80%] lg:w-[80%] xl:w-[75%] mx-auto">
-            <h2 className="">
+        <HeroComponent />
+        <ContentContainer>
+          <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
+            <h2>
               Australia&#39;s 2.4 million small-medium enterprises are
               responsible for over 1 quarter of the nation&#39;s carbon
               emissions annually.
@@ -70,7 +67,7 @@ export default function Home() {
             <p className="text-secondaryBG font-bold">Learn more</p>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:gap-32 sm:w-[80%] md:w-full lg:w-[95%] xl:w-[75%] mx-auto">
+          <div className="flex flex-col lg:flex-row lg:gap-32 mx-auto pt-12 pb-[88px] sm:pb-16 sm:pt-0">
             <div className="text-center lg:text-left">
               <h2 className="text-primaryText font-bold">
                 Three simple steps to cleaner, and cost-effective energy
@@ -82,7 +79,7 @@ export default function Home() {
                 tailored to you.
               </p>
             </div>
-            <div className="flex flex-col gap-12 mt-8 lg:mt-0">
+            <div className="flex flex-col gap-12">
               <div className="flex gap-6 ">
                 <h2 className="text-primaryText font-bold">1</h2>
                 <div className="flex flex-col gap-2">
@@ -121,13 +118,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/*  */}
-        <div className="bg-primaryBG pb-52 md:pb-20">
+        </ContentContainer>
+        <div className="bg-primaryBG">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
-            <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto pb-24 space-y-16 lg:space-y-32">
-              <div className="w-[80%] sm:w-[80%] md:w-full lg:w-[80%] mx-auto">
+            <ContentContainer>
+              <div>
                 <h2 className="text-center font-light text-primaryText ">
                   You can pledge to do a{" "}
                   <span className="font-bold">little</span> or a{" "}
@@ -140,91 +135,37 @@ export default function Home() {
                   much you&#39;re ready to take on.
                 </p>
               </div>
-              <CardScroll />
-
-              <div className="sm:w-[80%] md:w-full lg:w-[80%] mx-auto ">
-                <h2 className="text-center font-bold text-primaryText mb-8 lg:mb-16 md:w-[50%] mx-auto">
+            </ContentContainer>
+            <FullWidth>
+              <CardsScrollContainer />
+            </FullWidth>
+            <ContentContainer>
+              <div className="md:w-[80vw] lg:w-full mx-auto">
+                <h2 className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto">
                   Gain exclusive access to the Origin business club
                 </h2>
-                <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 ">
-                  <div className="bg-white min-w-[300px] sm:w-[270px] lg:w-[49%] p-6 rounded-xl flex flex-col gap-2">
-                    <div className="w-12 h-12">
-                      <Image
-                        src="/icons/personalized.svg"
-                        width={50}
-                        height={50}
-                        objectFit="contain"
-                        alt="icon"
-                      />
-                    </div>
-
-                    <p className="font-bold">Personalised support</p>
-                    <p>
-                      You can get guidance from one of our accredited
-                      sustainability support managers.
-                    </p>
-                  </div>
-                  <div className="bg-white min-w-[300px] sm:w-[270px] lg:w-[49%] p-6 rounded-xl flex flex-col gap-2">
-                    <div className="w-12 h-12">
-                      <Image
-                        src="/icons/marketing.svg"
-                        width={50}
-                        height={50}
-                        objectFit="contain"
-                        alt="icon"
-                      />
-                    </div>
-
-                    <p className="font-bold">Marketing toolkit</p>
-                    <p>
-                      Communicate the sustainable impact you’re making to your
-                      customers and stakeholders.
-                    </p>
-                  </div>
-                  <div className="bg-white min-w-[300px] sm:w-[270px] lg:w-[49%] p-6 rounded-xl flex flex-col gap-2">
-                    <div className="w-12 h-12">
-                      <Image
-                        src="/icons/flame.svg"
-                        width={50}
-                        height={50}
-                        objectFit="contain"
-                        alt="icon"
-                      />
-                    </div>
-
-                    <p className="font-bold">Green accreditation</p>
-                    <p>
-                      Get rewarded as a result of the environmental and
-                      sustainability initiatives undertaken.
-                    </p>
-                  </div>
-                  <div className="bg-white min-w-[300px] sm:w-[270px] lg:w-[49%] p-6 rounded-xl flex flex-col gap-2">
-                    <div className="w-12 h-12">
-                      <Image
-                        src="/icons/discount.svg"
-                        width={50}
-                        height={50}
-                        objectFit="contain"
-                        alt="icon"
-                      />
-                    </div>
-
-                    <p className="font-bold">Discounts</p>
-                    <p>
-                      Get rewarded as a result of the environmental and
-                      sustainability initiatives undertaken.
-                    </p>
-                  </div>
-                </div>
               </div>
-
-              <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-32 sm:w-[80%] md:w-full lg:w-[95%] xl:w-[75%] mx-auto">
+            </ContentContainer>
+            <FullWidth>
+              <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">
+                {exclusiveAccess.map((item) => (
+                  <ExclusiveCard
+                    key={item.id}
+                    icon={item.icon}
+                    text={item.text}
+                    desc={item.desc}
+                  />
+                ))}
+              </div>
+            </FullWidth>
+            <ContentContainer>
+              <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-32 mx-auto mt-16">
                 <div className="text-center lg:text-left">
-                  <h2 className="text-primaryText font-bold">
+                  <h2 className="text-primaryText font-bold lg:w-[380px] xl:w-[330px]">
                     Together we are driving the Australia&#39;s transition to
                     net-zero.
                   </h2>
-                  <p className="mt-6 mb-8">
+                  <p className="mt-6 mb-8 lg:w-[415px] xl:w-[380px]">
                     Over 1,200 businesses of all shapes and sizes, have used the
                     Origin assessment tool to transition to cleaner energy
                     solutions, at a price point that suits them.
@@ -233,8 +174,8 @@ export default function Home() {
                     Read the success stories
                   </p>
                 </div>
-                <div className="bg-white w-[327px] md:w-full rounded-2xl px-5 py-8 flex flex-col  gap-6 mx-auto">
-                  <div className="w-full h-[200px]">
+                <div className="bg-white w-[327px] md:w-full rounded-2xl px-5 py-8 flex flex-col gap-6 mx-auto">
+                  <div className="w-full h-[200px] md:h-[160px] lg:h-[230px]">
                     <Image
                       src="/images/betty.png"
                       width={800}
@@ -255,14 +196,33 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </ContentContainer>
+          </div>
+        </div>
+
+        {/*  */}
+        <div className="bg-primaryBG pb-52 md:pb-20">
+          <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
+            {/* <FullWidth>
+              <CardsScrollContainer />
+            </FullWidth> */}
+
+            {/* <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto py-4">
+            
             </div>
+           
+          
+
+            <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto ">
+             
+            </div> */}
           </div>
         </div>
       </div>
       <BottomScrollListener onBottom={test}>
         <div />
       </BottomScrollListener>
-      {show && <Footer />}
+      {/* {show && <Footer />} */}
     </div>
   );
 }

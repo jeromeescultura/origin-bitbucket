@@ -26,3 +26,9 @@ p {
 h2 {
   @apply text-2xl lg:text-[32px] lg:leading-snug;
 }
+.slick-list {
+  margin: 0 -8px;
+}
+.slick-slide > div {
+  padding: 0 8px;
+}
