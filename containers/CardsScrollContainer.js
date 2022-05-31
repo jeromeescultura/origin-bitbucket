@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Slider from "react-slick";
 import ScrollCard from "../components/ScrollCard";
 
@@ -36,7 +35,7 @@ function CardsScrollContainer() {
         breakpoint: 667,
         settings: {
           centerMode: false,
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 0,
           infinite: false,

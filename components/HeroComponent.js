@@ -10,7 +10,7 @@ function HeroComponent() {
     router.push("/assessment");
   };
   return (
-    <div className="flex justify-center flex-grow rounded-lg w-[94vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16">
+    <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16">
       <div className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]">
         <Image
           src="/images/hero.png"
