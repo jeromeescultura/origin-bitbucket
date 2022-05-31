@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
+
 function RadioQuestion({ id, text, action, answer, answers }) {
+  const [isChecked, setChecked] = useState(false);
+
   const changeHandler = () => {
     if (typeof answers.QOne !== "number") {
       if ("sites" in answers.QOne) {
@@ -9,6 +13,8 @@ function RadioQuestion({ id, text, action, answer, answers }) {
     }
   };
 
+  useEffect(() => {}, []);
+
   return (
     <div className="form-check flex items-center mt-8">
       <div>
@@ -18,6 +24,9 @@ function RadioQuestion({ id, text, action, answer, answers }) {
           name="flexRadioDefault"
           id={text}
           onChange={changeHandler}
+          defaultChecked={
+            answers?.QOne?.sites === id || answers?.QTwo === id ? true : false
+          }
         />
       </div>
       <label

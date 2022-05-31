@@ -67,6 +67,9 @@ const StepTwoContainer = ({
               text={item?.text}
               key={index}
               subText={item?.subText}
+              answer={setStepTwoAns}
+              answers={stepTwoAns}
+              ans={item.value}
             />
           ))}
         </div>

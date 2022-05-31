@@ -2,7 +2,14 @@ import Image from "next/image";
 import { useState } from "react";
 import CheckboxComponent from "./CheckboxComponent";
 
-function CheckboxContainer({ icon, title, questionsList }) {
+function CheckboxContainer({
+  icon,
+  title,
+  questionsList,
+  id,
+  answer,
+  answers,
+}) {
   return (
     <div className="flex gap-12">
       <div className="flex mt-12">
@@ -21,6 +28,7 @@ function CheckboxContainer({ icon, title, questionsList }) {
                     width={50}
                     height={50}
                     objectFit="contain"
+                    alt={icon}
                   />
                 </div>
               )}
@@ -36,6 +44,9 @@ function CheckboxContainer({ icon, title, questionsList }) {
                   text={item.text}
                   key={item.id}
                   ans={item.value}
+                  container={id}
+                  answer={answer}
+                  answers={answers}
                 />
               ))}
           </div>

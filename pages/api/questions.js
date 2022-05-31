@@ -34,32 +34,32 @@ const questions = [
         questionsList: [
           {
             id: 1,
-            value: "chk_1",
+            value: "es_chk_1",
             text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
           },
           {
             id: 2,
-            value: "chk_2",
+            value: "es_chk_2",
             text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
             id: 3,
-            value: "chk_3",
+            value: "es_chk_3",
             text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
           },
           {
             id: 4,
-            value: "chk_4",
+            value: "es_chk_4",
             text: "Installed solar at your site(s)",
           },
           {
             id: 5,
-            value: "chk_5",
+            value: "es_chk_5",
             text: "Added battery storage to your solar system",
           },
           {
             id: 6,
-            value: "chk_6",
+            value: "es_chk_6",
             text: "Replaced some or all of your vehicle fleet with electric vehicles",
           },
         ],
@@ -71,18 +71,22 @@ const questions = [
         questionsList: [
           {
             id: 1,
+            value: "go_chk_1",
             text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
           },
           {
             id: 2,
+            value: "go_chk_2",
             text: "Digitised some or all paper based processes at the sites (s)",
           },
           {
             id: 3,
+            value: "go_chk_3",
             text: "Introduced recycling and waste reduction processes at office sites",
           },
           {
             id: 4,
+            value: "go_chk_4",
             text: "Optimised supply chain processes to reduce material wastage",
           },
         ],
@@ -211,27 +215,32 @@ const questions = [
       questionsList: [
         {
           id: 1,
+          value: "eu_chk_1",
           text: "Constant",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
+          value: "eu_chk_2",
           text: "Mornings",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
+          value: "eu_chk_3",
           text: "Evenings",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
+          value: "eu_chk_4",
           text: "Standard times",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
+          value: "eu_chk_5",
           text: "Unconstrained by specific operating hours",
           subText: "Energy use varies greatly depending on business priorities",
         },

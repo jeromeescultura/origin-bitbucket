@@ -26,20 +26,20 @@ const Assessment = ({ questions }) => {
   // STEP ONE
   const [stepOneAns, setStepOneAns] = useState({
     QOne: { goals: "", choice: null },
-    QTwo: {},
+    QTwo: { enSource: [], genOp: [] },
     QThree: 3,
   });
   // STEP TWO
   const [stepTwoAns, setStepTwoAns] = useState({
-    QOne: { industry: "", sites: null },
+    QOne: { industry: "", sites: 0 },
     QTwo: {},
-    QThree: {},
+    QThree: [],
     QFour: 0,
   });
   // STEP THREE
   const [stepThreeAns, setStepThreeAns] = useState({
     QOne: 1,
-    QTwo: null,
+    QTwo: 0,
     QThree: null,
   });
 
@@ -149,7 +149,13 @@ const Assessment = ({ questions }) => {
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
         <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar step={step} stepNo={stepNo} />
+          <ProgressBar
+            stepOneAns={stepOneAns}
+            stepTwoAns={stepTwoAns}
+            stepThreeAns={stepThreeAns}
+            step={step}
+            stepNo={stepNo}
+          />
           <PageIntro assessIntro={assessIntro} activeState={activeState} />
           <div className="space-y-8">
             {/* Step 1 */}
@@ -208,19 +214,6 @@ const Assessment = ({ questions }) => {
                 />
               )}
             </div>
-          </div>
-          <div>
-            <button
-              className="border border-black mt-2"
-              onClick={() => {
-                console.clear();
-                console.log("Step One Answers", stepOneAns);
-                console.log("Step Two Answers", stepTwoAns);
-                console.log("Step Three Answers", stepThreeAns);
-              }}
-            >
-              Show answers
-            </button>
           </div>
         </div>
       </div>

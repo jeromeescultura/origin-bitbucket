@@ -13,7 +13,6 @@ const StepOneContainer = ({
   stepOneAns,
   setStepOneAns,
 }) => {
-
   useEffect(() => {
     console.log(stepOneAns);
   }, [stepOneAns]);
@@ -52,10 +51,13 @@ const StepOneContainer = ({
       >
         {chkBoxQsts?.map((item, index) => (
           <CheckboxContainer
+            id={index}
             key={index}
             icon={item?.icon}
             title={item?.title}
             questionsList={item?.questionsList}
+            answer={setStepOneAns}
+            answers={stepOneAns}
           />
         ))}
       </QuestionContainer>
