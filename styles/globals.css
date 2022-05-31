@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "gordita", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -20,15 +20,34 @@ a {
 @tailwind utilities;
 
 p {
-  @apply text-sm lg:text-base font-light;
+  @apply text-sm lg:text-base font-light text-secondaryText;
 }
 
 h2 {
-  @apply text-2xl lg:text-[32px] lg:leading-snug;
+  @apply font-Gordita text-2xl lg:text-[32px] lg:leading-snug;
+}
+
+.font-bold {
+  @apply font-GorditaMedium;
 }
 .slick-list {
   margin: 0 -8px;
 }
 .slick-slide > div {
   padding: 0 8px;
+}
+
+@layer base {
+  @font-face {
+    font-family: "gordita";
+    src: url("/fonts/gorditaregular-webfont.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-medium";
+    src: url("/fonts/gorditamedium-webfont.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-bold";
+    src: url("/fonts/gorditabold-webfont.woff2") format("truetype");
+  }
 }

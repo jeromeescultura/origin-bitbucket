@@ -1,11 +1,19 @@
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 import ContentContainer from "../containers/ContentContainer";
 import QuestionContainer from "../containers/QuestionContainer";
 import ButtonQuestion from "../components/ButtonQuestion";
 import ButtonComponent from "../components/ButtonComponent";
 import CheckboxContainer from "../containers/CheckboxContainer";
-import Image from "next/image";
 
 function signup() {
+  const router = useRouter();
+  const handleClick = (e) => {
+    e.preventDefault();
+    router.push("/");
+  };
+
   const buttonQuestions = {
     id: "01",
     text: "Do you have an existing business account with Origin?",
@@ -42,6 +50,7 @@ function signup() {
                 height={90}
                 objectFit="contain"
                 alt="origin-logo"
+                onClick={handleClick}
               />
             </div>
             <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto mt-4 max-w-[400px]">

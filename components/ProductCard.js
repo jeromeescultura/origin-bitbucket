@@ -15,7 +15,7 @@ function ProductCard() {
         />
       </div>
 
-      <p className="font-bold">On-Site Energy Audit</p>
+      <p className="font-bold text-[20px]">On-Site Energy Audit</p>
       <p>
         Assess your consumpion and identify inefficient energy use and areas to
         save.

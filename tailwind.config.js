@@ -31,6 +31,11 @@ module.exports = {
         highlight: "#FFF9EF",
         accentColor: "#FFB432",
       },
+      fontFamily: {
+        Gordita: ["gordita", "sans-serif"],
+        GorditaMedium: ["gordita-medium", "sans-serif"],
+        GorditaBold: ["gordita-bold", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
