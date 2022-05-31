@@ -32,7 +32,7 @@ const Assessment = ({ questions }) => {
   // STEP TWO
   const [stepTwoAns, setStepTwoAns] = useState({
     QOne: { industry: "", sites: 0 },
-    QTwo: {},
+    QTwo: [],
     QThree: [],
     QFour: 0,
   });

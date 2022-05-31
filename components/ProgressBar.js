@@ -35,7 +35,7 @@ const ProgressBar = ({
                 `Step One Answers:\nQuestion 1: choice: ${stepOneAns.QOne.choice}, goals: ${stepOneAns.QOne.goals}\nQuestion 2: enSource: ${stepOneAns.QTwo.enSource}, genOp: ${stepOneAns.QTwo.genOp}\nQuestion 3: ${stepOneAns.QThree}`
               );
               alert(
-                `Step Two Answers:\nQuestion 1: industry: ${stepTwoAns.QOne.industry}, sites: ${stepTwoAns.QOne.sites}\nQuestion 2: n/a\nQuestion 3: ${stepTwoAns.QThree}\nQuestion 4: ${stepTwoAns.QFour}`
+                `Step Two Answers:\nQuestion 1: industry: ${stepTwoAns.QOne.industry}, sites: ${stepTwoAns.QOne.sites}\nQuestion 2: ${stepTwoAns.QTwo}\nQuestion 3: ${stepTwoAns.QThree}\nQuestion 4: ${stepTwoAns.QFour}`
               );
               alert(
                 `Step Three Answers:\nQuestion 1: ${stepThreeAns.QOne}\nQuestion 2: ${stepThreeAns.QTwo}\nQuestion 3: ${stepThreeAns.QThree}`

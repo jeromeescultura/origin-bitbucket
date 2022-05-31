@@ -6,7 +6,7 @@ function ButtonQuestion({ options, action, answer, answers }) {
   const [btn3, setBtn3] = useState(false);
 
   const activeStyles =
-    "z-50 bg-highlight border-darkHighlight text-sm max-w-[200px] lg:text-base w-full h-[48px] bg-white text-[#505050] font-light text-center border transition duration-200";
+    "z-50 bg-highlight border-accentColor text-sm max-w-[200px] lg:text-base w-full h-[48px] bg-white text-[#505050] font-light text-center border transition duration-200";
 
   const notActiveStyles =
     "text-sm max-w-[200px] lg:text-base w-full h-[48px] bg-white  text-[#505050] font-light text-center border   transition duration-200";

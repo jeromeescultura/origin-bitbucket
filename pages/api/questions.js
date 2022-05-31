@@ -7,16 +7,19 @@ const questions = [
       options: [
         {
           id: 1,
+          value: "electricity",
           text: "Electricity",
           icon: "/icons/electricity.svg",
         },
         {
           id: 2,
+          value: "natural_gas",
           text: "Natural gas",
           icon: "/icons/gas.svg",
         },
         {
           id: 3,
+          value: "lpg",
           text: "LPG",
           icon: "/icons/lpg.svg",
         },

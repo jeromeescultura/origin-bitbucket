@@ -51,8 +51,11 @@ const StepTwoContainer = ({
               <IconsQuestion
                 key={index}
                 id={index}
+                ans={item.value}
                 text={item.text}
                 icon={item.icon}
+                answer={setStepTwoAns}
+                answers={stepTwoAns}
               />
             ))}
           </div>
