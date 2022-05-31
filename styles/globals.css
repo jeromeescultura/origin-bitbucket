@@ -1,0 +1,53 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "gordita", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+  @apply text-sm lg:text-base font-light text-secondaryText;
+}
+
+h2 {
+  @apply font-Gordita text-2xl lg:text-[32px] lg:leading-snug;
+}
+
+.font-bold {
+  @apply font-GorditaMedium;
+}
+.slick-list {
+  margin: 0 -8px;
+}
+.slick-slide > div {
+  padding: 0 8px;
+}
+
+@layer base {
+  @font-face {
+    font-family: "gordita";
+    src: url("/fonts/gorditaregular-webfont.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-medium";
+    src: url("/fonts/gorditamedium-webfont.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-bold";
+    src: url("/fonts/gorditabold-webfont.woff2") format("truetype");
+  }
+}
