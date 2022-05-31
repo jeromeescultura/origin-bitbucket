@@ -7,7 +7,7 @@ import { BottomScrollListener } from "react-bottom-scroll-listener";
 import ButtonComponent from "../components/ButtonComponent";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import CardsScrollContainer from "../containers/CardsScrollContainer";
+import ProductContainer from "../containers/ProductContainer";
 import FullWidth from "../containers/FullWidth";
 import ContentContainer from "../containers/ContentContainer";
 import HeroComponent from "../components/HeroComponent";
@@ -83,7 +83,7 @@ export default function Home() {
               <div className="flex gap-6 ">
                 <h2 className="text-primaryText font-bold">1</h2>
                 <div className="flex flex-col gap-2">
-                  <div className="bg-[#00B9D7] text-white p-1 rounded-md w-[80px] text-xs">
+                  <div className="bg-[#00B9D7] text-white p-1 rounded-md w-[90px] text-center text-xs">
                     in 5 minutes
                   </div>
                   <p className="font-bold">Complete assessment</p>
@@ -137,7 +137,7 @@ export default function Home() {
               </div>
             </ContentContainer>
             <FullWidth>
-              <CardsScrollContainer />
+              <ProductContainer />
             </FullWidth>
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">
@@ -204,7 +204,7 @@ export default function Home() {
         <div className="bg-primaryBG pb-52 md:pb-20">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             {/* <FullWidth>
-              <CardsScrollContainer />
+              <ProductContainer />
             </FullWidth> */}
 
             {/* <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto py-4">

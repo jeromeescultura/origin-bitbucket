@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
 
-function ScrollCard() {
+function ProductCard() {
   return (
     <div className="bg-white px-8 py-10 rounded-xl flex flex-col gap-2 items-center text-center space-y-6">
       <div className="w-12 h-12">
@@ -15,7 +15,7 @@ function ScrollCard() {
         />
       </div>
 
-      <p className="font-bold">On-Site Energy Audit</p>
+      <p className="font-bold text-[20px]">On-Site Energy Audit</p>
       <p>
         Assess your consumpion and identify inefficient energy use and areas to
         save.
@@ -58,9 +58,11 @@ function ScrollCard() {
           <p> Business club exclusive services</p>
         </li>
       </ul>
-      <ButtonComponent type="border" text="Find out more" />
+      <div className="">
+        <ButtonComponent type="border" text="Find out more" />
+      </div>
     </div>
   );
 }
 
-export default ScrollCard;
+export default ProductCard;
