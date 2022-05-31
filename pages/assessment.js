@@ -43,6 +43,7 @@ const Assessment = ({ questions }) => {
     QThree: null,
   });
 
+
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {

@@ -58,7 +58,7 @@ function IconsQuestion({ id, text, icon, answer, answers, ans }) {
   return (
     <div
       className={`${
-        selected && "bg-highlight border-accentColor"
+        selected && "lg:bg-highlight border-accentColor"
       } form-check flex flex-col lg:items-center gap-10 lg:border rounded-xl min-w-[180px] max-w-[220px] py-4 lg:py-6 bg-white  cursor-pointer`}
       onClick={handleSelected}
     >
@@ -83,7 +83,7 @@ function IconsQuestion({ id, text, icon, answer, answers, ans }) {
         <div
           className={`${
             selected ? "block" : "hidden"
-          } absolute pt-1 pointer-events-none`}
+          } absolute lg:pt-2 pointer-events-none`}
         >
           <Image
             src="/icons/check.svg"
