@@ -11,7 +11,7 @@ function NavBar() {
     <div className="bg-white py-3 mt-2 lg:pt-10 w-[90%] sm:w-[80%] md:w-[90%] lg:w-[95%] xl:w-[80%] mx-auto">
       <div className="w-16 lg:w-20 cursor-pointer">
         <Image
-          src="/images/origin-logo.png"
+          src="/images/origin-logo.svg"
           width={90}
           height={90}
           objectFit="contain"

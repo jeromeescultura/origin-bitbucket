@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import logo from "../assets/logo.png";
 import { useRouter } from "next/router";
 
 const ProgressBar = ({
@@ -29,7 +28,7 @@ const ProgressBar = ({
     <div className="flex flex-col items-start mt-6 lg:mt-14">
       <div className="w-10 h-10 lg:hidden cursor-pointer">
         <Image
-          src={logo}
+          src="/images/origin-logo.svg"
           alt="logo"
           height={107}
           width={87}
@@ -68,7 +67,7 @@ const ProgressBar = ({
         </div>
         <div className="w-10 h-10 md:w-20 md:h-20 hidden lg:inline ml-auto cursor-pointer">
           <Image
-            src={logo}
+            src="/images/origin-logo.svg"
             alt="logo"
             height={107}
             width={87}
