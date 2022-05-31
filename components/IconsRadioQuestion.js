@@ -1,15 +1,24 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const IconsRadioQuestion = ({ qst }) => {
-  const [activeState, changeState] = useState(1);
+const IconsRadioQuestion = ({ qst, answer, answers }) => {
+  const [activeState, changeState] = useState(answers?.QOne);
+
+  useEffect(() => {
+    handleClick(answers?.QOne);
+  }, []);
+
+  const handleClick = (val) => {
+    changeState(val);
+    answer({ ...answers, QOne: val });
+  };
 
   return (
     <div className="flex flex-col md:flex-row items-center space-y-5 md:space-y-0 mt-12">
       {qst.map((val, index) => (
         <div
           key={val.id}
-          onClick={() => changeState(val.id)}
+          onClick={() => handleClick(val.id)}
           className={`w-[219px] h-[178px] flex justify-center flex-col items-center bg-white  text-[#505050] font-light text-center border rounded-md text-[16px]  capitalize cursor-pointer mr-6 transition-all duration-100 ease-linear ${
             activeState === val.id
               ? "bg-highlight border-accentColor"

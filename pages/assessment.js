@@ -22,6 +22,28 @@ const Assessment = ({ questions }) => {
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
 
+  // STORED ANSWERS //
+  // STEP ONE
+  const [stepOneAns, setStepOneAns] = useState({
+    QOne: { goals: "", choice: null },
+    QTwo: { enSource: [], genOp: [] },
+    QThree: 3,
+  });
+  // STEP TWO
+  const [stepTwoAns, setStepTwoAns] = useState({
+    QOne: { industry: "", sites: 0 },
+    QTwo: [],
+    QThree: [],
+    QFour: 0,
+  });
+  // STEP THREE
+  const [stepThreeAns, setStepThreeAns] = useState({
+    QOne: 1,
+    QTwo: 0,
+    QThree: null,
+  });
+
+
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -128,7 +150,13 @@ const Assessment = ({ questions }) => {
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
         <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar step={step} stepNo={stepNo} />
+          <ProgressBar
+            stepOneAns={stepOneAns}
+            stepTwoAns={stepTwoAns}
+            stepThreeAns={stepThreeAns}
+            step={step}
+            stepNo={stepNo}
+          />
           <PageIntro assessIntro={assessIntro} activeState={activeState} />
           <div className="space-y-8">
             {/* Step 1 */}
@@ -138,6 +166,8 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
+                stepOneAns={stepOneAns}
+                setStepOneAns={setStepOneAns}
               />
             )}
 
@@ -149,6 +179,8 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
+                stepTwoAns={stepTwoAns}
+                setStepTwoAns={setStepTwoAns}
               />
             )}
 
@@ -158,6 +190,8 @@ const Assessment = ({ questions }) => {
                 iconsRadioQsts={iconsRadioQuestion}
                 investmentQsts={investmentQuestion}
                 largerInvQsts={largerInvestmentQuestion}
+                stepThreeAns={stepThreeAns}
+                setStepThreeAns={setStepThreeAns}
               />
             )}
           </div>
@@ -175,7 +209,6 @@ const Assessment = ({ questions }) => {
               {stepNo !== 3 ? (
                 <ButtonComponent text="Next" action={stepForwardHandler} />
               ) : (
-
                 <ButtonComponent
                   text="View recommendations"
                   action={stepForwardHandler}
