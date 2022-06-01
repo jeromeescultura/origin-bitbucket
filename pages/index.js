@@ -1,10 +1,7 @@
-import { useState } from "react";
-import Head from "next/head";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 
-import ButtonComponent from "../components/ButtonComponent";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ProductContainer from "../containers/ProductContainer";
@@ -14,7 +11,16 @@ import HeroComponent from "../components/HeroComponent";
 import ExclusiveCard from "../containers/ExclusiveCard";
 
 export default function Home() {
-  const [show, setShow] = useState(false);
+  const [showFooter, setShowFooter] = useState(false);
+  const myref = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      setShowFooter(entry.isIntersecting);
+    });
+    observer.observe(myref.current);
+  }, []);
 
   const exclusiveAccess = [
     {
@@ -42,11 +48,6 @@ export default function Home() {
       desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
     },
   ];
-
-  const test = () => {
-    setShow(true);
-  };
-
   return (
     <div>
       <NavBar />
@@ -119,7 +120,7 @@ export default function Home() {
             </div>
           </div>
         </ContentContainer>
-        <div className="bg-primaryBG">
+        <div className="bg-primaryBG pb-80 sm:pb-56 md:pb-48 lg:pb-36">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             <ContentContainer>
               <div>
@@ -174,7 +175,10 @@ export default function Home() {
                     Read the success stories
                   </p>
                 </div>
-                <div className="bg-white w-[327px] md:w-full rounded-2xl px-5 py-8 flex flex-col gap-6 mx-auto">
+                <div
+                  className="bg-white w-[327px] md:w-full rounded-2xl px-5 py-8 flex flex-col gap-6 mx-auto"
+                  ref={myref}
+                >
                   <div className="w-full h-[200px] md:h-[160px] lg:h-[230px]">
                     <Image
                       src="/images/betty.png"
@@ -199,30 +203,9 @@ export default function Home() {
             </ContentContainer>
           </div>
         </div>
-
-        {/*  */}
-        <div className="bg-primaryBG pb-52 md:pb-20">
-          <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
-            {/* <FullWidth>
-              <ProductContainer />
-            </FullWidth> */}
-
-            {/* <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto py-4">
-            
-            </div>
-           
-          
-
-            <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto ">
-             
-            </div> */}
-          </div>
-        </div>
       </div>
-      <BottomScrollListener onBottom={test}>
-        <div />
-      </BottomScrollListener>
-      {/* {show && <Footer />} */}
+      <div />
+      {showFooter && <Footer />}
     </div>
   );
 }
