@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ContentContainer from "../containers/ContentContainer";
 
 function NavBar() {
   const router = useRouter();
