@@ -72,7 +72,7 @@ function signup() {
                 <p className="font-bold text-sm">
                   Do you have an existing business account with Origin?
                 </p>
-                <ButtonQuestion options={buttonQuestions.options} />
+                {/* <ButtonQuestion options={buttonQuestions.options}  /> */}
               </div>
               <div>
                 <CheckboxContainer

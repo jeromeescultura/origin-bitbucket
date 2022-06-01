@@ -43,7 +43,6 @@ const Assessment = ({ questions }) => {
     QThree: null,
   });
 
-
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -104,7 +103,6 @@ const Assessment = ({ questions }) => {
   const [activeState, changeState] = useState(0);
 
   const stepForwardHandler = () => {
-    window.scrollTo({ top: 580, left: 0, behavior: "smooth" });
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
     } else if (step.thirdStep === "w-0 opacity-0") {
@@ -123,6 +121,7 @@ const Assessment = ({ questions }) => {
       setStepNo(3);
       setPage(questions[stepNo - 1]);
     }
+    window.scrollTo({ top: 580, left: 0 });
   };
 
   const stepBackwardHandler = () => {
