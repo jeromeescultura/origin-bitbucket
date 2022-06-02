@@ -21,7 +21,7 @@ function HeroComponent() {
           objectPosition="left"
         />
       </div>
-      <div className="absolute pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
+      <div className="absolute max-w-[920px] pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
         <h2 className="text-4xl lg:text-[56px] lg:leading-snug  text-primaryText font-bold px-10 sm:px-10 lg:px-0 lg:w-[500px]">
           Business energy that&#39;s affordable <br />
           &amp; future proof
