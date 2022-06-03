@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import ButtonComponent from "./ButtonComponent";
+import { Button } from "@mui/material";
 
 function HeroComponent() {
   const router = useRouter();
@@ -32,8 +33,10 @@ function HeroComponent() {
           environment.
         </p>
         <div className="flex flex-col w-[60%] md:flex-row sm:w-[80%] md:w-[80%] lg:w-[60%] mx-auto lg:mx-0 gap-4 mt-10 lg:mt-16 items-center sm:flex-row justify-center lg:justify-start">
-          <ButtonComponent text="Start assessment" action={handleClick} />
-          <ButtonComponent type="border" text="Let's have a chat" />
+          <Button variant="contained">Start assessment</Button>
+          <Button variant="outlined" color="error">
+            Let's have a chat
+          </Button>
         </div>
       </div>
     </div>

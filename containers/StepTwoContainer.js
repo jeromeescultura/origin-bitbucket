@@ -5,6 +5,16 @@ import RadioQuestion from "../components/RadioQuestion";
 import IconsQuestion from "../components/IconsQuestion";
 import CheckboxComponent from "../components/CheckboxComponent";
 import ButtonQuestion from "../components/ButtonQuestion";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+} from "@mui/material";
 
 const StepTwoContainer = ({
   dropDwnQsts,
@@ -22,11 +32,53 @@ const StepTwoContainer = ({
     <>
       {/* STEP TWO - QUESTION 1 */}
       <QuestionContainer id={dropDwnQsts?.id} text={dropDwnQsts?.text}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Age"
+          >
+            {dropDwnQsts?.options.map((item, index) => (
+              <MenuItem key={index} value={item.text}>
+                {item.text}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        {/* 
         <DropdownQuestion
           qst={dropDwnQsts?.options}
           answer={setStepTwoAns}
           answers={stepTwoAns}
-        />
+        /> */}
+        <QuestionContainer>
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio color="secondary" />}
+                label="Female"
+              />
+              <FormControlLabel
+                value="male"
+                control={<Radio color="secondary" />}
+                label="Male"
+              />
+              <FormControlLabel
+                value="other"
+                control={<Radio color="secondary" />}
+                label="Other"
+              />
+            </RadioGroup>
+          </FormControl>
+        </QuestionContainer>
         <QuestionContainer style={"px-0"} text={radioQsts?.text}>
           {radioQsts.options?.map((item, index) => (
             <RadioQuestion
