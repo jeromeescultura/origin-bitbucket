@@ -69,7 +69,7 @@ const questions = [
       },
       {
         id: "02",
-        icon: "/icons/flame.svg",
+        icon: "/icons/leaf.svg",
         title: "General operations changes",
         questionsList: [
           {
