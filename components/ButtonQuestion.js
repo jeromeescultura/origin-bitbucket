@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function ButtonQuestion({ options, action, answer, answers }) {
@@ -71,60 +72,13 @@ function ButtonQuestion({ options, action, answer, answers }) {
   };
   return (
     <div className="flex flex-row gap-0 mt-8">
-      {options?.length === 1 && (
-        <button
-          className={btn1 ? activeStyles : notActiveStyles}
-          onClick={() => handleClick(1)}
-        >
-          {item.text}
-        </button>
-      )}
-      {options?.length === 2 && (
-        <>
-          <button
-            className={`${
-              btn1 ? activeStyles : notActiveStyles
-            } rounded-tl-lg rounded-bl-lg p-7 lg:p-0 flex items-center justify-center`}
-            onClick={() => handleClick(1)}
-          >
-            {options[0].text}
-          </button>
-          <button
-            className={`${
-              btn2 ? activeStyles : notActiveStyles
-            } rounded-tr-lg rounded-br-lg p-7 lg:p-0 flex items-center justify-center`}
-            onClick={() => handleClick(2)}
-          >
-            {options[1].text}
-          </button>
-        </>
-      )}
-      {options?.length === 3 && (
-        <>
-          <button
-            className={`${
-              btn1 ? activeStyles : notActiveStyles
-            } rounded-tl-lg rounded-bl-lg`}
-            onClick={() => handleClick(1)}
-          >
-            {options[0].text}
-          </button>
-          <button
-            className={btn2 ? activeStyles : notActiveStyles}
-            onClick={() => handleClick(2)}
-          >
-            {options[1].text}
-          </button>
-          <button
-            className={`${
-              btn3 ? activeStyles : notActiveStyles
-            } rounded-tr-lg rounded-br-lg`}
-            onClick={() => handleClick(3)}
-          >
-            {options[2].text}
-          </button>
-        </>
-      )}
+      <ButtonGroup>
+        {options?.map((item) => (
+          <Button size="large" variant="outlined" color="secondary">
+            {item.text}
+          </Button>
+        ))}
+      </ButtonGroup>
     </div>
   );
 }

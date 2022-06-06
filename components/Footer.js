@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
@@ -24,8 +25,33 @@ function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 items-center lg:flex-row mx-auto w-[60%] sm:w-full xl:w-[90%]">
-          <ButtonComponent text="Start assessment" action={handleClick} />
-          <ButtonComponent type="border" text="Start assessment" />
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleClick}
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+          >
+            Start assessment
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            color="error"
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+          >
+            Let's have a chat
+          </Button>
         </div>
       </div>
     </div>

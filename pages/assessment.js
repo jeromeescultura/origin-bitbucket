@@ -7,6 +7,7 @@ import ButtonComponent from "../components/ButtonComponent";
 import StepOneContainer from "../containers/StepOneContainer";
 import StepTwoContainer from "../containers/StepTwoContainer";
 import StepThreeContainer from "../containers/StepThreeContainer";
+import { Button } from "@mui/material";
 
 const Assessment = ({ questions }) => {
   const [buttonQuestions, setButtonQuestions] = useState({});
@@ -196,22 +197,29 @@ const Assessment = ({ questions }) => {
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (
-              <button
-                className="text-primaryText"
-                onClick={stepBackwardHandler}
-              >
+              <Button size="large" onClick={stepBackwardHandler}>
                 Back
-              </button>
+              </Button>
             )}
 
             <div className="">
               {stepNo !== 3 ? (
-                <ButtonComponent text="Next" action={stepForwardHandler} />
+                <Button
+                  size="large"
+                  variant="contained"
+                  style={{ borderRadius: 200 }}
+                  onClick={stepForwardHandler}
+                >
+                  Next
+                </Button>
               ) : (
-                <ButtonComponent
-                  text="View recommendations"
-                  action={stepForwardHandler}
-                />
+                <Button
+                  size="large"
+                  variant="contained"
+                  onClick={stepForwardHandler}
+                >
+                  View recommendations
+                </Button>
               )}
             </div>
           </div>

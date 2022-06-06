@@ -1,3 +1,10 @@
+import {
+  Button,
+  ButtonGroup,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import ButtonQuestion from "../components/ButtonQuestion";
 import SliderQuestion from "../components/SliderQuestion";
@@ -20,6 +27,21 @@ const StepOneContainer = ({
     <>
       {/* STEP ONE - QUESTION ONE */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
+        <ButtonGroup>
+          <Button size="large" variant="contained">
+            Yes
+          </Button>
+          <Button size="large" variant="contained">
+            No
+          </Button>
+        </ButtonGroup>
+
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox defaultChecked color="secondary" />}
+            label="Label"
+          />
+        </FormGroup>
         <ButtonQuestion
           options={btnQsts?.options}
           answer={setStepOneAns}
