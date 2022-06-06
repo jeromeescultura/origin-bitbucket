@@ -8,13 +8,15 @@ const FormInputSlider = ({
   setValue,
   label,
   sliderValue,
-  setSliderValue,
   min,
   max,
   sliderMarks,
   handleLabel,
   handleChange,
 }) => {
+  useEffect(() => {
+    if (sliderValue) setValue(name, sliderValue);
+  }, [sliderValue]);
 
   return (
     <div className="border mt-10">

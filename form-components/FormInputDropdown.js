@@ -6,11 +6,10 @@ const FormInputDropdown = ({
   control,
   label,
   options,
-  dropDownValue,
-  setDropDownValue,
+  dropdownValue,
 }) => {
   const generateSingleOptions = () => {
-    return options.map((option) => {
+    return options.map((option, index) => {
       return (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
@@ -24,7 +23,7 @@ const FormInputDropdown = ({
       <InputLabel>{label}</InputLabel>
       <Controller
         render={({ field: { onChange, value } }) => (
-          <Select onChange={onChange} value={value}>
+          <Select onChange={onChange} value={dropdownValue}>
             {generateSingleOptions()}
           </Select>
         )}

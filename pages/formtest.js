@@ -5,11 +5,10 @@ import FormInputSlider from "../form-components/FormInputSlider";
 import { useEffect, useState } from "react";
 
 const FormTest = () => {
-  const storedData = {
-    storedValues: JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("FORM_INPUT")
-    ),
-  };
+  const storedData = JSON.parse(
+    typeof window !== "undefined" && window.localStorage.getItem("FORM_INPUT")
+  );
+
   const options = [
     {
       label: "Dropdown Option 1",
@@ -43,23 +42,13 @@ const FormTest = () => {
       label: "Very important",
     },
   ];
+  const [sliderValue, setSliderValue] = useState(3);
+  const [dropdownValue, setDropdownValue] = useState("");
 
   const [formValues, setFormValues] = useState({
     dropdownValue: "",
     sliderValue: 3,
   });
-
-  useEffect(() => {
-    window.localStorage.setItem("FORM_INPUT", JSON.stringify(formValues));
-  }, [formValues]);
-
-  useEffect(() => {
-    if (storedData.storedValues !== null) {
-      setFormValues(storedData.storedValues);
-    }
-  }, []);
-
-  console.log(formValues);
 
   const handleLabel = (val) => {
     switch (val) {
@@ -79,39 +68,58 @@ const FormTest = () => {
   };
 
   const handleChange = (event, newValue) => {
-    setFormValues({
-      ...formValues,
-      sliderValue: newValue,
-    });
+    setSliderValue(newValue);
   };
 
   const methods = useForm({ defaultValues: formValues });
   const { control, watch, setValue } = methods;
-  const changeHandler = (data) => console.log(data);
+  const changeHandler = (data) => {
+    setFormValues({
+      sliderValue: data.sliderValue,
+      dropdownValue: data.dropdownValue,
+    });
+  };
+
+  useEffect(() => {
+    window.localStorage.setItem("FORM_INPUT", JSON.stringify(formValues));
+    setSliderValue(formValues.sliderValue);
+  }, [formValues]);
+
+  useEffect(() => {
+    if (storedData !== null) {
+      setFormValues(storedData);
+    }
+  }, []);
 
   return (
     <div>
       <FormInputDropdown
-        dropDownValue={formValues.dropdownValue}
         onChange={watch(changeHandler)}
         name="dropdownValue"
         control={control}
         label="Dropdown Input"
         options={options}
+        dropdownValue={dropdownValue}
       />
 
       <FormInputSlider
         name={"sliderValue"}
         setValue={setValue}
+        onChange={watch(changeHandler)}
         control={control}
         label={"Slider Input"}
-        sliderValue={formValues.sliderValue}
+        sliderValue={sliderValue}
         sliderMarks={sliderMarks}
         min={1}
         max={5}
         handleLabel={handleLabel}
         handleChange={handleChange}
       />
+
+      <h1 className="text-4xl">{formValues.sliderValue}</h1>
+      <h1 className="text-4xl">
+        {formValues.dropdownValue === "" ? "none" : formValues.dropdownValue}
+      </h1>
     </div>
   );
 };
