@@ -8,7 +8,7 @@ function NavBar() {
     router.push("/");
   };
   return (
-    <div className="bg-white py-3 mt-2 lg:pt-10 w-[90%] sm:w-[80%] md:w-[90%] lg:w-[95%] xl:w-[80%] mx-auto">
+    <div className="bg-white py-3 lg:pt-8 w-[90vw] sm:w-[80vw] md:w-[90vw] lg:w-[95vw] max-w-[1140px] mx-auto ">
       <div className="w-16 lg:w-20 cursor-pointer">
         <Image
           src="/images/origin-logo.svg"
