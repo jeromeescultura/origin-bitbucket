@@ -61,7 +61,7 @@ const originTheme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={originTheme}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }
