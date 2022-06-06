@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import ButtonComponent from "./ButtonComponent";
 import { Button } from "@mui/material";
 
 function HeroComponent() {
@@ -33,8 +32,31 @@ function HeroComponent() {
           environment.
         </p>
         <div className="flex flex-col w-[60%] md:flex-row sm:w-[80%] md:w-[80%] lg:w-[60%] mx-auto lg:mx-0 gap-4 mt-10 lg:mt-16 items-center sm:flex-row justify-center lg:justify-start">
-          <Button variant="contained">Start assessment</Button>
-          <Button variant="outlined" color="error">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleClick}
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+          >
+            Start assessment
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            color="error"
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+          >
             Let's have a chat
           </Button>
         </div>

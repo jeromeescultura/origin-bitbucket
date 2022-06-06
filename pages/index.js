@@ -202,27 +202,13 @@ export default function Home() {
 
         {/*  */}
         <div className="bg-primaryBG pb-52 md:pb-20">
-          <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
-            {/* <FullWidth>
-              <ProductContainer />
-            </FullWidth> */}
-
-            {/* <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto py-4">
-            
-            </div>
-           
-          
-
-            <div className="w-[90%] lg:w-[95%] xl:w-[80%] mx-auto ">
-             
-            </div> */}
-          </div>
+          <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full"></div>
         </div>
       </div>
       <BottomScrollListener onBottom={test}>
         <div />
       </BottomScrollListener>
-      {/* {show && <Footer />} */}
+      {show && <Footer />}
     </div>
   );
 }
