@@ -3,6 +3,7 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormHelperText,
   FormLabel,
 } from "@mui/material";
@@ -15,9 +16,9 @@ export const FormInputMultiCheckbox = ({
   label,
   options,
   validation,
+  checkboxValue,
+  setCheckboxValue,
 }) => {
-  const [selectedItems, setSelectedItems] = useState([]);
-
   const handleSelect = (value) => {
     const isPresent = selectedItems.indexOf(value);
     if (isPresent !== -1) {
@@ -27,42 +28,67 @@ export const FormInputMultiCheckbox = ({
       setSelectedItems((prevItems) => [...prevItems, value]);
     }
   };
+  const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
-    if (selectedItems) setValue(name, selectedItems);
+    if (checkboxValue) {
+      if (checkboxValue.length > 0) {
+        setSelectedItems(checkboxValue);
+      }
+    }
+  }, [checkboxValue]);
+
+  useEffect(() => {
+    if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
 
+  useEffect(() => {
+    if (checkboxValue) {
+      setValue(name, checkboxValue);
+    } else {
+      setValue(name, selectedItems);
+    }
+  }, [selectedItems, checkboxValue]);
+  console.log(options);
   return (
     <Controller
       control={control}
       rules={validation}
       name={name}
       render={({ fieldState: { error } }) => {
-        return options.map((option, index) => (
-          <FormControl
-            key={index}
-            size={"small"}
-            variant={"outlined"}
-            error={error ? true : false}
-          >
-            {label && <FormLabel component="legend">{label}</FormLabel>}
-            <FormControlLabel
-              control={
-                <Checkbox
-                  color="secondary"
-                  size="large"
-                  checked={selectedItems?.includes(option.value)}
-                  onChange={() => handleSelect(option.value)}
+        return (
+          options &&
+          options.map((option, index) => (
+            <FormControl
+              key={index}
+              variant={"outlined"}
+              error={error ? true : false}
+            >
+              {label && <FormLabel component="legend">{label}</FormLabel>}
+              <FormGroup>
+                <FormControlLabel
+                  label={option.label || option.text}
+                  key={option.value}
+                  control={
+                    <Checkbox
+                      color="secondary"
+                      size="large"
+                      checked={
+                        (checkboxValue &&
+                          checkboxValue.includes(option.value)) ||
+                        selectedItems?.includes(option.value)
+                      }
+                      onChange={() => handleSelect(option.value)}
+                    />
+                  }
                 />
-              }
-              label={option.label}
-              key={option.value}
-            />
-            {error && (
-              <FormHelperText>{error ? error.message : null}</FormHelperText>
-            )}
-          </FormControl>
-        ));
+              </FormGroup>
+              {error && (
+                <FormHelperText>{error ? error.message : null}</FormHelperText>
+              )}
+            </FormControl>
+          ))
+        );
       }}
     />
   );

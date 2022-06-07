@@ -186,27 +186,27 @@ const questions = [
   {
     sliderQuestion: {
       id: "03",
-      text: "How important is reducing your business’ impact on the environment to you?",
+      text: "How much of a priority is sustainability for your business?",
       options: [
         {
           id: 1,
-          text: "Not Important",
+          value: "low_priority",
         },
         {
           id: 2,
-          text: "",
+          value: "medium_priority",
         },
         {
           id: 3,
-          text: "",
+          value: "priority",
         },
         {
           id: 4,
-          text: "",
+          value: "high_priority",
         },
         {
           id: 5,
-          text: "Very Important",
+          value: "very_high_priority",
         },
       ],
     },
