@@ -52,7 +52,7 @@ const ProgressBar = ({
               console.clear();
               console.log(assessmentAnswers);
             }}
-            className="lg:border lg:border-[#505050] text-sm text-primaryText active:scale-95 lg:text-black lg:text-base rounded-full py-2 lg:px-8 lg:focus:bg-black lg:focus:text-white transition-all ease-linear duration-100 flex"
+            className="lg:border lg:border-subTextColor text-sm text-primaryText active:scale-95 lg:text-black lg:text-base rounded-full py-2 lg:px-8 lg:focus:bg-black lg:focus:text-white transition-all ease-linear duration-100 flex"
           >
             <span className="flex items-center lg:hidden mr-2">
               <Image

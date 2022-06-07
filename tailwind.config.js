@@ -30,6 +30,8 @@ module.exports = {
         secondaryBG: "#EC0000",
         highlight: "#FFF9EF",
         accentColor: "#FFB432",
+        subTextColor: "#505050",
+        leafBG: "rgba(165, 187, 72, 0.16)",
       },
       fontFamily: {
         Gordita: ["gordita", "sans-serif"],

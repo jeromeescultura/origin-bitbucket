@@ -1,10 +1,14 @@
+import { useEffect, useState } from "react";
+import { server } from "../config";
 import Image from "next/image";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
 import ContentContainer from "../containers/ContentContainer";
 import { FormInputText } from "../form-components/FormInputText";
+import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
+import FormInputDropdown from "../form-components/FormInputDropdown";
+import LeafRating from "../components/LeafRating";
+
 import {
   Grid,
   Container,
@@ -15,13 +19,16 @@ import {
   FormGroup,
   FormControlLabel,
 } from "@mui/material";
+import FormInputButton from "../form-components/FormInputButton";
+import ButtonQuestion from "../components/ButtonQuestion";
 function signup() {
+  const [selectedBtn, setSelectedBtn] = useState("Yes");
   const router = useRouter();
-  const [activeBtn, setActiveBtn] = useState(false);
   const handleClick = (e) => {
     e.preventDefault();
     router.push("/");
   };
+
   const defaultValues = {
     unitNo: "",
     streetNo: "",
@@ -33,10 +40,78 @@ function signup() {
     lastName: "",
     email: "",
     phone: "",
+    existingBusiness: "Yes",
   };
   const methods = useForm({ defaultValues: defaultValues });
   const { handleSubmit, onChange, reset, control, setValue, watch } = methods;
   const onSubmit = (data) => console.log(data);
+
+  const checkboxOptions = [
+    {
+      label: "I am the primary account holder for this account",
+      value: "1",
+    },
+  ];
+
+  const existingOptions = [
+    {
+      value: "Yes",
+    },
+    {
+      value: "No",
+    },
+  ];
+
+  const states = [
+    {
+      name: "australian capital territory",
+      abbreviation: "act",
+      capital: "canberra",
+      type: "territory",
+    },
+    {
+      name: "new south wales",
+      abbreviation: "nsw",
+      capital: "sydney",
+      type: "state",
+    },
+    {
+      name: "northern territory",
+      abbreviation: "nt",
+      capital: "darwin",
+      type: "territory",
+    },
+    {
+      name: "queensland",
+      abbreviation: "qld",
+      capital: "brisbane",
+      type: "state",
+    },
+    {
+      name: "south australia",
+      abbreviation: "sa",
+      capital: "adelaide",
+      type: "state",
+    },
+    {
+      name: "tasmania",
+      abbreviation: "tas",
+      capital: "hobart",
+      type: "state",
+    },
+    {
+      name: "victoria",
+      abbreviation: "vic",
+      capital: "melbourne",
+      type: "state",
+    },
+    {
+      name: "western australia",
+      abbreviation: "wa",
+      capital: "perth",
+      type: "state",
+    },
+  ];
 
   return (
     <div className="bg-primaryBG pb-32">
@@ -53,7 +128,6 @@ function signup() {
             />
           </div>
         </div>
-
         <div className="text-center font-light w-full mt-4 lg:-mt-8">
           <h2 className="text-primaryText font-bold w-full sm:w-[60vw] lg:w-[50vw] mx-auto">
             Applying to Origin&#39;s Clean Ambition Program
@@ -68,8 +142,9 @@ function signup() {
         <section className="w-full  lg:order-2 lg:col-span-2">
           <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
             <div className="text-center space-y-2">
-              <p className="text-sm">You have chosen to pledge with</p>
-              <p className="font-bold pt-4 subtitle">Origin Go Zero</p>
+              <p className="text-sm pb-4">You have chosen to pledge with</p>
+              <LeafRating count={4} />
+              <p className="font-bold subtitle">Origin Go Zero</p>
               <Button className="lg:hidden">Pledge details</Button>
             </div>
             <div className="lg:inline hidden text-center">
@@ -130,40 +205,12 @@ function signup() {
           <p className="font-bold text-sm">
             Do you have an existing business account with Origin?
           </p>
-
-          <ButtonGroup
-            variant="outlined"
-            aria-label="outlined button group"
-            size="large"
-            color="secondary"
-            fullWidth
-          >
-            <Button
-              sx={{
-                color: "#505050",
-                borderColor: "#E3E3E3",
-                ":6": {
-                  borderColor: "#FFB432",
-                  backgroundColor: "#FFF9EF",
-                },
-              }}
-            >
-              Yes
-            </Button>
-            <Button
-              sx={{
-                color: "#505050",
-                borderColor: "#E3E3E3",
-                ":focus": {
-                  borderColor: "#FFB432",
-                  backgroundColor: "#FFF9EF",
-                },
-              }}
-            >
-              No
-            </Button>
-          </ButtonGroup>
-
+          <FormInputButton
+            name="existingBusiness"
+            control={control}
+            options={existingOptions}
+            setValue={setValue}
+          />
           <p className="font-bold text-sm">
             What is the address of your primary site on the account?
           </p>
@@ -187,7 +234,12 @@ function signup() {
           </Grid>
           <Grid container>
             <Grid item xs={12}>
-              <FormInputText name="street" label="Street" control={control} />
+              <FormInputText
+                name="street"
+                label="Street"
+                control={control}
+                validation={{ required: "Required" }}
+              />
             </Grid>
           </Grid>
           <Grid container>
@@ -202,12 +254,21 @@ function signup() {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <FormInputText
+              <FormInputDropdown
+                setValue={setValue}
+                name="state"
+                control={control}
+                label="State"
+                states={states}
+                validation={{ required: "Required" }}
+              />
+
+              {/* <FormInputText
                 name="state"
                 label="State"
                 control={control}
                 validation={{ required: "Required" }}
-              />
+              /> */}
             </Grid>
             <Grid item xs={6}>
               <FormInputText
@@ -260,7 +321,6 @@ function signup() {
               />
             </Grid>
           </Grid>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
@@ -271,14 +331,12 @@ function signup() {
               />
             </Grid>
           </Grid>
-
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox color="secondary" />}
-              label=" I am the primary account holder for this account"
-            />
-          </FormGroup>
-
+          <FormInputMultiCheckbox
+            control={control}
+            setValue={setValue}
+            name={"primaryAccountHolder"}
+            options={checkboxOptions}
+          />
           <Button
             variant="contained"
             color="primary"
@@ -294,7 +352,6 @@ function signup() {
           >
             Submit my application
           </Button>
-
           <p>
             *Once you submit your application, one of our Clean Ambition club
             representatives will get in contact to review your energy plan
@@ -303,59 +360,6 @@ function signup() {
         </section>
       </ContentContainer>
     </div>
-    // <div className="bg-primaryBG">
-    //   <div className="bg-assessment-bg bg-no-repeat bg-contain h-full">
-    //     <ContentContainer>
-    //       <div>
-    //         <div className="w-16 lg:w-20 cursor-pointer ml-auto mt-8">
-    //           <Image
-    //             src="/images/origin-logo.svg"
-    //             width={90}
-    //             height={90}
-    //             objectFit="contain"
-    //             alt="origin-logo"
-    //             onClick={handleClick}
-    //           />
-    //         </div>
-    //         <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto mt-4 max-w-[400px]">
-    //           <h2 className="text-primaryText font-bold">
-    //             Applying to Origin&#39;s Clean Ambition Program
-    //           </h2>
-    //           <p className="mb-4 mt-8 sm:leading-loose">
-    //             Thank you for choosing to join the program! You have chosen to
-    //             pledge with <strong>Carbon Offsets.</strong>
-    //           </p>
-    //           <p className="text-secondaryBG font-bold">
-    //             View your pledge details
-    //           </p>
-    //         </div>
-    //       </div>
-    //       <QuestionContainer text="Please give us a few details, and one of our specialists will contact you about finalising your application.  ">
-    //         <div className="space-y-12 mt-12">
-    //           <div>
-    //             <p className="font-bold text-sm">
-    //               Do you have an existing business account with Origin?
-    //             </p>
-    //             {/* <ButtonQuestion options={buttonQuestions.options}  /> */}
-    //           </div>
-    //           <div>
-    //             <CheckboxContainer
-    //               questionsList={checkboxQuestions.questionsList}
-    //             />
-    //             <div className="max-w-[240px] mx-auto">
-    //               <ButtonComponent text="Submit my application" style="mt-8" />
-    //             </div>
-    //           </div>
-    //           <p className="text-sm">
-    //             *Once you submit your application, one of our Clean Ambition
-    //             club representatives will get in contact to review your energy
-    //             plan options.
-    //           </p>
-    //         </div>
-    //       </QuestionContainer>
-    //     </ContentContainer>
-    //   </div>
-    // </div>
   );
 }
 

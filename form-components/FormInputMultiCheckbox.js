@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Checkbox,
   FormControl,
@@ -13,16 +13,26 @@ export const FormInputMultiCheckbox = ({
   setValue,
   label,
   options,
-  handleSelect,
-  selectedItems,
 }) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleSelect = (value) => {
+    const isPresent = selectedItems.indexOf(value);
+    if (isPresent !== -1) {
+      const remaining = selectedItems.filter((item) => item !== value);
+      setSelectedItems(remaining);
+    } else {
+      setSelectedItems((prevItems) => [...prevItems, value]);
+    }
+  };
+
   useEffect(() => {
     if (selectedItems) setValue(name, selectedItems);
   }, [selectedItems]);
 
   return (
     <FormControl size={"small"} variant={"outlined"}>
-      <FormLabel component="legend">{label}</FormLabel>
+      {label && <FormLabel component="legend">{label}</FormLabel>}
 
       <div>
         {options.map((option) => {
@@ -34,7 +44,7 @@ export const FormInputMultiCheckbox = ({
                   render={({}) => {
                     return (
                       <Checkbox
-                        checked={selectedItems.includes(option.value)}
+                        checked={selectedItems?.includes(option.value)}
                         onChange={() => handleSelect(option.value)}
                       />
                     );
