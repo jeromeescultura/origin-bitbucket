@@ -169,13 +169,19 @@ function signup() {
           </p>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <FormInputText name="unitNo" label="Unit no." control={control} />
+              <FormInputText
+                name="unitNo"
+                label="Unit no."
+                control={control}
+                validation={{ required: "Required" }}
+              />
             </Grid>
             <Grid item xs={6}>
               <FormInputText
                 name="streetNo"
                 label="Street no."
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -190,18 +196,25 @@ function signup() {
                 name="city"
                 label="City/Suburb"
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <FormInputText name="state" label="State" control={control} />
+              <FormInputText
+                name="state"
+                label="State"
+                control={control}
+                validation={{ required: "Required" }}
+              />
             </Grid>
             <Grid item xs={6}>
               <FormInputText
                 name="postcode"
                 label="Postcode"
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -214,6 +227,7 @@ function signup() {
                 name="firstName"
                 label="First Name"
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -224,6 +238,7 @@ function signup() {
                 name="lastName"
                 label="Last Name"
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -234,6 +249,14 @@ function signup() {
                 name="email"
                 label="Email Address"
                 control={control}
+                validation={{
+                  required: "Required",
+                  pattern: {
+                    value:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: "Please enter a valid email",
+                  },
+                }}
               />
             </Grid>
           </Grid>
@@ -244,6 +267,7 @@ function signup() {
                 name="phone"
                 label="Phone number"
                 control={control}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>

@@ -1,11 +1,12 @@
 import { Checkbox, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-export const FormInputText = ({ name, label, control }) => {
+export const FormInputText = ({ name, label, control, validation }) => {
   return (
     <Controller
       control={control}
       name={name}
+      rules={validation}
       render={({
         field: { onChange, value },
         fieldState: { error },
