@@ -3,13 +3,25 @@ import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import FormInputSlider from "../form-components/FormInputSlider";
 import { useEffect, useState } from "react";
+import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 
 const FormTest = () => {
   const storedData = JSON.parse(
     typeof window !== "undefined" && window.localStorage.getItem("FORM_INPUT")
   );
 
-  const options = [
+  const checkboxOptions = [
+    {
+      label: "Checkbox Option 1",
+      value: "1",
+    },
+    {
+      label: "Checkbox Option 2",
+      value: "2",
+    },
+  ];
+
+  const dropdownOptions = [
     {
       label: "Dropdown Option 1",
       value: "1",
@@ -44,10 +56,12 @@ const FormTest = () => {
   ];
   const [sliderValue, setSliderValue] = useState(3);
   const [dropdownValue, setDropdownValue] = useState("");
+  const [selectedCheckboxItems, setSelectedItems] = useState([]);
 
   const [formValues, setFormValues] = useState({
     dropdownValue: "",
     sliderValue: 3,
+    checkboxValue: [],
   });
 
   const handleLabel = (val) => {
@@ -67,8 +81,18 @@ const FormTest = () => {
     }
   };
 
-  const handleChange = (event, newValue) => {
+  const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
+  };
+
+  const handleCheckboxSelect = (value) => {
+    const isPresent = selectedCheckboxItems.indexOf(value);
+    if (isPresent !== -1) {
+      const remaining = selectedCheckboxItems.filter((item) => item !== value);
+      setSelectedItems(remaining);
+    } else {
+      setSelectedItems((prevItems) => [...prevItems, value]);
+    }
   };
 
   const methods = useForm({ defaultValues: formValues });
@@ -77,35 +101,38 @@ const FormTest = () => {
     setFormValues({
       sliderValue: data.sliderValue,
       dropdownValue: data.dropdownValue,
+      checkboxValue: data.checkboxValue,
     });
   };
 
   useEffect(() => {
     window.localStorage.setItem("FORM_INPUT", JSON.stringify(formValues));
-    setSliderValue(formValues.sliderValue);
   }, [formValues]);
 
   useEffect(() => {
     if (storedData !== null) {
       setFormValues(storedData);
+      setSliderValue(storedData.sliderValue);
+      setDropdownValue(storedData.dropdownValue);
+      setSelectedItems(storedData.checkboxValue);
     }
   }, []);
 
   return (
     <div>
       <FormInputDropdown
+        setValue={setValue}
         onChange={watch(changeHandler)}
         name="dropdownValue"
         control={control}
         label="Dropdown Input"
-        options={options}
+        options={dropdownOptions}
         dropdownValue={dropdownValue}
       />
 
       <FormInputSlider
         name={"sliderValue"}
         setValue={setValue}
-        onChange={watch(changeHandler)}
         control={control}
         label={"Slider Input"}
         sliderValue={sliderValue}
@@ -113,13 +140,24 @@ const FormTest = () => {
         min={1}
         max={5}
         handleLabel={handleLabel}
-        handleChange={handleChange}
+        handleChange={handleSliderChange}
+      />
+
+      <FormInputMultiCheckbox
+        control={control}
+        setValue={setValue}
+        name={"checkboxValue"}
+        label={"Checkbox Input"}
+        options={checkboxOptions}
+        handleSelect={handleCheckboxSelect}
+        selectedItems={selectedCheckboxItems}
       />
 
       <h1 className="text-4xl">{formValues.sliderValue}</h1>
       <h1 className="text-4xl">
         {formValues.dropdownValue === "" ? "none" : formValues.dropdownValue}
       </h1>
+      <h1 className="text-4xl">Dropdownvalue {dropdownValue}</h1>
     </div>
   );
 };

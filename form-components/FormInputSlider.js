@@ -27,8 +27,10 @@ const FormInputSlider = ({
         render={() => (
           <Slider
             sx={{
+              paddingX: '20px',
               width: "700px",
               height: "20px",
+            
               "& .MuiSlider-markLabel": {
                 marginTop: "24px",
               },
