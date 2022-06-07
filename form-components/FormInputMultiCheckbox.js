@@ -3,6 +3,7 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
@@ -13,6 +14,7 @@ export const FormInputMultiCheckbox = ({
   setValue,
   label,
   options,
+  validation,
 }) => {
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -31,33 +33,37 @@ export const FormInputMultiCheckbox = ({
   }, [selectedItems]);
 
   return (
-    <FormControl size={"small"} variant={"outlined"}>
-      {label && <FormLabel component="legend">{label}</FormLabel>}
-
-      <div>
-        {options.map((option) => {
-          return (
+    <Controller
+      control={control}
+      rules={validation}
+      name={name}
+      render={({ fieldState: { error } }) => {
+        return options.map((option, index) => (
+          <FormControl
+            key={index}
+            size={"small"}
+            variant={"outlined"}
+            error={error ? true : false}
+          >
+            {label && <FormLabel component="legend">{label}</FormLabel>}
             <FormControlLabel
               control={
-                <Controller
-                  name={name}
-                  render={({}) => {
-                    return (
-                      <Checkbox
-                        checked={selectedItems?.includes(option.value)}
-                        onChange={() => handleSelect(option.value)}
-                      />
-                    );
-                  }}
-                  control={control}
+                <Checkbox
+                  color="secondary"
+                  size="large"
+                  checked={selectedItems?.includes(option.value)}
+                  onChange={() => handleSelect(option.value)}
                 />
               }
               label={option.label}
               key={option.value}
             />
-          );
-        })}
-      </div>
-    </FormControl>
+            {error && (
+              <FormHelperText>{error ? error.message : null}</FormHelperText>
+            )}
+          </FormControl>
+        ));
+      }}
+    />
   );
 };

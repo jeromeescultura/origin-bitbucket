@@ -144,16 +144,16 @@ function signup() {
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
               <LeafRating count={4} />
-              <p className="font-bold subtitle">Origin Go Zero</p>
+              <p className="font-medium subtitle">Origin Go Zero</p>
               <Button className="lg:hidden">Pledge details</Button>
             </div>
             <div className="lg:inline hidden text-center">
               <div className="space-y-1 mt-8">
-                <p className="font-bold">How you reduce impact</p>
+                <p className="font-medium">How you reduce impact</p>
                 <p>Through offsetting your energy use</p>
               </div>
               <div className="space-y-2 mt-8">
-                <p className="font-bold">Estimated cost</p>
+                <p className="font-medium">Estimated cost</p>
                 <h2>$0</h2>
                 <p className="text-xs">
                   extra p/month on any <br />
@@ -177,7 +177,7 @@ function signup() {
                 </p>
               </div>
               <div className="mt-16">
-                <p className="font-bold">You’ve chosen to do more</p>
+                <p className="font-medium">You’ve chosen to do more</p>
                 <div className="flex gap-4 justify-center mt-4">
                   <div className="w-[20px] h-[20px]">
                     <Image
@@ -202,7 +202,7 @@ function signup() {
             Please give us a few details, and one of our specialists will
             contact you about finalising your application.
           </p>
-          <p className="font-bold text-sm">
+          <p className="font-medium text-sm">
             Do you have an existing business account with Origin?
           </p>
           <FormInputButton
@@ -211,7 +211,7 @@ function signup() {
             options={existingOptions}
             setValue={setValue}
           />
-          <p className="font-bold text-sm">
+          <p className="font-medium text-sm">
             What is the address of your primary site on the account?
           </p>
           <Grid container spacing={2}>
@@ -220,7 +220,7 @@ function signup() {
                 name="unitNo"
                 label="Unit no."
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
             <Grid item xs={6}>
@@ -228,7 +228,7 @@ function signup() {
                 name="streetNo"
                 label="Street no."
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -238,7 +238,7 @@ function signup() {
                 name="street"
                 label="Street"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -248,7 +248,7 @@ function signup() {
                 name="city"
                 label="City/Suburb"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -260,14 +260,14 @@ function signup() {
                 control={control}
                 label="State"
                 states={states}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
 
               {/* <FormInputText
                 name="state"
                 label="State"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               /> */}
             </Grid>
             <Grid item xs={6}>
@@ -275,12 +275,12 @@ function signup() {
                 name="postcode"
                 label="Postcode"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
 
-          <p className="font-bold text-sm">Your contact details</p>
+          <p className="font-medium text-sm">Your contact details</p>
 
           <Grid container>
             <Grid item xs={12}>
@@ -288,7 +288,7 @@ function signup() {
                 name="firstName"
                 label="First Name"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -299,7 +299,7 @@ function signup() {
                 name="lastName"
                 label="Last Name"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -310,14 +310,14 @@ function signup() {
                 name="email"
                 label="Email Address"
                 control={control}
-                validation={{
-                  required: "Required",
-                  pattern: {
-                    value:
-                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Please enter a valid email",
-                  },
-                }}
+                // validation={{
+                //   required: "Required",
+                //   pattern: {
+                //     value:
+                //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                //     message: "Please enter a valid email",
+                //   },
+                // }}
               />
             </Grid>
           </Grid>
@@ -327,7 +327,7 @@ function signup() {
                 name="phone"
                 label="Phone number"
                 control={control}
-                validation={{ required: "Required" }}
+                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -336,21 +336,10 @@ function signup() {
             setValue={setValue}
             name={"primaryAccountHolder"}
             options={checkboxOptions}
+            validation={{ required: "Required" }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={handleSubmit(onSubmit)}
-            style={{
-              borderRadius: 200,
-              boxShadow: "none",
-              paddingLeft: "2rem",
-              paddingRight: "2rem",
-              marginTop: "1rem",
-            }}
-          >
-            Submit my application
+          <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
+            Submit
           </Button>
           <p>
             *Once you submit your application, one of our Clean Ambition club

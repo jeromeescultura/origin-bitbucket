@@ -7,7 +7,7 @@ const FormInputButton = ({ name, control, options, setValue, validation }) => {
   const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
 
-  const activeStyles = "border-accentColor bg-highlight font-bold";
+  const activeStyles = "border-accentColor bg-highlight font-medium";
 
   const handleSelect = (value) => {
     if (value === 0) {
@@ -47,6 +47,7 @@ const FormInputButton = ({ name, control, options, setValue, validation }) => {
                   sx={{
                     color: "#505050",
                     borderColor: "#E3E3E3",
+                    fontSize: "16",
                   }}
                 >
                   {options[0].value}
@@ -58,6 +59,7 @@ const FormInputButton = ({ name, control, options, setValue, validation }) => {
                   sx={{
                     color: "#505050",
                     borderColor: "#E3E3E3",
+                    fontSize: "16",
                   }}
                 >
                   {options[1].value}
