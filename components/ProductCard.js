@@ -23,7 +23,7 @@ function ProductCard() {
       <ul className="space-y-8 text-left py-8">
         <li className="flex gap-4">
           <Image
-            src="/icons/flame.svg"
+            src="/icons/leaf.svg"
             width={15}
             height={15}
             objectFit="contain"
@@ -32,7 +32,7 @@ function ProductCard() {
         </li>
         <li className="flex gap-4">
           <Image
-            src="/icons/flame.svg"
+            src="/icons/leaf.svg"
             width={15}
             height={15}
             objectFit="contain"
@@ -41,7 +41,7 @@ function ProductCard() {
         </li>
         <li className="flex gap-4">
           <Image
-            src="/icons/flame.svg"
+            src="/icons/leaf.svg"
             width={15}
             height={15}
             objectFit="contain"
@@ -50,7 +50,7 @@ function ProductCard() {
         </li>
         <li className="flex gap-4">
           <Image
-            src="/icons/flame.svg"
+            src="/icons/leaf.svg"
             width={15}
             height={15}
             objectFit="contain"
