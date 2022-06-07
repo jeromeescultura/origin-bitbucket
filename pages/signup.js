@@ -338,7 +338,18 @@ function signup() {
             options={checkboxOptions}
             validation={{ required: "Required" }}
           />
-          <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            variant="contained"
+            color="primary"
+            size="large"
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+          >
             Submit
           </Button>
           <p>
