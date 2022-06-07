@@ -39,6 +39,9 @@ h2 {
 .slick-slide > div {
   padding: 0 8px;
 }
+.MuiFormHelperText-root {
+  color: #ec0000;
+}
 
 @layer base {
   @font-face {

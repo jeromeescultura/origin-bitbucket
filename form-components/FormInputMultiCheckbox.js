@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Checkbox,
   FormControl,
@@ -13,9 +13,15 @@ export const FormInputMultiCheckbox = ({
   setValue,
   label,
   options,
+<<<<<<< HEAD
+}) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+=======
   checkboxValue,
   setCheckboxValue,
 }) => {
+>>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
   const handleSelect = (value) => {
     const isPresent = selectedItems.indexOf(value);
     if (isPresent !== -1) {
@@ -25,7 +31,10 @@ export const FormInputMultiCheckbox = ({
       setSelectedItems((prevItems) => [...prevItems, value]);
     }
   };
+<<<<<<< HEAD
+=======
   const [selectedItems, setSelectedItems] = useState([]);
+>>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
 
   useEffect(() => {
     if (checkboxValue) {
@@ -39,6 +48,11 @@ export const FormInputMultiCheckbox = ({
     if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
 
+<<<<<<< HEAD
+  return (
+    <FormControl size={"small"} variant={"outlined"}>
+      {label && <FormLabel component="legend">{label}</FormLabel>}
+=======
   useEffect(() => {
     if (checkboxValue) {
       setValue(name, checkboxValue);
@@ -46,6 +60,7 @@ export const FormInputMultiCheckbox = ({
       setValue(name, selectedItems);
     }
   }, [selectedItems, checkboxValue]);
+>>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
 
   useEffect;
 
@@ -66,12 +81,16 @@ export const FormInputMultiCheckbox = ({
                     >
                       <FormLabel component="legend">{label}</FormLabel>
                       <Checkbox
+<<<<<<< HEAD
+                        checked={selectedItems?.includes(option.value)}
+=======
                         color="secondary"
                         checked={
                           (checkboxValue &&
                             checkboxValue.includes(option.value)) ||
                           selectedItems?.includes(option.value)
                         }
+>>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
                         onChange={() => handleSelect(option.value)}
                       />
                     </FormControl>

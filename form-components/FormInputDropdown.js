@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  FormHelperText,
+} from "@mui/material";
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 
@@ -9,15 +15,27 @@ const FormInputDropdown = ({
   options,
   dropdownValue,
   setValue,
+  states,
+  validation,
 }) => {
   const generateSingleOptions = () => {
-    return options.map((option, index) => {
-      return (
-        <MenuItem key={option.value} value={option.value}>
-          {option.label}
-        </MenuItem>
-      );
-    });
+    if (options) {
+      return options.map((option, index) => {
+        return (
+          <MenuItem key={index} value={option.value}>
+            {option.label}
+          </MenuItem>
+        );
+      });
+    } else if (states) {
+      return states.map((state, index) => {
+        return (
+          <MenuItem key={index} value={state.capital}>
+            <p className="capitalize">{state.capital}</p>
+          </MenuItem>
+        );
+      });
+    }
   };
 
   useEffect(() => {
@@ -25,18 +43,27 @@ const FormInputDropdown = ({
   }, [dropdownValue]);
 
   return (
-    <FormControl size={"large"} className="mt-4 w-full">
-      <InputLabel>{label}</InputLabel>
-      <Controller
-        render={({ field: { onChange, value } }) => (
+    <Controller
+      rules={validation}
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
+        <FormControl
+          size={"large"}
+          className="w-full"
+          error={error ? true : false}
+          color="secondary"
+        >
+          <InputLabel>{label}</InputLabel>
           <Select onChange={onChange} value={value}>
             {generateSingleOptions()}
           </Select>
-        )}
-        control={control}
-        name={name}
-      />
-    </FormControl>
+          {error && (
+            <FormHelperText>{error ? error.message : null}</FormHelperText>
+          )}
+        </FormControl>
+      )}
+      control={control}
+      name={name}
+    />
   );
 };
 
