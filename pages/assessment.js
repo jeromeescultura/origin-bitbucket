@@ -224,8 +224,6 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
-                stepOneAns={stepOneAns}
-                setStepOneAns={setStepOneAns}
               />
             )}
 

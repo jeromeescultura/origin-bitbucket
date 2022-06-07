@@ -19,7 +19,7 @@ const FormInputSlider = ({
   }, [sliderValue]);
 
   return (
-    <div className="border mt-10">
+    <div>
       <FormLabel component="legend">{label}</FormLabel>
       <Controller
         name={name}
@@ -27,8 +27,8 @@ const FormInputSlider = ({
         render={() => (
           <Slider
             sx={{
-              paddingX: '20px',
-              width: "700px",
+           
+              width: "90%",
               height: "20px",
             
               "& .MuiSlider-markLabel": {

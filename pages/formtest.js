@@ -56,7 +56,7 @@ const FormTest = () => {
   ];
   const [sliderValue, setSliderValue] = useState(3);
   const [dropdownValue, setDropdownValue] = useState("");
-  const [selectedCheckboxItems, setSelectedItems] = useState([]);
+  const [checkboxValue, setCheckboxValue] = useState([]);
 
   const [formValues, setFormValues] = useState({
     dropdownValue: "",
@@ -85,16 +85,6 @@ const FormTest = () => {
     setSliderValue(newValue);
   };
 
-  const handleCheckboxSelect = (value) => {
-    const isPresent = selectedCheckboxItems.indexOf(value);
-    if (isPresent !== -1) {
-      const remaining = selectedCheckboxItems.filter((item) => item !== value);
-      setSelectedItems(remaining);
-    } else {
-      setSelectedItems((prevItems) => [...prevItems, value]);
-    }
-  };
-
   const methods = useForm({ defaultValues: formValues });
   const { control, watch, setValue } = methods;
   const changeHandler = (data) => {
@@ -107,6 +97,7 @@ const FormTest = () => {
 
   useEffect(() => {
     window.localStorage.setItem("FORM_INPUT", JSON.stringify(formValues));
+    console.log("checkboxValue", checkboxValue);
   }, [formValues]);
 
   useEffect(() => {
@@ -114,7 +105,7 @@ const FormTest = () => {
       setFormValues(storedData);
       setSliderValue(storedData.sliderValue);
       setDropdownValue(storedData.dropdownValue);
-      setSelectedItems(storedData.checkboxValue);
+      setCheckboxValue(storedData.checkboxValue);
     }
   }, []);
 
@@ -149,15 +140,17 @@ const FormTest = () => {
         name={"checkboxValue"}
         label={"Checkbox Input"}
         options={checkboxOptions}
-        handleSelect={handleCheckboxSelect}
-        selectedItems={selectedCheckboxItems}
+        checkboxValue={checkboxValue}
+        setCheckboxValue={setCheckboxValue}
       />
 
       <h1 className="text-4xl">{formValues.sliderValue}</h1>
       <h1 className="text-4xl">
         {formValues.dropdownValue === "" ? "none" : formValues.dropdownValue}
       </h1>
-      <h1 className="text-4xl">Dropdownvalue {dropdownValue}</h1>
+      <h1 className="text-4xl">
+        Checkbox Value: {` ${formValues.checkboxValue}`}
+      </h1>
     </div>
   );
 };

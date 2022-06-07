@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import ButtonQuestion from "../components/ButtonQuestion";
-import SliderQuestion from "../components/SliderQuestion";
-import CheckboxContainer from "./CheckboxContainer";
+import { useForm } from "react-hook-form";
+import FormInputSlider from "../form-components/FormInputSlider";
+import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
 import {
   Button,
@@ -13,26 +12,69 @@ import {
   Slider,
 } from "@mui/material";
 import Image from "next/image";
+import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 
-const StepOneContainer = ({
-  btnQsts,
-  chkBoxQsts,
-  sldrQsts,
-  glsQsts,
-  stepOneAns,
-  setStepOneAns,
-}) => {
-  const [btn, setBtn] = useState({
-    btn1: false,
-    btn2: false,
+const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
+  const [goals, setGoals] = useState("");
+  const [choice, setChoice] = useState(null);
+  const [enSourceValue, setEnSourceValue] = useState([]);
+  const [genOpValue, setGenOpValue] = useState([]);
+  const [sliderValue, setSliderValue] = useState(3);
+
+  const [stepOneAns, setStepOneAns] = useState({
+    goals: "",
+    choice: null,
+    enSource: [],
+    genOp: [],
+    slider: 3,
   });
 
-  const [selectedCheckbox, setCheckbox] = useState(false);
+  const methods = useForm({ defaultValues: stepOneAns });
+  const { control, watch, setValue } = methods;
 
-  const activeStyles =
-    "bg-highlight border-[#FFB432] font-bold hover:border-[#FFB432] hover:bg-highlight cursor-default";
+  const handleLabel = (val) => {
+    switch (val) {
+      case 1:
+        return "Not Important";
+      case 2:
+        return "Somewhat Important";
+      case 3:
+        return "Neutral";
+      case 4:
+        return "Important";
+      case 5:
+        return "Very Important";
+      default:
+        break;
+    }
+  };
 
-  const notActiveStyles = "bg-white font-light hover:border-gray-300";
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+  };
+
+  const sliderMarks = [
+    {
+      value: 1,
+      label: "Not Important",
+    },
+    {
+      value: 2,
+      label: "",
+    },
+    {
+      value: 3,
+      label: "",
+    },
+    {
+      value: 4,
+      label: "",
+    },
+    {
+      value: 5,
+      label: "Very important",
+    },
+  ];
 
   const storedData = JSON.parse(
     typeof window !== "undefined" && window.localStorage.getItem("STEP_ONE_ANS")
@@ -45,145 +87,33 @@ const StepOneContainer = ({
   useEffect(() => {
     if (storedData !== null) {
       setStepOneAns(storedData);
+      setEnSourceValue(storedData.enSource);
+      setGenOpValue(storedData.genOp);
+      setSliderValue(storedData.slider);
+    } else {
+      console.log("null");
     }
   }, []);
 
-  useEffect(() => {
-    if (stepOneAns) {
-      if (typeof stepOneAns.QOne !== "number") {
-        if ("choice" in stepOneAns.QOne) {
-          if (typeof stepOneAns.QOne?.choice !== "object") {
-            handleButtonClick(stepOneAns.QOne?.choice);
-          }
-        }
-      }
-    }
-  }, [stepOneAns.QOne?.choice]);
-
-  // FUNCTION FOR BUTTON QUESTION
-  const handleButtonClick = (value) => {
-    if (typeof stepOneAns.QOne !== "number") {
-      if ("choice" in stepOneAns.QOne) {
-        setStepOneAns({
-          ...stepOneAns,
-          QOne: { ...stepOneAns.QOne, choice: value },
-        });
-      }
-    }
-
-    switch (value) {
-      case 0:
-        console.log("1");
-        setBtn({
-          btn1: true,
-          btn2: false,
-        });
-        break;
-
-      case 1:
-        console.log("2");
-        setBtn({
-          btn2: true,
-          btn1: false,
-        });
-        break;
-
-      default:
-        break;
-    }
+  const handleChange = (data) => {
+    setStepOneAns({
+      goals: data.goals,
+      choice: data.choice,
+      enSource: data.enSource,
+      genOp: data.genOp,
+      slider: data.slider,
+    });
+    console.log("handleChange", data);
   };
-
-  // FUNCTION FOR CHECKBOX QUESTION
-  const handleSelectedCheckbox = (e, container) => {
-    let target = e.target;
-    let item = target.value;
-    console.log(container);
-
-    setCheckbox(!selectedCheckbox);
-
-    if (container === 0) {
-      if (target.checked) {
-        setStepOneAns({
-          ...stepOneAns,
-          QTwo: {
-            ...stepOneAns.QTwo,
-            enSource: [...stepOneAns.QTwo.enSource, item],
-          },
-        });
-      } else {
-        setStepOneAns({
-          ...stepOneAns,
-          QTwo: {
-            ...stepOneAns.QTwo,
-            enSource: stepOneAns.QTwo.enSource.filter((val) => val !== item),
-          },
-        });
-      }
-    } else if (container === 1) {
-      if (target.checked) {
-        setStepOneAns({
-          ...stepOneAns,
-          QTwo: {
-            ...stepOneAns.QTwo,
-            genOp: [...stepOneAns.QTwo.genOp, item],
-          },
-        });
-      } else {
-        setStepOneAns({
-          ...stepOneAns,
-          QTwo: {
-            ...stepOneAns.QTwo,
-            genOp: stepOneAns.QTwo.genOp.filter((val) => val !== item),
-          },
-        });
-      }
-    }
-  };
-
-  function valuetext(value) {
-    return `${value}°C`;
-  }
 
   return (
     <>
       {/* STEP ONE - QUESTION ONE */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <div className="flex flex-row gap-0 mt-8">
-          <ButtonGroup className="w-full">
-            {btnQsts?.options?.map((item, index) => (
-              <Button
-                key={index}
-                size="large"
-                color="secondary"
-                onClick={() => handleButtonClick(index)}
-                className={`${
-                  index === 0 && btn.btn1 ? activeStyles : notActiveStyles
-                } ${
-                  index === 1 && btn.btn2 ? activeStyles : notActiveStyles
-                } w-full border border-gray-300 max-w-[200px] text-sm xs:h-[48px] transition duration-200 text-[#505050] flex items-center justify-center px-1 text-center`}
-              >
-                {item.text}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </div>
-        <QuestionContainer style={"px-0"} text={glsQsts?.text}>
-          <div className="w-full h-48 mt-6 lg:mt-12">
-            <textarea
-              name=""
-              id=""
-              placeholder="Type here"
-              className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
-              value={stepOneAns.QOne.goals}
-              onChange={(e) =>
-                setStepOneAns({
-                  ...stepOneAns,
-                  QOne: { ...stepOneAns.QOne, goals: e.target.value },
-                })
-              }
-            ></textarea>
-          </div>
-        </QuestionContainer>
+        <QuestionContainer
+          style={"px-0"}
+          text={glsQsts?.text}
+        ></QuestionContainer>
       </QuestionContainer>
 
       {/* STEP ONE - QUESTION TWO */}
@@ -192,19 +122,68 @@ const StepOneContainer = ({
         text={chkBoxQsts[0]?.text}
         subText={chkBoxQsts[0]?.subText}
       >
+        <div className="flex flex-col gap-5 mt-12">
+          <div className="flex items-center gap-4">
+            <div className="w-6 h-6 lg:w-12 lg:h-12">
+              {chkBoxQsts[0] && (
+                <Image
+                  src={chkBoxQsts[0]?.icon}
+                  width={50}
+                  height={50}
+                  objectFit="contain"
+                  alt={chkBoxQsts[0]?.icon}
+                />
+              )}
+            </div>
+            <p className="text-base lg:text-[20px] font-bold text-secondaryText">
+              {chkBoxQsts[0]?.title}
+            </p>
+          </div>
+          <div className="lg:ml-16">
+            <FormInputMultiCheckbox
+              onChange={watch(handleChange)}
+              control={control}
+              setValue={setValue}
+              name="enSource"
+              options={chkBoxQsts[0]?.questionsList}
+              checkboxValue={enSourceValue}
+              setCheckboxValue={setEnSourceValue}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5 mt-12">
+          <div className="flex items-center gap-4">
+            <div className="w-6 h-6 lg:w-12 lg:h-12">
+              {chkBoxQsts[1] && (
+                <Image
+                  src={chkBoxQsts[1]?.icon}
+                  width={50}
+                  height={50}
+                  objectFit="contain"
+                  alt={chkBoxQsts[1]?.icon}
+                />
+              )}
+            </div>
+            <p className="text-base lg:text-[20px] font-bold text-secondaryText">
+              {chkBoxQsts[1]?.title}
+            </p>
+          </div>
+          <div className="lg:ml-16">
+            <FormInputMultiCheckbox
+              onChange={watch(handleChange)}
+              control={control}
+              setValue={setValue}
+              name="genOp"
+              options={chkBoxQsts[1]?.questionsList}
+              checkboxValue={genOpValue}
+              setCheckboxValue={setGenOpValue}
+            />
+          </div>
+        </div>
+
         {/* {chkBoxQsts?.map((item, index) => (
-          <CheckboxContainer
-            id={index}
-            key={index}
-            icon={item?.icon}
-            title={item?.title}
-            questionsList={item?.questionsList}
-            answer={setStepOneAns}
-            answers={stepOneAns}
-          />
-        ))} */}
-        {chkBoxQsts?.map((item, index) => (
-          <div key={index} className="flex flex-col gap-12 mt-12">
+          <div key={index} className="flex flex-col gap-5 mt-12">
             <div className="flex items-center gap-4">
               {item?.icon && (
                 <div className="w-6 h-6 lg:w-12 lg:h-12">
@@ -220,8 +199,8 @@ const StepOneContainer = ({
               <p className="text-base lg:text-[20px] font-bold text-secondaryText">
                 {item.title}
               </p>
-            </div>
-            {item.questionsList &&
+            </div> */}
+        {/* {item.questionsList &&
               item.questionsList.map((qst, i) => (
                 <div
                   key={i}
@@ -246,27 +225,43 @@ const StepOneContainer = ({
                     />
                   </FormGroup>
                 </div>
-              ))}
-          </div>
-        ))}
+              ))} */}
+        {/* <div className="lg:ml-16">
+              <FormInputMultiCheckbox
+                onChange={watch(handleChange)}
+                control={control}
+                setValue={setValue}
+                name={index === 0 ? "enSource" : "genOp"}
+                options={item.questionsList}
+                checkboxValue={index === 0 ? enSourceValue : genOpValue}
+                setCheckboxValue={
+                  index === 0 ? setEnSourceValue : setGenOpValue
+                }
+              />
+            </div> */}
+        {/* </div>
+        ))} */}
       </QuestionContainer>
       {/* STEP ONE - QUESTION THREE */}
       <QuestionContainer id={sldrQsts?.id} text={sldrQsts?.text}>
-        <SliderQuestion
+        {/* <SliderQuestion
           answer={setStepOneAns}
           answers={stepOneAns}
           qst={sldrQsts?.options}
-        />
-        {/* <Slider
-          aria-label="Temperature"
-          defaultValue={30}
-          getAriaValueText={valuetext}
-          valueLabelDisplay="auto"
-          step={10}
-          marks
-          min={10}
-          max={110}
         /> */}
+        <div>
+          <FormInputSlider
+            name={"slider"}
+            setValue={setValue}
+            control={control}
+            sliderValue={sliderValue}
+            sliderMarks={sliderMarks}
+            min={1}
+            max={5}
+            handleLabel={handleLabel}
+            handleChange={handleSliderChange}
+          />
+        </div>
       </QuestionContainer>
     </>
   );

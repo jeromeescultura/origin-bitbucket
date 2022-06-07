@@ -13,19 +13,41 @@ export const FormInputMultiCheckbox = ({
   setValue,
   label,
   options,
-  handleSelect,
-  selectedItems,
+  checkboxValue,
+  setCheckboxValue,
 }) => {
+  const handleSelect = (value) => {
+    const isPresent = selectedItems.indexOf(value);
+    if (isPresent !== -1) {
+      const remaining = selectedItems.filter((item) => item !== value);
+      setSelectedItems(remaining);
+    } else {
+      setSelectedItems((prevItems) => [...prevItems, value]);
+    }
+  };
+  const [selectedItems, setSelectedItems] = useState([]);
+
   useEffect(() => {
-    if (selectedItems) setValue(name, selectedItems);
+    if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
+
+  useEffect(() => {
+    if (checkboxValue) {
+      console.log("checkboxValue");
+      setValue(name, checkboxValue);
+    } else {
+      console.log("selectedItems");
+      setValue(name, selectedItems);
+    }
+  }, [selectedItems, checkboxValue]);
+
+  useEffect;
 
   return (
     <FormControl size={"small"} variant={"outlined"}>
       <FormLabel component="legend">{label}</FormLabel>
-
-      <div>
-        {options.map((option) => {
+      <div className="flex flex-col space-y-5">
+        {options?.map((option) => {
           return (
             <FormControlLabel
               control={
@@ -34,7 +56,12 @@ export const FormInputMultiCheckbox = ({
                   render={({}) => {
                     return (
                       <Checkbox
-                        checked={selectedItems.includes(option.value)}
+                        color="secondary"
+                        checked={
+                          (checkboxValue &&
+                            checkboxValue.includes(option.value)) ||
+                          selectedItems.includes(option.value)
+                        }
                         onChange={() => handleSelect(option.value)}
                       />
                     );
@@ -42,7 +69,7 @@ export const FormInputMultiCheckbox = ({
                   control={control}
                 />
               }
-              label={option.label}
+              label={option.label || option.text}
               key={option.value}
             />
           );
