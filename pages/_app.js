@@ -28,8 +28,10 @@ const originTheme = createTheme({
     },
   },
   typography: {
+    fontFamily: "gordita-regular, Segoe UI, Roboto, sans-serif",
     button: {
       textTransform: "none",
+      fontSize: 16,
     },
     h2: {
       fontSize: 24,

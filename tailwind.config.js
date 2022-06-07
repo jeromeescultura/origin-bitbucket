@@ -34,9 +34,11 @@ module.exports = {
         leafBG: "rgba(165, 187, 72, 0.16)",
       },
       fontFamily: {
-        Gordita: ["gordita", "sans-serif"],
+        Gorditalight: ["gordita-light", "sans-serif"],
+        GorditaRegular: ["gordita-regular", "sans-serif"],
         GorditaMedium: ["gordita-medium", "sans-serif"],
         GorditaBold: ["gordita-bold", "sans-serif"],
+        GorditaBlack: ["gordita-black", "sans-serif"],
       },
     },
   },

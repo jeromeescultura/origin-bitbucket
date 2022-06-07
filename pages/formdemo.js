@@ -24,7 +24,7 @@ function formdemo() {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <Grid container spacing={4} className="mx-auto">
+    <Grid container spacing={4} className="mx-auto font-Gordita">
       <Grid item xs={10}>
         <FormInputText
           name="textValue"

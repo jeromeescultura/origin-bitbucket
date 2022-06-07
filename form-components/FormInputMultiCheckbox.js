@@ -3,6 +3,8 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
+  FormHelperText,
   FormLabel,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
@@ -13,15 +15,10 @@ export const FormInputMultiCheckbox = ({
   setValue,
   label,
   options,
-<<<<<<< HEAD
-}) => {
-  const [selectedItems, setSelectedItems] = useState([]);
-
-=======
+  validation,
   checkboxValue,
   setCheckboxValue,
 }) => {
->>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
   const handleSelect = (value) => {
     const isPresent = selectedItems.indexOf(value);
     if (isPresent !== -1) {
@@ -31,10 +28,7 @@ export const FormInputMultiCheckbox = ({
       setSelectedItems((prevItems) => [...prevItems, value]);
     }
   };
-<<<<<<< HEAD
-=======
   const [selectedItems, setSelectedItems] = useState([]);
->>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
 
   useEffect(() => {
     if (checkboxValue) {
@@ -48,11 +42,6 @@ export const FormInputMultiCheckbox = ({
     if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
 
-<<<<<<< HEAD
-  return (
-    <FormControl size={"small"} variant={"outlined"}>
-      {label && <FormLabel component="legend">{label}</FormLabel>}
-=======
   useEffect(() => {
     if (checkboxValue) {
       setValue(name, checkboxValue);
@@ -60,50 +49,47 @@ export const FormInputMultiCheckbox = ({
       setValue(name, selectedItems);
     }
   }, [selectedItems, checkboxValue]);
->>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
-
-  useEffect;
-
+  console.log(options);
   return (
-    <div>
-      {options?.map((option) => {
+    <Controller
+      control={control}
+      rules={validation}
+      name={name}
+      render={({ fieldState: { error } }) => {
         return (
-          <FormControlLabel
-            control={
-              <Controller
-                name={name}
-                render={({ fieldState: { error } }) => {
-                  return (
-                    <FormControl
-                      size={"small"}
-                      variant={"outlined"}
-                      error={error ? true : false}
-                    >
-                      <FormLabel component="legend">{label}</FormLabel>
-                      <Checkbox
-<<<<<<< HEAD
-                        checked={selectedItems?.includes(option.value)}
-=======
-                        color="secondary"
-                        checked={
-                          (checkboxValue &&
-                            checkboxValue.includes(option.value)) ||
-                          selectedItems?.includes(option.value)
-                        }
->>>>>>> 2c881f8f786ce378cd057bc4d581034da748323b
-                        onChange={() => handleSelect(option.value)}
-                      />
-                    </FormControl>
-                  );
-                }}
-                control={control}
-              />
-            }
-            label={option.label || option.text}
-            key={option.value}
-          />
+          options &&
+          options.map((option, index) => (
+            <FormControl
+              key={index}
+              variant={"outlined"}
+              error={error ? true : false}
+            >
+              {label && <FormLabel component="legend">{label}</FormLabel>}
+              <FormGroup>
+                <FormControlLabel
+                  label={option.label || option.text}
+                  key={option.value}
+                  control={
+                    <Checkbox
+                      color="secondary"
+                      size="large"
+                      checked={
+                        (checkboxValue &&
+                          checkboxValue.includes(option.value)) ||
+                        selectedItems?.includes(option.value)
+                      }
+                      onChange={() => handleSelect(option.value)}
+                    />
+                  }
+                />
+              </FormGroup>
+              {error && (
+                <FormHelperText>{error ? error.message : null}</FormHelperText>
+              )}
+            </FormControl>
+          ))
         );
-      })}
-    </div>
+      }}
+    />
   );
 };
