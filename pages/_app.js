@@ -39,12 +39,8 @@ const originTheme = createTheme({
       },
     },
     subtitle1: {
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: 400,
-    },
-    p: {
-      fontSize: 14,
-      color: "#232323",
     },
   },
   breakpoints: {
@@ -61,7 +57,7 @@ const originTheme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={originTheme}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }

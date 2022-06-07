@@ -35,7 +35,7 @@ export default function Home() {
     },
     {
       id: 3,
-      icon: "/icons/flame.svg",
+      icon: "/icons/leaf.svg",
       text: "Green accreditation",
       desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
     },

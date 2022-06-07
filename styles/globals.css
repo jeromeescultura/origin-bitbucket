@@ -20,7 +20,10 @@ a {
 @tailwind utilities;
 
 p {
-  @apply text-sm lg:text-base font-light text-secondaryText;
+  @apply text-sm font-light text-secondaryText;
+}
+.subtitle {
+  @apply text-base font-light text-secondaryText;
 }
 
 h2 {
