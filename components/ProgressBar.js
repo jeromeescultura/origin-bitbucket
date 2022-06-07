@@ -15,13 +15,14 @@ const ProgressBar = ({
 
   useEffect(() => {
     setAnswers({ stepOneAns, stepTwoAns, stepThreeAns });
-    window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-    window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
-    window.localStorage.setItem("STEP_THREE_ANS", JSON.stringify(stepThreeAns));
+    // window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
+    // window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
+    // window.localStorage.setItem("STEP_THREE_ANS", JSON.stringify(stepThreeAns));
   }, [stepOneAns, stepTwoAns, stepThreeAns]);
 
   const handleClick = (e) => {
     e.preventDefault();
+    window.localStorage.clear();
     router.push("/");
   };
   return (
@@ -38,23 +39,8 @@ const ProgressBar = ({
       <div className="flex w-full gap-16 mt-12">
         <div className="flex items-center grow mb-6 justify-between md:grow-0 md:w-[50%]">
           <p className="text-sm lg:text-[20px]">Step {stepNo} of 3</p>
-          <button
-            onClick={() => {
-              // alert(
-              //   `Step One Answers:\nQuestion 1: choice: ${stepOneAns.QOne.choice}, goals: ${stepOneAns.QOne.goals}\nQuestion 2: enSource: ${stepOneAns.QTwo.enSource}, genOp: ${stepOneAns.QTwo.genOp}\nQuestion 3: ${stepOneAns.QThree}`
-              // );
-              // alert(
-              //   `Step Two Answers:\nQuestion 1: industry: ${stepTwoAns.QOne.industry}, sites: ${stepTwoAns.QOne.sites}\nQuestion 2: ${stepTwoAns.QTwo}\nQuestion 3: ${stepTwoAns.QThree}\nQuestion 4: ${stepTwoAns.QFour}`
-              // );
-              // alert(
-              //   `Step Three Answers:\nQuestion 1: ${stepThreeAns.QOne}\nQuestion 2: ${stepThreeAns.QTwo}\nQuestion 3: ${stepThreeAns.QThree}`
-              // );
-              console.clear();
-              console.log(assessmentAnswers);
-            }}
-            className="lg:border lg:border-[#505050] text-sm text-primaryText active:scale-95 lg:text-black lg:text-base rounded-full py-2 lg:px-8 lg:focus:bg-black lg:focus:text-white transition-all ease-linear duration-100 flex"
-          >
-            <span className="flex items-center lg:hidden mr-2">
+          {/* <button className="lg:border lg:border-[#505050] text-sm text-primaryText active:scale-95 lg:text-black lg:text-base rounded-full py-2 lg:px-8 lg:focus:bg-black lg:focus:text-white transition-all ease-linear duration-100 flex">
+            <span className="lg:hidden mr-2">
               <Image
                 src="/icons/save_icon.svg"
                 width={15}
@@ -62,8 +48,8 @@ const ProgressBar = ({
                 alt="save_icon"
               />
             </span>
-            <p>Save my progress</p>
-          </button>
+            Save my progress
+          </button> */}
         </div>
         <div className="w-10 h-10 md:w-20 md:h-20 hidden lg:inline ml-auto cursor-pointer">
           <Image
@@ -93,3 +79,4 @@ const ProgressBar = ({
 };
 
 export default ProgressBar;
+
