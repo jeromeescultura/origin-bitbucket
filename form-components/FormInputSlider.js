@@ -27,16 +27,30 @@ const FormInputSlider = ({
         render={() => (
           <Slider
             sx={{
-           
               width: "90%",
               height: "20px",
-            
+              "& :nth-child(3)": {
+                ml: { xs: "2%", md: "1%" },
+              },
+              "& :nth-last-child(3)": {
+                ml: { xs: "-8%", md: "-4%" },
+              },
+              '&.MuiSlider-markLabel[data-index === "0"]' : {
+                ml: '50px'
+              },
+
               "& .MuiSlider-markLabel": {
-                marginTop: "24px",
+                marginTop: "30px",
               },
               "& .MuiSlider-thumb": {
-                width: "50px",
-                height: "50px",
+                xs: {
+                  width: "40px",
+                  height: "40px",
+                },
+                lg: {
+                  width: "50px",
+                  height: "50px",
+                },
               },
 
               "& .MuiSlider-mark": {

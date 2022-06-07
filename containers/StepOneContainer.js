@@ -35,15 +35,15 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
   const handleLabel = (val) => {
     switch (val) {
       case 1:
-        return "Not Important";
+        return "Low Priority";
       case 2:
-        return "Somewhat Important";
+        return "Somewhat a priority";
       case 3:
         return "Neutral";
       case 4:
-        return "Important";
+        return "Priority";
       case 5:
-        return "Very Important";
+        return "High Priority";
       default:
         break;
     }
@@ -56,7 +56,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
   const sliderMarks = [
     {
       value: 1,
-      label: "Not Important",
+      label: "Low Priority",
     },
     {
       value: 2,
@@ -72,7 +72,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
     },
     {
       value: 5,
-      label: "Very important",
+      label: "High Priority",
     },
   ];
 
@@ -90,8 +90,6 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
       setEnSourceValue(storedData.enSource);
       setGenOpValue(storedData.genOp);
       setSliderValue(storedData.slider);
-    } else {
-      console.log("null");
     }
   }, []);
 
@@ -103,7 +101,6 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
       genOp: data.genOp,
       slider: data.slider,
     });
-    console.log("handleChange", data);
   };
 
   return (
@@ -249,7 +246,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
           answers={stepOneAns}
           qst={sldrQsts?.options}
         /> */}
-        <div>
+        <div className="mt-12 px-[20px] lg:px-0">
           <FormInputSlider
             name={"slider"}
             setValue={setValue}

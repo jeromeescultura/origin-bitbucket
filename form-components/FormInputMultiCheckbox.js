@@ -28,15 +28,21 @@ export const FormInputMultiCheckbox = ({
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
+    if (checkboxValue) {
+      if (checkboxValue.length > 0) {
+        setSelectedItems(checkboxValue);
+      }
+    }
+  }, [checkboxValue]);
+
+  useEffect(() => {
     if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
 
   useEffect(() => {
     if (checkboxValue) {
-      console.log("checkboxValue");
       setValue(name, checkboxValue);
     } else {
-      console.log("selectedItems");
       setValue(name, selectedItems);
     }
   }, [selectedItems, checkboxValue]);
@@ -44,37 +50,41 @@ export const FormInputMultiCheckbox = ({
   useEffect;
 
   return (
-    <FormControl size={"small"} variant={"outlined"}>
-      <FormLabel component="legend">{label}</FormLabel>
-      <div className="flex flex-col space-y-5">
-        {options?.map((option) => {
-          return (
-            <FormControlLabel
-              control={
-                <Controller
-                  name={name}
-                  render={({}) => {
-                    return (
+    <div>
+      {options?.map((option) => {
+        return (
+          <FormControlLabel
+            control={
+              <Controller
+                name={name}
+                render={({ fieldState: { error } }) => {
+                  return (
+                    <FormControl
+                      size={"small"}
+                      variant={"outlined"}
+                      error={error ? true : false}
+                    >
+                      <FormLabel component="legend">{label}</FormLabel>
                       <Checkbox
                         color="secondary"
                         checked={
                           (checkboxValue &&
                             checkboxValue.includes(option.value)) ||
-                          selectedItems.includes(option.value)
+                          selectedItems?.includes(option.value)
                         }
                         onChange={() => handleSelect(option.value)}
                       />
-                    );
-                  }}
-                  control={control}
-                />
-              }
-              label={option.label || option.text}
-              key={option.value}
-            />
-          );
-        })}
-      </div>
-    </FormControl>
+                    </FormControl>
+                  );
+                }}
+                control={control}
+              />
+            }
+            label={option.label || option.text}
+            key={option.value}
+          />
+        );
+      })}
+    </div>
   );
 };
