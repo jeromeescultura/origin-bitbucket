@@ -38,7 +38,7 @@ const ProgressBar = ({
       </div>
       <div className="flex w-full gap-16 mt-12">
         <div className="flex items-center grow mb-6 justify-between md:grow-0 md:w-[50%]">
-          <p className="text-sm lg:text-[20px]">Step {stepNo} of 3</p>
+          <p className="text-sm lg:text-[20px]">Step {stepNo} of 2</p>
           {/* <button className="lg:border lg:border-[#505050] text-sm text-primaryText active:scale-95 lg:text-black lg:text-base rounded-full py-2 lg:px-8 lg:focus:bg-black lg:focus:text-white transition-all ease-linear duration-100 flex">
             <span className="lg:hidden mr-2">
               <Image
@@ -66,11 +66,6 @@ const ProgressBar = ({
         <div className="second-step w-full h-[8px] relative bg-[#F1F1F1]">
           <div
             className={`second-step-inner bg-accentColor h-full transition-all ease-linear duration-200 ${step.secondStep}`}
-          ></div>
-        </div>
-        <div className="third-step w-full h-[8px] bg-[#F1F1F1]">
-          <div
-            className={`third-step-inner bg-accentColor h-full transition-all ease-linear duration-200 ${step.thirdStep}`}
           ></div>
         </div>
       </div>

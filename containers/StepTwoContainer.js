@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import QuestionContainer from "./QuestionContainer";
+import { useForm } from "react-hook-form";
+import FormInputRadio from "../form-components/FormInputRadio";
+import FormInputDropdown from "../form-components/FormInputDropdown";
 import DropdownQuestion from "../components/DropdownQuestion";
 import RadioQuestion from "../components/RadioQuestion";
 import IconsQuestion from "../components/IconsQuestion";
@@ -22,17 +25,71 @@ const StepTwoContainer = ({
   iconQsts,
   chkBoxQsts,
   btnQsts,
-  stepTwoAns,
-  setStepTwoAns,
 }) => {
+  const storedData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STEP_TWO_ANS")
+    ) || [];
+
+  const [stepTwoAns, setStepTwoAns] = useState({
+    dropdown: "",
+    radio: "",
+    checkboxEnSource: [],
+    checkboxEnUsage: [],
+    choice: "",
+  });
+
+  const methods = useForm({ defaultValues: stepTwoAns });
+  const { control, watch, setValue } = methods;
+
+  const [dropdown, setDropdown] = useState("");
+  const [radio, setRadio] = useState("");
+  const [enSources, setEnSources] = useState([]);
+  const [enUsage, setEnUsage] = useState([]);
+  const [choice, setChoice] = useState("");
+
   useEffect(() => {
-    console.log(stepTwoAns);
+    window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
   }, [stepTwoAns]);
+
+  useEffect(() => {
+    if (storedData !== null) {
+      setStepTwoAns(storedData);
+      setDropdown(storedData.dropdown);
+      setRadio(storedData.radio);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(enSources);
+  }, [enSources]);
+
+  const handleChange = (data) => {
+    setStepTwoAns({
+      dropdown: data.dropdown,
+      radio: data.radio,
+      checkboxEnSource: data.checkboxEnSource,
+      checkboxEnUsage: data.checkboxEnUsage,
+      choice: data.choice,
+    });
+  };
   return (
     <>
       {/* STEP TWO - QUESTION 1 */}
       <QuestionContainer id={dropDwnQsts?.id} text={dropDwnQsts?.text}>
-        <FormControl fullWidth>
+        <div className="mt-8">
+          <FormInputDropdown
+            onChange={watch(handleChange)}
+            name={"dropdown"}
+            control={control}
+            options={dropDwnQsts?.options}
+            setValue={setValue}
+            dropdownValue={dropdown}
+            label={"Industry"}
+          />
+        </div>
+        {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -45,7 +102,7 @@ const StepTwoContainer = ({
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         {/* 
         <DropdownQuestion
@@ -53,34 +110,18 @@ const StepTwoContainer = ({
           answer={setStepTwoAns}
           answers={stepTwoAns}
         /> */}
-        <QuestionContainer>
-          <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio color="secondary" />}
-                label="Female"
-              />
-              <FormControlLabel
-                value="male"
-                control={<Radio color="secondary" />}
-                label="Male"
-              />
-              <FormControlLabel
-                value="other"
-                control={<Radio color="secondary" />}
-                label="Other"
-              />
-            </RadioGroup>
-          </FormControl>
-        </QuestionContainer>
+
         <QuestionContainer style={"px-0"} text={radioQsts?.text}>
-          {radioQsts.options?.map((item, index) => (
+          <div className="mt-5">
+            <FormInputRadio
+              name={"radio"}
+              control={control}
+              options={radioQsts?.options}
+              setValue={setValue}
+              radioValue={radio}
+            />
+          </div>
+          {/* {radioQsts.options?.map((item, index) => (
             <RadioQuestion
               id={index}
               text={item.text}
@@ -88,7 +129,7 @@ const StepTwoContainer = ({
               answer={setStepTwoAns}
               answers={stepTwoAns}
             />
-          ))}
+          ))} */}
         </QuestionContainer>
       </QuestionContainer>
       {/* STEP TWO - QUESTION 2 */}
@@ -106,8 +147,10 @@ const StepTwoContainer = ({
                 ans={item.value}
                 text={item.text}
                 icon={item.icon}
-                answer={setStepTwoAns}
-                answers={stepTwoAns}
+                answer={setEnSources}
+                answers={enSources}
+                setValue={setValue}
+                name={'checkboxEnSource'}
               />
             ))}
           </div>
@@ -115,7 +158,7 @@ const StepTwoContainer = ({
       </QuestionContainer>
       {/* STEP TWO - QUESTION 3 */}
       <QuestionContainer id={chkBoxQsts?.id} text={chkBoxQsts?.text}>
-        <div className="space-y-12 mt-8 lg:mt-7">
+        {/* <div className="space-y-12 mt-8 lg:mt-7">
           {" "}
           {chkBoxQsts.questionsList?.map((item, index) => (
             <CheckboxComponent
@@ -127,15 +170,15 @@ const StepTwoContainer = ({
               ans={item.value}
             />
           ))}
-        </div>
+        </div> */}
       </QuestionContainer>
       {/* STEP TWO - QUESTION 4 */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <ButtonQuestion
+        {/* <ButtonQuestion
           options={btnQsts?.options}
           answer={setStepTwoAns}
           answers={stepTwoAns}
-        />
+        /> */}
       </QuestionContainer>
     </>
   );

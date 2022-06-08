@@ -1,21 +1,11 @@
 import { useForm } from "react-hook-form";
-import FormInputSlider from "../form-components/FormInputSlider";
 import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
 import SliderQuestion from "../components/SliderQuestion";
-import FormInputButton from "../form-components/FormInputButton";
-import { Controller } from "react-hook-form";
-import {
-  Button,
-  ButtonGroup,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  Checkbox,
-  Slider,
-} from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
+import { Controller } from "react-hook-form";
 
 const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
   const [goals, setGoals] = useState("");
@@ -69,6 +59,10 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
       setValue("choice", choice);
       handleButtonSelect(parseInt(choice));
     }
+
+    if (choice === "0") {
+      setGoals("");
+    }
   }, [choice]);
 
   useEffect(() => {
@@ -100,48 +94,64 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
             arial-label="contained button group"
             fullWidth
           >
-            <Button
-              className={
-                btn1 ? activeStyles : "hover:border hover:border-gray-300"
-              }
-              value={"Not really"}
-              onClick={() => handleButtonSelect(0)}
-              sx={{
-                color: "#505050",
-                borderColor: "#E3E3E3",
-                fontSize: "16",
+            <Controller
+              control={control}
+              name={"choice"}
+              render={() => {
+                return (
+                  <>
+                    <Button
+                      className={
+                        btn1
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"Not really"}
+                      onClick={() => handleButtonSelect(0)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"Not really"}
+                    </Button>
+                    <Button
+                      className={
+                        btn2
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"Yes, I'm considering it"}
+                      onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"Yes, I'm considering it"}
+                    </Button>
+                  </>
+                );
               }}
-            >
-              {"Not really"}
-            </Button>
-            <Button
-              className={
-                btn2 ? activeStyles : "hover:border hover:border-gray-300"
-              }
-              value={"Yes, I'm considering it"}
-              onClick={() => handleButtonSelect(1)}
-              sx={{
-                color: "#505050",
-                borderColor: "#E3E3E3",
-                fontSize: "16",
-              }}
-            >
-              {"Yes, I'm considering it"}
-            </Button>
+            />
           </ButtonGroup>
         </div>
-        <QuestionContainer style={"px-0"} text={glsQsts?.text}>
-          <div className="mt-12 h-[192px]">
-            <textarea
-              name=""
-              id=""
-              placeholder="Type here"
-              className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
-              value={goals}
-              onChange={(e) => setGoals(e.target.value)}
-            ></textarea>
-          </div>
-        </QuestionContainer>
+        {choice === "1" && (
+          <QuestionContainer style={"px-0"} text={glsQsts?.text}>
+            <div className="mt-12 h-[192px]">
+              <textarea
+                name=""
+                id=""
+                placeholder="Type here"
+                className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
+                value={goals}
+                onChange={(e) => setGoals(e.target.value)}
+              ></textarea>
+            </div>
+          </QuestionContainer>
+        )}
       </QuestionContainer>
 
       {/* STEP ONE - QUESTION TWO */}

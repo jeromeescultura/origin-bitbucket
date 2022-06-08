@@ -1,7 +1,16 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-function IconsQuestion({ id, text, icon, answer, answers, ans }) {
+function IconsQuestion({
+  id,
+  text,
+  icon,
+  answer,
+  answers,
+  ans,
+  setValue,
+  name,
+}) {
   const [selected, setSelected] = useState(false);
   const handleSelected = (e) => {
     let target = e.target;
@@ -10,50 +19,36 @@ function IconsQuestion({ id, text, icon, answer, answers, ans }) {
     if (target.children.length === 2) {
       item = target.children[1].children[0];
       if (item.checked) {
-        answer({
-          ...answers,
-          QTwo: answers.QTwo.filter((val) => val !== item.value),
-        });
+        answer(answers.filter((val) => val !== item.value));
       } else {
-        answer({
-          ...answers,
-          QTwo: [...answers.QTwo, item.value],
-        });
+        answer([...answers, item.value]);
       }
     } else if (target.children.length === 3) {
       item = target.children[0];
       if (item.checked) {
-        answer({
-          ...answers,
-          QTwo: answers.QTwo.filter((val) => val !== item.value),
-        });
+        answer(answers.filter((val) => val !== item.value));
       } else {
-        answer({
-          ...answers,
-          QTwo: [...answers.QTwo, item.value],
-        });
+        answer([...answers, item.value]);
       }
     } else {
       item = target;
       if (item.checked) {
-        answer({
-          ...answers,
-          QTwo: [...answers.QTwo, item.value],
-        });
+        answer([...answers, item.value]);
       } else {
-        answer({
-          ...answers,
-          QTwo: answers.QTwo.filter((val) => val !== item.value),
-        });
+        answer(answers.filter((val) => val !== item.value));
       }
     }
   };
 
   useEffect(() => {
-    if (answers?.QTwo?.includes(ans)) {
+    if (answers.includes(ans)) {
       setSelected(!selected);
     }
   }, []);
+
+  useEffect(() => {
+    if (answers) setValue(name, answers);
+  }, [answers]);
 
   return (
     <div

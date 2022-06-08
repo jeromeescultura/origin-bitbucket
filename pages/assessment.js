@@ -138,10 +138,10 @@ const Assessment = ({ questions }) => {
         return prevState + 1;
       }
     });
-    if (stepNo >= 3) {
-      setStepNo(3);
+    if (stepNo >= 2) {
+      setStepNo(2);
 
-      if (stepNo === 3) {
+      if (stepNo === 2) {
         window.localStorage.clear();
         location.reload();
         window.scrollTo(0, 0);
@@ -201,14 +201,7 @@ const Assessment = ({ questions }) => {
               />
             )}
 
-            {/* Step 3 */}
-            {stepNo === 3 && (
-              <StepThreeContainer
-                iconsRadioQsts={iconsRadioQuestion}
-                investmentQsts={investmentQuestion}
-                largerInvQsts={largerInvestmentQuestion}
-              />
-            )}
+           
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (
@@ -218,7 +211,7 @@ const Assessment = ({ questions }) => {
             )}
 
             <div className="">
-              {stepNo !== 3 ? (
+              {stepNo !== 2 ? (
                 <Button
                   size="large"
                   variant="contained"

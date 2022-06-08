@@ -6,6 +6,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 
 const generateRadioOptions = (options) => {
@@ -14,12 +15,23 @@ const generateRadioOptions = (options) => {
       key={index}
       value={singleOption.value}
       label={singleOption.label}
-      control={<Radio color="secondary" />}
+      control={<Radio color="secondary" size='large' />}
     />
   ));
 };
 
-const FormInputRadio = ({ name, control, label, validation, options }) => {
+const FormInputRadio = ({
+  name,
+  control,
+  label,
+  validation,
+  options,
+  radioValue,
+  setValue,
+}) => {
+  useEffect(() => {
+    if (radioValue) setValue(name, radioValue);
+  }, [radioValue]);
   return (
     <Controller
       name={name}
