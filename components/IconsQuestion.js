@@ -55,23 +55,6 @@ function IconsQuestion({ answer, answers, ans, setValue, name, options }) {
     }
   }, [selected, answers]);
 
-  useEffect(() => {
-    console.log("SELECTED", selected);
-  }, [selected]);
-
-  // useEffect(() => {
-  //   if (answers) {
-  //     if (answers.includes(ans)) {
-  //       console.log("true");
-  //       setSelected(true);
-  //     }
-  //   }
-  // }, [answers]);
-
-  // useEffect(() => {
-  //   if (answers) setValue(name, answers);
-  // }, [answers]);
-
   return (
     <div className="flex flex-col lg:flex-row md:gap-4">
       {options &&

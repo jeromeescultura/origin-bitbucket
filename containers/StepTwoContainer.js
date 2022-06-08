@@ -71,10 +71,6 @@ const StepTwoContainer = ({
     });
   };
 
-  useEffect(() => {
-    console.log("ENSOURCES", enSources);
-  }, []);
-
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
   const [btn3, setBtn3] = useState(false);
