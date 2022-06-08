@@ -49,7 +49,7 @@ export const FormInputMultiCheckbox = ({
       setValue(name, selectedItems);
     }
   }, [selectedItems, checkboxValue]);
-  console.log(options);
+
   return (
     <Controller
       control={control}

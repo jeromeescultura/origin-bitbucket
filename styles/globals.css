@@ -46,6 +46,11 @@ h2 {
   color: #ec0000;
 }
 
+.Mui-chkbox {
+  width: "100%";
+  border: 1px solid red;
+}
+
 @layer base {
   @font-face {
     font-family: "gordita-light";

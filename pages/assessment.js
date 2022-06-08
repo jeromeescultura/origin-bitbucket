@@ -43,18 +43,18 @@ const Assessment = ({ questions }) => {
 
   // GETTING LOCAL STORAGE STORED ANSWERS
   const storedData = {
-    storedStepOneAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_ONE_ANS")
-    ),
-    storedStepTwoAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_TWO_ANS")
-    ),
-    storedStepThreeAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_THREE_ANS")
-    ),
+    // storedStepOneAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_ONE_ANS")
+    // ),
+    // storedStepTwoAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_TWO_ANS")
+    // ),
+    // storedStepThreeAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_THREE_ANS")
+    // ),
     storedPage: JSON.parse(
       typeof window !== "undefined" && window.localStorage.getItem("PAGE")
     ),
@@ -63,26 +63,7 @@ const Assessment = ({ questions }) => {
     ),
   };
 
-  // STORED STATE ANSWERS //
-  // STEP ONE
-  const [stepOneAns, setStepOneAns] = useState({
-    QOne: { goals: "", choice: null },
-    QTwo: { enSource: [], genOp: [] },
-    QThree: "priority",
-  });
-  // STEP TWO
-  const [stepTwoAns, setStepTwoAns] = useState({
-    QOne: { industry: "", sites: 0 },
-    QTwo: [],
-    QThree: [],
-    QFour: null,
-  });
-  // STEP THREE
-  const [stepThreeAns, setStepThreeAns] = useState({
-    QOne: 1,
-    QTwo: 0,
-    QThree: null,
-  });
+  // STORED STATES //
 
   const [stepNo, setStepNo] = useState(1);
 
@@ -127,29 +108,17 @@ const Assessment = ({ questions }) => {
     });
   }, [questions]);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
-  //   window.localStorage.setItem("STEP", JSON.stringify(step));
-  //   window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-  //   window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
-  //   window.localStorage.setItem("STEP_THREE_ANS", JSON.stringify(stepThreeAns));
-  // }, [stepOneAns, stepTwoAns, stepThreeAns, stepNo, step]);
+  useEffect(() => {
+    window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
+    window.localStorage.setItem("STEP", JSON.stringify(step));
+  }, [stepNo, step]);
 
-  // useEffect(() => {
-  //   if (
-  //     storedData.storedStepOneAns !== null &&
-  //     storedData.storedStepTwoAns !== null &&
-  //     storedData.storedStepThreeAns !== null &&
-  //     storedData.storedPage !== null &&
-  //     storedData.storedStep !== null
-  //   ) {
-  //     setStepOneAns(storedData.storedStepOneAns);
-  //     setStepTwoAns(storedData.storedStepTwoAns);
-  //     setStepThreeAns(storedData.storedStepThreeAns);
-  //     setStepNo(storedData.storedPage);
-  //     setStep(storedData.storedStep);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (storedData.storedPage !== null && storedData.storedStep !== null) {
+      setStepNo(storedData.storedPage);
+      setStep(storedData.storedStep);
+    }
+  }, []);
 
   const [activeState, changeState] = useState(0);
 
@@ -204,13 +173,7 @@ const Assessment = ({ questions }) => {
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
         <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar
-            stepOneAns={stepOneAns}
-            stepTwoAns={stepTwoAns}
-            stepThreeAns={stepThreeAns}
-            step={step}
-            stepNo={stepNo}
-          />
+          <ProgressBar step={step} stepNo={stepNo} />
           <PageIntro
             assessIntro={assessIntro}
             activeState={activeState}
@@ -235,8 +198,6 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
-                stepTwoAns={stepTwoAns}
-                setStepTwoAns={setStepTwoAns}
               />
             )}
 
@@ -246,8 +207,6 @@ const Assessment = ({ questions }) => {
                 iconsRadioQsts={iconsRadioQuestion}
                 investmentQsts={investmentQuestion}
                 largerInvQsts={largerInvestmentQuestion}
-                stepThreeAns={stepThreeAns}
-                setStepThreeAns={setStepThreeAns}
               />
             )}
           </div>

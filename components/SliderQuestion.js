@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
 
-const SliderQuestion = ({ qst, answer, answers }) => {
-  const [sliderChoice, setChoice] = useState(answers.QThree);
+const SliderQuestion = ({
+  qst,
+  setSliderValue,
+  sliderValue,
+  setValue,
+  name,
+  low,
+  high,
+}) => {
+  const [sliderChoice, setChoice] = useState(sliderValue);
   const [ulWidth, setWidth] = useState("w-[50%]");
 
   useEffect(() => {
-    toggleActive(answers.QThree);
-  }, [answers.QThree]);
+    if (sliderValue) {
+      setValue(name, sliderValue);
+      toggleActive(sliderValue);
+    }
+  }, [sliderValue]);
 
   const toggleActive = (val) => {
     setChoice(val);
-    answer({ ...answers, QThree: val });
+    setSliderValue(val);
     switch (val) {
       case 1:
         setWidth("w-[0%]");
@@ -35,7 +46,7 @@ const SliderQuestion = ({ qst, answer, answers }) => {
 
   return (
     <div className="w-full">
-      <div className="mt-12 bg-[#FFB43255] flex items-center w-full h-4 md:h-7 rounded-full relative">
+      <div className="mt-12 bg-[#FFB43255] flex items-center w-full h-4 lg:h-7 rounded-full relative">
         <div
           className={`flex  rounded-full bg-accentColor h-full min-h-[10px] ${ulWidth}`}
         ></div>
@@ -53,8 +64,8 @@ const SliderQuestion = ({ qst, answer, answers }) => {
                         : "bg-white"
                     } ${
                       sliderChoice === val.id
-                        ? "w-14 h-14 bg-accentColor hover:bg-accentColor drop-shadow-sm -m-5"
-                        : "hover:scale-125 cursor-pointer w-[10px] h-[10px] md:w-[15px] md:h-[15px] m-0"
+                        ? "w-10 h-10 lg:w-14 lg:h-14  bg-accentColor hover:bg-accentColor drop-shadow-sm m-[-15px] lg:-m-5"
+                        : "hover:scale-125 cursor-pointer w-[10px] h-[10px] lg:w-[15px] lg:h-[15px] m-0"
                     }`}
                   ></button>
                 </li>
@@ -62,9 +73,9 @@ const SliderQuestion = ({ qst, answer, answers }) => {
           </ul>
         </div>
       </div>
-      <div className="labels mt-6 md:mt-10 text-sm md:text-lg leading-[24px] flex justify-between">
-        <label>Not Important</label>
-        <label>Very Important</label>
+      <div className="labels mt-6 lg:mt-10 text-sm lg:text-lg leading-[24px] flex justify-between">
+        <label>{low}</label>
+        <label>{high}</label>
       </div>
     </div>
   );
