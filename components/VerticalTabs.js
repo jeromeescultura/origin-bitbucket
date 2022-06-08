@@ -113,44 +113,35 @@ export default function VerticalTabs() {
           <p className="text-[20px] leading-6 mb-4">
             Direct line access to our club support representatives for:
           </p>
-          <div className="text-sm space-y-4 w-[90%]">
-            <div className="flex flex-wrap">
-              <div className="w-[20px]">
-                <Image
-                  src="/icons/check-green.svg"
-                  width={24}
-                  height={24}
-                  layout="responsive"
-                />
-              </div>
-
-              <p>Bespoke site analysis for renewable installs</p>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-[20px]">
-                <Image
-                  src="/icons/check-green.svg"
-                  width={24}
-                  height={24}
-                  layout="responsive"
-                />
-              </div>
-              <p>Energy efficiency advice</p>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-[20px]">
-                <Image
-                  src="/icons/check-green.svg"
-                  width={24}
-                  height={24}
-                  layout="responsive"
-                />
-              </div>
-              <p>
-                Dedicated support rep throughout your clean ambition journey
-              </p>
-            </div>
-          </div>
+          <ul className="space-y-8 text-left py-8">
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+              />
+              <p> Bespoke site analysis for renewable installs</p>
+            </li>
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+              />
+              <p> Energy efficiency advice</p>
+            </li>
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+              />
+              <p> Energy efficiency advice</p>
+            </li>
+          </ul>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
