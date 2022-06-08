@@ -333,32 +333,32 @@ const questions = [
         {
           id: 1,
           value: "eu_chk_1",
-          text: "Constant",
+          text: "Constant (Requires 24 hour supply)",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
           value: "eu_chk_2",
-          text: "Mornings",
+          text: "Mornings (Roughly between 1am – 9am",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
           value: "eu_chk_3",
-          text: "Evenings",
+          text: "Evenings (Roughly between 5pm - 1am)",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
           value: "eu_chk_4",
-          text: "Standard times",
+          text: "Standard times (Roughly between 9am - 5pm)",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
           value: "eu_chk_5",
-          text: "Unconstrained by specific operating hours",
+          text: "Unconstrained by specific operating hours (Depends on business priorities)",
           subText: "Energy use varies greatly depending on business priorities",
         },
       ],

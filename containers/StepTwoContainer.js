@@ -18,6 +18,7 @@ import {
   RadioGroup,
   Select,
 } from "@mui/material";
+import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 
 const StepTwoContainer = ({
   dropDwnQsts,
@@ -32,13 +33,7 @@ const StepTwoContainer = ({
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || [];
 
-  const [stepTwoAns, setStepTwoAns] = useState({
-    dropdown: "",
-    radio: "",
-    checkboxEnSource: [],
-    checkboxEnUsage: [],
-    choice: "",
-  });
+  const [stepTwoAns, setStepTwoAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepTwoAns });
   const { control, watch, setValue } = methods;
@@ -58,12 +53,10 @@ const StepTwoContainer = ({
       setStepTwoAns(storedData);
       setDropdown(storedData.dropdown);
       setRadio(storedData.radio);
+      setEnSources(storedData.checkboxEnSource);
+      setEnUsage(storedData.checkboxEnUsage);
     }
   }, []);
-
-  useEffect(() => {
-    console.log(enSources);
-  }, [enSources]);
 
   const handleChange = (data) => {
     setStepTwoAns({
@@ -83,33 +76,12 @@ const StepTwoContainer = ({
             onChange={watch(handleChange)}
             name={"dropdown"}
             control={control}
-            options={dropDwnQsts?.options}
+            options={dropDwnQsts.options}
             setValue={setValue}
             dropdownValue={dropdown}
             label={"Industry"}
           />
         </div>
-        {/* <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Age"
-          >
-            {dropDwnQsts?.options.map((item, index) => (
-              <MenuItem key={index} value={item.text}>
-                {item.text}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl> */}
-
-        {/* 
-        <DropdownQuestion
-          qst={dropDwnQsts?.options}
-          answer={setStepTwoAns}
-          answers={stepTwoAns}
-        /> */}
 
         <QuestionContainer style={"px-0"} text={radioQsts?.text}>
           <div className="mt-5">
@@ -121,17 +93,9 @@ const StepTwoContainer = ({
               radioValue={radio}
             />
           </div>
-          {/* {radioQsts.options?.map((item, index) => (
-            <RadioQuestion
-              id={index}
-              text={item.text}
-              key={index}
-              answer={setStepTwoAns}
-              answers={stepTwoAns}
-            />
-          ))} */}
         </QuestionContainer>
       </QuestionContainer>
+
       {/* STEP TWO - QUESTION 2 */}
       <QuestionContainer
         id={iconQsts?.id}
@@ -150,14 +114,23 @@ const StepTwoContainer = ({
                 answer={setEnSources}
                 answers={enSources}
                 setValue={setValue}
-                name={'checkboxEnSource'}
+                name={"checkboxEnSource"}
               />
             ))}
           </div>
         </div>
       </QuestionContainer>
+
       {/* STEP TWO - QUESTION 3 */}
       <QuestionContainer id={chkBoxQsts?.id} text={chkBoxQsts?.text}>
+        <FormInputMultiCheckbox
+          name={"checkboxEnUsage"}
+          control={control}
+          setValue={setValue}
+          options={chkBoxQsts?.questionsList}
+          checkboxValue={enUsage}
+          setCheckboxValue={setEnUsage}
+        />
         {/* <div className="space-y-12 mt-8 lg:mt-7">
           {" "}
           {chkBoxQsts.questionsList?.map((item, index) => (

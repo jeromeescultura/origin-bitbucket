@@ -64,7 +64,7 @@ const SliderQuestion = ({
                         : "bg-white"
                     } ${
                       sliderChoice === val.id
-                        ? "w-10 h-10 lg:w-14 lg:h-14  bg-accentColor hover:bg-accentColor drop-shadow-sm m-[-15px] lg:-m-5"
+                        ? "w-10 h-10 lg:w-14 lg:h-14  bg-accentColor hover:bg-accentColor shadow-lg m-[-15px] lg:-m-5"
                         : "hover:scale-125 cursor-pointer w-[10px] h-[10px] lg:w-[15px] lg:h-[15px] m-0"
                     }`}
                   ></button>

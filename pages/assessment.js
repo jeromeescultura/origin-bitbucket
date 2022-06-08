@@ -93,6 +93,7 @@ const Assessment = ({ questions }) => {
       } else if (item.dropdownQuestion !== undefined) {
         setDropdownQuestions(item.dropdownQuestion);
       } else if (item.energyUsageQuestion !== undefined) {
+       
         setEnergyUsage(item.energyUsageQuestion);
       } else if (item.goalsQuestion !== undefined) {
         setGoals(item.goalsQuestion);
@@ -187,6 +188,7 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
+                stepForwardHandler={stepForwardHandler}
               />
             )}
 

@@ -2,12 +2,18 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
 import SliderQuestion from "../components/SliderQuestion";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, Grid } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { Controller } from "react-hook-form";
 
-const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
+const StepOneContainer = ({
+  btnQsts,
+  chkBoxQsts,
+  sldrQsts,
+  glsQsts,
+  stepForwardHandler,
+}) => {
   const [goals, setGoals] = useState("");
   const [choice, setChoice] = useState("");
   const [enSourceValue, setEnSourceValue] = useState([]);
@@ -27,7 +33,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
   const [stepOneAns, setStepOneAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepOneAns });
-  const { control, watch, setValue } = methods;
+  const { control, watch, setValue, handleSubmit } = methods;
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -85,7 +91,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
     <>
       {/* STEP ONE - QUESTION ONE */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <div className="mt-12">
+        <div className="mt-12 w-full max-w-[500px]">
           <ButtonGroup
             variant="outlined"
             aria-label="outlined button group"

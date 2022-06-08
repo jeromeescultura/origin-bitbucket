@@ -16,35 +16,42 @@ function IconsQuestion({
     let target = e.target;
     let item;
     setSelected(!selected);
+
     if (target.children.length === 2) {
       item = target.children[1].children[0];
       if (item.checked) {
-        answer(answers.filter((val) => val !== item.value));
+        let remaining = answers.filter((val) => val !== item.value);
+        answer(remaining);
       } else {
-        answer([...answers, item.value]);
+        answer((prevState) => [...prevState, item.value]);
       }
     } else if (target.children.length === 3) {
       item = target.children[0];
       if (item.checked) {
-        answer(answers.filter((val) => val !== item.value));
+        let remaining = answers.filter((val) => val !== item.value);
+        answer(remaining);
       } else {
-        answer([...answers, item.value]);
+        answer((prevState) => [...prevState, item.value]);
       }
     } else {
       item = target;
       if (item.checked) {
-        answer([...answers, item.value]);
+        answer((prevState) => [...prevState, item.value]);
       } else {
-        answer(answers.filter((val) => val !== item.value));
+        let remaining = answers.filter((val) => val !== item.value);
+        answer(remaining);
       }
     }
   };
 
   useEffect(() => {
-    if (answers.includes(ans)) {
-      setSelected(!selected);
+    if (answers) {
+      if (answers.includes(ans)) {
+        console.log("true");
+        setSelected(true);
+      }
     }
-  }, []);
+  }, [answers]);
 
   useEffect(() => {
     if (answers) setValue(name, answers);
@@ -68,7 +75,7 @@ function IconsQuestion({
       </div>
       <div className="flex gap-4 items-start lg:items-center">
         <input
-          className="relative form-check-input appearance-none h-6 w-6 border-2 border-[#737373] cursor-pointer rounded-sm bg-white checked:bg-accentColor checked:border-accentColor focus:outline-none transition duration-200"
+          className="relative form-check-input pointer-events-none appearance-none h-6 w-6 border-2 border-[#737373] cursor-pointer rounded-sm bg-white checked:bg-accentColor checked:border-accentColor focus:outline-none transition duration-200"
           type="checkbox"
           value={ans}
           id={id}
@@ -85,7 +92,6 @@ function IconsQuestion({
             width={24}
             height={24}
             objectFit="contain"
-            onClick={handleSelected}
             alt="checkmark"
           />
         </div>

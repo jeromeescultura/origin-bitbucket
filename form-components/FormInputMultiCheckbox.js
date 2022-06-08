@@ -38,6 +38,7 @@ export const FormInputMultiCheckbox = ({
     }
   }, [checkboxValue]);
 
+
   useEffect(() => {
     if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
