@@ -17,7 +17,7 @@ const disclaimer = () => {
           height={90}
           objectFit="contain"
           alt="origin-logo"
-          onClick={handleClick}
+          onClick={(e) => handleClick(e, "/")}
         />
       </div>
       <div className="inline-grid md:grid-cols-3 gap-8 xl:gap-32 mt-8 lg:mt-24">

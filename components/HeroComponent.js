@@ -5,9 +5,9 @@ import { Button } from "@mui/material";
 
 function HeroComponent() {
   const router = useRouter();
-  const handleClick = (e) => {
+  const handleClick = (e, url) => {
     e.preventDefault();
-    router.push("/assessment");
+    router.push(url);
   };
   return (
     <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16">
@@ -36,7 +36,7 @@ function HeroComponent() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={handleClick}
+            onClick={(e) => handleClick(e, "/disclaimer")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
@@ -50,6 +50,7 @@ function HeroComponent() {
             variant="outlined"
             size="large"
             color="error"
+            onClick={(e) => handleClick(e, "/signup")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
