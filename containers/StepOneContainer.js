@@ -20,7 +20,6 @@ const StepOneContainer = ({
   const [genOpValue, setGenOpValue] = useState([]);
   const [sliderValue, setSliderValue] = useState(3);
 
-  const [selectedBtn, setSelectedBtn] = useState("");
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
 
@@ -75,7 +74,7 @@ const StepOneContainer = ({
     setValue("goals", goals);
   }, [goals]);
 
-  const activeStyles = "border-accentColor bg-highlight font-medium";
+  const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   const handleChange = (data) => {
     setStepOneAns({

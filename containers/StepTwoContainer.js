@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import QuestionContainer from "./QuestionContainer";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import FormInputRadio from "../form-components/FormInputRadio";
 import FormInputDropdown from "../form-components/FormInputDropdown";
 import DropdownQuestion from "../components/DropdownQuestion";
@@ -9,6 +9,8 @@ import IconsQuestion from "../components/IconsQuestion";
 import CheckboxComponent from "../components/CheckboxComponent";
 import ButtonQuestion from "../components/ButtonQuestion";
 import {
+  Button,
+  ButtonGroup,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -42,7 +44,7 @@ const StepTwoContainer = ({
   const [radio, setRadio] = useState("");
   const [enSources, setEnSources] = useState([]);
   const [enUsage, setEnUsage] = useState([]);
-  const [choice, setChoice] = useState("");
+  const [equipment, setEquipment] = useState("");
 
   useEffect(() => {
     window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
@@ -55,6 +57,7 @@ const StepTwoContainer = ({
       setRadio(storedData.radio);
       setEnSources(storedData.checkboxEnSource);
       setEnUsage(storedData.checkboxEnUsage);
+      setEquipment(storedData.choice);
     }
   }, []);
 
@@ -67,6 +70,39 @@ const StepTwoContainer = ({
       choice: data.choice,
     });
   };
+
+  useEffect(() => {
+    console.log("ENSOURCES", enSources);
+  }, []);
+
+  const [btn1, setBtn1] = useState(false);
+  const [btn2, setBtn2] = useState(false);
+  const [btn3, setBtn3] = useState(false);
+
+  const handleButtonSelect = (value) => {
+    setEquipment(value.toString());
+    if (value === 0) {
+      setBtn1(true);
+      setBtn2(false);
+      setBtn3(false);
+    } else if (value === 1) {
+      setBtn1(false);
+      setBtn2(true);
+      setBtn3(false);
+    } else if (value === 2) {
+      setBtn1(false);
+      setBtn2(false);
+      setBtn3(true);
+    }
+  };
+  useEffect(() => {
+    if (equipment !== "") {
+      setValue("choice", equipment);
+      handleButtonSelect(parseInt(equipment));
+    }
+  }, [equipment]);
+
+  const activeStyles = "border-accentColor bg-highlight font-medium";
   return (
     <>
       {/* STEP TWO - QUESTION 1 */}
@@ -103,20 +139,14 @@ const StepTwoContainer = ({
         subText={iconQsts?.subText}
       >
         <div className="space-y-8 mt-12">
-          <div className="flex flex-col lg:flex-row md:gap-4">
-            {iconQsts.options?.map((item, index) => (
-              <IconsQuestion
-                key={index}
-                id={index}
-                ans={item.value}
-                text={item.text}
-                icon={item.icon}
-                answer={setEnSources}
-                answers={enSources}
-                setValue={setValue}
-                name={"checkboxEnSource"}
-              />
-            ))}
+          <div className="">
+            <IconsQuestion
+              answer={setEnSources}
+              answers={enSources}
+              setValue={setValue}
+              name={"checkboxEnSource"}
+              options={iconQsts?.options}
+            />
           </div>
         </div>
       </QuestionContainer>
@@ -131,27 +161,79 @@ const StepTwoContainer = ({
           checkboxValue={enUsage}
           setCheckboxValue={setEnUsage}
         />
-        {/* <div className="space-y-12 mt-8 lg:mt-7">
-          {" "}
-          {chkBoxQsts.questionsList?.map((item, index) => (
-            <CheckboxComponent
-              text={item?.text}
-              key={index}
-              subText={item?.subText}
-              answer={setStepTwoAns}
-              answers={stepTwoAns}
-              ans={item.value}
-            />
-          ))}
-        </div> */}
       </QuestionContainer>
+
       {/* STEP TWO - QUESTION 4 */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        {/* <ButtonQuestion
-          options={btnQsts?.options}
-          answer={setStepTwoAns}
-          answers={stepTwoAns}
-        /> */}
+        <div className="mt-12 w-full max-w-[500px]">
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            size="large"
+            color="secondary"
+            arial-label="contained button group"
+            fullWidth
+          >
+            <Controller
+              control={control}
+              name={"choice"}
+              render={() => {
+                return (
+                  <>
+                    <Button
+                      className={
+                        btn1
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"Yes"}
+                      onClick={() => handleButtonSelect(0)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"Yes"}
+                    </Button>
+                    <Button
+                      className={
+                        btn2
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"No"}
+                      onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"No"}
+                    </Button>
+                    <Button
+                      className={
+                        btn3
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"I'm not sure"}
+                      onClick={() => handleButtonSelect(2)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"I'm not sure"}
+                    </Button>
+                  </>
+                );
+              }}
+            />
+          </ButtonGroup>
+        </div>
       </QuestionContainer>
     </>
   );
