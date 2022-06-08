@@ -186,6 +186,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
               options={chkBoxQsts[0]?.questionsList}
               checkboxValue={enSourceValue}
               setCheckboxValue={setEnSourceValue}
+              validation={{ required: "Required" }}
             />
           </div>
         </div>

@@ -200,8 +200,6 @@ const Assessment = ({ questions }) => {
                 btnQsts={landQuestion}
               />
             )}
-
-           
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (
@@ -215,8 +213,13 @@ const Assessment = ({ questions }) => {
                 <Button
                   size="large"
                   variant="contained"
-                  style={{ borderRadius: 200 }}
                   onClick={stepForwardHandler}
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                 >
                   Next
                 </Button>
@@ -224,8 +227,13 @@ const Assessment = ({ questions }) => {
                 <Button
                   size="large"
                   variant="contained"
-                  style={{ borderRadius: 200 }}
                   onClick={stepForwardHandler}
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                 >
                   View recommendations
                 </Button>
