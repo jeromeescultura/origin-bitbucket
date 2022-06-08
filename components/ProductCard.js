@@ -17,7 +17,7 @@ function ProductCard({
       <div className="text-center -mb-4 z-50">
         <LeafRating count={4} />
       </div>
-      <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly  h-[920px]">
+      <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly  h-[920px] ">
         <div className="pt-4">
           <p>Pledge with</p>
           <p className="font-bold text-[16px] mt-2 mb-4">{title}</p>

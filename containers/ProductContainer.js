@@ -59,17 +59,18 @@ function ProductContainer() {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1440,
         settings: {
-          slidesToShow: 2,
+          centerMode: false,
+          slidesToShow: 3,
           slidesToScroll: 1,
-          initialSlide: 0,
+          initialSlide: 4,
           infinite: false,
           dots: true,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 840,
         settings: {
           centerMode: false,
           slidesToShow: 2,
@@ -82,11 +83,12 @@ function ProductContainer() {
       {
         breakpoint: 667,
         settings: {
-          centerMode: false,
+          centerPadding: "30px",
+          centerMode: true,
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 0,
-          infinite: false,
+          infinite: true,
           dots: true,
         },
       },
