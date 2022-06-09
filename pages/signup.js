@@ -120,7 +120,7 @@ function signup() {
   const onSubmit = (data) => console.log(data);
 
   // Retain Values
-  const [existingBusiness, setExistingBusiness] = useState("0");
+  const [existingBusiness, setExistingBusiness] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [unitNo, setUnitNo] = useState("");
   const [streetNo, setStreetNo] = useState("");
@@ -132,6 +132,7 @@ function signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [primaryAccountHolder, setPrimaryAccountHolder] = useState("");
 
   console.log(signUpDetails.existingBusiness, "existu");
   useEffect(() => {
@@ -149,6 +150,7 @@ function signup() {
       setLastName(signUpDetails.lastName);
       setEmail(signUpDetails.email);
       setPhone(signUpDetails.phone);
+      setPrimaryAccountHolder(signUpDetails.primaryAccountHolder);
     }
   }, []);
 
@@ -173,6 +175,7 @@ function signup() {
       lastName: data.lastName,
       email: data.email,
       phone: data.phone,
+      primaryAccountHolder: data.primaryAccountHolder,
     });
   };
 
@@ -337,12 +340,6 @@ function signup() {
             />
           </ButtonGroup>
 
-          {/* <FormInputButton
-            name="existingBusiness"
-            control={control}
-            options={existingOptions}
-            setValue={setValue}
-          /> */}
           {btn1 && (
             <>
               <p className="font-medium text-sm">
@@ -383,6 +380,9 @@ function signup() {
                 name="streetNo"
                 label="Street no."
                 control={control}
+                setValue={setValue}
+                inputValue={streetNo}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -393,6 +393,9 @@ function signup() {
                 name="street"
                 label="Street"
                 control={control}
+                setValue={setValue}
+                inputValue={street}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -403,6 +406,9 @@ function signup() {
                 name="city"
                 label="City/Suburb"
                 control={control}
+                setValue={setValue}
+                inputValue={city}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -410,11 +416,13 @@ function signup() {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <FormInputDropdown
-                setValue={setValue}
                 name="state"
                 control={control}
                 label="State"
                 states={states}
+                setValue={setValue}
+                inputValue={state}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
 
@@ -430,6 +438,9 @@ function signup() {
                 name="postcode"
                 label="Postcode"
                 control={control}
+                setValue={setValue}
+                inputValue={postcode}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -443,6 +454,9 @@ function signup() {
                 name="firstName"
                 label="First Name"
                 control={control}
+                setValue={setValue}
+                inputValue={firstName}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -454,6 +468,9 @@ function signup() {
                 name="lastName"
                 label="Last Name"
                 control={control}
+                setValue={setValue}
+                inputValue={lastName}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
@@ -465,6 +482,9 @@ function signup() {
                 name="email"
                 label="Email Address"
                 control={control}
+                setValue={setValue}
+                inputValue={email}
+                onChange={watch(handleChange)}
                 // validation={{
                 //   required: "Required",
                 //   pattern: {
@@ -482,15 +502,20 @@ function signup() {
                 name="phone"
                 label="Phone number"
                 control={control}
+                setValue={setValue}
+                inputValue={phone}
+                onChange={watch(handleChange)}
                 // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
           <FormInputMultiCheckbox
             control={control}
-            setValue={setValue}
             name={"primaryAccountHolder"}
             options={checkboxOptions}
+            setValue={setValue}
+            inputValue={primaryAccountHolder}
+            onChange={watch(handleChange)}
             // validation={{ required: "Required" }}
           />
           <Button

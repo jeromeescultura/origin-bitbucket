@@ -1,5 +1,5 @@
-import { Checkbox, TextField } from "@mui/material";
-import { useState, useEffect } from "react";
+import { TextField } from "@mui/material";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 
 export const FormInputText = ({
