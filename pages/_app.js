@@ -1,67 +1,33 @@
+import * as React from "react";
+import PropTypes from "prop-types";
+import Head from "next/head";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider } from "@emotion/react";
+import theme from "./theme";
+import createEmotionCache from "./createEmotionCache";
 import "../styles/globals.css";
-import { createTheme } from "@mui/material/styles";
-import { ThemeProvider } from "@emotion/react";
 
-const originTheme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#EC0000 !important",
-    },
-    secondary: {
-      main: "#FFB432",
-    },
-    text: {
-      primary: "#232323",
-    },
-    error: {
-      main: "#EC0000",
-    },
-    success: {
-      main: "#008906",
-    },
-    warning: {
-      main: "#FFB432",
-    },
-    background: {
-      default: "#FFFFFF",
-    },
-  },
-  typography: {
-    fontFamily: "gordita-regular, Segoe UI, Roboto, sans-serif",
-    button: {
-      textTransform: "none",
-      fontSize: 16,
-    },
-    h2: {
-      fontSize: 24,
-      fontWeight: 400,
-      "@media (min-width:1024px)": {
-        fontSize: 32,
-      },
-    },
-    subtitle1: {
-      fontSize: 16,
-      fontWeight: 400,
-    },
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 667,
-      md: 768,
-      lg: 1024,
-      xl: 1440,
-    },
-  },
-});
+const clientSideEmotionCache = createEmotionCache();
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp(props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
-    <ThemeProvider theme={originTheme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
-export default MyApp;
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
+  pageProps: PropTypes.object.isRequired,
+};
