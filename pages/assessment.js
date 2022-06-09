@@ -8,8 +8,11 @@ import ButtonComponent from "../components/ButtonComponent";
 import StepOneContainer from "../containers/StepOneContainer";
 import StepTwoContainer from "../containers/StepTwoContainer";
 import StepThreeContainer from "../containers/StepThreeContainer";
+import { useRouter } from "next/router";
 
 const Assessment = ({ questions }) => {
+  const router = useRouter();
+
   const [buttonQuestions, setButtonQuestions] = useState({});
   const [checkboxQuestions, setCheckboxQuestions] = useState([]);
   const [radioQuestions, setRadioQuestions] = useState({});
@@ -43,18 +46,6 @@ const Assessment = ({ questions }) => {
 
   // GETTING LOCAL STORAGE STORED ANSWERS
   const storedData = {
-    // storedStepOneAns: JSON.parse(
-    //   typeof window !== "undefined" &&
-    //     window.localStorage.getItem("STEP_ONE_ANS")
-    // ),
-    // storedStepTwoAns: JSON.parse(
-    //   typeof window !== "undefined" &&
-    //     window.localStorage.getItem("STEP_TWO_ANS")
-    // ),
-    // storedStepThreeAns: JSON.parse(
-    //   typeof window !== "undefined" &&
-    //     window.localStorage.getItem("STEP_THREE_ANS")
-    // ),
     storedPage: JSON.parse(
       typeof window !== "undefined" && window.localStorage.getItem("PAGE")
     ),
@@ -126,27 +117,12 @@ const Assessment = ({ questions }) => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
     }
-    // else if (step.thirdStep === "w-0 opacity-0") {
-    //   setStep({ ...step, thirdStep: "w-full opacity-100" });
-    // }
-
-    // if (stepNo === 2) {
-    //   setStepNo(2);
-
-    //   if (stepNo === 2) {
-    //   }
-    // } else {
-    //   console.log("STEP", stepNo);
-    // }
 
     if (stepNo < 2) {
       console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
-      console.log("fired");
-      window.localStorage.clear();
-      location.reload();
-      window.scrollTo(0, 0);
+      router.push("/recoscore");
     }
 
     changeState((prevState) => {

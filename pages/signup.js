@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import { server } from "../config";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import ContentContainer from "../containers/ContentContainer";
 import { FormInputText } from "../form-components/FormInputText";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
@@ -22,7 +22,6 @@ import {
 import FormInputButton from "../form-components/FormInputButton";
 import ButtonQuestion from "../components/ButtonQuestion";
 function signup() {
-  const [selectedBtn, setSelectedBtn] = useState("Yes");
   const router = useRouter();
   const handleClick = (e) => {
     e.preventDefault();
@@ -40,12 +39,9 @@ function signup() {
     lastName: "",
     email: "",
     phone: "",
-    existingBusiness: "Yes",
+    existingBusiness: false,
+    accountNumber: "",
   };
-  const methods = useForm({ defaultValues: defaultValues });
-  const { handleSubmit, onChange, reset, control, setValue, watch } = methods;
-  const onSubmit = (data) => console.log(data);
-
   const checkboxOptions = [
     {
       label: "I am the primary account holder for this account",
@@ -112,6 +108,100 @@ function signup() {
       type: "state",
     },
   ];
+  const storedData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("SIGNUP_DETAILS")
+    ) || [];
+
+  const [signUpDetails, setSignUpDetails] = useState(storedData);
+  const methods = useForm({ defaultValues: signUpDetails });
+  const { handleSubmit, control, watch, setValue } = methods;
+  const onSubmit = (data) => console.log(data);
+
+  // Retain Values
+  const [existingBusiness, setExistingBusiness] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [unitNo, setUnitNo] = useState("");
+  const [streetNo, setStreetNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [postcode, setpostcode] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [primaryAccountHolder, setPrimaryAccountHolder] = useState("");
+
+  console.log(signUpDetails.existingBusiness, "existu");
+  useEffect(() => {
+    if (signUpDetails !== null) {
+      setSignUpDetails(signUpDetails);
+      setExistingBusiness(signUpDetails.existingBusiness);
+      setAccountNumber(signUpDetails.accountNumber);
+      setUnitNo(signUpDetails.unitNo);
+      setStreetNo(signUpDetails.streetNo);
+      setStreet(signUpDetails.street);
+      setCity(signUpDetails.city);
+      setState(signUpDetails.state);
+      setpostcode(signUpDetails.postcode);
+      setFirstName(signUpDetails.firstName);
+      setLastName(signUpDetails.lastName);
+      setEmail(signUpDetails.email);
+      setPhone(signUpDetails.phone);
+      setPrimaryAccountHolder(signUpDetails.primaryAccountHolder);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "SIGNUP_DETAILS",
+      JSON.stringify(signUpDetails)
+    );
+  }, [signUpDetails]);
+
+  const handleChange = (data) => {
+    setSignUpDetails({
+      existingBusiness: data.existingBusiness,
+      accountNumber: data.accountNumber,
+      unitNo: data.unitNo,
+      streetNo: data.streetNo,
+      street: data.street,
+      city: data.city,
+      state: data.state,
+      postcode: data.postcode,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      primaryAccountHolder: data.primaryAccountHolder,
+    });
+  };
+
+  // Handle Existing Button
+  const [btn1, setBtn1] = useState(false);
+  const [btn2, setBtn2] = useState(false);
+
+  const activeStyles = "border-accentColor bg-highlight font-medium";
+
+  const handleButtonSelect = (value) => {
+    setExistingBusiness(value.toString());
+    if (value === 0) {
+      setBtn1(true);
+      setBtn2(false);
+    } else {
+      setBtn1(false);
+      setBtn2(true);
+    }
+  };
+
+  useEffect(() => {
+    if (existingBusiness !== "") {
+      setValue("existingBusiness", existingBusiness);
+      handleButtonSelect(parseInt(existingBusiness));
+    }
+  }, [existingBusiness]);
 
   return (
     <div className="bg-primaryBG pb-32">
@@ -205,12 +295,71 @@ function signup() {
           <p className="font-medium text-sm">
             Do you have an existing business account with Origin?
           </p>
-          <FormInputButton
-            name="existingBusiness"
-            control={control}
-            options={existingOptions}
-            setValue={setValue}
-          />
+
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            size="large"
+            color="secondary"
+            arial-label="contained button group"
+            fullWidth
+          >
+            <Controller
+              control={control}
+              name="existingBusiness"
+              render={({}) => {
+                return (
+                  <>
+                    <Button
+                      className={btn1 ? activeStyles : ""}
+                      value={"Yes"}
+                      onClick={() => handleButtonSelect(0)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      className={btn2 ? activeStyles : ""}
+                      value={"No"}
+                      onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      No
+                    </Button>
+                  </>
+                );
+              }}
+            />
+          </ButtonGroup>
+
+          {btn1 && (
+            <>
+              <p className="font-medium text-sm">
+                What is your Origin Account Number?
+              </p>
+              <Grid container>
+                <Grid item xs={12}>
+                  <FormInputText
+                    name="accountNumber"
+                    label="Account number"
+                    control={control}
+                    setValue={setValue}
+                    inputValue={accountNumber}
+                    onChange={watch(handleChange)}
+                    validation={{ required: "Required" }}
+                  />
+                </Grid>
+              </Grid>
+            </>
+          )}
           <p className="font-medium text-sm">
             What is the address of your primary site on the account?
           </p>
@@ -220,6 +369,9 @@ function signup() {
                 name="unitNo"
                 label="Unit no."
                 control={control}
+                setValue={setValue}
+                inputValue={unitNo}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
@@ -228,6 +380,9 @@ function signup() {
                 name="streetNo"
                 label="Street no."
                 control={control}
+                setValue={setValue}
+                inputValue={streetNo}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
@@ -238,6 +393,9 @@ function signup() {
                 name="street"
                 label="Street"
                 control={control}
+                setValue={setValue}
+                inputValue={street}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
@@ -248,76 +406,84 @@ function signup() {
                 name="city"
                 label="City/Suburb"
                 control={control}
+                setValue={setValue}
+                inputValue={city}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
+
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <FormInputDropdown
-                setValue={setValue}
                 name="state"
                 control={control}
                 label="State"
                 states={states}
+                setValue={setValue}
+                inputValue={state}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
-
-              {/* <FormInputText
-                name="state"
-                label="State"
-                control={control}
-                validation={{ required: "Required" }}
-              /> */}
             </Grid>
+
             <Grid item xs={6}>
               <FormInputText
                 name="postcode"
                 label="Postcode"
                 control={control}
+                setValue={setValue}
+                inputValue={postcode}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-
           <p className="font-medium text-sm">Your contact details</p>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
                 name="firstName"
                 label="First Name"
                 control={control}
+                setValue={setValue}
+                inputValue={firstName}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
                 name="lastName"
                 label="Last Name"
                 control={control}
+                setValue={setValue}
+                inputValue={lastName}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
                 name="email"
                 label="Email Address"
                 control={control}
-                validation={{
-                  required: "Required",
-                  pattern: {
-                    value:
-                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Please enter a valid email",
-                  },
-                }}
+                setValue={setValue}
+                inputValue={email}
+                onChange={watch(handleChange)}
+                // validation={{
+                //   required: "Required",
+                //   pattern: {
+                //     value:
+                //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                //     message: "Please enter a valid email",
+                //   },
+                // }}
               />
             </Grid>
           </Grid>
@@ -327,17 +493,25 @@ function signup() {
                 name="phone"
                 label="Phone number"
                 control={control}
+                setValue={setValue}
+                inputValue={phone}
+                onChange={watch(handleChange)}
+              />
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12}>
+              <FormInputMultiCheckbox
+                control={control}
+                name={"primaryAccountHolder"}
+                options={checkboxOptions}
+                setValue={setValue}
+                inputValue={primaryAccountHolder}
+                onChange={watch(handleChange)}
                 validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-          <FormInputMultiCheckbox
-            control={control}
-            setValue={setValue}
-            name={"primaryAccountHolder"}
-            options={checkboxOptions}
-            validation={{ required: "Required" }}
-          />
           <Button
             onClick={handleSubmit(onSubmit)}
             variant="contained"

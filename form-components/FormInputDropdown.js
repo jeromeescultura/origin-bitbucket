@@ -43,27 +43,29 @@ const FormInputDropdown = ({
   }, [dropdownValue]);
 
   return (
-    <Controller
-      rules={validation}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <FormControl
-          size={"large"}
-          className="w-full"
-          error={error ? true : false}
-          color="secondary"
-        >
-          <InputLabel>{label}</InputLabel>
-          <Select onChange={onChange} value={value} defaultValue="">
-            {generateSingleOptions()}
-          </Select>
-          {error && (
-            <FormHelperText>{error ? error.message : null}</FormHelperText>
-          )}
-        </FormControl>
-      )}
-      control={control}
-      name={name}
-    />
+    <>
+      <Controller
+        rules={validation}
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
+          <FormControl
+            size={"large"}
+            className="w-full"
+            error={error ? true : false}
+            color="secondary"
+          >
+            <InputLabel>{label}</InputLabel>
+            <Select onChange={onChange} value={value} defaultValue="">
+              {generateSingleOptions()}
+            </Select>
+            {error && (
+              <FormHelperText>{error ? error.message : null}</FormHelperText>
+            )}
+          </FormControl>
+        )}
+        control={control}
+        name={name}
+      />
+    </>
   );
 };
 

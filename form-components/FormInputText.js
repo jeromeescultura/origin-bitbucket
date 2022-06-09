@@ -1,7 +1,19 @@
-import { Checkbox, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 
-export const FormInputText = ({ name, label, control, validation }) => {
+export const FormInputText = ({
+  name,
+  label,
+  control,
+  setValue,
+  validation,
+  inputValue,
+}) => {
+  useEffect(() => {
+    if (inputValue) setValue(name, inputValue);
+  }, [inputValue]);
+
   return (
     <Controller
       control={control}
