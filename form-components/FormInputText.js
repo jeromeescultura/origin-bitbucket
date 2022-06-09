@@ -8,7 +8,6 @@ export const FormInputText = ({
   control,
   setValue,
   validation,
-  onChange,
   inputValue,
 }) => {
   useEffect(() => {

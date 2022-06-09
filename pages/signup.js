@@ -354,7 +354,7 @@ function signup() {
                     setValue={setValue}
                     inputValue={accountNumber}
                     onChange={watch(handleChange)}
-                    // validation={{ required: "Required" }}
+                    validation={{ required: "Required" }}
                   />
                 </Grid>
               </Grid>
@@ -372,7 +372,7 @@ function signup() {
                 setValue={setValue}
                 inputValue={unitNo}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
             <Grid item xs={6}>
@@ -383,7 +383,7 @@ function signup() {
                 setValue={setValue}
                 inputValue={streetNo}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -396,7 +396,7 @@ function signup() {
                 setValue={setValue}
                 inputValue={street}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
@@ -409,11 +409,12 @@ function signup() {
                 setValue={setValue}
                 inputValue={city}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2}>
+
+          {/* <Grid container spacing={2}>
             <Grid item xs={6}>
               <FormInputDropdown
                 name="state"
@@ -423,31 +424,23 @@ function signup() {
                 setValue={setValue}
                 inputValue={state}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
+            </Grid>
+          </Grid> */}
 
-              {/* <FormInputText
-                name="state"
-                label="State"
-                control={control}
-                // validation={{ required: "Required" }}
-              /> */}
-            </Grid>
-            <Grid item xs={6}>
-              <FormInputText
-                name="postcode"
-                label="Postcode"
-                control={control}
-                setValue={setValue}
-                inputValue={postcode}
-                onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
-              />
-            </Grid>
+          <Grid item xs={6}>
+            <FormInputText
+              name="postcode"
+              label="Postcode"
+              control={control}
+              setValue={setValue}
+              inputValue={postcode}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
           </Grid>
-
           <p className="font-medium text-sm">Your contact details</p>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
@@ -457,11 +450,10 @@ function signup() {
                 setValue={setValue}
                 inputValue={firstName}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
@@ -471,11 +463,10 @@ function signup() {
                 setValue={setValue}
                 inputValue={lastName}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
+                validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-
           <Grid container>
             <Grid item xs={12}>
               <FormInputText
@@ -505,19 +496,22 @@ function signup() {
                 setValue={setValue}
                 inputValue={phone}
                 onChange={watch(handleChange)}
-                // validation={{ required: "Required" }}
               />
             </Grid>
           </Grid>
-          <FormInputMultiCheckbox
-            control={control}
-            name={"primaryAccountHolder"}
-            options={checkboxOptions}
-            setValue={setValue}
-            inputValue={primaryAccountHolder}
-            onChange={watch(handleChange)}
-            // validation={{ required: "Required" }}
-          />
+          <Grid container>
+            <Grid item xs={12}>
+              <FormInputMultiCheckbox
+                control={control}
+                name={"primaryAccountHolder"}
+                options={checkboxOptions}
+                setValue={setValue}
+                inputValue={primaryAccountHolder}
+                onChange={watch(handleChange)}
+                validation={{ required: "Required" }}
+              />
+            </Grid>
+          </Grid>
           <Button
             onClick={handleSubmit(onSubmit)}
             variant="contained"
