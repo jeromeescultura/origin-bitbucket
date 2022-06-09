@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { sumArray, stepOneScore } from "../components/reccomponents/RecoFunctions";
+import {
+  sumArray,
+  stepOneScore,
+  stepTwoScore,
+} from "../components/reccomponents/RecoFunctions";
 
 const Recommendation = () => {
   const storedStepOneData =
@@ -38,11 +42,15 @@ const Recommendation = () => {
     console.log("goZeroScore: ", goZeroScore);
     console.log("greenPowerScore: ", greenPowerScore);
     console.log("solarPowerScore: ", solarPowerScore);
+    console.log("goZero", goZero);
+    console.log("greenPower", greenPower);
+    console.log("solarPower", solarPower);
   }, [goZero, greenPower, solarPower]);
 
   useEffect(() => {
-    if (storedStepOneData !== null) {
+    if (storedStepOneData !== null && storedStepTwoData !== null) {
       stepOneScore(storedStepOneData, setGoZero, setGreenPower, setSolarPower);
+      stepTwoScore(storedStepTwoData, setSolarPower);
     }
   }, []);
 

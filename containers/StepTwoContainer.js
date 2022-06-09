@@ -73,6 +73,7 @@ const StepTwoContainer = ({
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
   const [btn3, setBtn3] = useState(false);
+  const [btn4, setBtn4] = useState(true);
 
   const handleButtonSelect = (value) => {
     setEquipment(value.toString());
@@ -80,14 +81,22 @@ const StepTwoContainer = ({
       setBtn1(true);
       setBtn2(false);
       setBtn3(false);
+      setBtn4(false);
     } else if (value === 1) {
       setBtn1(false);
       setBtn2(true);
       setBtn3(false);
+      setBtn4(false);
     } else if (value === 2) {
       setBtn1(false);
       setBtn2(false);
       setBtn3(true);
+      setBtn4(false);
+    } else if (value === 3) {
+      setBtn1(false);
+      setBtn2(false);
+      setBtn3(false);
+      setBtn4(true);
     }
   };
   useEffect(() => {
@@ -197,8 +206,25 @@ const StepTwoContainer = ({
                           ? activeStyles
                           : "hover:border hover:border-gray-300"
                       }
-                      value={"No"}
+                      value={"At some of my sites"}
+                      
                       onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"At some of my sites"}
+                    </Button>
+                    <Button
+                      className={
+                        btn3
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"No"}
+                      onClick={() => handleButtonSelect(2)}
                       sx={{
                         color: "#505050",
                         borderColor: "#E3E3E3",
@@ -209,12 +235,12 @@ const StepTwoContainer = ({
                     </Button>
                     <Button
                       className={
-                        btn3
+                        btn4
                           ? activeStyles
                           : "hover:border hover:border-gray-300"
                       }
                       value={"I'm not sure"}
-                      onClick={() => handleButtonSelect(2)}
+                      onClick={() => handleButtonSelect(3)}
                       sx={{
                         color: "#505050",
                         borderColor: "#E3E3E3",

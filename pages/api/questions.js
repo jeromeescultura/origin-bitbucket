@@ -279,7 +279,7 @@ const questions = [
   },
   {
     sliderQuestion: {
-      id: "03",
+      id: "04",
       text: "How much of a priority is sustainability for your business?",
       options: [
         {
@@ -312,32 +312,32 @@ const questions = [
       questionsList: [
         {
           id: 1,
-          value: "eu_chk_1",
+          value: "constant",
           text: "Constant (Requires 24 hour supply)",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
-          value: "eu_chk_2",
+          value: "mornings",
           text: "Mornings (Roughly between 1am – 9am",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
-          value: "eu_chk_3",
+          value: "evenings",
           text: "Evenings (Roughly between 5pm - 1am)",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
-          value: "eu_chk_4",
+          value: "standard",
           text: "Standard times (Roughly between 9am - 5pm)",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
-          value: "eu_chk_5",
+          value: "unconstrained",
           text: "Unconstrained by specific operating hours (Depends on business priorities)",
           subText: "Energy use varies greatly depending on business priorities",
         },
@@ -390,6 +390,31 @@ const questions = [
         {
           id: "3",
           text: "I'm not sure",
+        },
+      ],
+    },
+  },
+  {
+    timeAndEnergy: {
+      id: "03",
+      text: "How much time and energy do you want to spend on moving towards your sustainability goals?",
+      options: [
+        {
+          id: 1,
+          value: "easy",
+          label: "Not much. Make it as easy as possible, please!",
+        },
+        {
+          id: 2,
+          value: "open_decision",
+          label:
+            "I'm open to having a chat or two and then deciding how to proceed",
+        },
+        {
+          id: 3,
+          value: "fully_invest",
+          label:
+            "I'm happy to invest time and energy into finding the best and most sustainable option that works for me.",
         },
       ],
     },
