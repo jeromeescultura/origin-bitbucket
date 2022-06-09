@@ -414,7 +414,7 @@ function signup() {
             </Grid>
           </Grid>
 
-          {/* <Grid container spacing={2}>
+          <Grid container spacing={2}>
             <Grid item xs={6}>
               <FormInputDropdown
                 name="state"
@@ -427,18 +427,18 @@ function signup() {
                 validation={{ required: "Required" }}
               />
             </Grid>
-          </Grid> */}
 
-          <Grid item xs={6}>
-            <FormInputText
-              name="postcode"
-              label="Postcode"
-              control={control}
-              setValue={setValue}
-              inputValue={postcode}
-              onChange={watch(handleChange)}
-              validation={{ required: "Required" }}
-            />
+            <Grid item xs={6}>
+              <FormInputText
+                name="postcode"
+                label="Postcode"
+                control={control}
+                setValue={setValue}
+                inputValue={postcode}
+                onChange={watch(handleChange)}
+                validation={{ required: "Required" }}
+              />
+            </Grid>
           </Grid>
           <p className="font-medium text-sm">Your contact details</p>
           <Grid container>
