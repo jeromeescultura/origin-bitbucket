@@ -1,9 +1,11 @@
+import { Card, CardContent, Switch, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
   sumArray,
   stepOneScore,
   stepTwoScore,
 } from "../components/reccomponents/RecoFunctions";
+import ToggleCard from "../components/reccomponents/ToggleCard";
 
 const Recommendation = () => {
   const storedStepOneData =
@@ -34,18 +36,27 @@ const Recommendation = () => {
     decarbEOI: 0,
   });
 
+  const [recommend, setRecommend] = useState("");
+
   const goZeroScore = Object.values(goZero).reduce(sumArray);
   const greenPowerScore = Object.values(greenPower).reduce(sumArray);
   const solarPowerScore = Object.values(solarPower).reduce(sumArray);
 
   useEffect(() => {
-    console.log("goZeroScore: ", goZeroScore);
-    console.log("greenPowerScore: ", greenPowerScore);
-    console.log("solarPowerScore: ", solarPowerScore);
-    console.log("goZero", goZero);
-    console.log("greenPower", greenPower);
-    console.log("solarPower", solarPower);
-  }, [goZero, greenPower, solarPower]);
+    if (goZeroScore > greenPowerScore && goZeroScore > solarPowerScore) {
+      setRecommend("go_zero");
+    } else if (
+      greenPowerScore > goZeroScore &&
+      greenPowerScore > solarPowerScore
+    ) {
+      setRecommend("green_power");
+    } else if (
+      solarPowerScore > goZeroScore &&
+      solarPowerScore > greenPowerScore
+    ) {
+      setRecommend("solar_power");
+    }
+  }, [goZeroScore, greenPowerScore, solarPowerScore]);
 
   useEffect(() => {
     if (storedStepOneData !== null && storedStepTwoData !== null) {
@@ -56,18 +67,8 @@ const Recommendation = () => {
 
   return (
     <div>
-      <h1>
-        Recommended:{" "}
-        {goZeroScore > greenPowerScore &&
-          goZeroScore > solarPowerScore &&
-          "GO ZERO"}
-        {greenPowerScore > goZeroScore &&
-          greenPowerScore > solarPowerScore &&
-          "GREEN POWER"}
-        {solarPowerScore > goZeroScore &&
-          solarPowerScore > greenPowerScore &&
-          "SOLAR POWER"}
-      </h1>
+      <h1>Recommended:{recommend && recommend}</h1>
+      <ToggleCard recommend={recommend} />
     </div>
   );
 };

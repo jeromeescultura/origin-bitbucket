@@ -3,7 +3,6 @@ import React from "react";
 export const sumArray = (accumulator, curr) => accumulator + curr;
 
 export const stepOneScore = (val, setGZ, setGP, setSP) => {
-  console.log("Step One Scores");
   //   ENERGY SOURCE
   if (val.enSource.includes("carbon_offsets")) {
     setGZ((prevState) => {
@@ -80,7 +79,7 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
     });
     setGP((prevState) => {
       return {
-        carbonOffset: prevState.carbonOffset + 3,
+        greenPower: prevState.greenPower + 3,
         decarbEOI: prevState.decarbEOI - 9999,
       };
     });
@@ -143,9 +142,9 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
       return { ...prevState, carbonOffset: prevState.carbonOffset + 1 };
     });
     setSP((prevState) => {
-      return { ...prevState, solar: solarPower.solar - 1 };
+      return { ...prevState, solar: prevState.solar - 1 };
     });
-  } else {
+  } else if (val.slider === 1) {
     setGZ((prevState) => {
       return {
         carbonOffset: prevState.carbonOffset + 1,
@@ -169,6 +168,7 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
 };
 
 export const stepTwoScore = (val, setSP) => {
+  // ENERGY USAGE
   if (val.checkboxEnUsage.includes("constant")) {
     setSP((prevState) => {
       return { ...prevState, solar: prevState.solar + 1 };
@@ -190,6 +190,7 @@ export const stepTwoScore = (val, setSP) => {
     });
   }
 
+  //   SPACE
   if (val.choice === "0") {
     setSP((prevState) => {
       return { ...prevState, solar: prevState.solar + 1 };
