@@ -24,7 +24,7 @@ function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-4 items-center lg:flex-row mx-auto w-[60%] sm:w-full xl:w-[90%]">
+        <div className="flex flex-col gap-4 items-center lg:flex-row mx-auto w-full xl:w-[90%]">
           <Button
             variant="contained"
             color="primary"

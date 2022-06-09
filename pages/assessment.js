@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { server } from "../config";
+import { Button } from "@mui/material";
 
 import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
@@ -7,7 +8,6 @@ import ButtonComponent from "../components/ButtonComponent";
 import StepOneContainer from "../containers/StepOneContainer";
 import StepTwoContainer from "../containers/StepTwoContainer";
 import StepThreeContainer from "../containers/StepThreeContainer";
-import { Button } from "@mui/material";
 
 const Assessment = ({ questions }) => {
   const [buttonQuestions, setButtonQuestions] = useState({});
@@ -23,26 +23,60 @@ const Assessment = ({ questions }) => {
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
 
-  // STORED ANSWERS //
-  // STEP ONE
-  const [stepOneAns, setStepOneAns] = useState({
-    QOne: { goals: "", choice: null },
-    QTwo: { enSource: [], genOp: [] },
-    QThree: 3,
+  const assessIntro = [
+    {
+      header: "Climate action & your business",
+      desc: "This initial set of questions are designed to understand what climate action means for you and your business.",
+      plant: "/icons/plant.svg",
+    },
+    {
+      header: "Your site & energy needs",
+      desc: "To understand what options may be applicable to reduce your business impact from an energy perspective, tell us a little bit about what happens on-site to keep your business running.",
+      plant: "/icons/plant2.svg",
+    },
+    // {
+    //   header: "Your program preferences",
+    //   desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
+    //   plant: "/icons/plant3.svg",
+    // },
+  ];
+
+  // GETTING LOCAL STORAGE STORED ANSWERS
+  const storedData = {
+    // storedStepOneAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_ONE_ANS")
+    // ),
+    // storedStepTwoAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_TWO_ANS")
+    // ),
+    // storedStepThreeAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_THREE_ANS")
+    // ),
+    storedPage: JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("PAGE")
+    ),
+    storedStep: JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("STEP")
+    ),
+  };
+
+  // STORED STATES //
+
+  const [stepNo, setStepNo] = useState(1);
+
+  const [step, setStep] = useState({
+    secondStep: "w-0 opacity-0",
+    thirdStep: "w-0 opacity-0",
   });
-  // STEP TWO
-  const [stepTwoAns, setStepTwoAns] = useState({
-    QOne: { industry: "", sites: 0 },
-    QTwo: [],
-    QThree: [],
-    QFour: 0,
-  });
-  // STEP THREE
-  const [stepThreeAns, setStepThreeAns] = useState({
-    QOne: 1,
-    QTwo: 0,
-    QThree: null,
-  });
+
+  useEffect(() => {
+    window.onbeforeunload = () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
   useEffect(() => {
     questions.map((item) => {
@@ -74,43 +108,47 @@ const Assessment = ({ questions }) => {
     });
   }, [questions]);
 
-  const [step, setStep] = useState({
-    secondStep: "w-0 opacity-0",
-    thirdStep: "w-0 opacity-0",
-  });
+  useEffect(() => {
+    window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
+    window.localStorage.setItem("STEP", JSON.stringify(step));
+  }, [stepNo, step]);
 
-  const [stepNo, setStepNo] = useState(1);
-
-  const [stepPage, setPage] = useState(questions[stepNo - 1]);
-
-  const assessIntro = [
-    {
-      header: "Climate action & your business",
-      desc: "This initial set of questions are designed to understand what climate action means for you and your business.",
-      plant: "/icons/plant.svg",
-    },
-    {
-      header: "Your site & energy needs",
-      desc: "To understand what options may be applicable to reduce your business impact from an energy perspective, tell us a little bit about what happens on-site to keep your business running.",
-      plant: "/icons/plant2.svg",
-    },
-    {
-      header: "Your program preferences",
-      desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
-      plant: "/icons/plant3.svg",
-    },
-  ];
+  useEffect(() => {
+    if (storedData.storedPage !== null && storedData.storedStep !== null) {
+      setStepNo(storedData.storedPage);
+      setStep(storedData.storedStep);
+    }
+  }, []);
 
   const [activeState, changeState] = useState(0);
 
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
-    } else if (step.thirdStep === "w-0 opacity-0") {
-      setStep({ ...step, thirdStep: "w-full opacity-100" });
     }
-    setStepNo((prevState) => prevState + 1);
-    setPage(questions[stepNo - 1]);
+    // else if (step.thirdStep === "w-0 opacity-0") {
+    //   setStep({ ...step, thirdStep: "w-full opacity-100" });
+    // }
+
+    // if (stepNo === 2) {
+    //   setStepNo(2);
+
+    //   if (stepNo === 2) {
+    //   }
+    // } else {
+    //   console.log("STEP", stepNo);
+    // }
+
+    if (stepNo < 2) {
+      console.log("STEPNO ASSESSMENT", stepNo);
+      setStepNo((prevState) => prevState + 1);
+    } else {
+      console.log("fired");
+      window.localStorage.clear();
+      location.reload();
+      window.scrollTo(0, 0);
+    }
+
     changeState((prevState) => {
       if (activeState >= 2) {
         return 2;
@@ -118,21 +156,20 @@ const Assessment = ({ questions }) => {
         return prevState + 1;
       }
     });
-    if (stepNo >= 3) {
-      setStepNo(3);
-      setPage(questions[stepNo - 1]);
-    }
+
     window.scrollTo({ top: 580, left: 0 });
   };
 
   const stepBackwardHandler = () => {
-    if (step.thirdStep === "w-full opacity-100") {
-      setStep({ ...step, thirdStep: "w-0 opacity-0" });
-    } else if (step.secondStep === "w-full opacity-100") {
+    // if (step.thirdStep === "w-full opacity-100") {
+    //   setStep({ ...step, thirdStep: "w-0 opacity-0" });
+    // } else
+
+    if (step.secondStep === "w-full opacity-100") {
       setStep({ ...step, secondStep: "w-0 opacity-0" });
     }
+
     setStepNo((prevState) => prevState - 1);
-    setPage(questions[stepNo - 1]);
     changeState((prevState) => {
       if (activeState <= 0) {
         return 0;
@@ -142,7 +179,6 @@ const Assessment = ({ questions }) => {
     });
     if (stepNo <= 1) {
       setStepNo(1);
-      setPage(questions[stepNo - 1]);
     }
   };
 
@@ -150,14 +186,12 @@ const Assessment = ({ questions }) => {
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
         <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar
-            stepOneAns={stepOneAns}
-            stepTwoAns={stepTwoAns}
-            stepThreeAns={stepThreeAns}
-            step={step}
+          <ProgressBar step={step} stepNo={stepNo} />
+          <PageIntro
+            assessIntro={assessIntro}
+            activeState={activeState}
             stepNo={stepNo}
           />
-          <PageIntro assessIntro={assessIntro} activeState={activeState} />
           <div className="space-y-8">
             {/* Step 1 */}
             {stepNo === 1 && (
@@ -166,8 +200,6 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
-                stepOneAns={stepOneAns}
-                setStepOneAns={setStepOneAns}
               />
             )}
 
@@ -179,35 +211,33 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
-                stepTwoAns={stepTwoAns}
-                setStepTwoAns={setStepTwoAns}
-              />
-            )}
-
-            {/* Step 3 */}
-            {stepNo === 3 && (
-              <StepThreeContainer
-                iconsRadioQsts={iconsRadioQuestion}
-                investmentQsts={investmentQuestion}
-                largerInvQsts={largerInvestmentQuestion}
-                stepThreeAns={stepThreeAns}
-                setStepThreeAns={setStepThreeAns}
               />
             )}
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (
-              <Button size="large" onClick={stepBackwardHandler}>
+              <Button
+                size="large"
+                style={{
+                  fontWeight: 600,
+                }}
+                onClick={stepBackwardHandler}
+              >
                 Back
               </Button>
             )}
 
             <div className="">
-              {stepNo !== 3 ? (
+              {stepNo !== 2 ? (
                 <Button
                   size="large"
                   variant="contained"
-                  style={{ borderRadius: 200 }}
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                   onClick={stepForwardHandler}
                 >
                   Next
@@ -216,6 +246,12 @@ const Assessment = ({ questions }) => {
                 <Button
                   size="large"
                   variant="contained"
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                   onClick={stepForwardHandler}
                 >
                   View recommendations

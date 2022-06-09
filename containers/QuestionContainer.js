@@ -9,22 +9,20 @@ function QuestionContainer(props) {
     >
       <div
         className={`flex flex-col lg:flex-row ${
-          props.style ? "" : "gap-4 md:gap-12"
+          props.style ? "" : "gap-4 lg:gap-12"
         }`}
       >
         <div>
-          <p className="text-4xl md:text-[46px] lg:text-[64px] text-primaryText">
-            {props.id}
-          </p>
+          <p className="text-4xl lg:text-[56px] text-primaryText">{props.id}</p>
         </div>
         <div>
           {props.text && (
-            <p className="text-base md:text-[20px] text-secondaryText font-light">
+            <p className="text-base lg:text-[20px] text-secondaryText font-light">
               {props.text}
             </p>
           )}
           {props.subText && (
-            <p className="mt-8 font-light text-sm md:text-base">
+            <p className="mt-8 font-light text-sm lg:text-base">
               {props.subText}
             </p>
           )}
@@ -36,3 +34,4 @@ function QuestionContainer(props) {
 }
 
 export default QuestionContainer;
+

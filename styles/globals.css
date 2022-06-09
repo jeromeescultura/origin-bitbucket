@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "gordita", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "gordita", Segoe UI, Roboto, sans-serif;
 }
 
 a {
@@ -20,14 +19,21 @@ a {
 @tailwind utilities;
 
 p {
-  @apply text-sm lg:text-base font-light text-secondaryText;
+  @apply font-GorditaRegular text-sm font-light text-secondaryText;
+}
+.subtitle {
+  @apply font-GorditaRegular text-base font-light text-secondaryText;
 }
 
 h2 {
-  @apply font-Gordita text-2xl lg:text-[32px] lg:leading-snug;
+  @apply font-GorditaRegular text-2xl lg:text-[32px] lg:leading-snug;
 }
 
 .font-bold {
+  @apply font-GorditaBold;
+}
+
+.font-medium {
   @apply font-GorditaMedium;
 }
 .slick-list {
@@ -36,18 +42,35 @@ h2 {
 .slick-slide > div {
   padding: 0 8px;
 }
+.MuiFormHelperText-root {
+  color: #ec0000;
+}
+
+/* tab */
+.css-102w3xa-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #232323 !important;
+  font-weight: bold !important;
+}
 
 @layer base {
   @font-face {
-    font-family: "gordita";
-    src: url("/fonts/gorditaregular-webfont.woff2") format("truetype");
+    font-family: "gordita-light";
+    src: url("/fonts/Origin_Gordita-Light.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-regular";
+    src: url("/fonts/Origin_Gordita-Regular.woff2") format("truetype");
   }
   @font-face {
     font-family: "gordita-medium";
-    src: url("/fonts/gorditamedium-webfont.woff2") format("truetype");
+    src: url("/fonts/Origin_Gordita-Medium.woff2") format("truetype");
   }
   @font-face {
     font-family: "gordita-bold";
-    src: url("/fonts/gorditabold-webfont.woff2") format("truetype");
+    src: url("/fonts/Origin_Gordita-Bold.woff2") format("truetype");
+  }
+  @font-face {
+    font-family: "gordita-black";
+    src: url("/fonts/Origin_Gordita-Black.woff2") format("truetype");
   }
 }
