@@ -122,7 +122,7 @@ const Assessment = ({ questions }) => {
       console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
-      router.push("/recoscore");
+      router.push("/recommendation");
     }
 
     changeState((prevState) => {
