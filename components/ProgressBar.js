@@ -11,15 +11,6 @@ const ProgressBar = ({
 }) => {
   const router = useRouter();
 
-  const [assessmentAnswers, setAnswers] = useState({});
-
-  useEffect(() => {
-    setAnswers({ stepOneAns, stepTwoAns, stepThreeAns });
-    // window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-    // window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
-    // window.localStorage.setItem("STEP_THREE_ANS", JSON.stringify(stepThreeAns));
-  }, [stepOneAns, stepTwoAns, stepThreeAns]);
-
   const handleClick = (e) => {
     e.preventDefault();
     window.localStorage.clear();

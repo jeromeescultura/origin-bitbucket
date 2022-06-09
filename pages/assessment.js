@@ -34,11 +34,11 @@ const Assessment = ({ questions }) => {
       desc: "To understand what options may be applicable to reduce your business impact from an energy perspective, tell us a little bit about what happens on-site to keep your business running.",
       plant: "/icons/plant2.svg",
     },
-    {
-      header: "Your program preferences",
-      desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
-      plant: "/icons/plant3.svg",
-    },
+    // {
+    //   header: "Your program preferences",
+    //   desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
+    //   plant: "/icons/plant3.svg",
+    // },
   ];
 
   // GETTING LOCAL STORAGE STORED ANSWERS
@@ -125,11 +125,29 @@ const Assessment = ({ questions }) => {
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
-    } else if (step.thirdStep === "w-0 opacity-0") {
-      setStep({ ...step, thirdStep: "w-full opacity-100" });
     }
+    // else if (step.thirdStep === "w-0 opacity-0") {
+    //   setStep({ ...step, thirdStep: "w-full opacity-100" });
+    // }
 
-    setStepNo((prevState) => prevState + 1);
+    // if (stepNo === 2) {
+    //   setStepNo(2);
+
+    //   if (stepNo === 2) {
+    //   }
+    // } else {
+    //   console.log("STEP", stepNo);
+    // }
+
+    if (stepNo < 2) {
+      console.log('STEPNO ASSESSMENT', stepNo)
+      setStepNo((prevState) => prevState + 1);
+    } else {
+      console.log("fired");
+      window.localStorage.clear();
+      location.reload();
+      window.scrollTo(0, 0);
+    }
 
     changeState((prevState) => {
       if (activeState >= 2) {
@@ -138,24 +156,19 @@ const Assessment = ({ questions }) => {
         return prevState + 1;
       }
     });
-    if (stepNo >= 2) {
-      setStepNo(2);
 
-      if (stepNo === 2) {
-        window.localStorage.clear();
-        location.reload();
-        window.scrollTo(0, 0);
-      }
-    }
     window.scrollTo({ top: 580, left: 0 });
   };
 
   const stepBackwardHandler = () => {
-    if (step.thirdStep === "w-full opacity-100") {
-      setStep({ ...step, thirdStep: "w-0 opacity-0" });
-    } else if (step.secondStep === "w-full opacity-100") {
+    // if (step.thirdStep === "w-full opacity-100") {
+    //   setStep({ ...step, thirdStep: "w-0 opacity-0" });
+    // } else
+
+    if (step.secondStep === "w-full opacity-100") {
       setStep({ ...step, secondStep: "w-0 opacity-0" });
     }
+
     setStepNo((prevState) => prevState - 1);
     changeState((prevState) => {
       if (activeState <= 0) {
@@ -200,8 +213,6 @@ const Assessment = ({ questions }) => {
                 btnQsts={landQuestion}
               />
             )}
-
-           
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (

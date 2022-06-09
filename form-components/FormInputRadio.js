@@ -15,7 +15,7 @@ const generateRadioOptions = (options) => {
       key={index}
       value={singleOption.value}
       label={singleOption.label}
-      control={<Radio color="secondary" size='large' />}
+      control={<Radio color="secondary" size='medium' />}
     />
   ));
 };

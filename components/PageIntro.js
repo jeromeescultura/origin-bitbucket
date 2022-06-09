@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const PageIntro = ({ assessIntro, activeState, stepNo }) => {
+const PageIntro = ({ assessIntro, stepNo }) => {
   const [pageIntro, setPageIntro] = useState(assessIntro[stepNo - 1]);
   useEffect(() => {
-    setPageIntro(assessIntro[stepNo - 1]);
+    console.log("STEPNO", stepNo);
+    if (stepNo < 3) {
+      setPageIntro(assessIntro[stepNo - 1]);
+    }
   }, [stepNo]);
 
   return (
@@ -48,4 +51,3 @@ const PageIntro = ({ assessIntro, activeState, stepNo }) => {
 };
 
 export default PageIntro;
-

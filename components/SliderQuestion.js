@@ -58,7 +58,7 @@ const SliderQuestion = ({
                   <button
                     id={val.id}
                     onClick={() => toggleActive(val.id)}
-                    className={`origin-center rounded-full transition-all ease-linear duration-300 ${
+                    className={`origin-center rounded-full transition-all ease-linear duration-100 ${
                       val.id > sliderChoice
                         ? "bg-accentColor hover:bg-[#d5982d]"
                         : "bg-white"
