@@ -140,7 +140,7 @@ const Assessment = ({ questions }) => {
     // }
 
     if (stepNo < 2) {
-      console.log('STEPNO ASSESSMENT', stepNo)
+      console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
       console.log("fired");
@@ -216,7 +216,13 @@ const Assessment = ({ questions }) => {
           </div>
           <div className="flex gap-16 mt-16 justify-between sm:justify-start">
             {stepNo !== 1 && (
-              <Button size="large" onClick={stepBackwardHandler}>
+              <Button
+                size="large"
+                style={{
+                  fontWeight: 600,
+                }}
+                onClick={stepBackwardHandler}
+              >
                 Back
               </Button>
             )}
@@ -226,7 +232,12 @@ const Assessment = ({ questions }) => {
                 <Button
                   size="large"
                   variant="contained"
-                  style={{ borderRadius: 200 }}
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                   onClick={stepForwardHandler}
                 >
                   Next
@@ -235,7 +246,12 @@ const Assessment = ({ questions }) => {
                 <Button
                   size="large"
                   variant="contained"
-                  style={{ borderRadius: 200 }}
+                  style={{
+                    borderRadius: 200,
+                    boxShadow: "none",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                  }}
                   onClick={stepForwardHandler}
                 >
                   View recommendations
