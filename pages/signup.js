@@ -21,6 +21,8 @@ import {
 } from "@mui/material";
 import FormInputButton from "../form-components/FormInputButton";
 import ButtonQuestion from "../components/ButtonQuestion";
+import MoreDetailsComponent from "../components/MoreDetailsComponent";
+
 function signup() {
   const router = useRouter();
   const handleClick = (e) => {
@@ -242,10 +244,58 @@ function signup() {
                 <p className="font-medium">How you reduce impact</p>
                 <p>Through offsetting your energy use</p>
               </div>
+              <div className="mt-8">
+                <MoreDetailsComponent text="More Details">
+                  <div className="flex">
+                    <div className="space-y-2 mt-8 pr-5 border-r text-left">
+                      <p className="font-medium">Estimated cost</p>
+                      <h2 className="text-secondaryText">$0</h2>
+                      <p className="text-xs text-subTextColor">
+                        extra p/month on any <br />
+                        Origin Energy plan*
+                      </p>
+                    </div>
+                    <div className="space-y-2 mt-8 pl-5">
+                      <p className="font-medium">
+                        By pledging you’ll get access to
+                      </p>
+                      <ul className="space-y-8 text-left py-8">
+                        <li className="flex items-start gap-4">
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={20}
+                            height={20}
+                            objectFit="contain"
+                          />
+                          <p> Progress reporting on your impact</p>
+                        </li>
+                        <li className="flex items-start gap-4">
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={20}
+                            height={20}
+                            objectFit="contain"
+                          />
+                          <p> Amplify toolkit to communicate your impact</p>
+                        </li>
+                        <li className="flex items-start gap-4">
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={20}
+                            height={20}
+                            objectFit="contain"
+                          />
+                          <p> Dedicated Clean Ambition club support</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </MoreDetailsComponent>
+              </div>
               <div className="space-y-2 mt-8">
                 <p className="font-medium">Estimated cost</p>
                 <h2>$0</h2>
-                <p className="text-xs">
+                <p className="text-xs text-subTextColor">
                   extra p/month on any <br />
                   Origin Energy plan*
                 </p>
