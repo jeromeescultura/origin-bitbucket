@@ -37,63 +37,33 @@ const questions = [
         questionsList: [
           {
             id: 1,
-            value: "es_chk_1",
+            value: "carbon_offsets",
             text: "Bought Carbon Offsets",
           },
           {
             id: 2,
-            value: "es_chk_2",
+            value: "green_power",
             text: "Bought Green power",
           },
           {
             id: 3,
-            value: "es_chk_3",
+            value: "solar",
             text: "Solar",
           },
           {
             id: 4,
-            value: "es_chk_4",
+            value: "batteries",
             text: "Batteries",
           },
           {
             id: 5,
-            value: "es_chk_5",
+            value: "ev",
             text: "EV",
           },
           {
             id: 6,
-            value: "es_chk_6",
+            value: "expert_advice",
             text: "Worked with an expert to lower our carbon emissions",
-          },
-          {
-            id: 7,
-            value: "es_chk_7",
-            text: "Created a sustainability strategy",
-          },
-          {
-            id: 8,
-            value: "es_chk_8",
-            text: "Replaced some or all packaging used by your business to more sustainable alternatives",
-          },
-          {
-            id: 9,
-            value: "es_chk_9",
-            text: "Digitised some or all paper based processes",
-          },
-          {
-            id: 10,
-            value: "es_chk_10",
-            text: "Introduced recycling and waste reduction processes at office sites",
-          },
-          {
-            id: 11,
-            value: "es_chk_11",
-            text: "Optimised supply chain to reduce waste / energy consumption",
-          },
-          {
-            id: 12,
-            value: "es_chk_12",
-            text: "Other",
           },
         ],
       },
@@ -104,23 +74,33 @@ const questions = [
         questionsList: [
           {
             id: 1,
-            value: "go_chk_1",
-            text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
+            value: "sustain_strategy",
+            text: "Created a sustainability strategy",
           },
           {
             id: 2,
-            value: "go_chk_2",
-            text: "Digitised some or all paper based processes at the sites (s)",
+            value: "alternatives",
+            text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
           },
           {
             id: 3,
-            value: "go_chk_3",
-            text: "Introduced recycling and waste reduction processes at office sites",
+            value: "digitized",
+            text: "Digitised some or all paper based processes at the sites (s)",
           },
           {
             id: 4,
-            value: "go_chk_4",
+            value: "recycling",
+            text: "Introduced recycling and waste reduction processes at office sites",
+          },
+          {
+            id: 5,
+            value: "optimized_supply_chain",
             text: "Optimised supply chain processes to reduce material wastage",
+          },
+          {
+            id: 6,
+            value: "other",
+            text: "Other",
           },
         ],
       },
