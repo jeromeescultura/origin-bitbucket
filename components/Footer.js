@@ -6,9 +6,9 @@ import ButtonComponent from "./ButtonComponent";
 function Footer() {
   const router = useRouter();
 
-  const handleClick = (e) => {
+  const handleClick = (e, url) => {
     e.preventDefault();
-    router.push("/assessment");
+    router.push(url);
   };
 
   return (
@@ -29,7 +29,7 @@ function Footer() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={handleClick}
+            onClick={(e) => handleClick(e, "/assessment")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
@@ -43,6 +43,7 @@ function Footer() {
             variant="outlined"
             size="large"
             color="error"
+            onClick={(e) => handleClick(e, "/signup")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
