@@ -38,6 +38,7 @@ export const FormInputMultiCheckbox = ({
     }
   }, [checkboxValue]);
 
+
   useEffect(() => {
     if (setCheckboxValue) setCheckboxValue(selectedItems);
   }, [selectedItems]);
@@ -49,7 +50,7 @@ export const FormInputMultiCheckbox = ({
       setValue(name, selectedItems);
     }
   }, [selectedItems, checkboxValue]);
-  console.log(options);
+
   return (
     <Controller
       control={control}
@@ -59,12 +60,7 @@ export const FormInputMultiCheckbox = ({
         return (
           options &&
           options.map((option, index) => (
-            <FormControl
-              key={index}
-              variant={"outlined"}
-              error={error ? true : false}
-            >
-              {label && <FormLabel component="legend">{label}</FormLabel>}
+            <div key={index}>
               <FormGroup>
                 <FormControlLabel
                   label={option.label || option.text}
@@ -86,7 +82,7 @@ export const FormInputMultiCheckbox = ({
               {error && (
                 <FormHelperText>{error ? error.message : null}</FormHelperText>
               )}
-            </FormControl>
+            </div>
           ))
         );
       }}

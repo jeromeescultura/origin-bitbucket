@@ -1,84 +1,38 @@
 import { useForm } from "react-hook-form";
-import FormInputSlider from "../form-components/FormInputSlider";
 import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
-import {
-  Button,
-  ButtonGroup,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  Checkbox,
-  Slider,
-} from "@mui/material";
+import SliderQuestion from "../components/SliderQuestion";
+import { Button, ButtonGroup, Grid } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
+import { Controller } from "react-hook-form";
 
-const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
+const StepOneContainer = ({
+  btnQsts,
+  chkBoxQsts,
+  sldrQsts,
+  glsQsts,
+  stepForwardHandler,
+}) => {
   const [goals, setGoals] = useState("");
-  const [choice, setChoice] = useState(null);
+  const [choice, setChoice] = useState("");
   const [enSourceValue, setEnSourceValue] = useState([]);
   const [genOpValue, setGenOpValue] = useState([]);
   const [sliderValue, setSliderValue] = useState(3);
 
-  const [stepOneAns, setStepOneAns] = useState({
-    goals: "",
-    choice: null,
-    enSource: [],
-    genOp: [],
-    slider: 3,
-  });
+  const [btn1, setBtn1] = useState(false);
+  const [btn2, setBtn2] = useState(false);
+
+  const storedData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STEP_ONE_ANS")
+    ) || [];
+
+  const [stepOneAns, setStepOneAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepOneAns });
-  const { control, watch, setValue } = methods;
-
-  const handleLabel = (val) => {
-    switch (val) {
-      case 1:
-        return "Low Priority";
-      case 2:
-        return "Somewhat a priority";
-      case 3:
-        return "Neutral";
-      case 4:
-        return "Priority";
-      case 5:
-        return "High Priority";
-      default:
-        break;
-    }
-  };
-
-  const handleSliderChange = (event, newValue) => {
-    setSliderValue(newValue);
-  };
-
-  const sliderMarks = [
-    {
-      value: 1,
-      label: "Low Priority",
-    },
-    {
-      value: 2,
-      label: "",
-    },
-    {
-      value: 3,
-      label: "",
-    },
-    {
-      value: 4,
-      label: "",
-    },
-    {
-      value: 5,
-      label: "High Priority",
-    },
-  ];
-
-  const storedData = JSON.parse(
-    typeof window !== "undefined" && window.localStorage.getItem("STEP_ONE_ANS")
-  );
+  const { control, watch, setValue, handleSubmit } = methods;
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -90,8 +44,37 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
       setEnSourceValue(storedData.enSource);
       setGenOpValue(storedData.genOp);
       setSliderValue(storedData.slider);
+      setChoice(storedData.choice);
+      setGoals(storedData.goals);
     }
   }, []);
+
+  const handleButtonSelect = (value) => {
+    setChoice(value.toString());
+    if (value === 0) {
+      setBtn1(true);
+      setBtn2(false);
+    } else if (value === 1) {
+      setBtn1(false);
+      setBtn2(true);
+    }
+  };
+  useEffect(() => {
+    if (choice !== "") {
+      setValue("choice", choice);
+      handleButtonSelect(parseInt(choice));
+    }
+
+    if (choice === "0") {
+      setGoals("");
+    }
+  }, [choice]);
+
+  useEffect(() => {
+    setValue("goals", goals);
+  }, [goals]);
+
+  const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   const handleChange = (data) => {
     setStepOneAns({
@@ -107,10 +90,73 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
     <>
       {/* STEP ONE - QUESTION ONE */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <QuestionContainer
-          style={"px-0"}
-          text={glsQsts?.text}
-        ></QuestionContainer>
+        <div className="mt-12 w-full max-w-[500px]">
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            size="large"
+            color="secondary"
+            arial-label="contained button group"
+            fullWidth
+          >
+            <Controller
+              control={control}
+              name={"choice"}
+              render={() => {
+                return (
+                  <>
+                    <Button
+                      className={
+                        btn1
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"Not really"}
+                      onClick={() => handleButtonSelect(0)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"Not really"}
+                    </Button>
+                    <Button
+                      className={
+                        btn2
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      }
+                      value={"Yes, I'm considering it"}
+                      onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"Yes, I'm considering it"}
+                    </Button>
+                  </>
+                );
+              }}
+            />
+          </ButtonGroup>
+        </div>
+        {choice === "1" && (
+          <QuestionContainer style={"px-0"} text={glsQsts?.text}>
+            <div className="mt-12 h-[192px]">
+              <textarea
+                name=""
+                id=""
+                placeholder="Type here"
+                className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
+                value={goals}
+                onChange={(e) => setGoals(e.target.value)}
+              ></textarea>
+            </div>
+          </QuestionContainer>
+        )}
       </QuestionContainer>
 
       {/* STEP ONE - QUESTION TWO */}
@@ -145,6 +191,7 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
               options={chkBoxQsts[0]?.questionsList}
               checkboxValue={enSourceValue}
               setCheckboxValue={setEnSourceValue}
+              validation={{ required: "Required" }}
             />
           </div>
         </div>
@@ -178,87 +225,18 @@ const StepOneContainer = ({ btnQsts, chkBoxQsts, sldrQsts, glsQsts }) => {
             />
           </div>
         </div>
-
-        {/* {chkBoxQsts?.map((item, index) => (
-          <div key={index} className="flex flex-col gap-5 mt-12">
-            <div className="flex items-center gap-4">
-              {item?.icon && (
-                <div className="w-6 h-6 lg:w-12 lg:h-12">
-                  <Image
-                    src={item.icon}
-                    width={50}
-                    height={50}
-                    objectFit="contain"
-                    alt={item.icon}
-                  />
-                </div>
-              )}
-              <p className="text-base lg:text-[20px] font-bold text-secondaryText">
-                {item.title}
-              </p>
-            </div> */}
-        {/* {item.questionsList &&
-              item.questionsList.map((qst, i) => (
-                <div
-                  key={i}
-                  className="form-check flex items-start gap-4 lg:ml-16"
-                >
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          value={qst.value}
-                          color="secondary"
-                          onClick={(e) => handleSelectedCheckbox(e, index)}
-                          defaultChecked={
-                            stepOneAns?.QTwo?.enSource?.includes(qst.value) ||
-                            stepOneAns?.QTwo?.genOp?.includes(qst.value)
-                              ? true
-                              : false
-                          }
-                        />
-                      }
-                      label={qst.text}
-                    />
-                  </FormGroup>
-                </div>
-              ))} */}
-        {/* <div className="lg:ml-16">
-              <FormInputMultiCheckbox
-                onChange={watch(handleChange)}
-                control={control}
-                setValue={setValue}
-                name={index === 0 ? "enSource" : "genOp"}
-                options={item.questionsList}
-                checkboxValue={index === 0 ? enSourceValue : genOpValue}
-                setCheckboxValue={
-                  index === 0 ? setEnSourceValue : setGenOpValue
-                }
-              />
-            </div> */}
-        {/* </div>
-        ))} */}
       </QuestionContainer>
       {/* STEP ONE - QUESTION THREE */}
       <QuestionContainer id={sldrQsts?.id} text={sldrQsts?.text}>
-        {/* <SliderQuestion
-          answer={setStepOneAns}
-          answers={stepOneAns}
+        <SliderQuestion
+          setValue={setValue}
+          name={"slider"}
+          setSliderValue={setSliderValue}
+          sliderValue={sliderValue}
           qst={sldrQsts?.options}
-        /> */}
-        <div className="mt-12 px-[20px] lg:px-0">
-          <FormInputSlider
-            name={"slider"}
-            setValue={setValue}
-            control={control}
-            sliderValue={sliderValue}
-            sliderMarks={sliderMarks}
-            min={1}
-            max={5}
-            handleLabel={handleLabel}
-            handleChange={handleSliderChange}
-          />
-        </div>
+          low={"Low priority"}
+          high={"High priority"}
+        />
       </QuestionContainer>
     </>
   );

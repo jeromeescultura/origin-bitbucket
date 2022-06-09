@@ -38,32 +38,62 @@ const questions = [
           {
             id: 1,
             value: "es_chk_1",
-            text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
+            text: "Bought Carbon Offsets",
           },
           {
             id: 2,
             value: "es_chk_2",
-            text: "Switch to an energy plan that carbon offsets your energy use",
+            text: "Bought Green power",
           },
           {
             id: 3,
             value: "es_chk_3",
-            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
+            text: "Solar",
           },
           {
             id: 4,
             value: "es_chk_4",
-            text: "Installed solar at your site(s)",
+            text: "Batteries",
           },
           {
             id: 5,
             value: "es_chk_5",
-            text: "Added battery storage to your solar system",
+            text: "EV",
           },
           {
             id: 6,
             value: "es_chk_6",
-            text: "Replaced some or all of your vehicle fleet with electric vehicles",
+            text: "Worked with an expert to lower our carbon emissions",
+          },
+          {
+            id: 7,
+            value: "es_chk_7",
+            text: "Created a sustainability strategy",
+          },
+          {
+            id: 8,
+            value: "es_chk_8",
+            text: "Replaced some or all packaging used by your business to more sustainable alternatives",
+          },
+          {
+            id: 9,
+            value: "es_chk_9",
+            text: "Digitised some or all paper based processes",
+          },
+          {
+            id: 10,
+            value: "es_chk_10",
+            text: "Introduced recycling and waste reduction processes at office sites",
+          },
+          {
+            id: 11,
+            value: "es_chk_11",
+            text: "Optimised supply chain to reduce waste / energy consumption",
+          },
+          {
+            id: 12,
+            value: "es_chk_12",
+            text: "Other",
           },
         ],
       },
@@ -103,23 +133,28 @@ const questions = [
       options: [
         {
           id: 1,
-          text: "1-2 sites",
+          label: "1-2 sites",
+          value: "1-2",
         },
         {
           id: 2,
-          text: "2-5 sites",
+          label: "2-5 sites",
+          value: "2-5",
         },
         {
           id: 3,
-          text: "5-10 sites",
+          label: "5-10 sites",
+          value: "5-10",
         },
         {
           id: 4,
-          text: "10+ sites",
+          label: "10+ sites",
+          value: "10+",
         },
         {
           id: 5,
-          text: "No business sites - I operate out of my home",
+          label: "No business sites - I operate out of my home",
+          value: "none",
         },
       ],
     },
@@ -148,19 +183,98 @@ const questions = [
       options: [
         {
           id: 1,
-          text: "test",
+          label: "Professional, Scientific and Technical Services",
+          value: "pro_sci_tech",
         },
         {
           id: 2,
-          text: "sample",
+          label: "Financial and Insurance Services",
+          value: "finance_insurance",
         },
         {
           id: 3,
-          text: "egg",
+          label: "Manufacturing",
+          value: "manufacturing",
         },
         {
           id: 4,
-          text: "hotdog",
+          label: "Rental, Hiring and Real Estate Services",
+          value: "rental_hiring_real_estate",
+        },
+        {
+          id: 5,
+          label: "Accommodation and Food Services",
+          value: "accom_food",
+        },
+        {
+          id: 6,
+          label: "Health Care and Social Assistance",
+          value: "health_social",
+        },
+        {
+          id: 7,
+          label: "Retail Trade",
+          value: "retail_trade",
+        },
+        {
+          id: 8,
+          label: "Information Media and Telecommunications",
+          value: "info_media_telecom",
+        },
+        {
+          id: 9,
+          label: "Wholesale Trade",
+          value: "wholesale_trade",
+        },
+        {
+          id: 10,
+          label: "Administrative and Support Services",
+          value: "admin_support",
+        },
+        {
+          id: 11,
+          label: "Education and Training",
+          value: "educ_training",
+        },
+        {
+          id: 12,
+          label: "Mining",
+          value: "mining",
+        },
+        {
+          id: 13,
+          label: "Construction",
+          value: "construction",
+        },
+        {
+          id: 14,
+          label: "Arts and Recreation Services",
+          value: "arts_rec",
+        },
+        {
+          id: 15,
+          label: "Transport, Postal and Warehousing",
+          value: "transport_postal_warehousing",
+        },
+        {
+          id: 16,
+          label: "Agriculture, Forestry and Fishing",
+          value: "agri_forest_fishing",
+        },
+        {
+          id: 17,
+          label: "Public Administration and Safety",
+          value: "public_admin_safety",
+        },
+        {
+          id: 18,
+          label: "Electricity, Gas, Water and Waste Services",
+          value: "elec_gas_water_waste",
+        },
+        {
+          id: 19,
+          label: "Other",
+          value: "other",
         },
       ],
     },
@@ -219,32 +333,32 @@ const questions = [
         {
           id: 1,
           value: "eu_chk_1",
-          text: "Constant",
+          text: "Constant (Requires 24 hour supply)",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
           value: "eu_chk_2",
-          text: "Mornings",
+          text: "Mornings (Roughly between 1am – 9am",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
           value: "eu_chk_3",
-          text: "Evenings",
+          text: "Evenings (Roughly between 5pm - 1am)",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
           value: "eu_chk_4",
-          text: "Standard times",
+          text: "Standard times (Roughly between 9am - 5pm)",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
           value: "eu_chk_5",
-          text: "Unconstrained by specific operating hours",
+          text: "Unconstrained by specific operating hours (Depends on business priorities)",
           subText: "Energy use varies greatly depending on business priorities",
         },
       ],

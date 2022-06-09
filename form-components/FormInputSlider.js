@@ -27,7 +27,7 @@ const FormInputSlider = ({
         render={() => (
           <Slider
             sx={{
-              width: "90%",
+              width: { xs: "100%", sm: "90%" },
               height: "20px",
               "& :nth-child(3)": {
                 ml: { xs: "2%", md: "1%" },
@@ -35,8 +35,8 @@ const FormInputSlider = ({
               "& :nth-last-child(3)": {
                 ml: { xs: "-8%", md: "-4%" },
               },
-              '&.MuiSlider-markLabel[data-index === "0"]' : {
-                ml: '50px'
+              '&.MuiSlider-markLabel[data-index === "0"]': {
+                ml: "50px",
               },
 
               "& .MuiSlider-markLabel": {
@@ -44,8 +44,8 @@ const FormInputSlider = ({
               },
               "& .MuiSlider-thumb": {
                 xs: {
-                  width: "40px",
-                  height: "40px",
+                  width: "35px",
+                  height: "35px",
                 },
                 lg: {
                   width: "50px",

@@ -34,27 +34,27 @@ const Assessment = ({ questions }) => {
       desc: "To understand what options may be applicable to reduce your business impact from an energy perspective, tell us a little bit about what happens on-site to keep your business running.",
       plant: "/icons/plant2.svg",
     },
-    {
-      header: "Your program preferences",
-      desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
-      plant: "/icons/plant3.svg",
-    },
+    // {
+    //   header: "Your program preferences",
+    //   desc: "There are a number of different clean energy projects and services out there that are more suitable than others for you, which depend on certain preferences you may have. Let's understand these further.",
+    //   plant: "/icons/plant3.svg",
+    // },
   ];
 
   // GETTING LOCAL STORAGE STORED ANSWERS
   const storedData = {
-    storedStepOneAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_ONE_ANS")
-    ),
-    storedStepTwoAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_TWO_ANS")
-    ),
-    storedStepThreeAns: JSON.parse(
-      typeof window !== "undefined" &&
-        window.localStorage.getItem("STEP_THREE_ANS")
-    ),
+    // storedStepOneAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_ONE_ANS")
+    // ),
+    // storedStepTwoAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_TWO_ANS")
+    // ),
+    // storedStepThreeAns: JSON.parse(
+    //   typeof window !== "undefined" &&
+    //     window.localStorage.getItem("STEP_THREE_ANS")
+    // ),
     storedPage: JSON.parse(
       typeof window !== "undefined" && window.localStorage.getItem("PAGE")
     ),
@@ -63,26 +63,7 @@ const Assessment = ({ questions }) => {
     ),
   };
 
-  // STORED STATE ANSWERS //
-  // STEP ONE
-  const [stepOneAns, setStepOneAns] = useState({
-    QOne: { goals: "", choice: null },
-    QTwo: { enSource: [], genOp: [] },
-    QThree: "priority",
-  });
-  // STEP TWO
-  const [stepTwoAns, setStepTwoAns] = useState({
-    QOne: { industry: "", sites: 0 },
-    QTwo: [],
-    QThree: [],
-    QFour: null,
-  });
-  // STEP THREE
-  const [stepThreeAns, setStepThreeAns] = useState({
-    QOne: 1,
-    QTwo: 0,
-    QThree: null,
-  });
+  // STORED STATES //
 
   const [stepNo, setStepNo] = useState(1);
 
@@ -127,40 +108,46 @@ const Assessment = ({ questions }) => {
     });
   }, [questions]);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
-  //   window.localStorage.setItem("STEP", JSON.stringify(step));
-  //   window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-  //   window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
-  //   window.localStorage.setItem("STEP_THREE_ANS", JSON.stringify(stepThreeAns));
-  // }, [stepOneAns, stepTwoAns, stepThreeAns, stepNo, step]);
+  useEffect(() => {
+    window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
+    window.localStorage.setItem("STEP", JSON.stringify(step));
+  }, [stepNo, step]);
 
-  // useEffect(() => {
-  //   if (
-  //     storedData.storedStepOneAns !== null &&
-  //     storedData.storedStepTwoAns !== null &&
-  //     storedData.storedStepThreeAns !== null &&
-  //     storedData.storedPage !== null &&
-  //     storedData.storedStep !== null
-  //   ) {
-  //     setStepOneAns(storedData.storedStepOneAns);
-  //     setStepTwoAns(storedData.storedStepTwoAns);
-  //     setStepThreeAns(storedData.storedStepThreeAns);
-  //     setStepNo(storedData.storedPage);
-  //     setStep(storedData.storedStep);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (storedData.storedPage !== null && storedData.storedStep !== null) {
+      setStepNo(storedData.storedPage);
+      setStep(storedData.storedStep);
+    }
+  }, []);
 
   const [activeState, changeState] = useState(0);
 
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
-    } else if (step.thirdStep === "w-0 opacity-0") {
-      setStep({ ...step, thirdStep: "w-full opacity-100" });
     }
+    // else if (step.thirdStep === "w-0 opacity-0") {
+    //   setStep({ ...step, thirdStep: "w-full opacity-100" });
+    // }
 
-    setStepNo((prevState) => prevState + 1);
+    // if (stepNo === 2) {
+    //   setStepNo(2);
+
+    //   if (stepNo === 2) {
+    //   }
+    // } else {
+    //   console.log("STEP", stepNo);
+    // }
+
+    if (stepNo < 2) {
+      console.log('STEPNO ASSESSMENT', stepNo)
+      setStepNo((prevState) => prevState + 1);
+    } else {
+      console.log("fired");
+      window.localStorage.clear();
+      location.reload();
+      window.scrollTo(0, 0);
+    }
 
     changeState((prevState) => {
       if (activeState >= 2) {
@@ -169,24 +156,19 @@ const Assessment = ({ questions }) => {
         return prevState + 1;
       }
     });
-    if (stepNo >= 3) {
-      setStepNo(3);
 
-      if (stepNo === 3) {
-        window.localStorage.clear();
-        location.reload();
-        window.scrollTo(0, 0);
-      }
-    }
     window.scrollTo({ top: 580, left: 0 });
   };
 
   const stepBackwardHandler = () => {
-    if (step.thirdStep === "w-full opacity-100") {
-      setStep({ ...step, thirdStep: "w-0 opacity-0" });
-    } else if (step.secondStep === "w-full opacity-100") {
+    // if (step.thirdStep === "w-full opacity-100") {
+    //   setStep({ ...step, thirdStep: "w-0 opacity-0" });
+    // } else
+
+    if (step.secondStep === "w-full opacity-100") {
       setStep({ ...step, secondStep: "w-0 opacity-0" });
     }
+
     setStepNo((prevState) => prevState - 1);
     changeState((prevState) => {
       if (activeState <= 0) {
@@ -204,13 +186,7 @@ const Assessment = ({ questions }) => {
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
         <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar
-            stepOneAns={stepOneAns}
-            stepTwoAns={stepTwoAns}
-            stepThreeAns={stepThreeAns}
-            step={step}
-            stepNo={stepNo}
-          />
+          <ProgressBar step={step} stepNo={stepNo} />
           <PageIntro
             assessIntro={assessIntro}
             activeState={activeState}
@@ -235,19 +211,6 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
-                stepTwoAns={stepTwoAns}
-                setStepTwoAns={setStepTwoAns}
-              />
-            )}
-
-            {/* Step 3 */}
-            {stepNo === 3 && (
-              <StepThreeContainer
-                iconsRadioQsts={iconsRadioQuestion}
-                investmentQsts={investmentQuestion}
-                largerInvQsts={largerInvestmentQuestion}
-                stepThreeAns={stepThreeAns}
-                setStepThreeAns={setStepThreeAns}
               />
             )}
           </div>
@@ -259,7 +222,7 @@ const Assessment = ({ questions }) => {
             )}
 
             <div className="">
-              {stepNo !== 3 ? (
+              {stepNo !== 2 ? (
                 <Button
                   size="large"
                   variant="contained"
