@@ -5,6 +5,7 @@ function ProductContainer() {
   const productDetails = [
     {
       title: "Origin Go Zero",
+      leaf: 2,
       icon: "/icons/products/go-zero.svg",
       impact: "Through offsetting your energy use",
       plan: "Available on any Origin Energy plan",
@@ -14,6 +15,7 @@ function ProductContainer() {
     },
     {
       title: "GreenPower",
+      leaf: 3,
       icon: "/icons/products/greenpower.svg",
       impact: "Through funding renewable generators",
       plan: "Available on any Origin Energy plan",
@@ -26,6 +28,7 @@ function ProductContainer() {
     },
     {
       title: "Solar",
+      leaf: 4,
       icon: "/icons/products/solar.svg",
       impact: "Through using self generated renewable energy",
       plan: "Competitive solar plans available",
@@ -38,6 +41,7 @@ function ProductContainer() {
     },
     {
       title: "Net-Zero strategy review",
+      leaf: 5,
       icon: "/icons/products/net-zero.svg",
       impact: "Have input in the development of impact reduction services",
       plan: "Available on any Origin Energy plan",
@@ -114,6 +118,7 @@ function ProductContainer() {
           <ProductCard
             key={index}
             title={detail.title}
+            leaf={detail.leaf}
             icon={detail.icon}
             impact={detail.impact}
             plan={detail.plan}

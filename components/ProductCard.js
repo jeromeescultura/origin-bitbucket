@@ -5,6 +5,7 @@ import LeafRating from "../components/LeafRating";
 
 function ProductCard({
   title,
+  leaf,
   icon,
   impact,
   plan,
@@ -15,7 +16,7 @@ function ProductCard({
   return (
     <>
       <div className="text-center -mb-4 z-50">
-        <LeafRating count={4} />
+        <LeafRating count={leaf} />
       </div>
       <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly  h-[920px] ">
         <div className="pt-4">

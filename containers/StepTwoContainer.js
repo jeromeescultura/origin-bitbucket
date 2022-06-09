@@ -3,7 +3,6 @@ import QuestionContainer from "./QuestionContainer";
 import DropdownQuestion from "../components/DropdownQuestion";
 import RadioQuestion from "../components/RadioQuestion";
 import IconsQuestion from "../components/IconsQuestion";
-import CheckboxComponent from "../components/CheckboxComponent";
 import ButtonQuestion from "../components/ButtonQuestion";
 import {
   FormControl,
@@ -114,21 +113,7 @@ const StepTwoContainer = ({
         </div>
       </QuestionContainer>
       {/* STEP TWO - QUESTION 3 */}
-      <QuestionContainer id={chkBoxQsts?.id} text={chkBoxQsts?.text}>
-        <div className="space-y-12 mt-8 lg:mt-7">
-          {" "}
-          {chkBoxQsts.questionsList?.map((item, index) => (
-            <CheckboxComponent
-              text={item?.text}
-              key={index}
-              subText={item?.subText}
-              answer={setStepTwoAns}
-              answers={stepTwoAns}
-              ans={item.value}
-            />
-          ))}
-        </div>
-      </QuestionContainer>
+
       {/* STEP TWO - QUESTION 4 */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
         <ButtonQuestion
