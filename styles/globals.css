@@ -46,9 +46,10 @@ h2 {
   color: #ec0000;
 }
 
-.Mui-chkbox {
-  width: "100%";
-  border: 1px solid red;
+/* tab */
+.css-102w3xa-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #232323 !important;
+  font-weight: bold !important;
 }
 
 @layer base {
@@ -62,7 +63,7 @@ h2 {
   }
   @font-face {
     font-family: "gordita-medium";
-    src: url("/fonts/gordOrigin_Gordita-Medium.woff2") format("truetype");
+    src: url("/fonts/Origin_Gordita-Medium.woff2") format("truetype");
   }
   @font-face {
     font-family: "gordita-bold";

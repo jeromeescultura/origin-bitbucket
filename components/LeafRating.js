@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function LeafRating({ count }) {
   return (
-    <div className="inline-block">
+    <div className="inline-block z-50">
       <div className="flex  bg-leafBG gap-1 py-2 px-3 justify-center rounded-xl ">
         {[...Array(count)].map((x, i) => (
           <Image

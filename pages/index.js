@@ -6,7 +6,8 @@ import ProductContainer from "../containers/ProductContainer";
 import FullWidth from "../containers/FullWidth";
 import ContentContainer from "../containers/ContentContainer";
 import HeroComponent from "../components/HeroComponent";
-import ExclusiveCard from "../containers/ExclusiveCard";
+import PerksTab from "../containers/PerksTab";
+import VerticalTabs from "../components/VerticalTabs";
 
 export default function Home() {
   const [showFooter, setShowFooter] = useState(false);
@@ -145,18 +146,21 @@ export default function Home() {
                 </h2>
               </div>
             </ContentContainer>
-            <FullWidth>
-              <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">
+            <ContentContainer>
+              <div className="mt-16 pb-16">
+                <VerticalTabs />
+              </div>
+              {/* <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">
                 {exclusiveAccess.map((item) => (
-                  <ExclusiveCard
+                  <PerksTab
                     key={item.id}
                     icon={item.icon}
                     text={item.text}
                     desc={item.desc}
                   />
                 ))}
-              </div>
-            </FullWidth>
+              </div> */}
+            </ContentContainer>
             <ContentContainer>
               <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-32 mx-auto mt-16">
                 <div className="text-center lg:text-left">

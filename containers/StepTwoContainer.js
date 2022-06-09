@@ -6,7 +6,6 @@ import FormInputDropdown from "../form-components/FormInputDropdown";
 import DropdownQuestion from "../components/DropdownQuestion";
 import RadioQuestion from "../components/RadioQuestion";
 import IconsQuestion from "../components/IconsQuestion";
-import CheckboxComponent from "../components/CheckboxComponent";
 import ButtonQuestion from "../components/ButtonQuestion";
 import {
   Button,
