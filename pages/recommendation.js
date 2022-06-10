@@ -1,12 +1,12 @@
 import { Card, CardContent, Grid, Switch, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import FinanceCalc from "../components/reccomponents/FinanceCalc";
+import FinanceCalc from "../components/recommend/FinanceCalc";
 import {
   sumArray,
   stepOneScore,
   stepTwoScore,
-} from "../components/reccomponents/RecoFunctions";
-import ToggleCard from "../components/reccomponents/ToggleCard";
+} from "../functions/recofunctions/RecoFunctions";
+import ToggleCard from "../components/recommend/ToggleCard";
 
 const Recommendation = () => {
   const storedStepOneData =

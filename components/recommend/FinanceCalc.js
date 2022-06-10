@@ -102,7 +102,8 @@ const FinanceCalc = () => {
                       btn2
                         ? activeStyles
                         : `hover:border hover:border-gray-300 ${
-                            btn1 && "border-l-accentColor"
+                            btn1 &&
+                            "border-l-accentColor hover:border-l-accentColor"
                           }`
                     } `}
                     value={"medium"}
@@ -120,7 +121,8 @@ const FinanceCalc = () => {
                       btn3
                         ? activeStyles
                         : `hover:border hover:border-gray-300 ${
-                            btn2 && "border-l-accentColor"
+                            btn2 &&
+                            "border-l-accentColor hover:border-l-accentColor"
                           }`
                     }
                     value={"high"}
