@@ -13,9 +13,9 @@ const generateRadioOptions = (options) => {
   return options?.map((singleOption, index) => (
     <FormControlLabel
       key={index}
-      value={singleOption.value}
+      value={singleOption.value ? singleOption.value : ""}
       label={singleOption.label}
-      control={<Radio color="secondary" size='medium' />}
+      control={<Radio color="secondary" size="medium" />}
     />
   ));
 };

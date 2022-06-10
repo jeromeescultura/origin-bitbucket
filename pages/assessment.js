@@ -25,6 +25,7 @@ const Assessment = ({ questions }) => {
   const [iconsRadioQuestion, setIconsRadioQuestion] = useState({});
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
+  const [timeAndEnergyQuestion, setTimeAndEnergy] = useState({});
 
   const assessIntro = [
     {
@@ -95,6 +96,8 @@ const Assessment = ({ questions }) => {
         setInvestment(item.investmentQuestion);
       } else if (item.largerInvestmentQuestion !== undefined) {
         setLargerInvestment(item.largerInvestmentQuestion);
+      } else if (item.timeAndEnergy !== undefined) {
+        setTimeAndEnergy(item.timeAndEnergy);
       }
     });
   }, [questions]);
@@ -122,7 +125,7 @@ const Assessment = ({ questions }) => {
       console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
-      router.push("/recoscore");
+      router.push("/recommendation");
     }
 
     changeState((prevState) => {
@@ -176,6 +179,7 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
+                radioQsts={timeAndEnergyQuestion}
               />
             )}
 

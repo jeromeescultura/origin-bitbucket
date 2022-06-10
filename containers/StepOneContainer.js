@@ -6,21 +6,23 @@ import { Button, ButtonGroup, Grid } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { Controller } from "react-hook-form";
+import FormInputRadio from "../form-components/FormInputRadio";
 
 const StepOneContainer = ({
   btnQsts,
   chkBoxQsts,
   sldrQsts,
   glsQsts,
-  stepForwardHandler,
+  radioQsts,
 }) => {
   const [goals, setGoals] = useState("");
   const [choice, setChoice] = useState("");
   const [enSourceValue, setEnSourceValue] = useState([]);
   const [genOpValue, setGenOpValue] = useState([]);
   const [sliderValue, setSliderValue] = useState(3);
+  const [radioValue, setRadioValue] = useState("");
 
-  const [btn1, setBtn1] = useState(false);
+  const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
 
   const storedData =
@@ -36,18 +38,33 @@ const StepOneContainer = ({
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
+    console.log(stepOneAns);
   }, [stepOneAns]);
 
   useEffect(() => {
-    if (storedData !== null) {
+    if (storedData) {
       setStepOneAns(storedData);
       setEnSourceValue(storedData.enSource);
       setGenOpValue(storedData.genOp);
       setSliderValue(storedData.slider);
       setChoice(storedData.choice);
       setGoals(storedData.goals);
+      setRadioValue(storedData.radio);
+      console.log("STOREDDATA", storedData);
     }
   }, []);
+
+  useEffect(() => {
+    if (choice !== "") {
+      console.log("fired");
+      setValue("choice", choice);
+      handleButtonSelect(parseInt(choice));
+    }
+
+    if (btn2) {
+      setGoals("");
+    }
+  }, [choice]);
 
   const handleButtonSelect = (value) => {
     setChoice(value.toString());
@@ -59,16 +76,6 @@ const StepOneContainer = ({
       setBtn2(true);
     }
   };
-  useEffect(() => {
-    if (choice !== "") {
-      setValue("choice", choice);
-      handleButtonSelect(parseInt(choice));
-    }
-
-    if (choice === "0") {
-      setGoals("");
-    }
-  }, [choice]);
 
   useEffect(() => {
     setValue("goals", goals);
@@ -83,6 +90,7 @@ const StepOneContainer = ({
       enSource: data.enSource,
       genOp: data.genOp,
       slider: data.slider,
+      radio: data.radio,
     });
   };
 
@@ -122,11 +130,11 @@ const StepOneContainer = ({
                       {"Not really"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn2
                           ? activeStyles
-                          : "hover:border hover:border-gray-300"
-                      }
+                          : "hover:border hover:border-gray-300 hover:border-l-accentColor"
+                      } ${btn1 && "border-l-accentColor"}`}
                       value={"Yes, I'm considering it"}
                       onClick={() => handleButtonSelect(1)}
                       sx={{
@@ -143,7 +151,7 @@ const StepOneContainer = ({
             />
           </ButtonGroup>
         </div>
-        {choice === "1" && (
+        {btn2 && (
           <QuestionContainer style={"px-0"} text={glsQsts?.text}>
             <div className="mt-12 h-[192px]">
               <textarea
@@ -227,6 +235,18 @@ const StepOneContainer = ({
         </div>
       </QuestionContainer>
       {/* STEP ONE - QUESTION THREE */}
+      <QuestionContainer id={radioQsts?.id} text={radioQsts?.text}>
+        <div className="mt-8">
+          <FormInputRadio
+            name={"radio"}
+            control={control}
+            options={radioQsts?.options}
+            setValue={setValue}
+            radioValue={radioValue}
+          />
+        </div>
+      </QuestionContainer>
+      {/* STEP ONE - QUESTION FOUR */}
       <QuestionContainer id={sldrQsts?.id} text={sldrQsts?.text}>
         <SliderQuestion
           setValue={setValue}
