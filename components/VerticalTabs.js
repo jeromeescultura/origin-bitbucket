@@ -54,12 +54,6 @@ export default function VerticalTabs() {
     })
   );
 
-  let condTabOrientation;
-  if (matches) {
-    condTabOrientation = "vertical";
-  } else {
-    condTabOrientation = "horizontal";
-  }
   return (
     <Box
       className="flex flex-col lg:flex-row"
@@ -72,7 +66,7 @@ export default function VerticalTabs() {
       <Tabs
         indicatorColor="secondary"
         variant="scrollable"
-        orientation={condTabOrientation}
+        orientation={matches ? "vertical" : "horizontal"}
         scrollButtons
         className="min-w-[250px]"
         value={value}

@@ -46,12 +46,14 @@ h2 {
   color: #ec0000;
 }
 
-/* tab */
+/* Overwrite */
 .css-102w3xa-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: #232323 !important;
   font-weight: bold !important;
 }
-
+.css-9lshym-MuiTypography-root {
+  font-size: 14px;
+}
 @layer base {
   @font-face {
     font-family: "gordita-light";

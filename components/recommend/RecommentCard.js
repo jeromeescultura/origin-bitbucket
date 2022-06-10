@@ -5,14 +5,13 @@ import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const RecommentCard = () => {
   return (
-    <div className="bg-white py-8 px-4 lg:p-12 rounded-lg space-y-8">
+    <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 md:w-[500px] max-w-[550px] mx-auto">
       <div className="text-center space-y-2">
-        <p className="text-[20px] font-medium pb-4">
-          You have chosen to pledge with
+        <p className="text-[18px] font-medium mb-8 text-primaryText">
+          We recommend
         </p>
         <LeafRating count={4} />
         <p className="font-medium subtitle">Origin Go Zero</p>
-        <Button className="lg:hidden">Pledge details</Button>
       </div>
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
