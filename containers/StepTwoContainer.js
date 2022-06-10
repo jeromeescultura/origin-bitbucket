@@ -18,6 +18,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  useMediaQuery,
 } from "@mui/material";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 
@@ -107,6 +108,7 @@ const StepTwoContainer = ({
   }, [equipment]);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
+  const orient = useMediaQuery("(min-width:1024px)");
   return (
     <>
       {/* STEP TWO - QUESTION 1 */}
@@ -169,13 +171,14 @@ const StepTwoContainer = ({
 
       {/* STEP TWO - QUESTION 4 */}
       <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <div className="mt-12 w-full max-w-[500px]">
+        <div className="mt-12 w-full ">
           <ButtonGroup
             variant="outlined"
             aria-label="outlined button group"
             size="large"
             color="secondary"
             arial-label="contained button group"
+            orientation={`${orient ? "horizontal" : "vertical"}`}
             fullWidth
           >
             <Controller
@@ -201,13 +204,15 @@ const StepTwoContainer = ({
                       {"Yes"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn2
                           ? activeStyles
                           : "hover:border hover:border-gray-300"
-                      }
+                      } ${
+                        btn1 &&
+                        "border-t-accentColor hover:border-t-accentColor lg:border-t-gray-300 lg:hover:border-t-gray-300 lg:border-l-accentColor lg:hover:border-l-accentColor"
+                      }`}
                       value={"At some of my sites"}
-                      
                       onClick={() => handleButtonSelect(1)}
                       sx={{
                         color: "#505050",
@@ -218,11 +223,14 @@ const StepTwoContainer = ({
                       {"At some of my sites"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn3
                           ? activeStyles
                           : "hover:border hover:border-gray-300"
-                      }
+                      } ${
+                        btn2 &&
+                        "border-t-accentColor hover:border-t-accentColor lg:border-t-gray-300 lg:hover:border-t-gray-300 lg:border-l-accentColor lg:hover:border-l-accentColor"
+                      }`}
                       value={"No"}
                       onClick={() => handleButtonSelect(2)}
                       sx={{
@@ -234,11 +242,14 @@ const StepTwoContainer = ({
                       {"No"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn4
                           ? activeStyles
                           : "hover:border hover:border-gray-300"
-                      }
+                      } ${
+                        btn3 &&
+                        "border-t-accentColor hover:border-t-accentColor lg:border-t-gray-300 lg:hover:border-t-gray-300 lg:border-l-accentColor lg:hover:border-l-accentColor"
+                      }`}
                       value={"I'm not sure"}
                       onClick={() => handleButtonSelect(3)}
                       sx={{

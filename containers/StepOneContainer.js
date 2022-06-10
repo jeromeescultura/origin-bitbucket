@@ -22,7 +22,6 @@ const StepOneContainer = ({
   const [sliderValue, setSliderValue] = useState(3);
   const [radioValue, setRadioValue] = useState("");
 
-
   const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
 
@@ -131,11 +130,11 @@ const StepOneContainer = ({
                       {"Not really"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn2
                           ? activeStyles
-                          : "hover:border hover:border-gray-300"
-                      }
+                          : "hover:border hover:border-gray-300 hover:border-l-accentColor"
+                      } ${btn1 && "border-l-accentColor"}`}
                       value={"Yes, I'm considering it"}
                       onClick={() => handleButtonSelect(1)}
                       sx={{

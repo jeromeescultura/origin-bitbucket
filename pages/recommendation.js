@@ -1,5 +1,6 @@
-import { Card, CardContent, Switch, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Switch, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import FinanceCalc from "../components/reccomponents/FinanceCalc";
 import {
   sumArray,
   stepOneScore,
@@ -68,7 +69,16 @@ const Recommendation = () => {
   return (
     <div>
       <h1>Recommended:{recommend && recommend}</h1>
-      <ToggleCard recommend={recommend} />
+      <div className="space-y-8">
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={6}>
+            <FinanceCalc />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <ToggleCard recommend={recommend} />
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 };

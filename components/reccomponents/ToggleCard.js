@@ -1,12 +1,9 @@
 import {
-  Avatar,
   Card,
   CardContent,
   FormControl,
-  Grid,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemIcon,
   ListItemText,
   MenuItem,
@@ -16,7 +13,6 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import FormInputDropdown from "../../form-components/FormInputDropdown";
 
 const ToggleCard = ({ recommend }) => {
   const [interview, setInterview] = useState(false);
@@ -35,7 +31,7 @@ const ToggleCard = ({ recommend }) => {
     setLevel(event.target.value);
   };
   return (
-    <Card variant="outlined" sx={{ transition: "all 0.3s ease" }}>
+    <Card variant="outlined">
       <CardContent>
         <Typography
           sx={{
