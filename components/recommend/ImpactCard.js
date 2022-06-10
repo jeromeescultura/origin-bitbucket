@@ -3,7 +3,7 @@ import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const ImpactCard = () => {
   return (
-    <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 md:w-[500px] max-w-[550px] mx-auto">
+    <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <p className="font-medium text-[18px] text-primaryText text-center">
         Your impact
       </p>

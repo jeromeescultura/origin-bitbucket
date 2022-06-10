@@ -31,7 +31,10 @@ const ToggleCard = ({ recommend }) => {
     setLevel(event.target.value);
   };
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      className="border-none rounded-xl max-w-[510px] mx-auto"
+    >
       <CardContent>
         <Typography
           sx={{

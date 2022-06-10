@@ -10,6 +10,7 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const FinanceCalc = () => {
   const [extra, setExtra] = useState(false);
@@ -51,7 +52,10 @@ const FinanceCalc = () => {
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      className="border-none rounded-xl max-w-[510px] mx-auto"
+    >
       <CardContent>
         <Typography
           sx={{
@@ -153,7 +157,7 @@ const FinanceCalc = () => {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} lg={6} sx={{ p: 0 }}>
+          <Grid item xs={12} lg={6} sx={{ p: 0, mb: "48px" }}>
             <div className="lg:max-h-[131px] lg:min-h-[104px] flex items-center justify-center font-light text-xs">
               <div className="flex lg:flex-col space-x-8 lg:space-y-2 lg:space-x-0">
                 <div className="flex items-center">
@@ -168,30 +172,15 @@ const FinanceCalc = () => {
             </div>
           </Grid>
         </Grid>
-        <Card variant="outlined" sx={{ mt: "48px" }}>
-          <div className="flex flex-col p-3">
-            <div className="flex justify-between items-center">
-              <Typography>Why it costs you nothing extra</Typography>
-              <div
-                className={`text-2xl text-primaryText hover:text-red-600 cursor-pointer select-none w-8 text-center `}
-                onClick={expandExtra}
-              >
-                {extra ? "-" : "+"}
-              </div>
-            </div>
-            <div
-              className={`mt-7 ${
-                extra ? "block opacity-100" : "absolute opacity-0"
-              }`}
-            >
-              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-              Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-              dui. Donec rutrum congue leo eget malesuada. Proin eget tortor
-              risus. Curabitur non nulla sit amet nisl tempus convallis quis ac
-              lectus.
-            </div>
-          </div>
-        </Card>
+        <MoreDetailsComponent text="Why it costs you nothing extra">
+          <p>
+            Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+            Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+            dui. Donec rutrum congue leo eget malesuada. Proin eget tortor
+            risus. Curabitur non nulla sit amet nisl tempus convallis quis ac
+            lectus.
+          </p>
+        </MoreDetailsComponent>
       </CardContent>
     </Card>
   );

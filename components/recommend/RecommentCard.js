@@ -5,7 +5,7 @@ import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const RecommentCard = () => {
   return (
-    <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 md:w-[500px] max-w-[550px] mx-auto">
+    <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
         <p className="text-[18px] font-medium mb-8 text-primaryText">
           We recommend

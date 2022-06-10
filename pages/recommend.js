@@ -2,9 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   Faqs,
+  FinanceCalc,
   FooterReco,
   ImpactCard,
   RecommentCard,
+  ToggleCard,
 } from "../components/recommend";
 import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
@@ -115,13 +117,20 @@ const recommend = () => {
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">with Origin Go Zero</h2>
           </div>
-          <div className="grid gap-4">
-            <ImpactCard />
-            <RecommentCard />
-            <ImpactCard />
-            <RecommentCard />
+          <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
+            <div className="break-inside-avoid">
+              <ImpactCard />
+            </div>
+            <div className="break-inside-avoid">
+              <FinanceCalc />
+            </div>
+            <div className="break-inside-avoid">
+              <RecommentCard />
+            </div>
+            <div className="break-inside-avoid" ref={myref}>
+              <ToggleCard />
+            </div>
           </div>
-          <p ref={myref}>Footer show</p>
         </ContentContainer>
 
         <Faqs />
