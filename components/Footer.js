@@ -29,7 +29,7 @@ function Footer() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={(e) => handleClick(e, "/assessment")}
+            onClick={(e) => handleClick(e, "/disclaimer")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
@@ -43,7 +43,7 @@ function Footer() {
             variant="outlined"
             size="large"
             color="error"
-            onClick={(e) => handleClick(e, "/signup")}
+            onClick={(e) => handleClick(e, "/interested")}
             style={{
               borderRadius: 200,
               boxShadow: "none",

@@ -50,7 +50,7 @@ function HeroComponent() {
             variant="outlined"
             size="large"
             color="error"
-            onClick={(e) => handleClick(e, "/signup")}
+            onClick={(e) => handleClick(e, "/interested")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
