@@ -43,7 +43,7 @@ const StepTwoContainer = ({
   const [dropdown, setDropdown] = useState("");
   const [radio, setRadio] = useState("");
   const [enSources, setEnSources] = useState([]);
-  const [enUsage, setEnUsage] = useState([]);
+  const [enUsage, setEnUsage] = useState("");
   const [equipment, setEquipment] = useState("");
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const StepTwoContainer = ({
       setDropdown(storedData.dropdown);
       setRadio(storedData.radio);
       setEnSources(storedData.checkboxEnSource);
-      setEnUsage(storedData.checkboxEnUsage);
+      setEnUsage(storedData.radioEnUsage);
       setEquipment(storedData.choice);
     }
   }, []);
@@ -66,7 +66,7 @@ const StepTwoContainer = ({
       dropdown: data.dropdown,
       radio: data.radio,
       checkboxEnSource: data.checkboxEnSource,
-      checkboxEnUsage: data.checkboxEnUsage,
+      radioEnUsage: data.radioEnUsage,
       choice: data.choice,
     });
   };
@@ -159,14 +159,15 @@ const StepTwoContainer = ({
 
       {/* STEP TWO - QUESTION 3 */}
       <QuestionContainer id={chkBoxQsts?.id} text={chkBoxQsts?.text}>
-        <FormInputMultiCheckbox
-          name={"checkboxEnUsage"}
-          control={control}
-          setValue={setValue}
-          options={chkBoxQsts?.questionsList}
-          checkboxValue={enUsage}
-          setCheckboxValue={setEnUsage}
-        />
+        <div className="mt-5">
+          <FormInputRadio
+            name={"radioEnUsage"}
+            control={control}
+            options={chkBoxQsts?.questionsList}
+            setValue={setValue}
+            radioValue={enUsage}
+          />
+        </div>
       </QuestionContainer>
 
       {/* STEP TWO - QUESTION 4 */}

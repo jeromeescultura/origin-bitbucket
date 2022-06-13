@@ -11,8 +11,142 @@ import {
 import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
 import { Button, ButtonGroup } from "@mui/material";
+import {
+  handleOtherRecommendations,
+  handleProducts,
+  handleSubCategory,
+  recommendProduct,
+  stepOneScore,
+  stepTwoScore,
+  sumArray,
+} from "../functions/recofunctions/RecoFunctions";
 
-const recommend = () => {
+const Recommend = () => {
+  const storedStepOneData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STEP_ONE_ANS")
+    ) || null;
+
+  const storedStepTwoData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STEP_TWO_ANS")
+    ) || null;
+
+  const [industry, setIndustry] = useState("");
+  const [recommend, setRecommend] = useState("");
+  const [subCategory, setSubCategory] = useState();
+  const [otherRecommendations, setOtherRecommendations] = useState([]);
+  const [products, setProducts] = useState([{}]);
+
+  const [goZero, setGoZero] = useState({
+    carbonOffset: 0,
+    decarbEOI: 0,
+  });
+
+  const [greenPower, setGreenPower] = useState({
+    greenPower: 0,
+    decarbEOI: 0,
+  });
+
+  const [solarPower, setSolarPower] = useState({
+    solar: 0,
+    greenPower: 0,
+    decarbEOI: 0,
+  });
+
+  const goZeroScore = Object.values(goZero).reduce(sumArray);
+  const greenPowerScore = Object.values(greenPower).reduce(sumArray);
+  const solarPowerScore = Object.values(solarPower).reduce(sumArray);
+
+  useEffect(() => {
+    if (storedStepOneData !== null && storedStepTwoData !== null) {
+      stepOneScore(storedStepOneData, setGoZero, setGreenPower, setSolarPower);
+      stepTwoScore(storedStepTwoData, setSolarPower);
+    }
+  }, []);
+
+  useEffect(() => {
+    setIndustry(storedStepTwoData.dropdown);
+
+    recommendProduct(
+      goZeroScore,
+      greenPowerScore,
+      solarPowerScore,
+      setRecommend
+    );
+
+    handleSubCategory(
+      recommend,
+      goZero,
+      greenPower,
+      solarPower,
+      setSubCategory
+    );
+  }, [
+    goZero,
+    greenPower,
+    solarPower,
+    goZeroScore,
+    greenPowerScore,
+    solarPowerScore,
+    recommend,
+  ]);
+
+  useEffect(() => {
+    handleOtherRecommendations(
+      goZero,
+      greenPower,
+      solarPower,
+      subCategory,
+      setOtherRecommendations
+    );
+  }, [goZero, greenPower, solarPower, subCategory]);
+
+  useEffect(() => {
+    handleProducts(recommend, otherRecommendations, setProducts);
+  }, [recommend, otherRecommendations]);
+
+  useEffect(() => {
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("********** START **********");
+    // console.log("Go Zero: ", goZero);
+    // console.log("Green Power: ", greenPower);
+    // console.log("Solar: ", solarPower);
+    // console.log("Industry: ", industry);
+    // console.log("Recommend: ", recommend);
+    // console.log("Sub Categories: ", subCategory);
+    // console.log("Other recommended products: ", otherRecommendations);
+    // setProducts([
+    //   {
+    //     goZero: goZero,
+    //     greenPower: greenPower,
+    //     solarPower: solarPower,
+    //     recommend: recommend,
+    //     industry: industry,
+    //     other: otherRecommendations,
+    //     subCategory: subCategory,
+    //   },
+    // ]);
+  }, [
+    goZero,
+    greenPower,
+    solarPower,
+    otherRecommendations,
+    subCategory,
+    recommend,
+    industry,
+  ]);
+
+  useEffect(() => {
+    console.log('PRODUCTS',products);
+  }, [products]);
+
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
   const myref = useRef();
@@ -150,7 +284,7 @@ const recommend = () => {
               <RecommentCard />
             </div>
             <div className="break-inside-avoid" ref={myref}>
-              <ToggleCard />
+              <ToggleCard recommend={"solar_power"} />
             </div>
           </div>
         </ContentContainer>
@@ -164,4 +298,4 @@ const recommend = () => {
   );
 };
 
-export default recommend;
+export default Recommend;

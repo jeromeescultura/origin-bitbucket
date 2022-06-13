@@ -4,7 +4,7 @@ import MoreDetailsComponent from "../MoreDetailsComponent";
 const ImpactCard = () => {
   return (
     <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[510px] mx-auto">
-      <p className="font-medium text-[18px] text-primaryText text-center">
+      <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
         Your impact
       </p>
       <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row">
