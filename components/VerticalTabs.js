@@ -20,7 +20,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box className="p-3 md:p-6 lg:p-10 ">
-          <div className="flex flex-col  lg:flex-row justify-evenly lg:items-center">
+          <div className="flex flex-col lg:flex-row justify-evenly lg:items-start">
             {children}
           </div>
         </Box>
@@ -85,7 +85,7 @@ export default function VerticalTabs() {
           {...a11yProps(1)}
         />
         <Tab
-          label="Marketing toolkit"
+          label="Free marketing toolkit"
           className="md:items-start md:text-left text-sm text-secondaryText"
           {...a11yProps(2)}
         />
@@ -94,7 +94,7 @@ export default function VerticalTabs() {
         <div>
           <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
-              src="/images/clean-ready.png"
+              src="/images/perks.png"
               width={300}
               height={300}
               objectFit="cover"
@@ -109,48 +109,148 @@ export default function VerticalTabs() {
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-              />
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
               <p> Bespoke site analysis for renewable installs</p>
             </li>
             <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-              />
-              <p> Energy efficiency advice</p>
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p> Energy efficiency advice for your business</p>
             </li>
             <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-              />
-              <p> Energy efficiency advice</p>
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p>
+                Access to a dedicated consultant to support you for ongoing and
+                future clean energy transitions
+              </p>
             </li>
           </ul>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-          reprehenderit doloremque assumenda quibusdam, distinctio deleniti odit
-          eos nisi, quis molestias recusandae itaque nobis soluta id minus
-          impedit odio rerum facere!
+          <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
+            <Image
+              src="/images/perks-2.png"
+              width={300}
+              height={300}
+              objectFit="cover"
+              alt="betty"
+              className="rounded-xl"
+            />
+          </div>
+        </div>
+        <div className="py-10 pr-2 pl-2 lg:pl-8">
+          <p className="text-[20px] leading-6 mb-4">
+            All businesses choosing a pledge with us will receive
+          </p>
+          <ul className="space-y-8 text-left py-8">
+            <li className="flex items-start gap-4">
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p>
+                Progress reporting on how your business has reduced your impact.
+              </p>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p> Energy efficiency checklist</p>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p> Give feedback on future bespoke carbon reduction projects</p>
+            </li>
+          </ul>
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum amet
-          velit delectus nesciunt pariatur natus veniam nemo ratione, in aut
-          sunt quasi voluptatem facilis impedit odio maiores qui tempore fuga?
+          <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
+            <Image
+              src="/images/perks-3.png"
+              width={300}
+              height={300}
+              objectFit="cover"
+              alt="betty"
+              className="rounded-xl"
+            />
+          </div>
+        </div>
+        <div className="py-10 pr-2 pl-2 lg:pl-8">
+          <p className="text-[20px] leading-6 mb-4">
+            Let others know about the impact you’re making through our free
+            toolkit which includes
+          </p>
+          <ul className="space-y-8 text-left py-8">
+            <li className="flex items-start gap-4">
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p>
+                Downloadable assets to help you and your employees share the
+                steps you’ve made
+              </p>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="max-w-[20px] max-h-[20px]">
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                />
+              </div>
+              <p>
+                Opportunities to step up and be recognised in our customer case
+                studies & blogs
+              </p>
+            </li>
+          </ul>
         </div>
       </TabPanel>
     </Box>

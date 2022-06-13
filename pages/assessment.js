@@ -247,7 +247,7 @@ const Assessment = ({ questions }) => {
 
 export default Assessment;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const questions = await fetch(`${server}/api/questions`).then((rest) =>
     rest.json()
   );
