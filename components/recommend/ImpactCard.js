@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const ImpactCard = ({industry}) => {
+const ImpactCard = ({ industry }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
@@ -25,9 +25,16 @@ const ImpactCard = ({industry}) => {
         </div>
 
         <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
-          Average businesses in <span className='font-medium'>{industry}</span> will have the impact of planting and
-          growing [XX,XXX] tree seedlings for 10 years, if they offset all their
-          carbon emissions for a year.
+          Average businesses{" "}
+          {industry === "Other" ? (
+            ""
+          ) : (
+            <span>
+              in <span className="font-medium">{industry}</span>
+            </span>
+          )}{" "}
+          will have the impact of planting and growing [XX,XXX] tree seedlings
+          for 10 years, if they offset all their carbon emissions for a year.
         </p>
       </div>
       <MoreDetailsComponent text="How carbon offsets work">

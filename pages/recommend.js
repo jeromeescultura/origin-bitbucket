@@ -68,7 +68,7 @@ const Recommend = () => {
   }, []);
 
   useEffect(() => {
-    setIndustry(storedStepTwoData.dropdown);
+    setIndustry(storedStepTwoData?.dropdown);
 
     recommendProduct(
       goZeroScore,
@@ -144,8 +144,20 @@ const Recommend = () => {
   ]);
 
   useEffect(() => {
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("********** START **********");
+    console.log("GOZERO", goZero);
+    console.log("GREENPOWER", greenPower);
+    console.log("SOLAR", solarPower);
+    console.log("RECOMMEND", recommend);
+    console.log("SUBCATEGORIES", subCategory);
     console.log("PRODUCTS", products);
-  }, [products]);
+    console.log("INDUSTRY", industry);
+  }, [products, industry]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -276,7 +288,7 @@ const Recommend = () => {
               {recommend === "carbonOffset" &&
                 "Origin Go Zero 100% carbon offset"}{" "}
               {recommend === "solar" && "Solar"}
-              {recommend === "greenPower" && "Green Power"}
+              {recommend === "greenPower" && "GreenPower"}
             </h2>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
