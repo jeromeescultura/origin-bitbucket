@@ -84,7 +84,7 @@ const ToggleCard = ({ recommend }) => {
               </div>
             </CardContent>
           </Card>
-          {recommend === "solar_power" && (
+          {recommend === "solar" && (
             <Card
               variant="contained"
               className={`${

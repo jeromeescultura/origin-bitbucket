@@ -3,7 +3,7 @@ import Image from "next/image";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const RecommentCard = () => {
+const RecommentCard = ({ recommend }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
@@ -11,7 +11,11 @@ const RecommentCard = () => {
           We recommend
         </p>
         <LeafRating count={4} />
-        <p className="font-medium subtitle">Origin Go Zero</p>
+        <p className="font-medium subtitle">
+          {recommend === "carbonOffset" && "Origin Go Zero 100% carbon offset"}{" "}
+          {recommend === "solar" && "Solar"}
+          {recommend === "greenPower" && "Green Power"}
+        </p>
       </div>
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
@@ -38,6 +42,7 @@ const RecommentCard = () => {
                   width={20}
                   height={20}
                   objectFit="contain"
+                  alt="check"
                 />
                 <p> Progress reporting on your impact</p>
               </li>
@@ -47,6 +52,7 @@ const RecommentCard = () => {
                   width={20}
                   height={20}
                   objectFit="contain"
+                  alt="check"
                 />
                 <p> Amplify toolkit to communicate your impact</p>
               </li>
@@ -56,6 +62,7 @@ const RecommentCard = () => {
                   width={20}
                   height={20}
                   objectFit="contain"
+                  alt="check"
                 />
                 <p> Dedicated Clean Ambition club support</p>
               </li>

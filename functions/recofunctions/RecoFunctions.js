@@ -277,7 +277,5 @@ export const handleProducts = (rec, or, setProducts) => {
     or.map((item) =>
       setProducts((prevState) => [...prevState, { title: item }])
     );
-  } else {
-    console.log("none");
   }
 };

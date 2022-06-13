@@ -144,7 +144,7 @@ const Recommend = () => {
   ]);
 
   useEffect(() => {
-    console.log('PRODUCTS',products);
+    console.log("PRODUCTS", products);
   }, [products]);
 
   const [showFooter, setShowFooter] = useState(false);
@@ -271,20 +271,26 @@ const Recommend = () => {
           </div>
           <div className="text-center mb-8">
             <h2 className="text-primaryText font-bold">Making a difference</h2>
-            <h2 className="text-primaryText">with Origin Go Zero</h2>
+            <h2 className="text-primaryText">
+              with{" "}
+              {recommend === "carbonOffset" &&
+                "Origin Go Zero 100% carbon offset"}{" "}
+              {recommend === "solar" && "Solar"}
+              {recommend === "greenPower" && "Green Power"}
+            </h2>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard />
+              <ImpactCard industry={industry} />
             </div>
             <div className="break-inside-avoid">
               <FinanceCalc />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard />
+              <RecommentCard recommend={recommend} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
-              <ToggleCard recommend={"solar_power"} />
+              <ToggleCard recommend={recommend} />
             </div>
           </div>
         </ContentContainer>

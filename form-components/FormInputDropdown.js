@@ -54,7 +54,7 @@ const FormInputDropdown = ({
             color="secondary"
           >
             <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value} defaultValue="">
+            <Select onChange={onChange} value={value}>
               {generateSingleOptions()}
             </Select>
             {error && (
