@@ -14,6 +14,7 @@ import { Button, ButtonGroup } from "@mui/material";
 
 const recommend = () => {
   const [showFooter, setShowFooter] = useState(false);
+  const [enableBtn, setEnableBtn] = useState(false);
   const myref = useRef();
 
   useEffect(() => {
@@ -28,6 +29,20 @@ const recommend = () => {
   const handleClick = (e) => {
     e.preventDefault();
     router.push("/");
+  };
+
+  const handleButton = (value) => {
+    switch (value) {
+      case "next":
+        setEnableBtn(true);
+        break;
+      case "back":
+        setEnableBtn(false);
+        break;
+
+      default:
+        break;
+    }
   };
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
@@ -70,15 +85,21 @@ const recommend = () => {
               aria-label="outlined button group"
             >
               <Button
+                disabled={!enableBtn}
                 size="large"
+                onClick={() => handleButton("back")}
                 variant="contained"
-                className="text-sm font-medium !text-[#ABABAB] !bg-white p-6 !rounded-l-full lg:shadow-md"
+                className={`${
+                  !enableBtn ? "text-[#ABABAB]" : "text-primaryText"
+                } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
                 startIcon={
                   <svg
                     width="12"
                     height="12"
                     viewBox="0 0 12 12"
-                    className="fill-[#ABABAB] rotate-90"
+                    className={`${
+                      !enableBtn ? "fill-[#ABABAB]" : "fill-primaryText"
+                    } rotate-90`}
                   >
                     <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
                   </svg>
@@ -96,6 +117,7 @@ const recommend = () => {
 
               <Button
                 size="large"
+                onClick={() => handleButton("next")}
                 variant="contained"
                 className="text-sm font-medium !text-primaryText !bg-white p-6 !rounded-r-full lg:shadow-md"
                 endIcon={
@@ -135,7 +157,9 @@ const recommend = () => {
 
         <Faqs />
       </div>
-      {showFooter && <FooterReco />}
+      {showFooter && (
+        <FooterReco handleButton={handleButton} enableBtn={enableBtn} />
+      )}
     </div>
   );
 };
