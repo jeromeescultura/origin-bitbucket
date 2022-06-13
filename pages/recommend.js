@@ -12,6 +12,10 @@ import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
 import { Button, ButtonGroup } from "@mui/material";
 import {
+  handleOtherRecommendations,
+  handleProducts,
+  handleSubCategory,
+  recommendProduct,
   stepOneScore,
   stepTwoScore,
   sumArray,
@@ -31,7 +35,10 @@ const Recommend = () => {
     ) || null;
 
   const [industry, setIndustry] = useState("");
+  const [recommend, setRecommend] = useState("");
   const [subCategory, setSubCategory] = useState();
+  const [otherRecommendations, setOtherRecommendations] = useState([]);
+  const [products, setProducts] = useState([{}]);
 
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
@@ -49,120 +56,9 @@ const Recommend = () => {
     decarbEOI: 0,
   });
 
-  const [recommend, setRecommend] = useState("");
-
   const goZeroScore = Object.values(goZero).reduce(sumArray);
   const greenPowerScore = Object.values(greenPower).reduce(sumArray);
   const solarPowerScore = Object.values(solarPower).reduce(sumArray);
-
-  useEffect(() => {
-    if (goZeroScore > greenPowerScore && goZeroScore > solarPowerScore) {
-      setRecommend("go_zero");
-    } else if (
-      greenPowerScore > goZeroScore &&
-      greenPowerScore > solarPowerScore
-    ) {
-      setRecommend("green_power");
-    } else if (
-      solarPowerScore > goZeroScore &&
-      solarPowerScore > greenPowerScore
-    ) {
-      setRecommend("solar_power");
-    }
-    console.log(recommend);
-  }, [goZeroScore, greenPowerScore, solarPowerScore]);
-
-  useEffect(() => {
-    console.log("Go Zero: ", goZero);
-    console.log("Green Power: ", greenPower);
-    console.log("Solar: ", solarPower);
-    console.log("Industry: ", storedStepTwoData.dropdown);
-    setIndustry(storedStepTwoData.dropdown);
-    console.log("Go Zero Score: ", goZeroScore);
-    console.log("Green Power Score: ", greenPowerScore);
-    console.log("Solar Score: ", solarPowerScore);
-    console.log("Recommend: ", recommend);
-
-    switch (recommend) {
-      case "go_zero":
-        console.log(
-          "Sub category: ",
-          Object.keys(goZero).filter((item) => goZero[item] >= 0 && item)
-        );
-        setSubCategory(
-          Object.keys(goZero).filter((item) => goZero[item] >= 0 && item)
-        );
-        break;
-      case "green_power":
-        console.log(
-          "Sub category: ",
-          Object.keys(greenPower).filter(
-            (item) => greenPower[item] >= 0 && item
-          )
-        );
-        setSubCategory(
-          Object.keys(greenPower).filter(
-            (item) => greenPower[item] >= 0 && item
-          )
-        );
-        break;
-      case "solar_power":
-        console.log(
-          "Sub category: ",
-          Object.keys(solarPower).filter(
-            (item) => solarPower[item] >= 0 && item
-          )
-        );
-        setSubCategory(
-          Object.keys(solarPower).filter(
-            (item) => solarPower[item] >= 0 && item
-          )
-        );
-        break;
-      default:
-        break;
-    }
-  }, [
-    goZeroScore,
-    greenPowerScore,
-    solarPowerScore,
-    goZero,
-    greenPower,
-    solarPower,
-    recommend,
-  ]);
-
-  useEffect(() => {
-    console.log("Sub Category state: ", subCategory);
-    console.log("Other recommendations :");
-    if (Object.keys(goZero).some((item) => goZero[item] >= 0)) {
-      console.log(
-        console.log(
-          Object.keys(goZero).filter(
-            (item) => goZero[item] >= 0 && !subCategory?.includes(item)
-          )
-        )
-      );
-    }
-    if (Object.keys(greenPower).some((item) => greenPower[item] >= 0)) {
-      console.log(
-        console.log(
-          Object.keys(greenPower).filter(
-            (item) => greenPower[item] >= 0 && !subCategory?.includes(item)
-          )
-        )
-      );
-    }
-    if (Object.keys(solarPower).some((item) => solarPower[item] >= 0)) {
-      console.log(
-        console.log(
-          Object.keys(solarPower).filter(
-            (item) => solarPower[item] >= 0 && !subCategory?.includes(item)
-          )
-        )
-      );
-    }
-  }, [goZero, greenPower, solarPower, subCategory]);
 
   useEffect(() => {
     if (storedStepOneData !== null && storedStepTwoData !== null) {
@@ -170,6 +66,87 @@ const Recommend = () => {
       stepTwoScore(storedStepTwoData, setSolarPower);
     }
   }, []);
+
+  useEffect(() => {
+    setIndustry(storedStepTwoData.dropdown);
+
+    recommendProduct(
+      goZeroScore,
+      greenPowerScore,
+      solarPowerScore,
+      setRecommend
+    );
+
+    handleSubCategory(
+      recommend,
+      goZero,
+      greenPower,
+      solarPower,
+      setSubCategory
+    );
+  }, [
+    goZero,
+    greenPower,
+    solarPower,
+    goZeroScore,
+    greenPowerScore,
+    solarPowerScore,
+    recommend,
+  ]);
+
+  useEffect(() => {
+    handleOtherRecommendations(
+      goZero,
+      greenPower,
+      solarPower,
+      subCategory,
+      setOtherRecommendations
+    );
+  }, [goZero, greenPower, solarPower, subCategory]);
+
+  useEffect(() => {
+    handleProducts(recommend, otherRecommendations, setProducts);
+  }, [recommend, otherRecommendations]);
+
+  useEffect(() => {
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("");
+    // console.log("********** START **********");
+    // console.log("Go Zero: ", goZero);
+    // console.log("Green Power: ", greenPower);
+    // console.log("Solar: ", solarPower);
+    // console.log("Industry: ", industry);
+    // console.log("Recommend: ", recommend);
+    // console.log("Sub Categories: ", subCategory);
+    // console.log("Other recommended products: ", otherRecommendations);
+    // setProducts([
+    //   {
+    //     goZero: goZero,
+    //     greenPower: greenPower,
+    //     solarPower: solarPower,
+    //     recommend: recommend,
+    //     industry: industry,
+    //     other: otherRecommendations,
+    //     subCategory: subCategory,
+    //   },
+    // ]);
+  }, [
+    goZero,
+    greenPower,
+    solarPower,
+    otherRecommendations,
+    subCategory,
+    recommend,
+    industry,
+  ]);
+
+  useEffect(() => {
+    console.log('PRODUCTS',products);
+  }, [products]);
+
   const [showFooter, setShowFooter] = useState(false);
   const myref = useRef();
 
