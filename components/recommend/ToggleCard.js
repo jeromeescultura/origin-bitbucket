@@ -37,16 +37,9 @@ const ToggleCard = ({ recommend }) => {
       className="border-none rounded-xl max-w-[510px] mx-auto"
     >
       <CardContent>
-        <Typography
-          sx={{
-            fontSize: { lg: "20px", xs: "18px" },
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-          color="primary"
-        >
-          Make a bigger difference
-        </Typography>
+      <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
+        Make a bigger difference
+      </p>
         <div className="mt-4 space-y-5 font-light">
           <Card
             variant="contained"

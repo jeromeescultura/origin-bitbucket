@@ -57,16 +57,9 @@ const FinanceCalc = () => {
       className="border-none rounded-xl max-w-[510px] mx-auto"
     >
       <CardContent>
-        <Typography
-          sx={{
-            fontSize: { lg: "20px", xs: "18px" },
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-          color="primary"
-        >
-          Financial Impact Calculator
-        </Typography>
+        <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
+          Financial impact calculator
+        </p>
         <Typography sx={{ textAlign: "center", mt: "16px", fontSize: "14px" }}>
           Toggle to compare how your monthly bills might change depending on
           different usage levels
