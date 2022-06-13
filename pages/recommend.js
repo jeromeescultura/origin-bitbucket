@@ -30,6 +30,9 @@ const Recommend = () => {
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || null;
 
+  const [industry, setIndustry] = useState("");
+  const [subCategory, setSubCategory] = useState();
+
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
     decarbEOI: 0,
@@ -68,6 +71,98 @@ const Recommend = () => {
     }
     console.log(recommend);
   }, [goZeroScore, greenPowerScore, solarPowerScore]);
+
+  useEffect(() => {
+    console.log("Go Zero: ", goZero);
+    console.log("Green Power: ", greenPower);
+    console.log("Solar: ", solarPower);
+    console.log("Industry: ", storedStepTwoData.dropdown);
+    setIndustry(storedStepTwoData.dropdown);
+    console.log("Go Zero Score: ", goZeroScore);
+    console.log("Green Power Score: ", greenPowerScore);
+    console.log("Solar Score: ", solarPowerScore);
+    console.log("Recommend: ", recommend);
+
+    switch (recommend) {
+      case "go_zero":
+        console.log(
+          "Sub category: ",
+          Object.keys(goZero).filter((item) => goZero[item] >= 0 && item)
+        );
+        setSubCategory(
+          Object.keys(goZero).filter((item) => goZero[item] >= 0 && item)
+        );
+        break;
+      case "green_power":
+        console.log(
+          "Sub category: ",
+          Object.keys(greenPower).filter(
+            (item) => greenPower[item] >= 0 && item
+          )
+        );
+        setSubCategory(
+          Object.keys(greenPower).filter(
+            (item) => greenPower[item] >= 0 && item
+          )
+        );
+        break;
+      case "solar_power":
+        console.log(
+          "Sub category: ",
+          Object.keys(solarPower).filter(
+            (item) => solarPower[item] >= 0 && item
+          )
+        );
+        setSubCategory(
+          Object.keys(solarPower).filter(
+            (item) => solarPower[item] >= 0 && item
+          )
+        );
+        break;
+      default:
+        break;
+    }
+  }, [
+    goZeroScore,
+    greenPowerScore,
+    solarPowerScore,
+    goZero,
+    greenPower,
+    solarPower,
+    recommend,
+  ]);
+
+  useEffect(() => {
+    console.log("Sub Category state: ", subCategory);
+    console.log("Other recommendations :");
+    if (Object.keys(goZero).some((item) => goZero[item] >= 0)) {
+      console.log(
+        console.log(
+          Object.keys(goZero).filter(
+            (item) => goZero[item] >= 0 && !subCategory?.includes(item)
+          )
+        )
+      );
+    }
+    if (Object.keys(greenPower).some((item) => greenPower[item] >= 0)) {
+      console.log(
+        console.log(
+          Object.keys(greenPower).filter(
+            (item) => greenPower[item] >= 0 && !subCategory?.includes(item)
+          )
+        )
+      );
+    }
+    if (Object.keys(solarPower).some((item) => solarPower[item] >= 0)) {
+      console.log(
+        console.log(
+          Object.keys(solarPower).filter(
+            (item) => solarPower[item] >= 0 && !subCategory?.includes(item)
+          )
+        )
+      );
+    }
+  }, [goZero, greenPower, solarPower, subCategory]);
 
   useEffect(() => {
     if (storedStepOneData !== null && storedStepTwoData !== null) {
