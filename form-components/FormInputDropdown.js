@@ -22,7 +22,7 @@ const FormInputDropdown = ({
     if (options) {
       return options.map((option, index) => {
         return (
-          <MenuItem key={index} value={option.value}>
+          <MenuItem key={index} value={option?.id}>
             {option.label}
           </MenuItem>
         );

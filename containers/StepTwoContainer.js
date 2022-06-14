@@ -40,11 +40,12 @@ const StepTwoContainer = ({
   const methods = useForm({ defaultValues: stepTwoAns });
   const { control, watch, setValue } = methods;
 
-  const [dropdown, setDropdown] = useState("");
-  const [radio, setRadio] = useState("");
+  const [dropdown, setDropdown] = useState(0);
+  const [radio, setRadio] = useState("1-2");
   const [enSources, setEnSources] = useState([]);
-  const [enUsage, setEnUsage] = useState("");
+  const [enUsage, setEnUsage] = useState("constant");
   const [equipment, setEquipment] = useState("");
+ 
 
   useEffect(() => {
     window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
@@ -120,8 +121,9 @@ const StepTwoContainer = ({
             control={control}
             options={dropDwnQsts.options}
             setValue={setValue}
-            dropdownValue={dropdown}
+            dropdownValue={dropdown?.industry}
             label={"Industry"}
+            id={dropdown?.id}
           />
         </div>
 
