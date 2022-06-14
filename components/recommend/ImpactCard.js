@@ -1,7 +1,23 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const ImpactCard = ({ industry }) => {
+const ImpactCard = ({ industry, recommend }) => {
+  const [icon, setIcon] = useState("trees.svg");
+
+  useEffect(() => {
+    switch (recommend) {
+      case "greenPower":
+        setIcon("wind.svg");
+        break;
+      case "solar":
+        setIcon("car.svg");
+        break;
+      default:
+        break;
+    }
+  }, [recommend]);
+
   return (
     <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
@@ -11,7 +27,7 @@ const ImpactCard = ({ industry }) => {
         <div className="text-center">
           <div className="w-24 h-24 mx-auto">
             <Image
-              src="/icons/trees.svg"
+              src={`/icons/recommend/${icon}`}
               width={100}
               height={100}
               objectFit="contain"
@@ -19,7 +35,7 @@ const ImpactCard = ({ industry }) => {
             />
           </div>
           <div className="mt-2">
-            <h2 className="text-greenText font-bold">[XX,XXX]</h2>
+            <h2 className="text-greenText font-bold">{recommend}</h2>
             <p className="text-sm text-greenText">trees planted</p>
           </div>
         </div>
