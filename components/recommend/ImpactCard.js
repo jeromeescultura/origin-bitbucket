@@ -41,7 +41,14 @@ const ImpactCard = ({ industry, recommend }) => {
         </div>
 
         <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
-          Average businesses in <span className="font-medium">{industry}</span>{" "}
+          Average businesses{" "}
+          {industry === "Other" ? (
+            ""
+          ) : (
+            <span>
+              in <span className="font-medium">{industry}</span>
+            </span>
+          )}{" "}
           will have the impact of planting and growing [XX,XXX] tree seedlings
           for 10 years, if they offset all their carbon emissions for a year.
         </p>

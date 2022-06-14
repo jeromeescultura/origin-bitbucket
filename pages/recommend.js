@@ -40,6 +40,9 @@ const Recommend = () => {
   const [otherRecommendations, setOtherRecommendations] = useState([]);
   const [products, setProducts] = useState([{}]);
 
+  const [pages, setPages] = useState();
+  const [pageNo, setPageNo] = useState(0);
+
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
     decarbEOI: 0,
@@ -68,7 +71,7 @@ const Recommend = () => {
   }, []);
 
   useEffect(() => {
-    setIndustry(storedStepTwoData.dropdown);
+    setIndustry(storedStepTwoData?.dropdown);
 
     recommendProduct(
       goZeroScore,
@@ -96,56 +99,37 @@ const Recommend = () => {
 
   useEffect(() => {
     handleOtherRecommendations(
+      recommend,
       goZero,
       greenPower,
       solarPower,
-      subCategory,
+
       setOtherRecommendations
     );
-  }, [goZero, greenPower, solarPower, subCategory]);
+  }, [recommend, goZero, greenPower, solarPower]);
 
   useEffect(() => {
     handleProducts(recommend, otherRecommendations, setProducts);
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    // console.log("");
-    // console.log("");
-    // console.log("");
-    // console.log("");
-    // console.log("");
-    // console.log("********** START **********");
-    // console.log("Go Zero: ", goZero);
-    // console.log("Green Power: ", greenPower);
-    // console.log("Solar: ", solarPower);
-    // console.log("Industry: ", industry);
-    // console.log("Recommend: ", recommend);
-    // console.log("Sub Categories: ", subCategory);
-    // console.log("Other recommended products: ", otherRecommendations);
-    // setProducts([
-    //   {
-    //     goZero: goZero,
-    //     greenPower: greenPower,
-    //     solarPower: solarPower,
-    //     recommend: recommend,
-    //     industry: industry,
-    //     other: otherRecommendations,
-    //     subCategory: subCategory,
-    //   },
-    // ]);
-  }, [
-    goZero,
-    greenPower,
-    solarPower,
-    otherRecommendations,
-    subCategory,
-    recommend,
-    industry,
-  ]);
-
-  useEffect(() => {
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("********** START **********");
+    console.log("GOZERO", goZero);
+    console.log("GREENPOWER", greenPower);
+    console.log("SOLAR", solarPower);
+    console.log("RECOMMEND", recommend);
+    console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
+    console.log("SUBCATEGORIES", subCategory);
     console.log("PRODUCTS", products);
-  }, [products]);
+    console.log("PAGES", pages);
+    console.log("PAGE NO", pageNo);
+    console.log("INDUSTRY", industry);
+  }, [products, industry, pages, pageNo]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -159,6 +143,20 @@ const Recommend = () => {
     observer.observe(myref.current);
   }, []);
 
+  useEffect(() => {
+    setPages(products.length);
+  }, [products]);
+
+  useEffect(() => {
+    if (recommend === "goZero") {
+      setPageNo(0);
+    } else if (recommend === "greenPower") {
+      setPageNo(1);
+    } else if (recommend === "solar") {
+      setPageNo(2);
+    }
+  }, [recommend]);
+
   const router = useRouter();
   const handleClick = (e) => {
     e.preventDefault();
@@ -168,10 +166,18 @@ const Recommend = () => {
   const handleButton = (value) => {
     switch (value) {
       case "next":
-        setEnableBtn(true);
+        if (pageNo >= 2) {
+          setPageNo(2);
+        } else {
+          setPageNo((prevState) => prevState + 1);
+        }
         break;
       case "back":
-        setEnableBtn(false);
+        if (pageNo <= 0) {
+          setPageNo(0);
+        } else {
+          setPageNo((prevState) => prevState - 1);
+        }
         break;
 
       default:
@@ -219,12 +225,12 @@ const Recommend = () => {
               aria-label="outlined button group"
             >
               <Button
-                disabled={!enableBtn}
+                disabled={pageNo === 0 && true}
                 size="large"
                 onClick={() => handleButton("back")}
                 variant="contained"
                 className={`${
-                  !enableBtn ? "text-[#ABABAB]" : "text-primaryText"
+                  pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
                 } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
                 startIcon={
                   <svg
@@ -232,7 +238,7 @@ const Recommend = () => {
                     height="12"
                     viewBox="0 0 12 12"
                     className={`${
-                      !enableBtn ? "fill-[#ABABAB]" : "fill-primaryText"
+                      pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
                     } rotate-90`}
                   >
                     <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
@@ -250,16 +256,21 @@ const Recommend = () => {
               </div>
 
               <Button
+                disabled={pageNo === 2 && true}
                 size="large"
                 onClick={() => handleButton("next")}
                 variant="contained"
-                className="text-sm font-medium !text-primaryText !bg-white p-6 !rounded-r-full lg:shadow-md"
+                className={`${
+                  pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
                 endIcon={
                   <svg
                     width="12"
                     height="12"
                     viewBox="0 0 12 12"
-                    className="fill-secondaryBG -rotate-90"
+                    className={`${
+                      pageNo === 2 ? "fill-[#ABABAB]" : "fill-primaryText"
+                    } -rotate-90`}
                   >
                     <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
                   </svg>
@@ -276,7 +287,7 @@ const Recommend = () => {
               {recommend === "carbonOffset" &&
                 "Origin Go Zero 100% carbon offset"}{" "}
               {recommend === "solar" && "Solar"}
-              {recommend === "greenPower" && "Green Power"}
+              {recommend === "greenPower" && "GreenPower"}
             </h2>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
@@ -284,13 +295,16 @@ const Recommend = () => {
               <ImpactCard industry={industry} recommend={recommend} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc />
+              <FinanceCalc product={recommend} />
             </div>
             <div className="break-inside-avoid">
               <RecommentCard recommend={recommend} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
-              <ToggleCard recommend={recommend} />
+              {(subCategory?.includes("decarbEOI") ||
+                subCategory?.includes("greenPower")) && (
+                <ToggleCard recommend={subCategory} />
+              )}
             </div>
           </div>
         </ContentContainer>

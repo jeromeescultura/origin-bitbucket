@@ -220,37 +220,49 @@ export const recommendProduct = (gz, gp, sp, setRP) => {
 export const handleSubCategory = (recommend, gz, gp, sp, setSC) => {
   switch (recommend) {
     case "carbonOffset":
-      setSC(Object.keys(gz).filter((item) => gz[item] >= 0 && item));
+      setSC(
+        Object.keys(gz).filter(
+          (item) => gz[item] >= 0 && item !== recommend && item
+        )
+      );
       break;
     case "greenPower":
-      setSC(Object.keys(gp).filter((item) => gp[item] >= 0 && item));
+      setSC(
+        Object.keys(gp).filter(
+          (item) => gp[item] >= 0 && item !== recommend && item
+        )
+      );
       break;
     case "solar":
-      setSC(Object.keys(sp).filter((item) => sp[item] >= 0 && item));
+      setSC(
+        Object.keys(sp).filter(
+          (item) => sp[item] >= 0 && item !== recommend && item
+        )
+      );
       break;
     default:
       break;
   }
 };
 
-export const handleOtherRecommendations = (gz, gp, sp, sc, setOR) => {
+export const handleOtherRecommendations = (rec, gz, gp, sp, setOR) => {
   let goZeroOthers = [];
   let greenPowerOthers = [];
   let solarPowerOthers = [];
 
   if (Object.keys(gz).some((item) => gz[item] >= 0)) {
     goZeroOthers = Object.keys(gz).filter(
-      (item) => gz[item] >= 0 && !sc?.includes(item)
+      (item) => gz[item] >= 0 && item !== rec && item !== "decarbEOI"
     );
   }
   if (Object.keys(gp).some((item) => gp[item] >= 0)) {
     greenPowerOthers = Object.keys(gp).filter(
-      (item) => gp[item] >= 0 && !sc?.includes(item)
+      (item) => gp[item] >= 0 && item !== rec && item !== "decarbEOI"
     );
   }
   if (Object.keys(sp).some((item) => sp[item] >= 0)) {
     solarPowerOthers = Object.keys(sp).filter(
-      (item) => sp[item] >= 0 && !sc?.includes(item)
+      (item) => sp[item] >= 0 && item !== rec && item !== "decarbEOI"
     );
   }
 

@@ -20,7 +20,7 @@ const StepOneContainer = ({
   const [enSourceValue, setEnSourceValue] = useState([]);
   const [genOpValue, setGenOpValue] = useState([]);
   const [sliderValue, setSliderValue] = useState(3);
-  const [radioValue, setRadioValue] = useState("");
+  const [radioValue, setRadioValue] = useState("easy");
 
   const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
@@ -242,7 +242,7 @@ const StepOneContainer = ({
             control={control}
             options={radioQsts?.options}
             setValue={setValue}
-            radioValue={radioValue}
+            radioValue={radioValue && radioValue}
           />
         </div>
       </QuestionContainer>

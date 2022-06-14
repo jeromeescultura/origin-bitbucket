@@ -1,21 +1,54 @@
-import { Button } from "@mui/material";
+import { Button, FormControl, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const RecommentCard = ({ recommend }) => {
+  const [level, setLevel] = useState("100%");
+  const handleLevel = (event) => {
+    setLevel(event.target.value);
+  };
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
         <p className="text-[18px] lg:text-[20px] font-medium mb-8 text-primaryText">
           We recommend
         </p>
-        <LeafRating count={4} />
-        <p className="font-medium subtitle">
-          {recommend === "carbonOffset" && "Origin Go Zero 100% carbon offset"}{" "}
-          {recommend === "solar" && "Solar"}
-          {recommend === "greenPower" && "Green Power"}
-        </p>
+        <LeafRating
+          count={
+            (recommend === "carbonOffset" && 2) ||
+            (recommend === "solar" && 4) ||
+            (recommend === "greenPower" && 3)
+          }
+        />
+
+        <div className='flex justify-center items-center'>
+          <p className="font-medium subtitle">
+            {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
+            {recommend === "solar" && "Solar"}
+            {recommend === "greenPower" && "GreenPower"}
+          </p>
+          {recommend === "greenPower" && (
+            <FormControl sx={{ ml: "16px", minWidth: 120 }}>
+              <Select
+                value={level}
+                displayEmpty
+                color="secondary"
+                onChange={handleLevel}
+                sx={{
+                  borderRadius: "10px",
+                  height: "40px",
+                  width: "100px",
+                }}
+              >
+                <MenuItem value="100%">100%</MenuItem>
+                <MenuItem value="50%">50%</MenuItem>
+                <MenuItem value="25%">25%</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+        </div>
       </div>
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
