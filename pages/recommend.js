@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
+import { server } from "../config";
 import {
   Faqs,
   FinanceCalc,
@@ -21,7 +22,7 @@ import {
   sumArray,
 } from "../functions/recofunctions/RecoFunctions";
 
-const Recommend = () => {
+const Recommend = ({ industries }) => {
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -319,3 +320,15 @@ const Recommend = () => {
 };
 
 export default Recommend;
+
+export async function getServerSideProps() {
+  const industries = await fetch(`${server}/api/industries`).then((rest) =>
+    rest.json()
+  );
+
+  return {
+    props: {
+      industries,
+    },
+  };
+}
