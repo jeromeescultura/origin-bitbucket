@@ -281,7 +281,7 @@ const Recommend = () => {
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard industry={industry} />
+              <ImpactCard industry={industry} recommend={recommend} />
             </div>
             <div className="break-inside-avoid">
               <FinanceCalc />

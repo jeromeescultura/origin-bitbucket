@@ -31,7 +31,7 @@ const FormInputDropdown = ({
       return states.map((state, index) => {
         return (
           <MenuItem key={index} value={state.capital}>
-            <p className="capitalize">{state.capital}</p>
+            <p>{state.capital}</p>
           </MenuItem>
         );
       });
@@ -49,12 +49,12 @@ const FormInputDropdown = ({
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <FormControl
             size={"large"}
-            className="w-full"
             error={error ? true : false}
             color="secondary"
+            fullWidth
           >
             <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value}>
+            <Select onChange={onChange} value={value} defaultValue="">
               {generateSingleOptions()}
             </Select>
             {error && (
