@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const FinanceCalc = () => {
+const FinanceCalc = ({ product }) => {
   const [extra, setExtra] = useState(false);
   const [buttonSelect, setSelected] = useState();
 
@@ -155,11 +155,15 @@ const FinanceCalc = () => {
               <div className="flex lg:flex-col space-x-8 lg:space-y-2 lg:space-x-0">
                 <div className="flex items-center">
                   <div className="w-3 h-3 inline-block bg-lime-400 rounded-full mr-2"></div>
-                  Without Go Zero
+                  Without {product === "carbonOffset" && "Go Zero"}{" "}
+                  {product === "solar" && "Solar"}
+                  {product === "greenPower" && "GreenPower"}
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 inline-block bg-green-800 rounded-full mr-2"></div>
-                  With Go Zero
+                  With {product === "carbonOffset" && "Go Zero"}{" "}
+                  {product === "solar" && "Solar"}
+                  {product === "greenPower" && "GreenPower"}
                 </div>
               </div>
             </div>

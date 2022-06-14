@@ -23,32 +23,32 @@ const RecommentCard = ({ recommend }) => {
           }
         />
 
-        <p className="font-medium subtitle flex items-center justify-center">
-          {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
-          {recommend === "solar" && "Solar"}
-          {recommend === "greenPower" && "GreenPower"}
+        <div className='flex justify-center items-center'>
+          <p className="font-medium subtitle">
+            {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
+            {recommend === "solar" && "Solar"}
+            {recommend === "greenPower" && "GreenPower"}
+          </p>
           {recommend === "greenPower" && (
-            <span>
-              <FormControl sx={{ ml: "16px", minWidth: 120 }}>
-                <Select
-                  value={level}
-                  displayEmpty
-                  color="secondary"
-                  onChange={handleLevel}
-                  sx={{
-                    borderRadius: "10px",
-                    height: "40px",
-                    width: "100px",
-                  }}
-                >
-                  <MenuItem value="100%">100%</MenuItem>
-                  <MenuItem value="50%">50%</MenuItem>
-                  <MenuItem value="25%">25%</MenuItem>
-                </Select>
-              </FormControl>
-            </span>
+            <FormControl sx={{ ml: "16px", minWidth: 120 }}>
+              <Select
+                value={level}
+                displayEmpty
+                color="secondary"
+                onChange={handleLevel}
+                sx={{
+                  borderRadius: "10px",
+                  height: "40px",
+                  width: "100px",
+                }}
+              >
+                <MenuItem value="100%">100%</MenuItem>
+                <MenuItem value="50%">50%</MenuItem>
+                <MenuItem value="25%">25%</MenuItem>
+              </Select>
+            </FormControl>
           )}
-        </p>
+        </div>
       </div>
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>

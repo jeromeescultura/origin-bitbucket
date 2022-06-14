@@ -37,54 +37,58 @@ const ToggleCard = ({ recommend }) => {
       className="border-none rounded-xl max-w-[510px] mx-auto"
     >
       <CardContent>
-      <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-        Make a bigger difference
-      </p>
+        <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
+          Make a bigger difference
+        </p>
         <div className="mt-4 space-y-5 font-light">
-          <Card
-            variant="contained"
-            className={`${
-              interview ? "bg-white border border-accentColor" : "bg-[#F8F8F8]"
-            }`}
-          >
-            <CardContent sx={{ transition: "all 0.3s ease" }}>
-              <div>
-                <Switch
-                  color="secondary"
-                  onChange={expandInterview}
-                  disabled={greenPower && true}
-                />
-                <div>Take part in the net zero research interview</div>
-                <Collapse in={interview}>
-                  <List dense={true}>
-                    <ListItem>
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Free to participate" />
-                    </ListItem>
-                    <ListItem alignItems="flex-start">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
-                    </ListItem>
-                  </List>
-                </Collapse>
-              </div>
-            </CardContent>
-          </Card>
-          {recommend === "solar" && (
+          {recommend.includes("decarbEOI") && (
+            <Card
+              variant="contained"
+              className={`${
+                interview
+                  ? "bg-white border border-accentColor"
+                  : "bg-[#F8F8F8]"
+              }`}
+            >
+              <CardContent sx={{ transition: "all 0.3s ease" }}>
+                <div>
+                  <Switch
+                    color="secondary"
+                    onChange={expandInterview}
+                    disabled={greenPower && true}
+                  />
+                  <div>Take part in the net zero research interview</div>
+                  <Collapse in={interview}>
+                    <List dense={true}>
+                      <ListItem>
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Free to participate" />
+                      </ListItem>
+                      <ListItem alignItems="flex-start">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
+                      </ListItem>
+                    </List>
+                  </Collapse>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+          {recommend.includes("greenPower") && (
             <Card
               variant="contained"
               className={`${
@@ -103,7 +107,7 @@ const ToggleCard = ({ recommend }) => {
                   <div>GreenPower</div>
 
                   <Collapse in={greenPower}>
-                    <div className='flex items-center'>
+                    <div className="flex items-center">
                       Select GreenPower{" "}
                       <FormControl sx={{ ml: "16px", minWidth: 120 }}>
                         <Select

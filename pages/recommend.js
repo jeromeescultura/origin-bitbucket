@@ -96,13 +96,14 @@ const Recommend = () => {
 
   useEffect(() => {
     handleOtherRecommendations(
+      recommend,
       goZero,
       greenPower,
       solarPower,
-      subCategory,
+
       setOtherRecommendations
     );
-  }, [goZero, greenPower, solarPower, subCategory]);
+  }, [recommend, goZero, greenPower, solarPower]);
 
   useEffect(() => {
     handleProducts(recommend, otherRecommendations, setProducts);
@@ -154,6 +155,7 @@ const Recommend = () => {
     console.log("GREENPOWER", greenPower);
     console.log("SOLAR", solarPower);
     console.log("RECOMMEND", recommend);
+    console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
     console.log("SUBCATEGORIES", subCategory);
     console.log("PRODUCTS", products);
     console.log("INDUSTRY", industry);
@@ -296,13 +298,16 @@ const Recommend = () => {
               <ImpactCard industry={industry} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc />
+              <FinanceCalc product={recommend} />
             </div>
             <div className="break-inside-avoid">
               <RecommentCard recommend={recommend} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
-              <ToggleCard recommend={recommend} />
+              {(subCategory?.includes("decarbEOI") ||
+                subCategory?.includes("greenPower")) && (
+                <ToggleCard recommend={subCategory} />
+              )}
             </div>
           </div>
         </ContentContainer>
