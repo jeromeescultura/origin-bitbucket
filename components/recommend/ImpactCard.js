@@ -7,6 +7,9 @@ const ImpactCard = ({ industry, recommend }) => {
 
   useEffect(() => {
     switch (recommend) {
+      case "carbonOffset":
+        setIcon("trees.svg");
+        break;
       case "greenPower":
         setIcon("wind.svg");
         break;
@@ -36,24 +39,32 @@ const ImpactCard = ({ industry, recommend }) => {
           </div>
           <div className="mt-2">
             <h2 className="text-greenText font-bold">{recommend}</h2>
-            <p className="text-sm text-greenText">trees planted</p>
+            <p className="text-sm text-greenText">
+              {recommend === "carbonOffset" && "tree seedlings"}{" "}
+              {recommend === "solar" && "fuel powered cars off the road"}
+              {recommend === "greenPower" && "until fully matched"}
+            </p>
           </div>
         </div>
 
         <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
-          Average businesses{" "}
-          {industry === "Other" ? (
-            ""
-          ) : (
-            <span>
-              in <span className="font-medium">{industry}</span>
-            </span>
-          )}{" "}
-          will have the impact of planting and growing [XX,XXX] tree seedlings
-          for 10 years, if they offset all their carbon emissions for a year.
+          {recommend === "carbonOffset" &&
+            "If your business offset its electricity use for a year, it would be equivalent to [planting and growing 320 tree seedlings for 10 years]."}
+          {recommend === "greenPower" &&
+            "If your business matched their electricity use to 100% GreenPower, it would only take [20 hrs and 59 mins] to put the same amount of renewable energy back into the grid."}
+          {recommend === "solar" &&
+            "If all businesses like yours did this, we could prevent [XX] tonnes of carbon from ever being emitted per year, equivalent to immidiately taking [X,XXX] cars off the road."}
         </p>
       </div>
-      <MoreDetailsComponent text="How carbon offsets work">
+      <MoreDetailsComponent
+        text={`How ${
+          recommend === "carbonOffset"
+            ? "carbon offsets work"
+            : recommend === "greenPower"
+            ? "GreenPower works"
+            : "solar benefits all"
+        }`}
+      >
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
           molestiae possimus, mollitia distinctio, unde non modi quas asperiores

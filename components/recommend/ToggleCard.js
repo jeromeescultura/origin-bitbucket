@@ -15,7 +15,7 @@ import {
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const ToggleCard = ({ recommend }) => {
+const ToggleCard = ({ recommend, adds }) => {
   const [interview, setInterview] = useState(false);
   const [greenPower, setGreenPower] = useState(false);
   const [level, setLevel] = useState("100%");
@@ -41,7 +41,7 @@ const ToggleCard = ({ recommend }) => {
           Make a bigger difference
         </p>
         <div className="mt-4 space-y-5 font-light">
-          {recommend.includes("decarbEOI") && (
+          {adds.includes("decarbEOI") && (
             <Card
               variant="contained"
               className={`${
@@ -88,7 +88,7 @@ const ToggleCard = ({ recommend }) => {
               </CardContent>
             </Card>
           )}
-          {recommend.includes("greenPower") && (
+          {adds.includes("greenPower") && recommend === "solar" && (
             <Card
               variant="contained"
               className={`${

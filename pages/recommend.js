@@ -35,14 +35,18 @@ const Recommend = ({ industries }) => {
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || null;
 
+  const [industryId, setIndustryId] = useState();
   const [industry, setIndustry] = useState("");
   const [recommend, setRecommend] = useState("");
   const [subCategory, setSubCategory] = useState();
   const [otherRecommendations, setOtherRecommendations] = useState([]);
   const [products, setProducts] = useState([{}]);
 
+  const productPages = ["carbonOffset", "greenPower", "solar"];
+
   const [pages, setPages] = useState();
   const [pageNo, setPageNo] = useState(0);
+  const [showContent, setContent] = useState();
 
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
@@ -72,7 +76,7 @@ const Recommend = ({ industries }) => {
   }, []);
 
   useEffect(() => {
-    setIndustry(storedStepTwoData?.dropdown);
+    setIndustryId(storedStepTwoData?.dropdown);
 
     recommendProduct(
       goZeroScore,
@@ -114,23 +118,58 @@ const Recommend = ({ industries }) => {
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("********** START **********");
-    console.log("GOZERO", goZero);
-    console.log("GREENPOWER", greenPower);
-    console.log("SOLAR", solarPower);
-    console.log("RECOMMEND", recommend);
-    console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
-    console.log("SUBCATEGORIES", subCategory);
-    console.log("PRODUCTS", products);
-    console.log("PAGES", pages);
-    console.log("PAGE NO", pageNo);
-    console.log("INDUSTRY", industry);
-  }, [products, industry, pages, pageNo]);
+    // console.log("INDUSTRIES", industries);
+    let currIndustry = industries?.filter((item) => item.id === industryId);
+    setIndustry(currIndustry[0]);
+  }, [industryId]);
+
+  // useEffect(() => {
+  //   console.log("INDUSTRY", industry?.name);
+  // }, [industry]);
+
+  // useEffect(() => {
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("********** START **********");
+  //   console.log("GOZERO", goZero);
+  //   console.log("GREENPOWER", greenPower);
+  //   console.log("SOLAR", solarPower);
+  //   console.log("RECOMMEND", recommend);
+  //   console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
+  //   console.log("SUBCATEGORIES", subCategory);
+  //   console.log("PRODUCTS", products);
+  //   console.log("PAGES", pages);
+  //   console.log("PAGE NO", pageNo);
+  //   console.log("INDUSTRY", industry);
+  // }, [products, industry, pages, pageNo]);
+  useEffect(() => {
+    console.log(industry);
+  }, [industry]);
+
+  useEffect(() => {
+    if (pages === 3) {
+      setContent(productPages[pageNo]);
+    } else if (pages === 2) {
+      if (recommend === "carbonOffset") {
+        setContent(productPages[pageNo]);
+      } else if (recommend === "greenPower") {
+        if (products?.some((item) => item.title === "carbonOffset")) {
+          setContent(productPages[pageNo]);
+        } else if (products?.some((item) => item.title === "solar")) {
+          setContent(productPages[pageNo + 1]);
+        }
+      } else if (recommend === "solar") {
+        setContent(productPages[pageNo + 1]);
+      }
+    }
+  }, [pageNo, products, industry, pages, pageNo]);
+
+  useEffect(() => {
+    console.log("PAGE", showContent);
+  }, [showContent]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -149,14 +188,22 @@ const Recommend = ({ industries }) => {
   }, [products]);
 
   useEffect(() => {
-    if (recommend === "goZero") {
-      setPageNo(0);
+    if (recommend === "carbonOffset") {
+      setPageNo(pages - pages);
     } else if (recommend === "greenPower") {
-      setPageNo(1);
+      if (pages === 2) {
+        if (products?.some((item) => item.title === "carbonOffset")) {
+          setPageNo(1);
+        } else if (products?.some((item) => item.title === "solar")) {
+          setPageNo(0);
+        }
+      } else if (pages === 3) {
+        setPageNo(1);
+      }
     } else if (recommend === "solar") {
-      setPageNo(2);
+      setPageNo(pages - 1);
     }
-  }, [recommend]);
+  }, [recommend, pages, products]);
 
   const router = useRouter();
   const handleClick = (e) => {
@@ -215,96 +262,114 @@ const Recommend = ({ industries }) => {
             </p>
           </div>
 
-          <div className="text-center py-6 md:py-12">
-            <p className="text-subTextColor lg:hidden">
-              Keen to do more? Toggle to see options for different levels of
-              investment.
-            </p>
-            <ButtonGroup
-              fullWidth
-              className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
-              aria-label="outlined button group"
-            >
-              <Button
-                disabled={pageNo === 0 && true}
-                size="large"
-                onClick={() => handleButton("back")}
-                variant="contained"
-                className={`${
-                  pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-                } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
-                startIcon={
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    className={`${
-                      pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
-                    } rotate-90`}
-                  >
-                    <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                  </svg>
-                }
-              >
-                Do less
-              </Button>
-              <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
-                <p>
-                  Keen to do more?
-                  <br /> Toggle to see options for different levels of
+          <div
+            className={`text-center  ${
+              pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
+            }`}
+          >
+            {pages !== 1 && (
+              <>
+                {" "}
+                <p className="text-subTextColor lg:hidden">
+                  Keen to do more? Toggle to see options for different levels of
                   investment.
                 </p>
-              </div>
-
-              <Button
-                disabled={pageNo === 2 && true}
-                size="large"
-                onClick={() => handleButton("next")}
-                variant="contained"
-                className={`${
-                  pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
-                } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
-                endIcon={
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
+                <ButtonGroup
+                  fullWidth
+                  className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
+                  aria-label="outlined button group"
+                >
+                  <Button
+                    disabled={pageNo === 0 && true}
+                    size="large"
+                    onClick={() => handleButton("back")}
+                    variant="contained"
                     className={`${
-                      pageNo === 2 ? "fill-[#ABABAB]" : "fill-primaryText"
-                    } -rotate-90`}
+                      pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
+                    } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
+                    startIcon={
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        className={`${
+                          pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
+                        } rotate-90`}
+                      >
+                        <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                      </svg>
+                    }
                   >
-                    <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                  </svg>
-                }
-              >
-                Do more
-              </Button>
-            </ButtonGroup>
+                    Do less
+                  </Button>
+                  <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
+                    <p>
+                      Keen to do more?
+                      <br /> Toggle to see options for different levels of
+                      investment.
+                    </p>
+                  </div>
+
+                  <Button
+                    disabled={pageNo === pages - 1 && true}
+                    size="large"
+                    onClick={() => handleButton("next")}
+                    variant="contained"
+                    className={`${
+                      pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                    } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
+                    endIcon={
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        className={`${
+                          pageNo === pages - 1
+                            ? "fill-[#ABABAB]"
+                            : "fill-primaryText"
+                        } -rotate-90`}
+                      >
+                        <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                      </svg>
+                    }
+                  >
+                    Do more
+                  </Button>
+                </ButtonGroup>
+              </>
+            )}
           </div>
           <div className="text-center mb-8">
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">
               with{" "}
-              {recommend === "carbonOffset" &&
+              {showContent === "carbonOffset" &&
                 "Origin Go Zero 100% carbon offset"}{" "}
-              {recommend === "solar" && "Solar"}
-              {recommend === "greenPower" && "GreenPower"}
+              {showContent === "solar" && "Solar"}
+              {showContent === "greenPower" && "GreenPower"}
             </h2>
+            <div className="font-light text-xs mt-8 lg:mt-16">
+              Impact estimates below are calculated with usage averages
+              collected from Origin’s small & medium business customers in{" "}
+              <span className="font-medium">{industry?.name}</span>. This will
+              change based on your business’ specific usage. See your impact
+              ranges.
+            </div>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard industry={industry} recommend={recommend} />
+              <ImpactCard  recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc product={recommend} />
+              <FinanceCalc product={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard recommend={recommend} />
+              <RecommentCard recommend={showContent} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||
                 subCategory?.includes("greenPower")) && (
-                <ToggleCard recommend={subCategory} />
+                <ToggleCard recommend={showContent} adds={subCategory} />
               )}
             </div>
           </div>

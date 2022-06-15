@@ -163,58 +163,58 @@ const questions = [
       options: [
         {
           id: 1,
-          label: "Professional, Scientific and Technical Services",
-          value: "Professional, Scientific and Technical Services",
-        },
-        {
-          id: 2,
-          label: "Financial and Insurance Services",
-          value: "Financial and Insurance Services",
-        },
-        {
-          id: 3,
-          label: "Manufacturing",
-          value: "Manufacturing",
-        },
-        {
-          id: 4,
-          label: "Rental, Hiring and Real Estate Services",
-          value: "Rental, Hiring and Real Estate Services",
-        },
-        {
-          id: 5,
           label: "Accommodation and Food Services",
           value: "Accommodation and Food Services",
         },
         {
-          id: 6,
-          label: "Health Care and Social Assistance",
-          value: "Health Care and Social Assistance",
-        },
-        {
-          id: 7,
-          label: "Retail Trade",
-          value: "Retail Trade",
-        },
-        {
-          id: 8,
-          label: "Information Media and Telecommunications",
-          value: "Information Media and Telecommunications",
-        },
-        {
-          id: 9,
-          label: "Wholesale Trade",
-          value: "Wholesale Trade",
-        },
-        {
-          id: 10,
+          id: 2,
           label: "Administrative and Support Services",
           value: "Administrative and Support Services",
         },
         {
-          id: 11,
+          id: 3,
+          label: "Agriculture, Forestry and Fishing",
+          value: "Agriculture, Forestry and Fishing",
+        },
+        {
+          id: 4,
+          label: "Arts and Recreation Services",
+          value: "Arts and Recreation Services",
+        },
+        {
+          id: 5,
+          label: "Construction",
+          value: "Construction",
+        },
+        {
+          id: 6,
           label: "Education and Training",
           value: "Education and Training",
+        },
+        {
+          id: 7,
+          label: "Electricity, Gas, Water and Waste Services",
+          value: "Electricity, Gas, Water and Waste Services",
+        },
+        {
+          id: 8,
+          label: "Financial and Insurance Services",
+          value: "Financial and Insurance Services",
+        },
+        {
+          id: 9,
+          label: "Health Care and Social Assistance",
+          value: "Health Care and Social Assistance",
+        },
+        {
+          id: 10,
+          label: "Information Media and Telecommunications",
+          value: "Information Media and Telecommunications",
+        },
+        {
+          id: 11,
+          label: "Manufacturing",
+          value: "Manufacturing",
         },
         {
           id: 12,
@@ -223,38 +223,38 @@ const questions = [
         },
         {
           id: 13,
-          label: "Construction",
-          value: "Construction",
+          label: "Professional, Scientific and Technical Services",
+          value: "Professional, Scientific and Technical Services",
         },
         {
           id: 14,
-          label: "Arts and Recreation Services",
-          value: "Arts and Recreation Services",
-        },
-        {
-          id: 15,
-          label: "Transport, Postal and Warehousing",
-          value: "Transport, Postal and Warehousing",
-        },
-        {
-          id: 16,
-          label: "Agriculture, Forestry and Fishing",
-          value: "Agriculture, Forestry and Fishing",
-        },
-        {
-          id: 17,
           label: "Public Administration and Safety",
           value: "Public Administration and Safety",
         },
         {
+          id: 15,
+          label: "Rental, Hiring and Real Estate Services",
+          value: "Rental, Hiring and Real Estate Services",
+        },
+        {
+          id: 16,
+          label: "Retail Trade",
+          value: "Retail Trade",
+        },
+        {
+          id: 17,
+          label: "Transport, Postal and Warehousing",
+          value: "Transport, Postal and Warehousing",
+        },
+        {
           id: 18,
-          label: "Electricity, Gas, Water and Waste Services",
-          value: "Electricity, Gas, Water and Waste Services",
+          label: "Wholesale Trade",
+          value: "Wholesale Trade",
         },
         {
           id: 19,
-          label: "Other",
-          value: "Other",
+          label: "Other Services",
+          value: "Other Services",
         },
       ],
     },
@@ -338,7 +338,8 @@ const questions = [
         {
           id: 5,
           value: "unconstrained",
-          label: "Unconstrained by specific operating hours (Depends on business priorities)",
+          label:
+            "Unconstrained by specific operating hours (Depends on business priorities)",
           subText: "Energy use varies greatly depending on business priorities",
         },
       ],
