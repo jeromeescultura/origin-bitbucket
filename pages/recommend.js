@@ -127,24 +127,25 @@ const Recommend = ({ industries }) => {
   //   console.log("INDUSTRY", industry?.name);
   // }, [industry]);
 
-  // useEffect(() => {
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("********** START **********");
-  //   console.log("GOZERO", goZero);
-  //   console.log("GREENPOWER", greenPower);
-  //   console.log("SOLAR", solarPower);
-  //   console.log("RECOMMEND", recommend);
-  //   console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
-  //   console.log("SUBCATEGORIES", subCategory);
-  //   console.log("PRODUCTS", products);
-  //   console.log("PAGES", pages);
-  //   console.log("PAGE NO", pageNo);
-  //   console.log("INDUSTRY", industry);
-  // }, [products, industry, pages, pageNo]);
+  useEffect(() => {
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("********** START **********");
+    console.log("GOZERO", goZero);
+    console.log("GREENPOWER", greenPower);
+    console.log("SOLAR", solarPower);
+    console.log("RECOMMEND", recommend);
+    console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
+    console.log("SUBCATEGORIES", subCategory);
+    console.log("PRODUCTS", products);
+    console.log("PAGES", pages);
+    console.log("PAGE NO", pageNo);
+    console.log("INDUSTRY", industry);
+    console.log("CONTENT", showContent);
+  }, [products, industry, pages, pageNo, showContent]);
   useEffect(() => {
     console.log(industry);
   }, [industry]);
@@ -164,12 +165,16 @@ const Recommend = ({ industries }) => {
       } else if (recommend === "solar") {
         setContent(productPages[pageNo + 1]);
       }
+    } else {
+      if (recommend === "carbonOffset") {
+        setContent(productPages[0]);
+      } else if (recommend === "greenPower") {
+        setContent(productPages[1]);
+      } else if (recommend === "solar") {
+        setContent(productPages[2]);
+      }
     }
   }, [pageNo, products, industry, pages, pageNo]);
-
-  useEffect(() => {
-    console.log("PAGE", showContent);
-  }, [showContent]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -358,7 +363,7 @@ const Recommend = ({ industries }) => {
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard  recommend={showContent} />
+              <ImpactCard recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
               <FinanceCalc product={showContent} />
@@ -368,7 +373,8 @@ const Recommend = ({ industries }) => {
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||
-                subCategory?.includes("greenPower")) && (
+                (subCategory?.includes("greenPower") &&
+                  showContent === "solar")) && (
                 <ToggleCard recommend={showContent} adds={subCategory} />
               )}
             </div>
