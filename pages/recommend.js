@@ -121,7 +121,6 @@ const Recommend = ({ industries }) => {
     // console.log("INDUSTRIES", industries);
     let currIndustry = industries?.filter((item) => item.id === industryId);
     setIndustry(currIndustry[0]);
-    // console.log(currIndustry);
   }, [industryId]);
 
   // useEffect(() => {
@@ -146,13 +145,11 @@ const Recommend = ({ industries }) => {
   //   console.log("PAGE NO", pageNo);
   //   console.log("INDUSTRY", industry);
   // }, [products, industry, pages, pageNo]);
+  useEffect(() => {
+    console.log(industry);
+  }, [industry]);
 
   useEffect(() => {
-    console.log("GOZERO", goZero);
-    console.log("GREENPOWER", greenPower);
-    console.log("SOLAR", solarPower);
-    console.log("RECOMMEND", recommend);
-    console.log("PRODUCTS", products);
     if (pages === 3) {
       setContent(productPages[pageNo]);
     } else if (pages === 2) {
@@ -351,10 +348,17 @@ const Recommend = ({ industries }) => {
               {showContent === "solar" && "Solar"}
               {showContent === "greenPower" && "GreenPower"}
             </h2>
+            <div className="font-light text-xs mt-8 lg:mt-16">
+              Impact estimates below are calculated with usage averages
+              collected from Origin’s small & medium business customers in{" "}
+              <span className="font-medium">{industry?.name}</span>. This will
+              change based on your business’ specific usage. See your impact
+              ranges.
+            </div>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard industry={industry?.name} recommend={showContent} />
+              <ImpactCard  recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
               <FinanceCalc product={showContent} />
