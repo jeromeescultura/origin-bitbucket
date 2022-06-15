@@ -1,4 +1,5 @@
 import React from "react";
+import { set } from "react-hook-form";
 
 export const sumArray = (accumulator, curr) => accumulator + curr;
 
@@ -213,6 +214,10 @@ export const recommendProduct = (gz, gp, sp, setRP) => {
   } else if (gp > gz && gp > sp) {
     setRP("greenPower");
   } else if (sp > gz && sp > gp) {
+    setRP("solar");
+  } else if (gz === gp) {
+    setRP("greenPower");
+  } else if (gz === sp || gp === sp) {
     setRP("solar");
   }
 };

@@ -7,6 +7,9 @@ const ImpactCard = ({ industry, recommend }) => {
 
   useEffect(() => {
     switch (recommend) {
+      case "carbonOffset":
+        setIcon("trees.svg");
+        break;
       case "greenPower":
         setIcon("wind.svg");
         break;
@@ -36,7 +39,10 @@ const ImpactCard = ({ industry, recommend }) => {
           </div>
           <div className="mt-2">
             <h2 className="text-greenText font-bold">{recommend}</h2>
-            <p className="text-sm text-greenText">trees planted</p>
+            <p className="text-sm text-greenText">{recommend === "carbonOffset" &&
+                "tree seedlings"}{" "}
+              {recommend === "solar" && "fuel powered cars off the road"}
+              {recommend === "greenPower" && "until fully matched"}</p>
           </div>
         </div>
 
@@ -53,7 +59,15 @@ const ImpactCard = ({ industry, recommend }) => {
           for 10 years, if they offset all their carbon emissions for a year.
         </p>
       </div>
-      <MoreDetailsComponent text="How carbon offsets work">
+      <MoreDetailsComponent
+        text={`How ${
+          recommend === "carbonOffset"
+            ? "carbon offsets work"
+            : recommend === "greenPower"
+            ? "GreenPower works"
+            : "solar benefits all"
+        }`}
+      >
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
           molestiae possimus, mollitia distinctio, unde non modi quas asperiores

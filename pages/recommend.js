@@ -46,6 +46,7 @@ const Recommend = ({ industries }) => {
 
   const [pages, setPages] = useState();
   const [pageNo, setPageNo] = useState(0);
+  const [showContent, setContent] = useState();
 
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
@@ -147,23 +148,31 @@ const Recommend = ({ industries }) => {
   // }, [products, industry, pages, pageNo]);
 
   useEffect(() => {
+    console.log("GOZERO", goZero);
+    console.log("GREENPOWER", greenPower);
+    console.log("SOLAR", solarPower);
+    console.log("RECOMMEND", recommend);
+    console.log("PRODUCTS", products);
     if (pages === 3) {
-      console.log("PAGE", productPages[pageNo]);
+      setContent(productPages[pageNo]);
     } else if (pages === 2) {
       if (recommend === "carbonOffset") {
-        console.log("PRODUCTS", products);
-        console.log("PAGE", productPages[pageNo]);
+        setContent(productPages[pageNo]);
       } else if (recommend === "greenPower") {
         if (products?.some((item) => item.title === "carbonOffset")) {
-          console.log("PAGE", productPages[pageNo]);
+          setContent(productPages[pageNo]);
         } else if (products?.some((item) => item.title === "solar")) {
-          console.log("PAGE", productPages[pageNo + 1]);
+          setContent(productPages[pageNo + 1]);
         }
       } else if (recommend === "solar") {
-        console.log("PAGE", productPages[pageNo + 1]);
+        setContent(productPages[pageNo + 1]);
       }
     }
   }, [pageNo, products, industry, pages, pageNo]);
+
+  useEffect(() => {
+    console.log("PAGE", showContent);
+  }, [showContent]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -186,9 +195,7 @@ const Recommend = ({ industries }) => {
       setPageNo(pages - pages);
     } else if (recommend === "greenPower") {
       if (pages === 2) {
-        console.log("fired");
         if (products?.some((item) => item.title === "carbonOffset")) {
-          console.log("true");
           setPageNo(1);
         } else if (products?.some((item) => item.title === "solar")) {
           setPageNo(0);
@@ -339,26 +346,26 @@ const Recommend = ({ industries }) => {
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">
               with{" "}
-              {recommend === "carbonOffset" &&
+              {showContent === "carbonOffset" &&
                 "Origin Go Zero 100% carbon offset"}{" "}
-              {recommend === "solar" && "Solar"}
-              {recommend === "greenPower" && "GreenPower"}
+              {showContent === "solar" && "Solar"}
+              {showContent === "greenPower" && "GreenPower"}
             </h2>
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard industry={industry?.name} recommend={recommend} />
+              <ImpactCard industry={industry?.name} recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc product={recommend} />
+              <FinanceCalc product={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard recommend={recommend} />
+              <RecommentCard recommend={showContent} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||
                 subCategory?.includes("greenPower")) && (
-                <ToggleCard recommend={subCategory} />
+                <ToggleCard recommend={showContent} adds={subCategory} />
               )}
             </div>
           </div>
