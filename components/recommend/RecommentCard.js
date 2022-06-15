@@ -4,11 +4,13 @@ import { useState } from "react";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const RecommentCard = ({ recommend }) => {
-  const [level, setLevel] = useState("100%");
-  const handleLevel = (event) => {
-    setLevel(event.target.value);
+const RecommentCard = ({ recommend, industry }) => {
+  const [level, setLevel] = useState(1);
+
+  const handleLevel = (e) => {
+    setLevel(e.target.value);
   };
+
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
@@ -23,7 +25,7 @@ const RecommentCard = ({ recommend }) => {
           }
         />
 
-        <div className='flex justify-center items-center'>
+        <div className="flex justify-center items-center">
           <p className="font-medium subtitle">
             {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
             {recommend === "solar" && "Solar"}
@@ -33,7 +35,6 @@ const RecommentCard = ({ recommend }) => {
             <FormControl sx={{ ml: "16px", minWidth: 120 }}>
               <Select
                 value={level}
-                displayEmpty
                 color="secondary"
                 onChange={handleLevel}
                 sx={{
@@ -42,9 +43,9 @@ const RecommentCard = ({ recommend }) => {
                   width: "100px",
                 }}
               >
-                <MenuItem value="100%">100%</MenuItem>
-                <MenuItem value="50%">50%</MenuItem>
-                <MenuItem value="25%">25%</MenuItem>
+                <MenuItem value={1}>100%</MenuItem>
+                <MenuItem value={0.5}>50%</MenuItem>
+                <MenuItem value={0.25}>25%</MenuItem>
               </Select>
             </FormControl>
           )}
@@ -55,54 +56,132 @@ const RecommentCard = ({ recommend }) => {
         <p>Through offsetting your energy use</p>
       </div>
       <MoreDetailsComponent text="More Details">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
-          <div className="space-y-2 mt-8 pr-5 lg:border-r text-center lg:text-left ">
-            <p className="font-medium">Estimated cost</p>
-            <h2 className="text-secondaryText">$0</h2>
-            <p className="text-xs text-subTextColor">
-              extra p/month on any <br />
-              Origin Energy plan*
-            </p>
+        <div className="grid grid-rows-3">
+          <div className="grid grid-cols-2 items-center border-t py-2">
+            <p className="font-medium">Plan</p>
+            <p>Available on any Origin Energy plan</p>
           </div>
-          <div className="space-y-2 mt-8 pl-5">
-            <p className="font-medium  text-center lg:text-left">
-              By pledging you’ll get access to
-            </p>
-            <ul className="space-y-4 text-left py-3">
-              <li className="flex items-start gap-4">
-                <Image
-                  src="/icons/check-yellow.svg"
-                  width={20}
-                  height={20}
-                  objectFit="contain"
-                  alt="check"
-                />
-                <p> Progress reporting on your impact</p>
-              </li>
-              <li className="flex items-start gap-4">
-                <Image
-                  src="/icons/check-yellow.svg"
-                  width={20}
-                  height={20}
-                  objectFit="contain"
-                  alt="check"
-                />
-                <p> Amplify toolkit to communicate your impact</p>
-              </li>
-              <li className="flex items-start gap-4">
-                <Image
-                  src="/icons/check-yellow.svg"
-                  width={20}
-                  height={20}
-                  objectFit="contain"
-                  alt="check"
-                />
-                <p> Dedicated Clean Ambition club support</p>
-              </li>
-            </ul>
+          <div className="grid grid-cols-2 items-center border-t py-2">
+            <p>Site changes</p>
+            <p>None</p>
+          </div>
+          <div className="grid grid-cols-2 items-center border-t pt-2">
+            <p>Lock-in contracts</p>
+            <p>None</p>
           </div>
         </div>
       </MoreDetailsComponent>
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
+        <div className="space-y-2  pr-5 lg:border-r text-center lg:text-left ">
+          {recommend === "carbonOffset" && (
+            <div>
+              <p className="font-medium">Estimated cost</p>
+              <h2 className="text-secondaryText">
+                $
+                {Math.round(
+                  (0.015 * industry.dailyUsage.avg + Number.EPSILON) * 100
+                ) / 100}
+              </h2>
+              <p className="text-xs text-subTextColor">
+                extra p/month on any <br />
+                Origin Energy plan*
+              </p>
+              {/* <p>
+                Between ${" "}
+                {Math.round(
+                  ((0.015 * industry.dailyUsage.low * 365) / 12 +
+                    Number.EPSILON) *
+                    100
+                ) / 100}{" "}
+                - $
+                {Math.round(
+                  ((0.015 * industry.dailyUsage.high * 365) / 12 +
+                    Number.EPSILON) *
+                    100
+                ) / 100}{" "}
+              </p> */}
+            </div>
+          )}
+
+          {recommend === "greenPower" && (
+            <div>
+              <p className="font-medium">Estimated cost</p>
+              <h2 className="text-secondaryText">
+                $
+                {Math.round(
+                  (0.028 * industry.dailyUsage.avg * level + Number.EPSILON) *
+                    100
+                ) / 100}
+              </h2>
+              <p className="text-xs text-subTextColor">
+                extra p/month on any <br />
+                Origin Energy plan*
+              </p>
+              {/* <p>
+                Between ${" "}
+                {Math.round(
+                  (((0.028 * industry.dailyUsage.low * 365) / 12) * level +
+                    Number.EPSILON) *
+                    100
+                ) / 100}{" "}
+                - $
+                {Math.round(
+                  (((0.028 * industry.dailyUsage.high * 365) / 12) * level +
+                    Number.EPSILON) *
+                    100
+                ) / 100}{" "}
+              </p> */}
+            </div>
+          )}
+          {recommend === "solar" && (
+            <div>
+              <p className="font-medium">Estimated Savings</p>
+              <h2 className="text-secondaryText">$0</h2>
+              <p className="text-xs text-subTextColor">
+                extra p/month on any <br />
+                Origin Energy plan*
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="space-y-2  pl-5">
+          <p className="font-medium  text-center lg:text-left">
+            By pledging you’ll get access to
+          </p>
+          <ul className="space-y-4 text-left py-3">
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+                alt="check"
+              />
+              <p> Progress reporting on your impact</p>
+            </li>
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+                alt="check"
+              />
+              <p> Amplify toolkit to communicate your impact</p>
+            </li>
+            <li className="flex items-start gap-4">
+              <Image
+                src="/icons/check-yellow.svg"
+                width={20}
+                height={20}
+                objectFit="contain"
+                alt="check"
+              />
+              <p> Dedicated Clean Ambition club support</p>
+            </li>
+          </ul>
+        </div>
+      </div>
       <p className="text-xs text-subTextColor text-center leading-6">
         *Once you submit your application, one of our Clean Ambition club
         representatives will get in contact to review your energy plan options.

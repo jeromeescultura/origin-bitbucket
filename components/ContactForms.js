@@ -69,7 +69,9 @@ function ContactForms({ text }) {
         window.localStorage.getItem("CONTACT_FORMS_DETAILS")
     ) || [];
 
-  const [contactFormsDetails, setContactFormsDetails] = useState(storedData);
+  const [contactFormsDetails, setContactFormsDetails] = useState({
+    dropdown: "",
+  });
 
   const methods = useForm({ defaultValues: contactFormsDetails });
   const { handleSubmit, control, watch, setValue } = methods;
@@ -88,7 +90,8 @@ function ContactForms({ text }) {
 
   useEffect(() => {
     if (storedData !== null) {
-      setDropdown(contactFormsDetails.dropdown);
+      setContactFormsDetails(storedData);
+      setDropdown(storedData?.dropdown);
     }
   }, []);
 

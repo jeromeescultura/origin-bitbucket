@@ -54,7 +54,6 @@ export default function Home() {
         <HeroComponent />
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
-            <h2>Impact Average {533.8 * 365 * 0.0072 + 0.0482}</h2>
             <h2>
               Australia&#39;s 2.4 million small-medium enterprises are
               responsible for over 1 quarter of the nation&#39;s carbon

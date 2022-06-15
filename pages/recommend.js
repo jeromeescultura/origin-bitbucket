@@ -118,7 +118,6 @@ const Recommend = ({ industries }) => {
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    // console.log("INDUSTRIES", industries);
     let currIndustry = industries?.filter((item) => item.id === industryId);
     setIndustry(currIndustry[0]);
   }, [industryId]);
@@ -145,9 +144,6 @@ const Recommend = ({ industries }) => {
   //   console.log("PAGE NO", pageNo);
   //   console.log("INDUSTRY", industry);
   // }, [products, industry, pages, pageNo]);
-  useEffect(() => {
-    console.log(industry);
-  }, [industry]);
 
   useEffect(() => {
     if (pages === 3) {
@@ -358,13 +354,13 @@ const Recommend = ({ industries }) => {
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard  recommend={showContent} />
+              <ImpactCard recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc product={showContent} />
+              <FinanceCalc recommend={showContent} industry={industry} />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard recommend={showContent} />
+              <RecommentCard recommend={showContent} industry={industry} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||

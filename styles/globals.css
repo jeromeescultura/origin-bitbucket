@@ -54,6 +54,18 @@ h2 {
 .css-9lshym-MuiTypography-root {
   font-size: 14px;
 }
+
+/* dynamic bar */
+.css-jc1gvt-MuiLinearProgress-root {
+  background-color: transparent !important;
+}
+.MuiLinearProgress-barColorPrimary {
+  background-color: #a5bb48 !important;
+}
+.MuiLinearProgress-barColorSecondary {
+  background-color: #008906 !important;
+}
+
 @layer base {
   @font-face {
     font-family: "gordita-light";
