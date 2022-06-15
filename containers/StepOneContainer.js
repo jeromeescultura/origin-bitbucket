@@ -243,6 +243,7 @@ const StepOneContainer = ({
             options={radioQsts?.options}
             setValue={setValue}
             radioValue={radioValue && radioValue}
+            radioDefault={'easy'}
           />
         </div>
       </QuestionContainer>
