@@ -244,7 +244,6 @@ const Recommend = ({ industries }) => {
   };
 
   useEffect(() => {
-    console.log(showContent, "showContent");
     if (showContent === "carbonOffset") {
       setOffSet(0.015);
     } else if (showContent === "greenPower") {
@@ -317,9 +316,7 @@ const Recommend = ({ industries }) => {
       (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
     ) / 100;
 
-  useEffect(() => {
-    console.log("EXTRA COST", extraCost);
-  }, [extraCost]);
+  useEffect(() => {}, [extraCost]);
 
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
@@ -379,12 +376,13 @@ const Recommend = ({ industries }) => {
         typeof window !== "undefined" &&
           window.localStorage.getItem("RECOMMENDED")
       ) || null;
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
+
     console.log("RECOMMENDATION LOCAL STORAGE", data);
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
   };
 
   const [impactRanges, setImpactRanges] = useState(false);
