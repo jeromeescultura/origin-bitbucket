@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Button, ButtonGroup } from "@mui/material";
 import {
   handleContent,
+  handleImpactData,
   handleOtherRecommendations,
   handlePageNo,
   handleProducts,
@@ -25,6 +26,9 @@ import {
 } from "../functions/recofunctions/RecoFunctions";
 
 const Recommend = ({ industries }) => {
+  const dayjs = require("dayjs");
+  var duration = require("dayjs/plugin/duration");
+  dayjs.extend(duration);
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -69,8 +73,6 @@ const Recommend = ({ industries }) => {
     greenPower: 0,
     decarbEOI: 0,
   });
-
-  const [impact, setImpact] = useState(0);
 
   const goZeroScore = Object.values(goZero).reduce(sumArray);
   const greenPowerScore = Object.values(greenPower).reduce(sumArray);
@@ -217,6 +219,12 @@ const Recommend = ({ industries }) => {
     setWithSolar(industry?.withSolarCost?.low);
   }, [industry]);
 
+  // Toggle card
+  const [pledges, setPledges] = useState([]);
+
+  // Impact card
+  const [impact, setImpact] = useState(0);
+
   // Recommend Card
   const [level, setLevel] = useState(1);
 
@@ -262,6 +270,20 @@ const Recommend = ({ industries }) => {
     }
   };
 
+  const [storedData, setStoredData] = useState({
+    product: "",
+    greenPowerLevel: "",
+    biggerDiff: [],
+  });
+
+  useEffect(() => {
+    setStoredData({ product: showContent, greenPowerLevel: level * 100 });
+  }, [showContent, level]);
+
+  useEffect(() => {
+    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
+  }, [storedData]);
+
   // Calculations
   // Round of formula
   // Math.round((num + Number.EPSILON) * 100) / 100
@@ -279,14 +301,13 @@ const Recommend = ({ industries }) => {
   const totalCost =
     Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
 
-  const impact =
-    (showContent === "carbonOffset" &&
-      Math.round(dailyUsage * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) /
-      100 ||
-    (showContent === "greenPower" &&
-      ((dailyUsage * 365) / 33.333 / 60 / 24) * level) ||
-    (showContent === "solar" &&
-      ((dailyUsage * 365) / 33.333 / 60 / 24) * level);
+  useEffect(() => {
+    handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
+  }, [showContent, dailyUsage, level]);
+
+  useEffect(() => {
+    console.log("PLEDGES", pledges);
+  }, [pledges]);
 
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
@@ -414,7 +435,11 @@ const Recommend = ({ industries }) => {
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard recommend={showContent} impact={impact} />
+              <ImpactCard
+                recommend={showContent}
+                impact={impact}
+                level={level}
+              />
             </div>
             <div className="break-inside-avoid">
               <FinanceCalc
@@ -445,7 +470,14 @@ const Recommend = ({ industries }) => {
               {(subCategory?.includes("decarbEOI") ||
                 (subCategory?.includes("greenPower") &&
                   showContent === "solar")) && (
-                <ToggleCard recommend={showContent} adds={subCategory} />
+                <ToggleCard
+                  recommend={showContent}
+                  adds={subCategory}
+                  level={level}
+                  handleLevel={handleLevel}
+                  pledges={pledges}
+                  setPledges={setPledges}
+                />
               )}
             </div>
           </div>

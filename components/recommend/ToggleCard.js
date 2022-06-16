@@ -10,27 +10,45 @@ import {
   MenuItem,
   Select,
   Switch,
-  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const ToggleCard = ({ recommend, adds }) => {
+const ToggleCard = ({
+  recommend,
+  adds,
+  level,
+  handleLevel,
+  pledges,
+  setPledges,
+}) => {
   const [interview, setInterview] = useState(false);
   const [greenPower, setGreenPower] = useState(false);
-  const [level, setLevel] = useState("100%");
 
   const expandInterview = () => {
+    const isPresent = pledges.indexOf("interview");
     setInterview(!interview);
+
+    if (isPresent !== -1) {
+      const remaining = pledges.filter((item) => item !== "interview");
+      setPledges(remaining);
+    } else {
+      setPledges((prevItems) => [...prevItems, "interview"]);
+    }
   };
 
   const expandGreenPower = () => {
+    const isPresent = pledges.indexOf("greenPower");
     setGreenPower(!greenPower);
+
+    if (isPresent !== -1) {
+      const remaining = pledges.filter((item) => item !== "greenPower");
+      setPledges(remaining);
+    } else {
+      setPledges((prevItems) => [...prevItems, "greenPower"]);
+    }
   };
 
-  const handleLevel = (event) => {
-    setLevel(event.target.value);
-  };
   return (
     <Card
       variant="outlined"
@@ -52,11 +70,7 @@ const ToggleCard = ({ recommend, adds }) => {
             >
               <CardContent sx={{ transition: "all 0.3s ease" }}>
                 <div>
-                  <Switch
-                    color="secondary"
-                    onChange={expandInterview}
-                    disabled={greenPower && true}
-                  />
+                  <Switch color="secondary" onChange={expandInterview} />
                   <div>Take part in the net zero research interview</div>
                   <Collapse in={interview}>
                     <List dense={true}>
@@ -99,11 +113,7 @@ const ToggleCard = ({ recommend, adds }) => {
             >
               <CardContent>
                 <div>
-                  <Switch
-                    color="secondary"
-                    onChange={expandGreenPower}
-                    disabled={interview && true}
-                  />
+                  <Switch color="secondary" onChange={expandGreenPower} />
                   <div>GreenPower</div>
 
                   <Collapse in={greenPower}>
@@ -121,9 +131,9 @@ const ToggleCard = ({ recommend, adds }) => {
                             width: "100px",
                           }}
                         >
-                          <MenuItem value="100%">100%</MenuItem>
-                          <MenuItem value="50%">50%</MenuItem>
-                          <MenuItem value="25%">25%</MenuItem>
+                          <MenuItem value={1}>100%</MenuItem>
+                          <MenuItem value={0.5}>50%</MenuItem>
+                          <MenuItem value={0.25}>25%</MenuItem>
                         </Select>
                       </FormControl>
                     </div>
