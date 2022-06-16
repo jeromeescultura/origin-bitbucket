@@ -17,6 +17,7 @@ const FormInputDropdown = ({
   setValue,
   states,
   validation,
+  defaultDropdown
 }) => {
   const generateSingleOptions = () => {
     if (options) {
@@ -54,7 +55,7 @@ const FormInputDropdown = ({
             fullWidth
           >
             <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value} defaultValue="">
+            <Select onChange={onChange} value={value} defaultValue={defaultDropdown ?? ''}>
               {generateSingleOptions()}
             </Select>
             {error && (

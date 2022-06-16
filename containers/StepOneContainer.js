@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
 import SliderQuestion from "../components/SliderQuestion";
-import { Button, ButtonGroup, Grid } from "@mui/material";
+import { Button, ButtonGroup, Grid, TextField } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { Controller } from "react-hook-form";
@@ -154,14 +154,17 @@ const StepOneContainer = ({
         {btn2 && (
           <QuestionContainer style={"px-0"} text={glsQsts?.text}>
             <div className="mt-12 h-[192px]">
-              <textarea
-                name=""
-                id=""
+              <TextField
+                error={goals ? false : true}
+                helperText={goals ? "" : "More info required"}
+                multiline
+                rows={6}
+                fullWidth
                 placeholder="Type here"
-                className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
                 value={goals}
                 onChange={(e) => setGoals(e.target.value)}
-              ></textarea>
+                color="secondary"
+              />
             </div>
           </QuestionContainer>
         )}
@@ -243,6 +246,7 @@ const StepOneContainer = ({
             options={radioQsts?.options}
             setValue={setValue}
             radioValue={radioValue && radioValue}
+            radioDefault={"easy"}
           />
         </div>
       </QuestionContainer>

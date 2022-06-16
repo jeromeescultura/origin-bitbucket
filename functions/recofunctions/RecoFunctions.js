@@ -227,21 +227,24 @@ export const handleSubCategory = (recommend, gz, gp, sp, setSC) => {
     case "carbonOffset":
       setSC(
         Object.keys(gz).filter(
-          (item) => gz[item] >= 0 && item !== recommend && item
+          (item) =>
+            gz[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
         )
       );
       break;
     case "greenPower":
       setSC(
         Object.keys(gp).filter(
-          (item) => gp[item] >= 0 && item !== recommend && item
+          (item) =>
+            gp[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
         )
       );
       break;
     case "solar":
       setSC(
         Object.keys(sp).filter(
-          (item) => sp[item] >= 0 && item !== recommend && item
+          (item) =>
+            sp[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
         )
       );
       break;

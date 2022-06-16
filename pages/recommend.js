@@ -160,12 +160,16 @@ const Recommend = ({ industries }) => {
       } else if (recommend === "solar") {
         setContent(productPages[pageNo + 1]);
       }
+    } else {
+      if (recommend === "carbonOffset") {
+        setContent(productPages[0]);
+      } else if (recommend === "greenPower") {
+        setContent(productPages[1]);
+      } else if (recommend === "solar") {
+        setContent(productPages[2]);
+      }
     }
   }, [pageNo, products, industry, pages, pageNo]);
-
-  useEffect(() => {
-    console.log("PAGE", showContent);
-  }, [showContent]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -364,7 +368,8 @@ const Recommend = ({ industries }) => {
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||
-                subCategory?.includes("greenPower")) && (
+                (subCategory?.includes("greenPower") &&
+                  showContent === "solar")) && (
                 <ToggleCard recommend={showContent} adds={subCategory} />
               )}
             </div>
