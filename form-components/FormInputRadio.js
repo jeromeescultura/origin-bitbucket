@@ -28,6 +28,7 @@ const FormInputRadio = ({
   options,
   radioValue,
   setValue,
+  radioDefault,
 }) => {
   useEffect(() => {
     if (radioValue) setValue(name, radioValue);
@@ -44,7 +45,11 @@ const FormInputRadio = ({
               {label}
             </FormLabel>
           )}
-          <RadioGroup value={value} onChange={onChange} defaultValue="">
+          <RadioGroup
+            value={value}
+            onChange={onChange}
+            defaultValue={radioDefault ?? ""}
+          >
             {generateRadioOptions(options)}
           </RadioGroup>
           {error && (

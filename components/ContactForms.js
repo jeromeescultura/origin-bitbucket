@@ -67,17 +67,24 @@ function ContactForms({ text }) {
     JSON.parse(
       typeof window !== "undefined" &&
         window.localStorage.getItem("CONTACT_FORMS_DETAILS")
-    ) || [];
+    ) || null;
 
-  const [contactFormsDetails, setContactFormsDetails] = useState(storedData);
+  const [contactFormsDetails, setContactFormsDetails] = useState({
+    dropdown: "",
+  });
 
-  const methods = useForm({ defaultValues: contactFormsDetails });
-  const { handleSubmit, control, watch, setValue } = methods;
   // const onSubmit = (data) => console.log(data);
 
   // Retain Values
 
-  const [dropdown, setDropdown] = useState("");
+  const [dropdownValue, setDropdown] = useState("");
+
+  useEffect(() => {
+    if (storedData !== null) {
+      setContactFormsDetails(storedData);
+      setDropdown(storedData?.dropdown);
+    }
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -86,11 +93,8 @@ function ContactForms({ text }) {
     );
   }, [contactFormsDetails]);
 
-  useEffect(() => {
-    if (storedData !== null) {
-      setDropdown(contactFormsDetails.dropdown);
-    }
-  }, []);
+  const methods = useForm({ defaultValues: contactFormsDetails });
+  const { handleSubmit, control, watch, setValue } = methods;
 
   const handleChange = (data) => {
     setContactFormsDetails({
@@ -134,7 +138,7 @@ function ContactForms({ text }) {
         label="State"
         states={states}
         setValue={setValue}
-        dropdownValue={dropdown}
+        dropdownValue={dropdownValue}
         onChange={watch(handleChange)}
         validation={{ required: "Required" }}
       />
