@@ -8,20 +8,15 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
 import MoreDetailsComponent from "../MoreDetailsComponent";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const FinanceCalc = ({
   recommend,
   impactLevel,
   handleButtonSelect,
   usage,
-  extraCost,
   industryCost,
   increasePercentage,
   withoutSolar,
@@ -33,7 +28,7 @@ const FinanceCalc = ({
   btn3,
 }) => {
   const methods = useForm({ defaultValues: impactLevel });
-  const { control, watch, setValue } = methods;
+  const { control, watch } = methods;
 
   const handleUsage = (data) => setButtonSelect(data.usage);
 
@@ -48,11 +43,7 @@ const FinanceCalc = ({
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
           Financial impact calculator
         </p>
-        <p>withoutSolar: {withoutSolar}</p>
-        <p>extraCost: {extraCost}</p>
-        <p>solar savings: {solarReduction}%</p>
-        <p>increasePercentage: {increasePercentage}%</p>
-        <p>totalCost: {totalCost}</p>
+
         <Typography sx={{ textAlign: "center", mt: "16px", fontSize: "14px" }}>
           Toggle to compare how your monthly bills might change depending on
           different usage levels
@@ -165,9 +156,6 @@ const FinanceCalc = ({
                       reduction
                     </p>
                   </Box>
-                  {/* <div className="bg-lime-400 w-6 h-[100px]"></div>
-                  <div className="bg-green-800 w-6 h-[100px]"></div>
-                  <div className="pb-10">{increasePercentage}% reduction</div> */}
                 </div>
               ) : (
                 <Box

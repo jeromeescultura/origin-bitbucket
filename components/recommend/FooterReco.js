@@ -11,7 +11,7 @@ function FooterReco({ handleButton, enableBtn }) {
     router.push(url);
   };
   return (
-    <div className="bg-white w-full py-4 shadow-t-md z-50 fixed bottom-0 lg:hidden">
+    <div className="bg-white w-full py-4 shadow-t-md z-50 fixed bottom-0 ">
       <ContentContainer>
         <div className="flex justify-around py-3 items-center">
           <Button

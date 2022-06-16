@@ -49,7 +49,7 @@ const ImpactCard = ({ recommend, impact }) => {
 
         <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
           {recommend === "carbonOffset" &&
-            `If your business offset its electricity use for a year, it would be equivalent to ${impact}[planting and growing 320 tree seedlings for 10 years].`}
+            `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
           {recommend === "greenPower" &&
             `If your business matched their electricity use to 100% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
