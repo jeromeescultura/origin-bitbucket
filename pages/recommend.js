@@ -340,6 +340,16 @@ const Recommend = ({ industries }) => {
   const totalCost =
     Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
 
+  const withoutSolar =
+    Math.round(((dailyUsage * offSet * 365) / 12 + Number.EPSILON) * 100) / 100;
+
+  const solarSavings =
+    Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100;
+  const solarReduction =
+    Math.round(
+      (((withoutSolar - withSolar) / withoutSolar) * 100 + Number.EPSILON) * 100
+    ) / 100;
+
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
   }, [showContent, dailyUsage, level]);
