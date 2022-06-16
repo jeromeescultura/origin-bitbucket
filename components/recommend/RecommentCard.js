@@ -1,6 +1,7 @@
 import { Button, FormControl, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
@@ -77,7 +78,7 @@ const RecommentCard = ({
             <div className="min-w-[160px]">
               <p className="font-medium">Estimated Savings</p>
               <h2 className="text-secondaryText my-4 lg:my-3">
-                ${solarSavings}
+                {formatPrice(solarSavings)}
               </h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
@@ -87,7 +88,7 @@ const RecommentCard = ({
           ) : (
             <div className="min-w-[160px]">
               <p className="font-medium">Estimated cost</p>
-              <h2 className="text-secondaryText">${extraCost}</h2>
+              <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
                 Origin Energy plan*

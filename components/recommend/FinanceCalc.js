@@ -11,6 +11,7 @@ import {
 import { Controller, set, useForm } from "react-hook-form";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 import LinearProgress from "@mui/material/LinearProgress";
+import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
 
 const FinanceCalc = ({
   recommend,
@@ -140,7 +141,7 @@ const FinanceCalc = ({
                       value={100}
                     />
                     <p className="rotate-90 font-medium -top-8 left-12 absolute">
-                      ${withoutSolar}
+                      {formatPrice(withoutSolar)}
                     </p>
                     <LinearProgress
                       color="secondary"
@@ -149,7 +150,7 @@ const FinanceCalc = ({
                       value={100 - solarReduction}
                     />
                     <p className="rotate-90 font-medium absolute bottom-2 left-6">
-                      ${withSolar}
+                      {formatPrice(withSolar)}
                     </p>
                     <p className="rotate-90 mt-28">
                       {solarReduction}% <br />
@@ -163,8 +164,8 @@ const FinanceCalc = ({
                   className="-rotate-90  h-full absolute "
                 >
                   <div className="rotate-90 flex gap-4 absolute top-6 left-4 z-20">
-                    <p className="font-medium">${industryCost}</p>
-                    <p className="font-medium">${totalCost}</p>
+                    <p className="font-medium">{formatPrice(industryCost)}</p>
+                    <p className="font-medium">{formatPrice(totalCost)}</p>
                   </div>
                   <LinearProgress
                     className="h-7"

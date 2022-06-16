@@ -386,3 +386,11 @@ export const handleImpactData = (
     setImpact([metricTons.toString(), cars.toString()]);
   }
 };
+
+export const formatPrice = (number) => {
+  return Intl.NumberFormat("en-AU", {
+    style: "currency",
+    currency: "AUD",
+    minimumFractionDigits: 0,
+  }).format(number);
+};
