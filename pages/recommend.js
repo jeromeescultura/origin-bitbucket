@@ -355,7 +355,7 @@ const Recommend = ({ industries }) => {
   }, [showContent, dailyUsage, level]);
 
   return (
-    <div className="bg-primaryBG h-full pb-36 lg:pb-0">
+    <div className="bg-primaryBG h-full pb-52 sm:pb-32 ">
       <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
         <section className="pt-6 lg:pt-8">
           <div className="w-full xl:w-[1108px] mx-auto">
@@ -534,7 +534,13 @@ const Recommend = ({ industries }) => {
         <Faqs />
       </div>
       {showFooter && (
-        <FooterReco handleButton={handleButton} enableBtn={enableBtn} />
+        <FooterReco
+          handleButton={handleButton}
+          recommend={showContent}
+          enableBtn={enableBtn}
+          pageNo={pageNo}
+          pages={pages}
+        />
       )}
     </div>
   );

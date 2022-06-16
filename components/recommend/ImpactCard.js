@@ -27,7 +27,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
         Your impact
       </p>
       <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row">
-        <div className="text-center">
+        <div className="text-center min-w-[150px]">
           <div className="w-24 h-24 mx-auto">
             <Image
               src={`/icons/recommend/${icon}`}
