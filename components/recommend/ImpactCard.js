@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const ImpactCard = ({ recommend, impact }) => {
+const ImpactCard = ({ recommend, impact, level }) => {
   const [icon, setIcon] = useState("trees.svg");
 
   useEffect(() => {
@@ -38,7 +38,12 @@ const ImpactCard = ({ recommend, impact }) => {
             />
           </div>
           <div className="mt-2">
-            <h2 className="text-greenText font-bold">{recommend}</h2>
+            <h2 className="text-greenText font-bold">
+              {typeof impact === "object" && recommend === "solar" && impact[1]}
+              {recommend === "greenPower" &&
+                `${impact > 1 ? `${impact} hrs` : `${impact} hr`} `}
+              {recommend === "carbonOffset" && impact}
+            </h2>
             <p className="text-sm text-greenText">
               {recommend === "carbonOffset" && "tree seedlings"}{" "}
               {recommend === "solar" && "fuel powered cars off the road"}
@@ -51,9 +56,13 @@ const ImpactCard = ({ recommend, impact }) => {
           {recommend === "carbonOffset" &&
             `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
           {recommend === "greenPower" &&
-            `If your business matched their electricity use to 100% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
+            `If your business matched their electricity use to ${
+              level * 100
+            }% GreenPower, it would only take ${
+              impact > 1 ? `${impact} hours` : `${impact} hour`
+            }  to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
-            "If all businesses like yours did this, we could prevent [XX] tonnes of carbon from ever being emitted per year, equivalent to immidiately taking [X,XXX] cars off the road."}
+            `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
         </p>
       </div>
       <MoreDetailsComponent

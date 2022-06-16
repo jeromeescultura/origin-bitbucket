@@ -10,27 +10,61 @@ import {
   MenuItem,
   Select,
   Switch,
-  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const ToggleCard = ({ recommend, adds }) => {
+const ToggleCard = ({
+  recommend,
+  adds,
+  level,
+  handleLevel,
+  pledges,
+  setPledges,
+  setLevel,
+}) => {
   const [interview, setInterview] = useState(false);
   const [greenPower, setGreenPower] = useState(false);
-  const [level, setLevel] = useState("100%");
+
+  useEffect(() => {
+    setInterview(false);
+    setGreenPower(false);
+    setPledges([]);
+    if (setLevel) {
+      setLevel(1);
+    }
+  }, [recommend]);
 
   const expandInterview = () => {
+    const isPresent = pledges.indexOf("interview");
     setInterview(!interview);
+
+    if (isPresent !== -1) {
+      const remaining = pledges.filter((item) => item !== "interview");
+      setPledges(remaining);
+    } else {
+      if (recommend === "solar") {
+        setPledges((prevItems) => [...prevItems, "interview"]);
+      } else {
+        setPledges(["interview"]);
+      }
+    }
   };
 
   const expandGreenPower = () => {
+    const isPresent = pledges.indexOf("greenPower");
     setGreenPower(!greenPower);
+
+    if (recommend === "solar") {
+      if (isPresent !== -1) {
+        const remaining = pledges.filter((item) => item !== "greenPower");
+        setPledges(remaining);
+      } else {
+        setPledges((prevItems) => [...prevItems, "greenPower"]);
+      }
+    }
   };
 
-  const handleLevel = (event) => {
-    setLevel(event.target.value);
-  };
   return (
     <Card
       variant="outlined"
@@ -55,7 +89,7 @@ const ToggleCard = ({ recommend, adds }) => {
                   <Switch
                     color="secondary"
                     onChange={expandInterview}
-                    disabled={greenPower && true}
+                    checked={interview}
                   />
                   <div>Take part in the net zero research interview</div>
                   <Collapse in={interview}>
@@ -102,7 +136,7 @@ const ToggleCard = ({ recommend, adds }) => {
                   <Switch
                     color="secondary"
                     onChange={expandGreenPower}
-                    disabled={interview && true}
+                    checked={greenPower}
                   />
                   <div>GreenPower</div>
 
@@ -121,9 +155,9 @@ const ToggleCard = ({ recommend, adds }) => {
                             width: "100px",
                           }}
                         >
-                          <MenuItem value="100%">100%</MenuItem>
-                          <MenuItem value="50%">50%</MenuItem>
-                          <MenuItem value="25%">25%</MenuItem>
+                          <MenuItem value={1}>100%</MenuItem>
+                          <MenuItem value={0.5}>50%</MenuItem>
+                          <MenuItem value={0.25}>25%</MenuItem>
                         </Select>
                       </FormControl>
                     </div>

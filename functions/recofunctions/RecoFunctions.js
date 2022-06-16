@@ -350,3 +350,39 @@ export const handleContent = (
     }
   }
 };
+
+export const handleImpactData = (
+  showContent,
+  dailyUsage,
+  level,
+  setImpact,
+  dayjs
+) => {
+  let impactCalc;
+  let metricTons;
+  let cars;
+
+  if (showContent === "carbonOffset") {
+    impactCalc = Math.round(
+      ((dailyUsage * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) / 100
+    );
+    setImpact(impactCalc.toString());
+  } else if (showContent === "greenPower") {
+    impactCalc = dayjs.duration(
+      ((dailyUsage * 365) / 33.333 / 60 / 24) * level,
+      "d"
+    );
+
+    setImpact(impactCalc.$d.hours);
+  } else if (showContent === "solar") {
+    metricTons =
+      Math.round(
+        (0.0004 * (dailyUsage * 365) - 0.0593 + Number.EPSILON) * 100
+      ) / 100;
+    cars =
+      Math.round(
+        (0.00009 * (dailyUsage * 365) - 0.0073 + Number.EPSILON) * 100
+      ) / 100;
+    setImpact([metricTons.toString(), cars.toString()]);
+  }
+};
