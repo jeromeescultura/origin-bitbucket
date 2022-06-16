@@ -299,3 +299,54 @@ export const handleProducts = (rec, or, setProducts) => {
     );
   }
 };
+
+export const handlePageNo = (recommend, pages, products, setPageNo) => {
+  if (recommend === "carbonOffset") {
+    setPageNo(pages - pages);
+  } else if (recommend === "greenPower") {
+    if (pages === 2) {
+      if (products?.some((item) => item.title === "carbonOffset")) {
+        setPageNo(1);
+      } else if (products?.some((item) => item.title === "solar")) {
+        setPageNo(0);
+      }
+    } else if (pages === 3) {
+      setPageNo(1);
+    }
+  } else if (recommend === "solar") {
+    setPageNo(pages - 1);
+  }
+};
+
+export const handleContent = (
+  recommend,
+  pageNo,
+  products,
+  pages,
+  productPages,
+  setContent
+) => {
+  if (pages === 3) {
+    setContent(productPages[pageNo]);
+  } else if (pages === 2) {
+    if (recommend === "carbonOffset") {
+      setContent(productPages[pageNo]);
+    } else if (recommend === "greenPower") {
+      if (products?.some((item) => item.title === "carbonOffset")) {
+        setContent(productPages[pageNo]);
+      } else if (products?.some((item) => item.title === "solar")) {
+        setContent(productPages[pageNo + 1]);
+      }
+    } else if (recommend === "solar") {
+      setContent(productPages[pageNo + 1]);
+    }
+  } else {
+    if (recommend === "carbonOffset") {
+      setContent(productPages[0]);
+    } else if (recommend === "greenPower") {
+      setContent(productPages[1]);
+    } else if (recommend === "solar") {
+      setContent(productPages[2]);
+    }
+  }
+};
