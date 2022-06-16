@@ -13,7 +13,9 @@ import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
 import { Button, ButtonGroup } from "@mui/material";
 import {
+  handleContent,
   handleOtherRecommendations,
+  handlePageNo,
   handleProducts,
   handleSubCategory,
   recommendProduct,
@@ -67,6 +69,8 @@ const Recommend = ({ industries }) => {
     greenPower: 0,
     decarbEOI: 0,
   });
+
+  const [impact, setImpact] = useState(0);
 
   const goZeroScore = Object.values(goZero).reduce(sumArray);
   const greenPowerScore = Object.values(greenPower).reduce(sumArray);
@@ -148,32 +152,17 @@ const Recommend = ({ industries }) => {
   //   console.log("PAGE NO", pageNo);
   //   console.log("INDUSTRY", industry);
   // }, [products, industry, pages, pageNo]);
+  useEffect(() => {
+    setPages(products.length);
+  }, [products]);
 
   useEffect(() => {
-    if (pages === 3) {
-      setContent(productPages[pageNo]);
-    } else if (pages === 2) {
-      if (recommend === "carbonOffset") {
-        setContent(productPages[pageNo]);
-      } else if (recommend === "greenPower") {
-        if (products?.some((item) => item.title === "carbonOffset")) {
-          setContent(productPages[pageNo]);
-        } else if (products?.some((item) => item.title === "solar")) {
-          setContent(productPages[pageNo + 1]);
-        }
-      } else if (recommend === "solar") {
-        setContent(productPages[pageNo + 1]);
-      }
-    } else {
-      if (recommend === "carbonOffset") {
-        setContent(productPages[0]);
-      } else if (recommend === "greenPower") {
-        setContent(productPages[1]);
-      } else if (recommend === "solar") {
-        setContent(productPages[2]);
-      }
-    }
-  }, [pageNo, products, industry, pages, pageNo]);
+    handlePageNo(recommend, pages, products, setPageNo);
+  }, [recommend, pages, products]);
+
+  useEffect(() => {
+    handleContent(recommend, pageNo, products, pages, productPages, setContent);
+  }, [recommend, pageNo, products, pages]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -186,28 +175,6 @@ const Recommend = ({ industries }) => {
     });
     observer.observe(myref.current);
   }, []);
-
-  useEffect(() => {
-    setPages(products.length);
-  }, [products]);
-
-  useEffect(() => {
-    if (recommend === "carbonOffset") {
-      setPageNo(pages - pages);
-    } else if (recommend === "greenPower") {
-      if (pages === 2) {
-        if (products?.some((item) => item.title === "carbonOffset")) {
-          setPageNo(1);
-        } else if (products?.some((item) => item.title === "solar")) {
-          setPageNo(0);
-        }
-      } else if (pages === 3) {
-        setPageNo(1);
-      }
-    } else if (recommend === "solar") {
-      setPageNo(pages - 1);
-    }
-  }, [recommend, pages, products]);
 
   const router = useRouter();
   const handleClick = (e) => {
