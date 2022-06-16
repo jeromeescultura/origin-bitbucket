@@ -8,9 +8,13 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Controller, set, useForm } from "react-hook-form";
 import MoreDetailsComponent from "../MoreDetailsComponent";
-import LinearProgress from "@mui/material/LinearProgress";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
 
 const FinanceCalc = ({
   recommend,
@@ -18,7 +22,10 @@ const FinanceCalc = ({
   handleButtonSelect,
   usage,
   extraCost,
+  industryCost,
   increasePercentage,
+  withoutSolar,
+  withSolar,
   solarReduction,
   totalCost,
   btn1,
@@ -26,8 +33,12 @@ const FinanceCalc = ({
   btn3,
 }) => {
   const methods = useForm({ defaultValues: impactLevel });
-  const { control } = methods;
+  const { control, watch, setValue } = methods;
+
+  const handleUsage = (data) => setButtonSelect(data.usage);
+
   const activeStyles = "border-accentColor bg-highlight font-medium";
+
   return (
     <Card
       variant="outlined"
@@ -37,6 +48,7 @@ const FinanceCalc = ({
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
           Financial impact calculator
         </p>
+        <p>withoutSolar: {withoutSolar}</p>
         <p>extraCost: {extraCost}</p>
         <p>solar savings: {solarReduction}%</p>
         <p>increasePercentage: {increasePercentage}%</p>
@@ -55,6 +67,7 @@ const FinanceCalc = ({
           fullWidth
         >
           <Controller
+            onChange={watch(handleUsage)}
             control={control}
             name={"usage"}
             render={() => {
@@ -129,18 +142,25 @@ const FinanceCalc = ({
                     sx={{ width: "100px" }}
                     className="-rotate-90 h-full absolute"
                   >
+                    {" "}
                     <LinearProgress
                       className="h-7"
                       variant="determinate"
                       value={100}
                     />
+                    <p className="rotate-90 font-medium -top-8 left-12 absolute">
+                      ${withoutSolar}
+                    </p>
                     <LinearProgress
                       color="secondary"
                       className="h-7 mt-2"
                       variant="determinate"
                       value={100 - solarReduction}
                     />
-                    <p className="mt-14 rotate-90">
+                    <p className="rotate-90 font-medium absolute bottom-2 left-6">
+                      ${withSolar}
+                    </p>
+                    <p className="rotate-90 mt-28">
                       {solarReduction}% <br />
                       reduction
                     </p>
@@ -152,30 +172,29 @@ const FinanceCalc = ({
               ) : (
                 <Box
                   sx={{ width: "100px" }}
-                  className="-rotate-90  h-full absolute"
+                  className="-rotate-90  h-full absolute "
                 >
+                  <div className="rotate-90 flex gap-4 absolute top-6 left-4 z-20">
+                    <p className="font-medium">${industryCost}</p>
+                    <p className="font-medium">${totalCost}</p>
+                  </div>
                   <LinearProgress
                     className="h-7"
                     variant="determinate"
                     value={50}
                   />
+
                   <LinearProgress
                     color="secondary"
                     className="h-7 mt-2"
                     variant="determinate"
                     value={50 + increasePercentage}
                   />
-                  <p className="mt-14 rotate-90 ">
+                  <p className="mt-10 mr-8 rotate-90 ">
                     {increasePercentage}% <br />
                     increase
                   </p>
                 </Box>
-                // <div className="max-w-[157px] min-w-[151px] flex justify-around text-xs font-light items-end">
-                //   {/* <div className="bg-lime-400 w-6 h-[50px]"></div> */}
-                //   {/* <div className={`bg-green-800 w-6 h-[${high}]`}></div> */}
-
-                //   <div className="pb-10">{increasePercentage}% increase</div>
-                // </div>
               )}
             </div>
           </Grid>

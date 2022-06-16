@@ -4,7 +4,13 @@ import { useState } from "react";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const RecommentCard = ({ recommend, extraCost, level, handleLevel }) => {
+const RecommentCard = ({
+  recommend,
+  solarSavings,
+  extraCost,
+  level,
+  handleLevel,
+}) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
@@ -67,30 +73,20 @@ const RecommentCard = ({ recommend, extraCost, level, handleLevel }) => {
       </MoreDetailsComponent>
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
         <div className="space-y-2  pr-5 lg:border-r text-center lg:text-left ">
-          {recommend === "carbonOffset" && (
-            <div>
-              <p className="font-medium">Estimated cost</p>
-              <h2 className="text-secondaryText">${extraCost}</h2>
-              <p className="text-xs text-subTextColor">
-                extra p/month on any <br />
-                Origin Energy plan*
-              </p>
-            </div>
-          )}
-
-          {recommend === "greenPower" && (
-            <div>
-              <p className="font-medium">Estimated cost</p>
-              <h2 className="text-secondaryText">${extraCost}</h2>
-              <p className="text-xs text-subTextColor">
-                extra p/month on any <br />
-                Origin Energy plan*
-              </p>
-            </div>
-          )}
-          {recommend === "solar" && (
-            <div>
+          {recommend === "solar" ? (
+            <div className="min-w-[160px]">
               <p className="font-medium">Estimated Savings</p>
+              <h2 className="text-secondaryText my-4 lg:my-3">
+                ${solarSavings}
+              </h2>
+              <p className="text-xs text-subTextColor">
+                extra p/month on any <br />
+                Origin Energy plan*
+              </p>
+            </div>
+          ) : (
+            <div className="min-w-[160px]">
+              <p className="font-medium">Estimated cost</p>
               <h2 className="text-secondaryText">${extraCost}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
