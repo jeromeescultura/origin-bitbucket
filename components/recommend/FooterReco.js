@@ -11,7 +11,7 @@ function FooterReco({ handleButton, enableBtn }) {
     router.push(url);
   };
   return (
-    <div className="bg-white w-full py-4 shadow-t-md z-50 fixed bottom-0 lg:hidden">
+    <div className="bg-white w-full py-4 shadow-t-md z-50 fixed bottom-0 ">
       <ContentContainer>
         <div className="flex justify-around py-3 items-center">
           <Button
@@ -72,7 +72,7 @@ function FooterReco({ handleButton, enableBtn }) {
           variant="outlined"
           size="large"
           color="error"
-          onClick={(e) => handleClick(e, "/signup")}
+          onClick={(e) => handleClick(e, "/contact/signup")}
           style={{
             borderRadius: 200,
             boxShadow: "none",

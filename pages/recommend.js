@@ -16,7 +16,6 @@ import {
   handleContent,
   handleImpactData,
   handleOtherRecommendations,
-  handlePageNo,
   handleProducts,
   handleSubCategory,
   recommendProduct,
@@ -154,17 +153,32 @@ const Recommend = ({ industries }) => {
   //   console.log("PAGE NO", pageNo);
   //   console.log("INDUSTRY", industry);
   // }, [products, industry, pages, pageNo]);
-  useEffect(() => {
-    setPages(products.length);
-  }, [products]);
 
   useEffect(() => {
-    handlePageNo(recommend, pages, products, setPageNo);
-  }, [recommend, pages, products]);
-
-  useEffect(() => {
-    handleContent(recommend, pageNo, products, pages, productPages, setContent);
-  }, [recommend, pageNo, products, pages]);
+    if (pages === 3) {
+      setContent(productPages[pageNo]);
+    } else if (pages === 2) {
+      if (recommend === "carbonOffset") {
+        setContent(productPages[pageNo]);
+      } else if (recommend === "greenPower") {
+        if (products?.some((item) => item.title === "carbonOffset")) {
+          setContent(productPages[pageNo]);
+        } else if (products?.some((item) => item.title === "solar")) {
+          setContent(productPages[pageNo + 1]);
+        }
+      } else if (recommend === "solar") {
+        setContent(productPages[pageNo + 1]);
+      }
+    } else {
+      if (recommend === "carbonOffset") {
+        setContent(productPages[0]);
+      } else if (recommend === "greenPower") {
+        setContent(productPages[1]);
+      } else if (recommend === "solar") {
+        setContent(productPages[2]);
+      }
+    }
+  }, [pageNo, products, industry, pages, pageNo]);
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
@@ -177,6 +191,28 @@ const Recommend = ({ industries }) => {
     });
     observer.observe(myref.current);
   }, []);
+
+  useEffect(() => {
+    setPages(products.length);
+  }, [products]);
+
+  useEffect(() => {
+    if (recommend === "carbonOffset") {
+      setPageNo(pages - pages);
+    } else if (recommend === "greenPower") {
+      if (pages === 2) {
+        if (products?.some((item) => item.title === "carbonOffset")) {
+          setPageNo(1);
+        } else if (products?.some((item) => item.title === "solar")) {
+          setPageNo(0);
+        }
+      } else if (pages === 3) {
+        setPageNo(1);
+      }
+    } else if (recommend === "solar") {
+      setPageNo(pages - 1);
+    }
+  }, [recommend, pages, products]);
 
   const router = useRouter();
   const handleClick = (e) => {
@@ -207,17 +243,18 @@ const Recommend = ({ industries }) => {
   };
 
   useEffect(() => {
-    if (recommend === "carbonOffset") {
+    console.log(showContent, "showContent");
+    if (showContent === "carbonOffset") {
       setOffSet(0.015);
-    } else if (recommend === "greenPower") {
+    } else if (showContent === "greenPower") {
       setOffSet(0.028);
-    } else if (recommend === "solar") {
+    } else if (showContent === "solar") {
       setOffSet(0.25);
     }
     setDailyUsage(industry?.dailyUsage?.low);
     setIndustryCost(industry?.industryCost?.low);
     setWithSolar(industry?.withSolarCost?.low);
-  }, [industry]);
+  }, [industry, showContent]);
 
   // Toggle card
   const [pledges, setPledges] = useState([]);
@@ -290,18 +327,16 @@ const Recommend = ({ industries }) => {
 
   // Calculations
   // Round of formula
-  // Math.round((num + Number.EPSILON) * 100) / 100
+  // Math.round((num + Number.EPSILON) * 100) / 100;
 
   const extraCost =
     Math.round(
       (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
     ) / 100;
+
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
-  const solarReduction =
-    Math.round(
-      (((extraCost - withSolar) / extraCost) * 100 + Number.EPSILON) * 100
-    ) / 100;
+
   const totalCost =
     Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
 
@@ -339,83 +374,82 @@ const Recommend = ({ industries }) => {
             </p>
           </div>
 
-          <div
-            className={`text-center  ${
-              pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
-            }`}
-          >
-            {pages !== 1 && (
-              <>
-                {" "}
-                <p className="text-subTextColor lg:hidden">
-                  Keen to do more? Toggle to see options for different levels of
-                  investment.
-                </p>
-                <ButtonGroup
-                  fullWidth
-                  className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
-                  aria-label="outlined button group"
+          {pages !== 1 && (
+            <div
+              className={`text-center  ${
+                pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
+              }`}
+            >
+              {" "}
+              <p className="text-subTextColor lg:hidden">
+                Keen to do more? Toggle to see options for different levels of
+                investment.
+              </p>
+              <ButtonGroup
+                fullWidth
+                className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
+                aria-label="outlined button group"
+              >
+                <Button
+                  disabled={pageNo === 0 && true}
+                  size="large"
+                  onClick={() => handleButton("back")}
+                  variant="contained"
+                  className={`${
+                    pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
+                  } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
+                  startIcon={
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      className={`${
+                        pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
+                      } rotate-90`}
+                    >
+                      <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                    </svg>
+                  }
                 >
-                  <Button
-                    disabled={pageNo === 0 && true}
-                    size="large"
-                    onClick={() => handleButton("back")}
-                    variant="contained"
-                    className={`${
-                      pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-                    } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
-                    startIcon={
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        className={`${
-                          pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
-                        } rotate-90`}
-                      >
-                        <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                      </svg>
-                    }
-                  >
-                    Do less
-                  </Button>
-                  <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
-                    <p>
-                      Keen to do more?
-                      <br /> Toggle to see options for different levels of
-                      investment.
-                    </p>
-                  </div>
+                  Do less
+                </Button>
+                <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
+                  <p>
+                    Keen to do more?
+                    <br /> Toggle to see options for different levels of
+                    investment.
+                  </p>
+                </div>
 
-                  <Button
-                    disabled={pageNo === pages - 1 && true}
-                    size="large"
-                    onClick={() => handleButton("next")}
-                    variant="contained"
-                    className={`${
-                      pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
-                    } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
-                    endIcon={
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        className={`${
-                          pageNo === pages - 1
-                            ? "fill-[#ABABAB]"
-                            : "fill-primaryText"
-                        } -rotate-90`}
-                      >
-                        <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                      </svg>
-                    }
-                  >
-                    Do more
-                  </Button>
-                </ButtonGroup>
-              </>
-            )}
-          </div>
+                <Button
+                  disabled={pageNo === pages - 1 && true}
+                  size="large"
+                  onClick={() => handleButton("next")}
+                  variant="contained"
+                  className={`${
+                    pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                  } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
+                  endIcon={
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      className={`${
+                        pageNo === pages - 1
+                          ? "fill-[#ABABAB]"
+                          : "fill-primaryText"
+                      } -rotate-90`}
+                    >
+                      <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                    </svg>
+                  }
+                >
+                  Do more
+                </Button>
+              </ButtonGroup>
+            </div>
+          )}
+
           <div className="text-center mb-8">
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">
@@ -449,8 +483,10 @@ const Recommend = ({ industries }) => {
                 impactLevel={impactLevel}
                 handleButtonSelect={handleButtonSelect}
                 usage={usage}
-                extraCost={extraCost}
+                industryCost={industryCost}
                 increasePercentage={increasePercentage}
+                withoutSolar={withoutSolar}
+                withSolar={withSolar}
                 solarReduction={solarReduction}
                 totalCost={totalCost}
                 btn1={btn1}
@@ -461,6 +497,7 @@ const Recommend = ({ industries }) => {
             <div className="break-inside-avoid">
               <RecommentCard
                 recommend={showContent}
+                solarSavings={solarSavings}
                 extraCost={extraCost}
                 level={level}
                 handleLevel={handleLevel}
