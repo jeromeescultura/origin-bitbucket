@@ -21,9 +21,19 @@ const ToggleCard = ({
   handleLevel,
   pledges,
   setPledges,
+  setLevel,
 }) => {
   const [interview, setInterview] = useState(false);
   const [greenPower, setGreenPower] = useState(false);
+
+  useEffect(() => {
+    setInterview(false);
+    setGreenPower(false);
+    setPledges([]);
+    if (setLevel) {
+      setLevel(1);
+    }
+  }, [recommend]);
 
   const expandInterview = () => {
     const isPresent = pledges.indexOf("interview");
@@ -33,7 +43,11 @@ const ToggleCard = ({
       const remaining = pledges.filter((item) => item !== "interview");
       setPledges(remaining);
     } else {
-      setPledges((prevItems) => [...prevItems, "interview"]);
+      if (recommend === "solar") {
+        setPledges((prevItems) => [...prevItems, "interview"]);
+      } else {
+        setPledges(["interview"]);
+      }
     }
   };
 
@@ -41,11 +55,13 @@ const ToggleCard = ({
     const isPresent = pledges.indexOf("greenPower");
     setGreenPower(!greenPower);
 
-    if (isPresent !== -1) {
-      const remaining = pledges.filter((item) => item !== "greenPower");
-      setPledges(remaining);
-    } else {
-      setPledges((prevItems) => [...prevItems, "greenPower"]);
+    if (recommend === "solar") {
+      if (isPresent !== -1) {
+        const remaining = pledges.filter((item) => item !== "greenPower");
+        setPledges(remaining);
+      } else {
+        setPledges((prevItems) => [...prevItems, "greenPower"]);
+      }
     }
   };
 
@@ -70,7 +86,11 @@ const ToggleCard = ({
             >
               <CardContent sx={{ transition: "all 0.3s ease" }}>
                 <div>
-                  <Switch color="secondary" onChange={expandInterview} />
+                  <Switch
+                    color="secondary"
+                    onChange={expandInterview}
+                    checked={interview}
+                  />
                   <div>Take part in the net zero research interview</div>
                   <Collapse in={interview}>
                     <List dense={true}>
@@ -113,7 +133,11 @@ const ToggleCard = ({
             >
               <CardContent>
                 <div>
-                  <Switch color="secondary" onChange={expandGreenPower} />
+                  <Switch
+                    color="secondary"
+                    onChange={expandGreenPower}
+                    checked={greenPower}
+                  />
                   <div>GreenPower</div>
 
                   <Collapse in={greenPower}>

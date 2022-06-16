@@ -277,8 +277,12 @@ const Recommend = ({ industries }) => {
   });
 
   useEffect(() => {
-    setStoredData({ product: showContent, greenPowerLevel: level * 100 });
-  }, [showContent, level]);
+    setStoredData({
+      product: showContent,
+      greenPowerLevel: level * 100,
+      biggerDiff: pledges,
+    });
+  }, [showContent, level, pledges]);
 
   useEffect(() => {
     window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
@@ -304,10 +308,6 @@ const Recommend = ({ industries }) => {
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
   }, [showContent, dailyUsage, level]);
-
-  useEffect(() => {
-    console.log("PLEDGES", pledges);
-  }, [pledges]);
 
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
@@ -477,6 +477,7 @@ const Recommend = ({ industries }) => {
                   handleLevel={handleLevel}
                   pledges={pledges}
                   setPledges={setPledges}
+                  setLevel={setLevel}
                 />
               )}
             </div>
