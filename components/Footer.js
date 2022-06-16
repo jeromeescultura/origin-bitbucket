@@ -43,7 +43,7 @@ function Footer() {
             variant="outlined"
             size="large"
             color="error"
-            onClick={(e) => handleClick(e, "/interested")}
+            onClick={(e) => handleClick(e, "/contact")}
             style={{
               borderRadius: 200,
               boxShadow: "none",

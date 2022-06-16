@@ -72,7 +72,7 @@ function FooterReco({ handleButton, enableBtn }) {
           variant="outlined"
           size="large"
           color="error"
-          onClick={(e) => handleClick(e, "/signup")}
+          onClick={(e) => handleClick(e, "/contact/signup")}
           style={{
             borderRadius: 200,
             boxShadow: "none",

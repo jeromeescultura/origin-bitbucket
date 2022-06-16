@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ContactForms from "../components/ContactForms";
-import ContentContainer from "../containers/ContentContainer";
+import ContactForms from "../../components/ContactForms";
+import ContentContainer from "../../containers/ContentContainer";
 
 function interested() {
   const router = useRouter();
