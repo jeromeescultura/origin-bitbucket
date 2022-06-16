@@ -118,7 +118,6 @@ const Recommend = ({ industries }) => {
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    // console.log("INDUSTRIES", industries);
     let currIndustry = industries?.filter((item) => item.id === industryId);
     setIndustry(currIndustry[0]);
   }, [industryId]);
@@ -127,28 +126,24 @@ const Recommend = ({ industries }) => {
   //   console.log("INDUSTRY", industry?.name);
   // }, [industry]);
 
-  useEffect(() => {
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("********** START **********");
-    console.log("GOZERO", goZero);
-    console.log("GREENPOWER", greenPower);
-    console.log("SOLAR", solarPower);
-    console.log("RECOMMEND", recommend);
-    console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
-    console.log("SUBCATEGORIES", subCategory);
-    console.log("PRODUCTS", products);
-    console.log("PAGES", pages);
-    console.log("PAGE NO", pageNo);
-    console.log("INDUSTRY", industry);
-    console.log("CONTENT", showContent);
-  }, [products, industry, pages, pageNo, showContent]);
-  useEffect(() => {
-    console.log(industry);
-  }, [industry]);
+  // useEffect(() => {
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("");
+  //   console.log("********** START **********");
+  //   console.log("GOZERO", goZero);
+  //   console.log("GREENPOWER", greenPower);
+  //   console.log("SOLAR", solarPower);
+  //   console.log("RECOMMEND", recommend);
+  //   console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
+  //   console.log("SUBCATEGORIES", subCategory);
+  //   console.log("PRODUCTS", products);
+  //   console.log("PAGES", pages);
+  //   console.log("PAGE NO", pageNo);
+  //   console.log("INDUSTRY", industry);
+  // }, [products, industry, pages, pageNo]);
 
   useEffect(() => {
     if (pages === 3) {
@@ -366,10 +361,10 @@ const Recommend = ({ industries }) => {
               <ImpactCard recommend={showContent} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc product={showContent} />
+              <FinanceCalc recommend={showContent} industry={industry} />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard recommend={showContent} />
+              <RecommentCard recommend={showContent} industry={industry} />
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||
