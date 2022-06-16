@@ -40,7 +40,7 @@ const StepTwoContainer = ({
   const methods = useForm({ defaultValues: stepTwoAns });
   const { control, watch, setValue } = methods;
 
-  // const [dropdown, setDropdown] = useState();
+  const [dropdown, setDropdown] = useState(19);
   const [radio, setRadio] = useState("1-2");
   const [enSources, setEnSources] = useState([]);
   const [enUsage, setEnUsage] = useState("constant");
@@ -53,7 +53,7 @@ const StepTwoContainer = ({
   useEffect(() => {
     if (storedData !== null) {
       setStepTwoAns(storedData);
-      // setDropdown(storedData.dropdown);
+      setDropdown(storedData.dropdown);
       setRadio(storedData.radio);
       setEnSources(storedData.checkboxEnSource);
       setEnUsage(storedData.radioEnUsage);
@@ -120,8 +120,9 @@ const StepTwoContainer = ({
             control={control}
             options={dropDwnQsts.options}
             setValue={setValue}
-            // dropdownValue={dropdown?.industry}
+            dropdownValue={dropdown}
             label={"Industry"}
+            defaultDropdown={19}
             // id={dropdown?.id}
           />
         </div>
