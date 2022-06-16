@@ -11,7 +11,7 @@ import {
 } from "../components/recommend";
 import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, Modal } from "@mui/material";
 import {
   handleContent,
   handleImpactData,
@@ -28,6 +28,7 @@ const Recommend = ({ industries }) => {
   const dayjs = require("dayjs");
   var duration = require("dayjs/plugin/duration");
   dayjs.extend(duration);
+
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -307,24 +308,6 @@ const Recommend = ({ industries }) => {
     }
   };
 
-  const [storedData, setStoredData] = useState({
-    product: "",
-    greenPowerLevel: "",
-    biggerDiff: [],
-  });
-
-  useEffect(() => {
-    setStoredData({
-      product: showContent,
-      greenPowerLevel: level * 100,
-      biggerDiff: pledges,
-    });
-  }, [showContent, level, pledges]);
-
-  useEffect(() => {
-    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
-  }, [storedData]);
-
   // Calculations
   // Round of formula
   // Math.round((num + Number.EPSILON) * 100) / 100;
@@ -333,6 +316,10 @@ const Recommend = ({ industries }) => {
     Math.round(
       (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
     ) / 100;
+
+  useEffect(() => {
+    console.log("EXTRA COST", extraCost);
+  }, [extraCost]);
 
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
@@ -351,8 +338,58 @@ const Recommend = ({ industries }) => {
     ) / 100;
 
   useEffect(() => {
+    setUsage("<40");
+    setDailyUsage(industry?.dailyUsage?.low);
+    setIndustryCost(industry?.industryCost?.low);
+    setWithSolar(industry?.withSolarCost?.low);
+    setBtn1(true);
+    setBtn2(false);
+    setBtn3(false);
+  }, [showContent]);
+
+  const [storedData, setStoredData] = useState({
+    product: "",
+    greenPowerLevel: "",
+    biggerDiff: [],
+    extraCost: 0,
+    estimatedSavings: 0,
+  });
+
+  useEffect(() => {
+    setStoredData({
+      product: showContent,
+      greenPowerLevel: level * 100,
+      biggerDiff: pledges,
+      extraCost: extraCost,
+      estimatedSavings: solarSavings,
+    });
+  }, [showContent, level, pledges, extraCost, solarSavings]);
+
+  useEffect(() => {
+    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
+  }, [storedData]);
+
+  useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
   }, [showContent, dailyUsage, level]);
+
+  const showLocalStorage = () => {
+    let data =
+      JSON.parse(
+        typeof window !== "undefined" &&
+          window.localStorage.getItem("RECOMMENDED")
+      ) || null;
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("RECOMMENDATION LOCAL STORAGE", data);
+  };
+
+  const [impactRanges, setImpactRanges] = useState(false);
+  const openModal = () => setImpactRanges(true);
+  const closeModal = () => setImpactRanges(false);
 
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
@@ -473,10 +510,98 @@ const Recommend = ({ industries }) => {
               Impact estimates below are calculated with usage averages
               collected from Origin’s small & medium business customers in{" "}
               <span className="font-medium">{industry?.name}</span>. This will
-              change based on your business’ specific usage. See your impact
-              ranges.
+              change based on your business’ specific usage.{" "}
+              <span className="underline cursor-pointer" onClick={openModal}>
+                See your impact ranges.
+              </span>
             </div>
           </div>
+          <Modal open={impactRanges} onClose={closeModal}>
+            <div className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] border p-6 rounded-lg">
+              <div className="flex items-start justify-between">
+                <h1 className="font-GorditaMedium text-lg lg:text-xl ">
+                  Understanding your impact estimates with{" "}
+                  {showContent === "carbonOffset" && "Carbon Offsets"}
+                  {showContent === "greenPower" && "GreenPower"}
+                  {showContent === "solar" && "Solar"}
+                </h1>
+                <button
+                  className="w-[30px] h-[30px] lg:w-[20px] lg:h-[20px] ml-5"
+                  onClick={closeModal}
+                >
+                  <Image
+                    src="/icons/close-icon.svg"
+                    width={500}
+                    height={500}
+                    alt="close-icon"
+                  />
+                </button>
+              </div>
+              <div className="font-GorditaRegular text-sm mt-6">
+                <div>
+                  By understanding the industry your business is in, we’re able
+                  to make an estimated assessment of the impact your business
+                  could make from{" "}
+                  <span className="font-GorditaMedium">
+                    {showContent === "carbonOffset" &&
+                      "offsetting your carbon emissions for a year"}
+                    {(showContent === "greenPower" ||
+                      showContent === "solar") &&
+                      "matching your usage with 100% GreenPower for a year"}
+                  </span>
+                  .
+                  <br />
+                  <br />
+                  If your usage is higher or lower than the average, these
+                  ranges could better indicate the impact on your business.
+                </div>
+                <div className="space-y-2 mt-6">
+                  <h1 className="text-base font-GorditaMedium">
+                    Lower than the average usage
+                  </h1>
+                  <div>
+                    {showContent === "carbonOffset" &&
+                      `Equivalent to planting and growing 80 tree seedlings for 10
+                    years With no additional costs to your business energy
+                    bills`}
+                    {showContent === "greenPower" &&
+                      `It will take approximately 5 hours to put the same amount of renewable energy back into the grid
+And approximately $25.81 extra per month to your business energy bills`}
+                    {showContent === "solar" &&
+                      `Prevent 4.36 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 0.99 cars off the road
+And save approximately $133.61 per month to your business energy bills`}
+                  </div>
+                </div>
+                <div className="space-y-3 mt-6">
+                  <h1 className="text-base font-GorditaMedium">
+                    Higher than the average usage
+                  </h1>
+                  <div>
+                    {showContent === "carbonOffset" &&
+                      `Equivalent to planting and growing 1,403 tree seedlings for 10
+                    years With no additional costs to your business energy
+                    bills`}
+                    {showContent === "greenPower" &&
+                      `It will take approximately 4 days to put the same amount of renewable energy back into the grid
+And approximately $454.62 extra per month to your business energy bills`}
+                    {showContent === "solar" &&
+                      `Prevent 77.88 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 17.53 cars off the road
+And save approximately $2007.78 per month to your business energy bills`}
+                  </div>
+                </div>
+                <div className="text-xs mt-6">
+                  We calculate your impact analogy using credible conversions
+                  from{" "}
+                  <a
+                    href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
+                    className="underline"
+                  >
+                    https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Modal>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
               <ImpactCard
@@ -530,6 +655,10 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </ContentContainer>
+
+        <div className="flex justify-center">
+          <Button onClick={showLocalStorage}>Click me</Button>
+        </div>
 
         <Faqs />
       </div>
