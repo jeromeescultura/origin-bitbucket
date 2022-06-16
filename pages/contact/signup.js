@@ -1,13 +1,13 @@
 import { useDebugValue, useEffect, useState } from "react";
-import { server } from "../config";
+import { server } from "../../config";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
-import ContentContainer from "../containers/ContentContainer";
-import { FormInputText } from "../form-components/FormInputText";
+import ContentContainer from "../../containers/ContentContainer";
+import { FormInputText } from "../../form-components/FormInputText";
 
-import FormInputDropdown from "../form-components/FormInputDropdown";
-import LeafRating from "../components/LeafRating";
+import FormInputDropdown from "../../form-components/FormInputDropdown";
+import LeafRating from "../../components/LeafRating";
 
 import {
   Grid,
@@ -19,10 +19,10 @@ import {
   FormGroup,
   FormControlLabel,
 } from "@mui/material";
-import FormInputButton from "../form-components/FormInputButton";
-import ButtonQuestion from "../components/ButtonQuestion";
-import MoreDetailsComponent from "../components/MoreDetailsComponent";
-import ContactForms from "../components/ContactForms";
+import FormInputButton from "../../form-components/FormInputButton";
+import ButtonQuestion from "../../components/ButtonQuestion";
+import MoreDetailsComponent from "../../components/MoreDetailsComponent";
+import ContactForms from "../../components/ContactForms";
 
 function signup() {
   const router = useRouter();
@@ -138,7 +138,7 @@ function signup() {
               <div className="mt-16">
                 <div className="w-24 h-24 mx-auto">
                   <Image
-                    src="/icons/trees.svg"
+                    src="/icons/recommend/trees.svg"
                     width={100}
                     height={100}
                     objectFit="contain"
