@@ -4,13 +4,7 @@ import { useState } from "react";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const RecommentCard = ({ recommend, industry }) => {
-  const [level, setLevel] = useState(1);
-
-  const handleLevel = (e) => {
-    setLevel(e.target.value);
-  };
-
+const RecommentCard = ({ recommend, extraCost, level, handleLevel }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
       <div className="text-center space-y-2">
@@ -76,67 +70,28 @@ const RecommentCard = ({ recommend, industry }) => {
           {recommend === "carbonOffset" && (
             <div>
               <p className="font-medium">Estimated cost</p>
-              <h2 className="text-secondaryText">
-                $
-                {Math.round(
-                  (0.015 * industry.dailyUsage.avg + Number.EPSILON) * 100
-                ) / 100}
-              </h2>
+              <h2 className="text-secondaryText">${extraCost}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
                 Origin Energy plan*
               </p>
-              {/* <p>
-                Between ${" "}
-                {Math.round(
-                  ((0.015 * industry.dailyUsage.low * 365) / 12 +
-                    Number.EPSILON) *
-                    100
-                ) / 100}{" "}
-                - $
-                {Math.round(
-                  ((0.015 * industry.dailyUsage.high * 365) / 12 +
-                    Number.EPSILON) *
-                    100
-                ) / 100}{" "}
-              </p> */}
             </div>
           )}
 
           {recommend === "greenPower" && (
             <div>
               <p className="font-medium">Estimated cost</p>
-              <h2 className="text-secondaryText">
-                $
-                {Math.round(
-                  (0.028 * industry.dailyUsage.avg * level + Number.EPSILON) *
-                    100
-                ) / 100}
-              </h2>
+              <h2 className="text-secondaryText">${extraCost}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
                 Origin Energy plan*
               </p>
-              {/* <p>
-                Between ${" "}
-                {Math.round(
-                  (((0.028 * industry.dailyUsage.low * 365) / 12) * level +
-                    Number.EPSILON) *
-                    100
-                ) / 100}{" "}
-                - $
-                {Math.round(
-                  (((0.028 * industry.dailyUsage.high * 365) / 12) * level +
-                    Number.EPSILON) *
-                    100
-                ) / 100}{" "}
-              </p> */}
             </div>
           )}
           {recommend === "solar" && (
             <div>
               <p className="font-medium">Estimated Savings</p>
-              <h2 className="text-secondaryText">$0</h2>
+              <h2 className="text-secondaryText">${extraCost}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
                 Origin Energy plan*

@@ -42,6 +42,10 @@ const Recommend = ({ industries }) => {
   const [otherRecommendations, setOtherRecommendations] = useState([]);
   const [products, setProducts] = useState([{}]);
 
+  const [offSet, setOffSet] = useState();
+  const [usage, setUsage] = useState("<40");
+  const [dailyUsage, setDailyUsage] = useState(0);
+
   const productPages = ["carbonOffset", "greenPower", "solar"];
 
   const [pages, setPages] = useState();
@@ -232,6 +236,91 @@ const Recommend = ({ industries }) => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (recommend === "carbonOffset") {
+      setOffSet(0.015);
+    } else if (recommend === "greenPower") {
+      setOffSet(0.028);
+    } else if (recommend === "solar") {
+      setOffSet(0.25);
+    }
+    setDailyUsage(industry?.dailyUsage?.low);
+    setIndustryCost(industry?.industryCost?.low);
+    setWithSolar(industry?.withSolarCost?.low);
+  }, [industry]);
+
+  // Recommend Card
+  const [level, setLevel] = useState(1);
+
+  const handleLevel = (e) => {
+    setLevel(e.target.value);
+  };
+
+  // Financial Calculator Card
+  const [impactLevel, setImpactLevel] = useState(0);
+
+  const [industryCost, setIndustryCost] = useState(0);
+  const [withSolar, setWithSolar] = useState(0);
+
+  const [btn1, setBtn1] = useState(true);
+  const [btn2, setBtn2] = useState(false);
+  const [btn3, setBtn3] = useState(false);
+
+  const handleButtonSelect = (value) => {
+    if (value === 0) {
+      setUsage("<40");
+      setDailyUsage(industry?.dailyUsage?.low);
+      setIndustryCost(industry?.industryCost?.low);
+      setWithSolar(industry?.withSolarCost?.low);
+      setBtn1(true);
+      setBtn2(false);
+      setBtn3(false);
+    } else if (value === 1) {
+      setUsage("40-440");
+      setDailyUsage(industry?.dailyUsage?.medium);
+      setIndustryCost(industry?.industryCost?.medium);
+      setWithSolar(industry?.withSolarCost?.medium);
+      setBtn1(false);
+      setBtn2(true);
+      setBtn3(false);
+    } else if (value === 2) {
+      setUsage(">440");
+      setDailyUsage(industry?.dailyUsage?.high);
+      setIndustryCost(industry?.industryCost?.high);
+      setWithSolar(industry?.withSolarCost?.high);
+      setBtn1(false);
+      setBtn2(false);
+      setBtn3(true);
+    }
+  };
+
+  // Calculations
+  // Round of formula
+  // Math.round((num + Number.EPSILON) * 100) / 100
+
+  const extraCost =
+    Math.round(
+      (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
+    ) / 100;
+  const increasePercentage =
+    Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
+  const solarReduction =
+    Math.round(
+      (((extraCost - withSolar) / extraCost) * 100 + Number.EPSILON) * 100
+    ) / 100;
+  const totalCost =
+    Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
+
+  const impact =
+    (showContent === "carbonOffset" &&
+      Math.round(dailyUsage * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) /
+      100 ||
+    (showContent === "greenPower" &&
+      ((dailyUsage * 365) / 33.333 / 60 / 24) * level) ||
+    (showContent === "solar" &&
+      ((dailyUsage * 365) / 33.333 / 60 / 24) * level);
+
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
       <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
@@ -358,13 +447,32 @@ const Recommend = ({ industries }) => {
           </div>
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
-              <ImpactCard recommend={showContent} />
+              <ImpactCard recommend={showContent} impact={impact} />
             </div>
             <div className="break-inside-avoid">
-              <FinanceCalc recommend={showContent} industry={industry} />
+              <FinanceCalc
+                recommend={showContent}
+                industry={industry}
+                level={level}
+                impactLevel={impactLevel}
+                handleButtonSelect={handleButtonSelect}
+                usage={usage}
+                extraCost={extraCost}
+                increasePercentage={increasePercentage}
+                solarReduction={solarReduction}
+                totalCost={totalCost}
+                btn1={btn1}
+                btn2={btn2}
+                btn3={btn3}
+              />
             </div>
             <div className="break-inside-avoid">
-              <RecommentCard recommend={showContent} industry={industry} />
+              <RecommentCard
+                recommend={showContent}
+                extraCost={extraCost}
+                level={level}
+                handleLevel={handleLevel}
+              />
             </div>
             <div className="break-inside-avoid" ref={myref}>
               {(subCategory?.includes("decarbEOI") ||

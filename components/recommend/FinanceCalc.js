@@ -8,105 +8,26 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Controller, set, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import MoreDetailsComponent from "../MoreDetailsComponent";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 
-const FinanceCalc = ({ recommend, industry }) => {
-  const [extra, setExtra] = useState(false);
-  const [buttonSelect, setButtonSelect] = useState(0);
-  const [usage, setUsage] = useState("<40");
-  const [offSet, setOffSet] = useState();
-  const [dailyUsage, setDailyUsage] = useState(0);
-  const [industryCost, setIndustryCost] = useState(0);
-  const [withSolar, setWithSolar] = useState(0);
-
-  const methods = useForm({ defaultValues: buttonSelect });
-  const { control, watch, setValue } = methods;
-
-  const [btn1, setBtn1] = useState(true);
-  const [btn2, setBtn2] = useState(false);
-  const [btn3, setBtn3] = useState(false);
-
-  const expandExtra = () => {
-    setExtra(!extra);
-  };
-
-  useEffect(() => {
-    if (recommend === "carbonOffset") {
-      setOffSet(0.015);
-    } else if (recommend === "greenPower") {
-      setOffSet(0.028);
-    } else if (recommend === "solar") {
-      setOffSet(0.25);
-    }
-  }, [recommend, buttonSelect]);
-
-  useEffect(() => {
-    setDailyUsage(industry?.dailyUsage?.low);
-    setIndustryCost(industry?.industryCost?.low);
-    setWithSolar(industry?.withSolarCost?.low);
-  }, [industry]);
-
-  const handleButtonSelect = (value) => {
-    setValue("usage", value);
-    if (value === 0) {
-      setUsage("<40");
-      setDailyUsage(industry?.dailyUsage?.low);
-      setIndustryCost(industry?.industryCost?.low);
-      setWithSolar(industry?.withSolarCost?.low);
-      setBtn1(true);
-      setBtn2(false);
-      setBtn3(false);
-    } else if (value === 1) {
-      setUsage("40-440");
-      setDailyUsage(industry?.dailyUsage?.medium);
-      setIndustryCost(industry?.industryCost?.medium);
-      setWithSolar(industry?.withSolarCost?.medium);
-      setBtn1(false);
-      setBtn2(true);
-      setBtn3(false);
-    } else if (value === 2) {
-      setUsage(">440");
-      setDailyUsage(industry?.dailyUsage?.high);
-      setIndustryCost(industry?.industryCost?.high);
-      setWithSolar(industry?.withSolarCost?.high);
-      setBtn1(false);
-      setBtn2(false);
-      setBtn3(true);
-    }
-  };
-
-  const handleUsage = (data) => setButtonSelect(data.usage);
-
+const FinanceCalc = ({
+  recommend,
+  impactLevel,
+  handleButtonSelect,
+  usage,
+  extraCost,
+  increasePercentage,
+  solarReduction,
+  totalCost,
+  btn1,
+  btn2,
+  btn3,
+}) => {
+  const methods = useForm({ defaultValues: impactLevel });
+  const { control } = methods;
   const activeStyles = "border-accentColor bg-highlight font-medium";
-
-  // Math.round((num + Number.EPSILON) * 100) / 100
-  const extraCost =
-    Math.round((((dailyUsage * 365) / 12) * offSet + Number.EPSILON) * 100) /
-    100;
-
-  const increasePercentage =
-    Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
-
-  const solarReduction =
-    Math.round(
-      (((extraCost - withSolar) / extraCost) * 100 + Number.EPSILON) * 100
-    ) / 100;
-
-  // Math.round(
-  //   ((extraCost / industry?.industryCost?.low) * 100 + Number.EPSILON) * 100
-  // ) / 100;
-
-  const totalCost =
-    Math.round(
-      (extraCost + industry?.industryCost?.low + Number.EPSILON) * 100
-    ) / 100;
-
   return (
     <Card
       variant="outlined"
@@ -134,7 +55,6 @@ const FinanceCalc = ({ recommend, industry }) => {
           fullWidth
         >
           <Controller
-            onChange={watch(handleUsage)}
             control={control}
             name={"usage"}
             render={() => {
@@ -212,13 +132,13 @@ const FinanceCalc = ({ recommend, industry }) => {
                     <LinearProgress
                       className="h-7"
                       variant="determinate"
-                      value={20}
+                      value={100}
                     />
                     <LinearProgress
                       color="secondary"
                       className="h-7 mt-2"
                       variant="determinate"
-                      value={20 + solarReduction}
+                      value={100 - solarReduction}
                     />
                     <p className="mt-14 rotate-90">
                       {solarReduction}% <br />

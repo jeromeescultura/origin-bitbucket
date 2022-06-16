@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const ImpactCard = ({ industry, recommend }) => {
+const ImpactCard = ({ recommend, impact }) => {
   const [icon, setIcon] = useState("trees.svg");
 
   useEffect(() => {
@@ -49,9 +49,9 @@ const ImpactCard = ({ industry, recommend }) => {
 
         <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
           {recommend === "carbonOffset" &&
-            "If your business offset its electricity use for a year, it would be equivalent to [planting and growing 320 tree seedlings for 10 years]."}
+            `If your business offset its electricity use for a year, it would be equivalent to ${impact}[planting and growing 320 tree seedlings for 10 years].`}
           {recommend === "greenPower" &&
-            "If your business matched their electricity use to 100% GreenPower, it would only take [20 hrs and 59 mins] to put the same amount of renewable energy back into the grid."}
+            `If your business matched their electricity use to 100% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
             "If all businesses like yours did this, we could prevent [XX] tonnes of carbon from ever being emitted per year, equivalent to immidiately taking [X,XXX] cars off the road."}
         </p>
