@@ -66,6 +66,17 @@ function ProductContainer() {
         breakpoint: 1440,
         settings: {
           centerMode: false,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          initialSlide: 4,
+          infinite: false,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          centerMode: false,
           slidesToShow: 3,
           slidesToScroll: 1,
           initialSlide: 4,

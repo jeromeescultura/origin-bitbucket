@@ -366,7 +366,7 @@ const Recommend = ({ industries }) => {
   const closeModal = () => setImpactRanges(false);
 
   return (
-    <div className="bg-primaryBG h-full pb-36 lg:pb-0">
+    <div className="bg-primaryBG h-full pb-24 sm:pb-20 ">
       <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
         <section className="pt-6 lg:pt-8">
           <div className="w-full xl:w-[1108px] mx-auto">
@@ -471,7 +471,7 @@ const Recommend = ({ industries }) => {
             </div>
           )}
 
-          <div className="text-center mb-8">
+          <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">
               with{" "}
@@ -480,7 +480,7 @@ const Recommend = ({ industries }) => {
               {showContent === "solar" && "Solar"}
               {showContent === "greenPower" && "GreenPower"}
             </h2>
-            <div className="font-light text-xs mt-8 lg:mt-16">
+            <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
               Impact estimates below are calculated with usage averages
               collected from Origin’s small & medium business customers in{" "}
               <span className="font-medium">{industry?.name}</span>. This will
@@ -548,15 +548,19 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </ContentContainer>
-
         <div className="flex justify-center">
           <Button onClick={showLocalStorage}>Click me</Button>
         </div>
-
         <Faqs />
       </div>
       {showFooter && (
-        <FooterReco handleButton={handleButton} enableBtn={enableBtn} />
+        <FooterReco
+          handleButton={handleButton}
+          recommend={showContent}
+          enableBtn={enableBtn}
+          pageNo={pageNo}
+          pages={pages}
+        />
       )}
     </div>
   );
