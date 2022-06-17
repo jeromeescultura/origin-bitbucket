@@ -326,6 +326,7 @@ const Recommend = ({ industries }) => {
     biggerDiff: [],
     extraCost: 0,
     estimatedSavings: 0,
+    impact: "",
   });
 
   useEffect(() => {
@@ -335,8 +336,9 @@ const Recommend = ({ industries }) => {
       biggerDiff: pledges,
       extraCost: extraCost,
       estimatedSavings: solarSavings,
+      impact: impact,
     });
-  }, [showContent, level, pledges, extraCost, solarSavings]);
+  }, [showContent, level, pledges, extraCost, solarSavings, impact]);
 
   useEffect(() => {
     window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
