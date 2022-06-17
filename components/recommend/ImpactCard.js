@@ -22,7 +22,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
   }, [recommend]);
 
   return (
-    <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[510px] mx-auto">
+    <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[530px] mx-auto">
       <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
         Your impact
       </p>

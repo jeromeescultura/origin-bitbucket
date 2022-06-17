@@ -13,7 +13,7 @@ const RecommentCard = ({
   handleLevel,
 }) => {
   return (
-    <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[510px] mx-auto">
+    <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
       <div className="text-center space-y-2">
         <p className="text-[18px] lg:text-[20px] font-medium mb-8 text-primaryText">
           We recommend

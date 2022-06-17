@@ -38,7 +38,7 @@ const FinanceCalc = ({
   return (
     <Card
       variant="outlined"
-      className="border-none rounded-xl max-w-[510px] mx-auto"
+      className="border-none rounded-xl max-w-[530px] mx-auto"
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
@@ -140,7 +140,7 @@ const FinanceCalc = ({
                       variant="determinate"
                       value={100}
                     />
-                    <p className="rotate-90 font-medium -top-8 left-12 absolute">
+                    <p className="rotate-90 -top-8 left-12 absolute">
                       {formatPrice(withoutSolar)}
                     </p>
                     <LinearProgress
@@ -149,12 +149,12 @@ const FinanceCalc = ({
                       variant="determinate"
                       value={100 - solarReduction}
                     />
-                    <p className="rotate-90 font-medium absolute bottom-2 left-6">
+                    <p className="rotate-90 absolute bottom-2 left-6">
                       {formatPrice(withSolar)}
                     </p>
-                    <p className="rotate-90 mt-28">
+                    <p className="rotate-90 mt-28 font-medium">
                       {solarReduction}% <br />
-                      reduction
+                      savings
                     </p>
                   </Box>
                 </div>
@@ -164,8 +164,8 @@ const FinanceCalc = ({
                   className="-rotate-90  h-full absolute "
                 >
                   <div className="rotate-90 flex gap-4 absolute top-6 left-4 z-20">
-                    <p className="font-medium">{formatPrice(industryCost)}</p>
-                    <p className="font-medium">{formatPrice(totalCost)}</p>
+                    <p>{formatPrice(industryCost)}</p>
+                    <p>{formatPrice(totalCost)}</p>
                   </div>
                   <LinearProgress
                     className="h-7"
@@ -179,7 +179,7 @@ const FinanceCalc = ({
                     variant="determinate"
                     value={50 + increasePercentage}
                   />
-                  <p className="mt-10 mr-8 rotate-90 ">
+                  <p className="mt-10 mr-8 rotate-90 font-medium">
                     {increasePercentage}% <br />
                     increase
                   </p>

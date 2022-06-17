@@ -355,7 +355,7 @@ const Recommend = ({ industries }) => {
   }, [showContent, dailyUsage, level]);
 
   return (
-    <div className="bg-primaryBG h-full pb-52 sm:pb-32 ">
+    <div className="bg-primaryBG h-full pb-24 sm:pb-20 ">
       <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
         <section className="pt-6 lg:pt-8">
           <div className="w-full xl:w-[1108px] mx-auto">
@@ -460,7 +460,7 @@ const Recommend = ({ industries }) => {
             </div>
           )}
 
-          <div className="text-center mb-8">
+          <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
             <h2 className="text-primaryText font-bold">Making a difference</h2>
             <h2 className="text-primaryText">
               with{" "}
@@ -469,7 +469,7 @@ const Recommend = ({ industries }) => {
               {showContent === "solar" && "Solar"}
               {showContent === "greenPower" && "GreenPower"}
             </h2>
-            <div className="font-light text-xs mt-8 lg:mt-16">
+            <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
               Impact estimates below are calculated with usage averages
               collected from Origin’s small & medium business customers in{" "}
               <span className="font-medium">{industry?.name}</span>. This will
@@ -477,7 +477,7 @@ const Recommend = ({ industries }) => {
               ranges.
             </div>
           </div>
-          <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
+          <div className="lg:columns-2 gap-3 space-y-3 pb-8 lg:pb-16  ">
             <div className="break-inside-avoid">
               <ImpactCard
                 recommend={showContent}
@@ -530,7 +530,6 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </ContentContainer>
-
         <Faqs />
       </div>
       {showFooter && (
