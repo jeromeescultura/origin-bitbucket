@@ -373,7 +373,19 @@ export const handleImpactData = (
       "d"
     );
 
-    setImpact(impactCalc.$d.hours);
+    if (impactCalc?.$d?.days > 0) {
+      if (impactCalc?.$d?.days > 1) {
+        setImpact(`${impactCalc?.$d?.days} days`);
+      } else {
+        setImpact(`${impactCalc?.$d?.days} day`);
+      }
+    } else if (impactCalc?.$d?.hours > 0) {
+      if (impactCalc?.$d?.hours > 1) {
+        setImpact(`${impactCalc?.$d?.hours} hrs`);
+      } else {
+        setImpact(`${impactCalc?.$d?.hours} hr`);
+      }
+    }
   } else if (showContent === "solar") {
     metricTons =
       Math.round(

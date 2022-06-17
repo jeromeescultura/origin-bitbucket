@@ -40,8 +40,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
           <div className="mt-2">
             <h2 className="text-greenText font-bold">
               {typeof impact === "object" && recommend === "solar" && impact[1]}
-              {recommend === "greenPower" &&
-                `${impact > 1 ? `${impact} hrs` : `${impact} hr`} `}
+              {recommend === "greenPower" && impact}
               {recommend === "carbonOffset" && impact}
             </h2>
             <p className="text-sm text-greenText">
@@ -58,9 +57,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
           {recommend === "greenPower" &&
             `If your business matched their electricity use to ${
               level * 100
-            }% GreenPower, it would only take ${
-              impact > 1 ? `${impact} hours` : `${impact} hour`
-            }  to put the same amount of renewable energy back into the grid.`}
+            }% GreenPower, it would only take ${impact}  to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
             `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
         </p>
