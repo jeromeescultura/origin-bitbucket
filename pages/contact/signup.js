@@ -23,6 +23,7 @@ import FormInputButton from "../../form-components/FormInputButton";
 import ButtonQuestion from "../../components/ButtonQuestion";
 import MoreDetailsComponent from "../../components/MoreDetailsComponent";
 import ContactForms from "../../components/ContactForms";
+import PledgeModal from "../../components/signup/PledgeModal";
 
 function signup() {
   const router = useRouter();
@@ -30,6 +31,34 @@ function signup() {
     e.preventDefault();
     router.push("/");
   };
+
+  const recommendData =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("RECOMMENDED")
+    ) || null;
+
+  const [product, setProduct] = useState("");
+  const [greenPowerLevel, setGreenPowerLevel] = useState(0);
+  const [extraCost, setExtraCost] = useState(0);
+  const [estimatedSavings, setEstimatedSavings] = useState(0);
+  const [biggerDiff, setBiggerDiff] = useState([]);
+  const [impact, setImpact] = useState("");
+  const [pledgeModal, setPledgeModal] = useState(false);
+
+  const openModal = () => setPledgeModal(true);
+  const closeModal = () => setPledgeModal(false);
+
+  useEffect(() => {
+    if (recommendData !== null) {
+      setProduct(recommendData.product);
+      setGreenPowerLevel(recommendData.greenPowerLevel);
+      setExtraCost(recommendData.extraCost);
+      setEstimatedSavings(recommendData.estimatedSavings);
+      setBiggerDiff(recommendData.biggerDiff);
+      setImpact(recommendData.impact);
+    }
+  }, []);
 
   return (
     <div className="bg-primaryBG pb-32">
@@ -70,21 +99,57 @@ function signup() {
           <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
-              <LeafRating count={4} />
-              <p className="font-medium subtitle">Origin Go Zero</p>
-              <Button className="lg:hidden">Pledge details</Button>
+              <LeafRating
+                count={
+                  (product === "carbonOffset" && 2) ||
+                  (product === "greenPower" && 3) ||
+                  (product === "solar" && 4)
+                }
+              />
+              <p className="font-medium subtitle">
+                {product === "carbonOffset" &&
+                  "Origin Go Zero 100% carbon offset"}
+                {product === "greenPower" && `GreenPower ${greenPowerLevel}%`}
+                {product === "solar" && "Solar"}
+              </p>
+              <Button className="lg:hidden" onClick={openModal}>View details</Button>
             </div>
+            <PledgeModal
+              product={product}
+              greenPowerLevel={greenPowerLevel}
+              estimatedSavings={estimatedSavings}
+              extraCost={extraCost}
+              impact={impact}
+              biggerDiff={biggerDiff}
+              pledgeModal={pledgeModal}
+              closeModal={closeModal}
+            />
             <div className="lg:inline hidden text-center">
               <div className="space-y-1 mt-8">
                 <p className="font-medium">How you reduce impact</p>
-                <p>Through offsetting your energy use</p>
+                <p>
+                  {product === "carbonOffset" &&
+                    "Through offsetting your energy use"}
+                  {product === "greenPower" &&
+                    "Through funding renewable generators"}
+                  {product === "solar" &&
+                    "Through using self generated renewable energy"}
+                </p>
               </div>
               <div className="mt-8">
                 <MoreDetailsComponent text="More Details">
                   <div className="flex">
                     <div className="space-y-2 mt-8 pr-5 border-r text-left">
-                      <p className="font-medium">Estimated cost</p>
-                      <h2 className="text-secondaryText">$0</h2>
+                      <p className="font-medium">
+                        {product === "solar"
+                          ? "Estimated savings"
+                          : "Estimated cost"}
+                      </p>
+                      <h2 className="text-secondaryText">
+                        {product === "solar"
+                          ? `$${estimatedSavings}`
+                          : `$${extraCost}`}
+                      </h2>
                       <p className="text-xs text-subTextColor">
                         extra p/month on any <br />
                         Origin Energy plan*
@@ -128,8 +193,14 @@ function signup() {
                 </MoreDetailsComponent>
               </div>
               <div className="space-y-2 mt-8">
-                <p className="font-medium">Estimated cost</p>
-                <h2>$0</h2>
+                <p className="font-medium">
+                  {product === "solar" ? "Estimated savings" : "Estimated cost"}
+                </p>
+                <h2>
+                  {product === "solar"
+                    ? `$${estimatedSavings}`
+                    : `$${extraCost}`}
+                </h2>
                 <p className="text-xs text-subTextColor">
                   extra p/month on any <br />
                   Origin Energy plan*
@@ -137,38 +208,83 @@ function signup() {
               </div>
               <div className="mt-16">
                 <div className="w-24 h-24 mx-auto">
-                  <Image
-                    src="/icons/recommend/trees.svg"
-                    width={100}
-                    height={100}
-                    objectFit="contain"
-                    alt="trees"
-                  />
-                </div>
-                <p className="text-xs mt-6">
-                  If all businesses like yours did this, we could neutralise
-                  [XX] tonnes of carbon emissions - equivalent planting [20,000]
-                  young trees to clean up the atmosphere.
-                </p>
-              </div>
-              <div className="mt-16">
-                <p className="font-medium">You’ve chosen to do more</p>
-                <div className="flex gap-4 justify-center mt-4">
-                  <div className="w-[20px] h-[20px]">
+                  {product === "carbonOffset" && (
                     <Image
-                      src="/icons/check-green.svg"
-                      width={50}
-                      height={50}
+                      src="/icons/recommend/trees.svg"
+                      width={100}
+                      height={100}
                       objectFit="contain"
                       alt="trees"
                     />
-                  </div>
-                  <p className="text-left">
-                    Participate in our net zero <br />
-                    strategy review
-                  </p>
+                  )}
+                  {product === "greenPower" && (
+                    <Image
+                      src="/icons/recommend/wind.svg"
+                      width={100}
+                      height={100}
+                      objectFit="contain"
+                      alt="wind"
+                    />
+                  )}
+                  {product === "solar" && (
+                    <Image
+                      src="/icons/recommend/car.svg"
+                      width={100}
+                      height={100}
+                      objectFit="contain"
+                      alt="car"
+                    />
+                  )}
                 </div>
+                <p className="text-xs mt-6">
+                  {product === "carbonOffset" &&
+                    `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
+                  {product === "greenPower" &&
+                    `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
+                  {product === "solar" &&
+                    `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
+                </p>
               </div>
+              {biggerDiff.length > 0 && (
+                <div className="mt-16">
+                  <p className="font-medium">You’ve chosen to do more</p>
+                  <div className="flex justify-center">
+                    <div className="flex flex-col">
+                      {biggerDiff.includes("interview") && (
+                        <div className="flex gap-4 mt-4">
+                          <div className="w-[20px] h-[20px]">
+                            <Image
+                              src="/icons/check-green.svg"
+                              width={50}
+                              height={50}
+                              objectFit="contain"
+                              alt="trees"
+                            />
+                          </div>
+                          <p className="text-left">
+                            Participate in our net zero <br />
+                            strategy review
+                          </p>
+                        </div>
+                      )}
+                      {biggerDiff.includes("greenPower") && (
+                        <div className="flex gap-4 mt-4">
+                          <div className="w-[20px] h-[20px]">
+                            <Image
+                              src="/icons/check-green.svg"
+                              width={50}
+                              height={50}
+                              objectFit="contain"
+                              alt="trees"
+                            />
+                          </div>
+                          <p className="text-left">GreenPower</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
