@@ -11,7 +11,7 @@ import {
 } from "../components/recommend";
 import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
-import { Button, ButtonGroup } from "@mui/material";
+import { Box, Button, ButtonGroup, Modal } from "@mui/material";
 import {
   handleContent,
   handleImpactData,
@@ -23,11 +23,13 @@ import {
   stepTwoScore,
   sumArray,
 } from "../functions/recofunctions/RecoFunctions";
+import ImpactRanges from "../components/recommend/ImpactRanges";
 
 const Recommend = ({ industries }) => {
   const dayjs = require("dayjs");
   var duration = require("dayjs/plugin/duration");
   dayjs.extend(duration);
+
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -131,29 +133,6 @@ const Recommend = ({ industries }) => {
     setIndustry(currIndustry[0]);
   }, [industryId]);
 
-  // useEffect(() => {
-  //   console.log("INDUSTRY", industry?.name);
-  // }, [industry]);
-
-  // useEffect(() => {
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("");
-  //   console.log("********** START **********");
-  //   console.log("GOZERO", goZero);
-  //   console.log("GREENPOWER", greenPower);
-  //   console.log("SOLAR", solarPower);
-  //   console.log("RECOMMEND", recommend);
-  //   console.log("OTHER RECOMMENDATIONS:", otherRecommendations);
-  //   console.log("SUBCATEGORIES", subCategory);
-  //   console.log("PRODUCTS", products);
-  //   console.log("PAGES", pages);
-  //   console.log("PAGE NO", pageNo);
-  //   console.log("INDUSTRY", industry);
-  // }, [products, industry, pages, pageNo]);
-
   useEffect(() => {
     if (pages === 3) {
       setContent(productPages[pageNo]);
@@ -243,7 +222,6 @@ const Recommend = ({ industries }) => {
   };
 
   useEffect(() => {
-    console.log(showContent, "showContent");
     if (showContent === "carbonOffset") {
       setOffSet(0.015);
     } else if (showContent === "greenPower") {
@@ -307,24 +285,6 @@ const Recommend = ({ industries }) => {
     }
   };
 
-  const [storedData, setStoredData] = useState({
-    product: "",
-    greenPowerLevel: "",
-    biggerDiff: [],
-  });
-
-  useEffect(() => {
-    setStoredData({
-      product: showContent,
-      greenPowerLevel: level * 100,
-      biggerDiff: pledges,
-    });
-  }, [showContent, level, pledges]);
-
-  useEffect(() => {
-    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
-  }, [storedData]);
-
   // Calculations
   // Round of formula
   // Math.round((num + Number.EPSILON) * 100) / 100;
@@ -351,8 +311,59 @@ const Recommend = ({ industries }) => {
     ) / 100;
 
   useEffect(() => {
+    setUsage("<40");
+    setDailyUsage(industry?.dailyUsage?.low);
+    setIndustryCost(industry?.industryCost?.low);
+    setWithSolar(industry?.withSolarCost?.low);
+    setBtn1(true);
+    setBtn2(false);
+    setBtn3(false);
+  }, [showContent]);
+
+  const [storedData, setStoredData] = useState({
+    product: "",
+    greenPowerLevel: "",
+    biggerDiff: [],
+    extraCost: 0,
+    estimatedSavings: 0,
+  });
+
+  useEffect(() => {
+    setStoredData({
+      product: showContent,
+      greenPowerLevel: level * 100,
+      biggerDiff: pledges,
+      extraCost: extraCost,
+      estimatedSavings: solarSavings,
+    });
+  }, [showContent, level, pledges, extraCost, solarSavings]);
+
+  useEffect(() => {
+    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
+  }, [storedData]);
+
+  useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
   }, [showContent, dailyUsage, level]);
+
+  const showLocalStorage = () => {
+    let data =
+      JSON.parse(
+        typeof window !== "undefined" &&
+          window.localStorage.getItem("RECOMMENDED")
+      ) || null;
+
+    console.log("RECOMMENDATION LOCAL STORAGE", data);
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+    console.log("");
+  };
+
+  const [impactRanges, setImpactRanges] = useState(false);
+  const openModal = () => setImpactRanges(true);
+  const closeModal = () => setImpactRanges(false);
 
   return (
     <div className="bg-primaryBG h-full pb-36 lg:pb-0">
@@ -473,10 +484,17 @@ const Recommend = ({ industries }) => {
               Impact estimates below are calculated with usage averages
               collected from Origin’s small & medium business customers in{" "}
               <span className="font-medium">{industry?.name}</span>. This will
-              change based on your business’ specific usage. See your impact
-              ranges.
+              change based on your business’ specific usage.{" "}
+              <span className="underline cursor-pointer" onClick={openModal}>
+                See your impact ranges.
+              </span>
             </div>
           </div>
+          <ImpactRanges
+            impactRanges={impactRanges}
+            closeModal={closeModal}
+            showContent={showContent}
+          />
           <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
             <div className="break-inside-avoid">
               <ImpactCard
@@ -530,6 +548,10 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </ContentContainer>
+
+        <div className="flex justify-center">
+          <Button onClick={showLocalStorage}>Click me</Button>
+        </div>
 
         <Faqs />
       </div>

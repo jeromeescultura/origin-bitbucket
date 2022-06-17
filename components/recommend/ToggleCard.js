@@ -139,29 +139,6 @@ const ToggleCard = ({
                     checked={greenPower}
                   />
                   <div>GreenPower</div>
-
-                  <Collapse in={greenPower}>
-                    <div className="flex items-center">
-                      Select GreenPower{" "}
-                      <FormControl sx={{ ml: "16px", minWidth: 120 }}>
-                        <Select
-                          value={level}
-                          displayEmpty
-                          color="secondary"
-                          onChange={handleLevel}
-                          sx={{
-                            borderRadius: "10px",
-                            height: "40px",
-                            width: "100px",
-                          }}
-                        >
-                          <MenuItem value={1}>100%</MenuItem>
-                          <MenuItem value={0.5}>50%</MenuItem>
-                          <MenuItem value={0.25}>25%</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </div>
-                  </Collapse>
                 </div>
               </CardContent>
             </Card>
