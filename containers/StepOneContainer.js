@@ -38,7 +38,6 @@ const StepOneContainer = ({
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-    console.log(stepOneAns);
   }, [stepOneAns]);
 
   useEffect(() => {
@@ -50,13 +49,11 @@ const StepOneContainer = ({
       setChoice(storedData.choice);
       setGoals(storedData.goals);
       setRadioValue(storedData.radio);
-      console.log("STOREDDATA", storedData);
     }
   }, []);
 
   useEffect(() => {
     if (choice !== "") {
-      console.log("fired");
       setValue("choice", choice);
       handleButtonSelect(parseInt(choice));
     }
@@ -93,6 +90,8 @@ const StepOneContainer = ({
       radio: data.radio,
     });
   };
+
+  const testInput = () => console.log("test");
 
   return (
     <>
@@ -202,7 +201,6 @@ const StepOneContainer = ({
               options={chkBoxQsts[0]?.questionsList}
               checkboxValue={enSourceValue}
               setCheckboxValue={setEnSourceValue}
-              validation={{ required: "Required" }}
             />
           </div>
         </div>

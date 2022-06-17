@@ -122,7 +122,6 @@ const Assessment = ({ questions }) => {
     }
 
     if (stepNo < 2) {
-      console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
       router.push("/recommend");
