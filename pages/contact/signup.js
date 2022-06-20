@@ -112,7 +112,9 @@ function signup() {
                 {product === "greenPower" && `GreenPower ${greenPowerLevel}%`}
                 {product === "solar" && "Solar"}
               </p>
-              <Button className="lg:hidden" onClick={openModal}>View details</Button>
+              <Button className="lg:hidden" onClick={openModal}>
+                View details
+              </Button>
             </div>
             <PledgeModal
               product={product}
@@ -166,8 +168,12 @@ function signup() {
                             width={20}
                             height={20}
                             objectFit="contain"
+                            alt="check"
                           />
-                          <p> Progress reporting on your impact</p>
+                          <p>
+                            {" "}
+                            <u>Progress reporting</u> on your impact
+                          </p>
                         </li>
                         <li className="flex items-start gap-4">
                           <Image
@@ -175,8 +181,13 @@ function signup() {
                             width={20}
                             height={20}
                             objectFit="contain"
+                            alt="check"
                           />
-                          <p> Amplify toolkit to communicate your impact</p>
+                          <p>
+                            {" "}
+                            <u>Free Marketing toolkit</u> to communicate your
+                            impact to communicate your impact
+                          </p>
                         </li>
                         <li className="flex items-start gap-4">
                           <Image
@@ -184,9 +195,36 @@ function signup() {
                             width={20}
                             height={20}
                             objectFit="contain"
+                            alt="check"
                           />
-                          <p> Dedicated Clean Ambition club support</p>
+                          <p>
+                            {" "}
+                            Dedicated <u>Good Change Club</u> support
+                          </p>
                         </li>
+                        {(product === "greenPower" || product === "solar") && (
+                          <li className="flex items-start gap-4">
+                            <Image
+                              src="/icons/star.svg"
+                              width={50}
+                              height={50}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                            {product === "greenPower" && (
+                              <p>
+                                <u>Tariff review</u> to reduce your overall
+                                energy costs
+                              </p>
+                            )}
+                            {product === "solar" && (
+                              <p>
+                                <u>Reduced energy costs</u> through self
+                                generated power
+                              </p>
+                            )}
+                          </li>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -249,7 +287,7 @@ function signup() {
                 <div className="mt-16">
                   <p className="font-medium">You’ve chosen to do more</p>
                   <div className="flex justify-center">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col max-w-[227px]">
                       {biggerDiff.includes("interview") && (
                         <div className="flex gap-4 mt-4">
                           <div className="w-[20px] h-[20px]">
@@ -268,8 +306,8 @@ function signup() {
                         </div>
                       )}
                       {biggerDiff.includes("greenPower") && (
-                        <div className="flex gap-4 mt-4">
-                          <div className="w-[20px] h-[20px]">
+                        <div className="flex justify-between gap-4 mt-4">
+                          <div className="w-[70px] h-[70px]">
                             <Image
                               src="/icons/check-green.svg"
                               width={50}
@@ -278,7 +316,12 @@ function signup() {
                               alt="trees"
                             />
                           </div>
-                          <p className="text-left">GreenPower</p>
+                          <p className="text-left">
+                            GreenPower
+                            <br />
+                            One of our Good Change club representatives will get
+                            in contact to review your GreenPower options
+                          </p>
                         </div>
                       )}
                     </div>

@@ -406,3 +406,23 @@ export const formatPrice = (number) => {
     minimumFractionDigits: 0,
   }).format(number);
 };
+
+export const handleOffset = (
+  showContent,
+  industry,
+  setOffSet,
+  setDailyUsage,
+  setIndustryCost,
+  setWithSolar
+) => {
+  if (showContent === "carbonOffset") {
+    setOffSet(0.015);
+  } else if (showContent === "greenPower") {
+    setOffSet(0.028);
+  } else if (showContent === "solar") {
+    setOffSet(0.25);
+  }
+  setDailyUsage(industry?.dailyUsage?.low);
+  setIndustryCost(industry?.industryCost?.low);
+  setWithSolar(industry?.withSolarCost?.low);
+};

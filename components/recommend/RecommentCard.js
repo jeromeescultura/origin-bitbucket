@@ -104,33 +104,64 @@ const RecommentCard = ({
             <li className="flex items-start gap-4">
               <Image
                 src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
+                width={50}
+                height={50}
                 objectFit="contain"
                 alt="check"
               />
-              <p> Progress reporting on your impact</p>
+              <p>
+                {" "}
+                <u>Progress reporting</u> on your impact
+              </p>
             </li>
             <li className="flex items-start gap-4">
               <Image
                 src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
+                width={50}
+                height={50}
                 objectFit="contain"
                 alt="check"
               />
-              <p> Amplify toolkit to communicate your impact</p>
+              <p>
+                {" "}
+                <u>Free Marketing toolkit</u> to communicate your impact to
+                communicate your impact
+              </p>
             </li>
             <li className="flex items-start gap-4">
               <Image
                 src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
+                width={50}
+                height={50}
                 objectFit="contain"
                 alt="check"
               />
-              <p> Dedicated Clean Ambition club support</p>
+              <p>
+                {" "}
+                Dedicated <u>Good Change Club</u> support
+              </p>
             </li>
+            {(recommend === "greenPower" || recommend === "solar") && (
+              <li className="flex items-start gap-4">
+                <Image
+                  src="/icons/star.svg"
+                  width={50}
+                  height={50}
+                  objectFit="contain"
+                  alt="check"
+                />
+                {recommend === "greenPower" && (
+                  <p>
+                    <u>Tariff review</u> to reduce your overall energy costs
+                  </p>
+                )}
+                {recommend === "solar" && (
+                  <p>
+                    <u>Reduced energy costs</u> through self generated power
+                  </p>
+                )}
+              </li>
+            )}
           </ul>
         </div>
       </div>
