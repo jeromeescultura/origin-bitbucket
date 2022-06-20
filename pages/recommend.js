@@ -44,6 +44,8 @@ const Recommend = ({ industries }) => {
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || null;
 
+  const [loading, setLoading] = useState(true);
+
   const [industryId, setIndustryId] = useState();
   const [industry, setIndustry] = useState("");
   const [recommend, setRecommend] = useState("");
@@ -80,6 +82,12 @@ const Recommend = ({ industries }) => {
   const goZeroScore = Object.values(goZero).reduce(sumArray);
   const greenPowerScore = Object.values(greenPower).reduce(sumArray);
   const solarPowerScore = Object.values(solarPower).reduce(sumArray);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 150);
+  }, [recommend]);
 
   useEffect(() => {
     if (storedStepOneData !== null && storedStepTwoData !== null) {
@@ -438,13 +446,15 @@ const Recommend = ({ industries }) => {
 
           <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
             <h2 className="text-primaryText font-bold">Making a difference</h2>
-            <h2 className="text-primaryText">
-              with{" "}
-              {showContent === "carbonOffset" &&
-                "Origin Go Zero 100% carbon offset"}{" "}
-              {showContent === "solar" && "Solar"}
-              {showContent === "greenPower" && "GreenPower"}
-            </h2>
+            {!loading && (
+              <h2 className="text-primaryText">
+                with{" "}
+                {showContent === "carbonOffset" &&
+                  "Origin Go Zero 100% carbon offset"}{" "}
+                {showContent === "solar" && "Solar"}
+                {showContent === "greenPower" && "GreenPower"}
+              </h2>
+            )}
             <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
               Impact estimates below are calculated with usage averages
               collected from Origin’s small & medium business customers in{" "}
@@ -513,9 +523,6 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </ContentContainer>
-        <div className="flex justify-center">
-          <Button onClick={showLocalStorage}>Click me</Button>
-        </div>
         <Faqs />
       </div>
       {showFooter && (

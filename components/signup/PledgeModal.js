@@ -1,4 +1,11 @@
-import { Box, Modal, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  Modal,
+  useMediaQuery,
+} from "@mui/material";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import LeafRating from "../LeafRating";
@@ -23,7 +30,7 @@ const PledgeModal = ({
   }, [orient]);
   return (
     <Modal open={pledgeModal} onClose={closeModal}>
-      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg ">
+      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-5 rounded-lg ">
         <div className="flex justify-end" onClick={closeModal}>
           <button className="w-5 h-5">
             <Image
@@ -81,59 +88,67 @@ const PledgeModal = ({
                   </p>
                 </div>
                 <div className="space-y-2 mt-8 pl-5">
-                  <p className="font-medium">
-                    By pledging you’ll get access to
+                  <p className="font-medium text-left">
+                    In addition, we will also support you with
                   </p>
-                  <ul className="space-y-8 text-left py-8">
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
+                  <List dense={true} className="space-y-4 text-left py-3">
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
                       <p>
                         {" "}
                         <u>Progress reporting</u> on your impact
                       </p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
+                    </ListItem>
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
                       <p>
                         {" "}
                         <u>Free Marketing toolkit</u> to communicate your impact
                         to communicate your impact
                       </p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
+                    </ListItem>
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
                       <p>
                         {" "}
                         Dedicated <u>Good Change Club</u> support
                       </p>
-                    </li>
+                    </ListItem>
                     {(product === "greenPower" || product === "solar") && (
-                      <li className="flex items-start gap-4">
-                        <Image
-                          src="/icons/star.svg"
-                          width={50}
-                          height={50}
-                          objectFit="contain"
-                          alt="check"
-                        />
+                      <ListItem className="flex items-start pl-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/star.svg"
+                            width={30}
+                            height={30}
+                            objectFit="contain"
+                            alt="star"
+                          />
+                        </ListItemIcon>
                         {product === "greenPower" && (
                           <p>
                             <u>Tariff review</u> to reduce your overall energy
@@ -146,9 +161,9 @@ const PledgeModal = ({
                             power
                           </p>
                         )}
-                      </li>
+                      </ListItem>
                     )}
-                  </ul>
+                  </List>
                 </div>
               </div>
             </MoreDetailsComponent>
@@ -208,7 +223,7 @@ const PledgeModal = ({
             <div className="mt-8">
               <p className="font-medium">You’ve chosen to do more</p>
               <div className="flex justify-center">
-                <div className="flex flex-col max-w-[227px]">
+                <div className="flex flex-col">
                   {biggerDiff.includes("interview") && (
                     <div className="flex gap-4 mt-4">
                       <div className="w-[20px] h-[20px]">
@@ -228,7 +243,7 @@ const PledgeModal = ({
                   )}
                   {biggerDiff.includes("greenPower") && (
                     <div className="flex gap-4 mt-4">
-                      <div className="w-[70px] h-[70px]">
+                      <div className="w-[20px] h-[20px]">
                         <Image
                           src="/icons/check-green.svg"
                           width={50}
@@ -237,12 +252,7 @@ const PledgeModal = ({
                           alt="trees"
                         />
                       </div>
-                      <p className="text-left">
-                        GreenPower
-                        <br />
-                        One of our Good Change club representatives will get in
-                        contact to review your GreenPower options
-                      </p>
+                      <p className="text-left">GreenPower</p>
                     </div>
                   )}
                 </div>

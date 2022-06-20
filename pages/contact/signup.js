@@ -18,6 +18,9 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
+  List,
+  ListItem,
+  ListItemIcon,
 } from "@mui/material";
 import FormInputButton from "../../form-components/FormInputButton";
 import ButtonQuestion from "../../components/ButtonQuestion";
@@ -158,59 +161,67 @@ function signup() {
                       </p>
                     </div>
                     <div className="space-y-2 mt-8 pl-5">
-                      <p className="font-medium">
-                        By pledging you’ll get access to
+                      <p className="font-medium text-left">
+                        In addition, we will also support you with
                       </p>
-                      <ul className="space-y-8 text-left py-8">
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                            alt="check"
-                          />
+                      <List dense={true} className="space-y-4 text-left py-3">
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
                           <p>
                             {" "}
                             <u>Progress reporting</u> on your impact
                           </p>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                            alt="check"
-                          />
+                        </ListItem>
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
                           <p>
                             {" "}
                             <u>Free Marketing toolkit</u> to communicate your
                             impact to communicate your impact
                           </p>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                            alt="check"
-                          />
+                        </ListItem>
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
                           <p>
                             {" "}
                             Dedicated <u>Good Change Club</u> support
                           </p>
-                        </li>
+                        </ListItem>
                         {(product === "greenPower" || product === "solar") && (
-                          <li className="flex items-start gap-4">
-                            <Image
-                              src="/icons/star.svg"
-                              width={50}
-                              height={50}
-                              objectFit="contain"
-                              alt="check"
-                            />
+                          <ListItem className="flex items-start pl-0">
+                            <ListItemIcon>
+                              <Image
+                                src="/icons/star.svg"
+                                width={30}
+                                height={30}
+                                objectFit="contain"
+                                alt="star"
+                              />
+                            </ListItemIcon>
                             {product === "greenPower" && (
                               <p>
                                 <u>Tariff review</u> to reduce your overall
@@ -223,9 +234,9 @@ function signup() {
                                 generated power
                               </p>
                             )}
-                          </li>
+                          </ListItem>
                         )}
-                      </ul>
+                      </List>
                     </div>
                   </div>
                 </MoreDetailsComponent>

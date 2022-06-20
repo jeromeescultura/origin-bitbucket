@@ -1,4 +1,12 @@
-import { Button, FormControl, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  List,
+  ListItem,
+  ListItemIcon,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
@@ -98,58 +106,66 @@ const RecommentCard = ({
         </div>
         <div className="space-y-2  pl-5">
           <p className="font-medium  text-center lg:text-left">
-            By pledging you’ll get access to
+            In addition, we will also support you with
           </p>
-          <ul className="space-y-4 text-left py-3">
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={50}
-                height={50}
-                objectFit="contain"
-                alt="check"
-              />
+          <List dense={true} className="space-y-4 text-left py-3">
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
               <p>
                 {" "}
                 <u>Progress reporting</u> on your impact
               </p>
-            </li>
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={50}
-                height={50}
-                objectFit="contain"
-                alt="check"
-              />
+            </ListItem>
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
               <p>
                 {" "}
                 <u>Free Marketing toolkit</u> to communicate your impact to
                 communicate your impact
               </p>
-            </li>
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={50}
-                height={50}
-                objectFit="contain"
-                alt="check"
-              />
+            </ListItem>
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
               <p>
                 {" "}
                 Dedicated <u>Good Change Club</u> support
               </p>
-            </li>
+            </ListItem>
             {(recommend === "greenPower" || recommend === "solar") && (
-              <li className="flex items-start gap-4">
-                <Image
-                  src="/icons/star.svg"
-                  width={50}
-                  height={50}
-                  objectFit="contain"
-                  alt="check"
-                />
+              <ListItem className="flex items-center lg:items-start pl-0">
+                <ListItemIcon>
+                  <Image
+                    src="/icons/star.svg"
+                    width={30}
+                    height={30}
+                    objectFit="contain"
+                    alt="star"
+                  />
+                </ListItemIcon>
                 {recommend === "greenPower" && (
                   <p>
                     <u>Tariff review</u> to reduce your overall energy costs
@@ -160,9 +176,9 @@ const RecommentCard = ({
                     <u>Reduced energy costs</u> through self generated power
                   </p>
                 )}
-              </li>
+              </ListItem>
             )}
-          </ul>
+          </List>
         </div>
       </div>
       <p className="text-xs text-subTextColor text-center leading-6">
