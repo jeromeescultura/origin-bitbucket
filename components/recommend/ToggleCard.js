@@ -139,6 +139,12 @@ const ToggleCard = ({
                     checked={greenPower}
                   />
                   <div>GreenPower</div>
+                  <Collapse in={greenPower}>
+                    <div className="mt-6">
+                      One of our Good Change club representatives will get in
+                      contact to review your GreenPower options
+                    </div>
+                  </Collapse>
                 </div>
               </CardContent>
             </Card>

@@ -1,4 +1,11 @@
-import { Box, Modal, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  Modal,
+  useMediaQuery,
+} from "@mui/material";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import LeafRating from "../LeafRating";
@@ -23,7 +30,7 @@ const PledgeModal = ({
   }, [orient]);
   return (
     <Modal open={pledgeModal} onClose={closeModal}>
-      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg ">
+      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-5 rounded-lg ">
         <div className="flex justify-end" onClick={closeModal}>
           <button className="w-5 h-5">
             <Image
@@ -36,13 +43,13 @@ const PledgeModal = ({
         </div>
         <div className="text-center space-y-2 mt-4">
           <p className="text-sm pb-4">You have chosen to pledge with</p>
-          <LeafRating
+          {/* <LeafRating
             count={
               (product === "carbonOffset" && 2) ||
               (product === "greenPower" && 3) ||
               (product === "solar" && 4)
             }
-          />
+          /> */}
           <p className="font-medium subtitle">
             {product === "carbonOffset" && "Origin Go Zero 100% carbon offset"}
             {product === "greenPower" && `GreenPower ${greenPowerLevel}%`}
@@ -81,41 +88,82 @@ const PledgeModal = ({
                   </p>
                 </div>
                 <div className="space-y-2 mt-8 pl-5">
-                  <p className="font-medium">
-                    By pledging you’ll get access to
+                  <p className="font-medium text-left">
+                    In addition, we will also support you with
                   </p>
-                  <ul className="space-y-8 text-left py-8">
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
-                      <p> Progress reporting on your impact</p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
-                      <p> Amplify toolkit to communicate your impact</p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <Image
-                        src="/icons/check-yellow.svg"
-                        width={20}
-                        height={20}
-                        objectFit="contain"
-                        alt="check"
-                      />
-                      <p> Dedicated Clean Ambition club support</p>
-                    </li>
-                  </ul>
+                  <List dense={true} className="space-y-4 text-left py-3">
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
+                      <p>
+                        {" "}
+                        <u>Progress reporting</u> on your impact
+                      </p>
+                    </ListItem>
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
+                      <p>
+                        {" "}
+                        <u>Free Marketing toolkit</u> to communicate your impact
+                        to communicate your impact
+                      </p>
+                    </ListItem>
+                    <ListItem className="flex items-start pl-0">
+                      <ListItemIcon>
+                        <Image
+                          src="/icons/check-yellow.svg"
+                          width={30}
+                          height={30}
+                          objectFit="contain"
+                          alt="check"
+                        />
+                      </ListItemIcon>
+                      <p>
+                        {" "}
+                        Dedicated <u>Good Change Club</u> support
+                      </p>
+                    </ListItem>
+                    {(product === "greenPower" || product === "solar") && (
+                      <ListItem className="flex items-start pl-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/star.svg"
+                            width={30}
+                            height={30}
+                            objectFit="contain"
+                            alt="star"
+                          />
+                        </ListItemIcon>
+                        {product === "greenPower" && (
+                          <p>
+                            <u>Tariff review</u> to reduce your overall energy
+                            costs
+                          </p>
+                        )}
+                        {product === "solar" && (
+                          <p>
+                            <u>Reduced energy costs</u> through self generated
+                            power
+                          </p>
+                        )}
+                      </ListItem>
+                    )}
+                  </List>
                 </div>
               </div>
             </MoreDetailsComponent>

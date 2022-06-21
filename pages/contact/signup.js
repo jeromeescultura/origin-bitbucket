@@ -18,6 +18,9 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
+  List,
+  ListItem,
+  ListItemIcon,
 } from "@mui/material";
 import FormInputButton from "../../form-components/FormInputButton";
 import ButtonQuestion from "../../components/ButtonQuestion";
@@ -99,20 +102,22 @@ function signup() {
           <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
-              <LeafRating
+              {/* <LeafRating
                 count={
                   (product === "carbonOffset" && 2) ||
                   (product === "greenPower" && 3) ||
                   (product === "solar" && 4)
                 }
-              />
+              /> */}
               <p className="font-medium subtitle">
                 {product === "carbonOffset" &&
                   "Origin Go Zero 100% carbon offset"}
                 {product === "greenPower" && `GreenPower ${greenPowerLevel}%`}
                 {product === "solar" && "Solar"}
               </p>
-              <Button className="lg:hidden" onClick={openModal}>View details</Button>
+              <Button className="lg:hidden" onClick={openModal}>
+                View details
+              </Button>
             </div>
             <PledgeModal
               product={product}
@@ -156,38 +161,82 @@ function signup() {
                       </p>
                     </div>
                     <div className="space-y-2 mt-8 pl-5">
-                      <p className="font-medium">
-                        By pledging you’ll get access to
+                      <p className="font-medium text-left">
+                        In addition, we will also support you with
                       </p>
-                      <ul className="space-y-8 text-left py-8">
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                          />
-                          <p> Progress reporting on your impact</p>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                          />
-                          <p> Amplify toolkit to communicate your impact</p>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <Image
-                            src="/icons/check-yellow.svg"
-                            width={20}
-                            height={20}
-                            objectFit="contain"
-                          />
-                          <p> Dedicated Clean Ambition club support</p>
-                        </li>
-                      </ul>
+                      <List dense={true} className="space-y-4 text-left py-3">
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
+                          <p>
+                            {" "}
+                            <u>Progress reporting</u> on your impact
+                          </p>
+                        </ListItem>
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
+                          <p>
+                            {" "}
+                            <u>Free Marketing toolkit</u> to communicate your
+                            impact to communicate your impact
+                          </p>
+                        </ListItem>
+                        <ListItem className="flex items-start pl-0">
+                          <ListItemIcon>
+                            <Image
+                              src="/icons/check-yellow.svg"
+                              width={30}
+                              height={30}
+                              objectFit="contain"
+                              alt="check"
+                            />
+                          </ListItemIcon>
+                          <p>
+                            {" "}
+                            Dedicated <u>Good Change Club</u> support
+                          </p>
+                        </ListItem>
+                        {(product === "greenPower" || product === "solar") && (
+                          <ListItem className="flex items-start pl-0">
+                            <ListItemIcon>
+                              <Image
+                                src="/icons/star.svg"
+                                width={30}
+                                height={30}
+                                objectFit="contain"
+                                alt="star"
+                              />
+                            </ListItemIcon>
+                            {product === "greenPower" && (
+                              <p>
+                                <u>Tariff review</u> to reduce your overall
+                                energy costs
+                              </p>
+                            )}
+                            {product === "solar" && (
+                              <p>
+                                <u>Reduced energy costs</u> through self
+                                generated power
+                              </p>
+                            )}
+                          </ListItem>
+                        )}
+                      </List>
                     </div>
                   </div>
                 </MoreDetailsComponent>
@@ -249,7 +298,7 @@ function signup() {
                 <div className="mt-16">
                   <p className="font-medium">You’ve chosen to do more</p>
                   <div className="flex justify-center">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col max-w-[227px]">
                       {biggerDiff.includes("interview") && (
                         <div className="flex gap-4 mt-4">
                           <div className="w-[20px] h-[20px]">
@@ -268,8 +317,8 @@ function signup() {
                         </div>
                       )}
                       {biggerDiff.includes("greenPower") && (
-                        <div className="flex gap-4 mt-4">
-                          <div className="w-[20px] h-[20px]">
+                        <div className="flex justify-between gap-4 mt-4">
+                          <div className="w-[70px] h-[70px]">
                             <Image
                               src="/icons/check-green.svg"
                               width={50}
@@ -278,7 +327,12 @@ function signup() {
                               alt="trees"
                             />
                           </div>
-                          <p className="text-left">GreenPower</p>
+                          <p className="text-left">
+                            GreenPower
+                            <br />
+                            One of our Good Change club representatives will get
+                            in contact to review your GreenPower options
+                          </p>
                         </div>
                       )}
                     </div>

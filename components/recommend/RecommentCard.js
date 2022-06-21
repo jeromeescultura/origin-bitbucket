@@ -1,4 +1,12 @@
-import { Button, FormControl, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  List,
+  ListItem,
+  ListItemIcon,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
@@ -18,13 +26,13 @@ const RecommentCard = ({
         <p className="text-[18px] lg:text-[20px] font-medium mb-8 text-primaryText">
           We recommend
         </p>
-        <LeafRating
+        {/* <LeafRating
           count={
             (recommend === "carbonOffset" && 2) ||
             (recommend === "solar" && 4) ||
             (recommend === "greenPower" && 3)
           }
-        />
+        /> */}
 
         <div className="flex justify-center items-center">
           <p className="font-medium subtitle">
@@ -98,40 +106,79 @@ const RecommentCard = ({
         </div>
         <div className="space-y-2  pl-5">
           <p className="font-medium  text-center lg:text-left">
-            By pledging you’ll get access to
+            In addition, we will also support you with
           </p>
-          <ul className="space-y-4 text-left py-3">
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-                alt="check"
-              />
-              <p> Progress reporting on your impact</p>
-            </li>
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-                alt="check"
-              />
-              <p> Amplify toolkit to communicate your impact</p>
-            </li>
-            <li className="flex items-start gap-4">
-              <Image
-                src="/icons/check-yellow.svg"
-                width={20}
-                height={20}
-                objectFit="contain"
-                alt="check"
-              />
-              <p> Dedicated Clean Ambition club support</p>
-            </li>
-          </ul>
+          <List dense={true} className="space-y-4 text-left py-3">
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
+              <p>
+                {" "}
+                <u>Progress reporting</u> on your impact
+              </p>
+            </ListItem>
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
+              <p>
+                {" "}
+                <u>Free Marketing toolkit</u> to communicate your impact to
+                communicate your impact
+              </p>
+            </ListItem>
+            <ListItem className="flex items-center lg:items-start pl-0">
+              <ListItemIcon>
+                <Image
+                  src="/icons/check-yellow.svg"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  alt="check"
+                />
+              </ListItemIcon>
+              <p>
+                {" "}
+                Dedicated <u>Good Change Club</u> support
+              </p>
+            </ListItem>
+            {(recommend === "greenPower" || recommend === "solar") && (
+              <ListItem className="flex items-center lg:items-start pl-0">
+                <ListItemIcon>
+                  <Image
+                    src="/icons/star.svg"
+                    width={30}
+                    height={30}
+                    objectFit="contain"
+                    alt="star"
+                  />
+                </ListItemIcon>
+                {recommend === "greenPower" && (
+                  <p>
+                    <u>Tariff review</u> to reduce your overall energy costs
+                  </p>
+                )}
+                {recommend === "solar" && (
+                  <p>
+                    <u>Reduced energy costs</u> through self generated power
+                  </p>
+                )}
+              </ListItem>
+            )}
+          </List>
         </div>
       </div>
       <p className="text-xs text-subTextColor text-center leading-6">

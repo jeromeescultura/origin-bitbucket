@@ -37,31 +37,36 @@ const questions = [
         questionsList: [
           {
             id: 1,
-            value: "carbon_offsets",
-            text: "Bought Carbon Offsets",
+            value: "replaced_equipments",
+            text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
           },
           {
             id: 2,
-            value: "green_power",
-            text: "Bought Green power",
+            value: "carbon_offsets",
+            text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
             id: 3,
-            value: "solar",
-            text: "Solar",
+            value: "green_power",
+            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
           },
           {
             id: 4,
-            value: "batteries",
-            text: "Batteries",
+            value: "solar",
+            text: "Installed solar at your site(s)",
           },
           {
             id: 5,
-            value: "ev",
-            text: "EV",
+            value: "batteries",
+            text: "Added battery storage to your solar system",
           },
           {
             id: 6,
+            value: "electric_vehicles",
+            text: "Replaced some or all of your vehicle fleet with electric vehicles",
+          },
+          {
+            id: 7,
             value: "expert_advice",
             text: "Worked with an expert to lower our carbon emissions",
           },
@@ -85,7 +90,7 @@ const questions = [
           {
             id: 3,
             value: "digitized",
-            text: "Digitised some or all paper based processes at the sites (s)",
+            text: "Digitised some or all paper based processes at the sites(s)",
           },
           {
             id: 4,
@@ -313,33 +318,32 @@ const questions = [
         {
           id: 1,
           value: "constant",
-          label: "Constant (Requires 24 hour supply)",
+          label: "Constant",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
           value: "mornings",
-          label: "Mornings (Roughly between 1am – 9am)",
+          label: "Mornings",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
           value: "evenings",
-          label: "Evenings (Roughly between 5pm - 1am)",
+          label: "Evenings",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
           value: "standard",
-          label: "Standard times (Roughly between 9am - 5pm)",
+          label: "Standard times",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
           value: "unconstrained",
-          label:
-            "Unconstrained by specific operating hours (Depends on business priorities)",
+          label: "Unconstrained by specific operating hours",
           subText: "Energy use varies greatly depending on business priorities",
         },
       ],
