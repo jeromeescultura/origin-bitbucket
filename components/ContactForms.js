@@ -82,7 +82,7 @@ function ContactForms({ text }) {
     lastName: "",
     email: "",
     phone: "",
-    existingBusiness: false,
+    existingBusiness: "1",
     accountNumber: "",
     primaryAccountHolder: false,
     contactMethod: "",
@@ -168,7 +168,7 @@ function ContactForms({ text }) {
 
   // Handle Existing Button
   const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(false);
+  const [btn2, setBtn2] = useState(true);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
