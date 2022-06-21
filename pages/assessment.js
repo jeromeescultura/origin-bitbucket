@@ -68,6 +68,7 @@ const Assessment = ({ questions }) => {
     thirdStep: "w-0 opacity-0",
   });
 
+  // STORING ASSESSMENT ANSWERS TO LOCAL STORAGE
   useEffect(() => {
     window.localStorage.setItem(
       "ASSESSMENT_ANSWERS",
@@ -75,12 +76,14 @@ const Assessment = ({ questions }) => {
     );
   }, [assessmentAnswers]);
 
+  // SCROLL TO TOP WHEN PAGE IS LOADED
   useEffect(() => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
   }, []);
 
+  // GETTING QUESTIONS DATA FROM API
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -113,11 +116,13 @@ const Assessment = ({ questions }) => {
     });
   }, [questions]);
 
+  // STORE CURRENT PAGE TO LOCAL STORAGE
   useEffect(() => {
     window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
     window.localStorage.setItem("STEP", JSON.stringify(step));
   }, [stepNo, step]);
 
+  // GETTING STORED PAGE DATA FROM LOCAL STORAGE
   useEffect(() => {
     if (storedData.storedPage !== null && storedData.storedStep !== null) {
       setStepNo(storedData.storedPage);
@@ -127,6 +132,7 @@ const Assessment = ({ questions }) => {
 
   const [activeState, changeState] = useState(0);
 
+  // FUNCTION TO HANDLE NEXT BUTTON
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
@@ -149,6 +155,7 @@ const Assessment = ({ questions }) => {
     window.scrollTo({ top: 580, left: 0 });
   };
 
+  // FUNCTION TO HANDLE BACK BUTTON
   const stepBackwardHandler = () => {
     // if (step.thirdStep === "w-full opacity-100") {
     //   setStep({ ...step, thirdStep: "w-0 opacity-0" });

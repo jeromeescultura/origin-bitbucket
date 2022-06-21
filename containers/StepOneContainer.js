@@ -37,6 +37,7 @@ const StepOneContainer = ({
   const methods = useForm({ defaultValues: stepOneAns });
   const { control, watch, setValue, handleSubmit } = methods;
 
+  // STORING VALUES SAVED IN stepOneAns TO LOCAL STORAGE AND assessmentAnswers STATE
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
     setAssessmentAnswers((prevState) => {
@@ -44,6 +45,7 @@ const StepOneContainer = ({
     });
   }, [stepOneAns]);
 
+  // GETTING DATA FROM LOCAL STORAGE
   useEffect(() => {
     if (storedData) {
       setStepOneAns(storedData);
@@ -56,6 +58,8 @@ const StepOneContainer = ({
     }
   }, []);
 
+
+  // SETTING SELECTED BUTTON BASED ON choice STATE AND CLEAR goals STATE WHEN SELECTING THE 'NO' OPTION
   useEffect(() => {
     if (choice !== "") {
       setValue("implementSustainability", choice);
@@ -67,6 +71,7 @@ const StepOneContainer = ({
     }
   }, [choice]);
 
+  // FUNCTION TO HIGHLIGHT SELECTED BUTTON
   const handleButtonSelect = (value) => {
     setChoice(value === 0 ? "no" : "yes");
     if (value === 0) {
@@ -78,12 +83,14 @@ const StepOneContainer = ({
     }
   };
 
+  // UPDATE DATA FOR goalsConsidered STATE
   useEffect(() => {
     setValue("goalsConsidered", goals);
   }, [goals]);
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
+  // SET stepOneAns VALUES BASED ON VALUES STORED BY FORM HOOK COMPONENTS
   const handleChange = (data) => {
     setStepOneAns({
       goalsConsidered: data.goalsConsidered,
@@ -95,7 +102,6 @@ const StepOneContainer = ({
     });
   };
 
-  const testInput = () => console.log("test");
 
   return (
     <>

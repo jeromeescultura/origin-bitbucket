@@ -7,11 +7,7 @@ import DropdownQuestion from "../components/DropdownQuestion";
 import RadioQuestion from "../components/RadioQuestion";
 import IconsQuestion from "../components/IconsQuestion";
 import ButtonQuestion from "../components/ButtonQuestion";
-import {
-  Button,
-  ButtonGroup,
-  useMediaQuery,
-} from "@mui/material";
+import { Button, ButtonGroup, useMediaQuery } from "@mui/material";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 
 const StepTwoContainer = ({
@@ -22,6 +18,7 @@ const StepTwoContainer = ({
   btnQsts,
   setAssessmentAnswers,
 }) => {
+  // STORING DATA UPLOADED BY stepTwoAns STATE
   const storedData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -39,6 +36,7 @@ const StepTwoContainer = ({
   const [enUsage, setEnUsage] = useState("constant");
   const [equipment, setEquipment] = useState("");
 
+  // STORING VALUES SAVED IN stepTwoAns TO LOCAL STORAGE AND assessmentAnswers STATE
   useEffect(() => {
     window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
     setAssessmentAnswers((prevState) => {
@@ -46,6 +44,7 @@ const StepTwoContainer = ({
     });
   }, [stepTwoAns]);
 
+  // GETTING DATA FROM LOCAL STORAGE
   useEffect(() => {
     if (storedData !== null) {
       setStepTwoAns(storedData);
@@ -57,6 +56,7 @@ const StepTwoContainer = ({
     }
   }, []);
 
+  // SET stepTwoAns VALUES BASED ON VALUES STORED BY FORM HOOK COMPONENTS
   const handleChange = (data) => {
     setStepTwoAns({
       typeOfIndustry: data.typeOfIndustry,
@@ -72,6 +72,7 @@ const StepTwoContainer = ({
   const [btn3, setBtn3] = useState(false);
   const [btn4, setBtn4] = useState(true);
 
+  // FUNCTION TO HIGHLIGHT SELECTED BUTTON
   const handleButtonSelect = (value) => {
     setEquipment(
       value === 0
@@ -104,6 +105,8 @@ const StepTwoContainer = ({
       setBtn4(true);
     }
   };
+
+  // SETTING SELECTED BUTTON BASED ON equipment STATE
   useEffect(() => {
     if (equipment !== "") {
       setValue("spaceForInstallation", equipment);
