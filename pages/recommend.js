@@ -97,7 +97,7 @@ const Recommend = ({ industries }) => {
   }, []);
 
   useEffect(() => {
-    setIndustryId(storedStepTwoData?.dropdown);
+    setIndustryId(storedStepTwoData?.typeOfIndustry);
 
     recommendProduct(
       goZeroScore,
@@ -138,7 +138,7 @@ const Recommend = ({ industries }) => {
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    let currIndustry = industries?.filter((item) => item.id === industryId);
+    let currIndustry = industries?.filter((item) => item.name === industryId);
     setIndustry(currIndustry[0]);
   }, [industryId]);
 

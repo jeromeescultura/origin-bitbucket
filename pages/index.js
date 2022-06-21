@@ -123,17 +123,31 @@ export default function Home() {
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             <ContentContainer>
               <div>
-                <h2 className="text-center font-light text-primaryText ">
-                  You can pledge to do a{" "}
-                  <span className="font-bold">little</span> or a{" "}
-                  <span className="font-bold">lot</span>
+                <h2 className="text-center font-medium text-primaryText ">
+                  Every little bit counts
                 </h2>
-                <p className="text-center font-light mt-6">
-                  We dont want to add unnecessary pressure on your business to
-                  take on a full scale clean energy transition plan. We&#39;ve
-                  got energy for every need to help you transition based on how
-                  much you&#39;re ready to take on.
+                <p className="text-center text-sm font-light mt-6">
+                  There’s no pressure on your business to take on a full scale
+                  clean energy transition plan. We help you identify the best
+                  actions for your business to support cleaner energy solutions,
+                  based on our understanding of how much your business has
+                  capacity to do.
                 </p>
+                <div className="flex justify-center mt-6">
+                  <div className="flex items-start max-w-[254px] sm:max-w-full cursor-pointer">
+                    <div className="mr-1">
+                      <Image
+                        src="/icons/pdf.svg"
+                        width={20}
+                        height={20}
+                        alt="document-icon"
+                      />
+                    </div>
+                    <p className="text-sm font-medium text-primaryText">
+                      Start with our Energy efficiency checklist
+                    </p>
+                  </div>
+                </div>
               </div>
             </ContentContainer>
             <FullWidth>

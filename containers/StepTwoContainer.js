@@ -10,14 +10,6 @@ import ButtonQuestion from "../components/ButtonQuestion";
 import {
   Button,
   ButtonGroup,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  InputLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
   useMediaQuery,
 } from "@mui/material";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
@@ -28,6 +20,7 @@ const StepTwoContainer = ({
   iconQsts,
   chkBoxQsts,
   btnQsts,
+  setAssessmentAnswers,
 }) => {
   const storedData =
     JSON.parse(
@@ -40,34 +33,37 @@ const StepTwoContainer = ({
   const methods = useForm({ defaultValues: stepTwoAns });
   const { control, watch, setValue } = methods;
 
-  const [dropdown, setDropdown] = useState(19);
-  const [radio, setRadio] = useState("1-2");
+  const [dropdown, setDropdown] = useState("Other Services");
+  const [radio, setRadio] = useState("1-2 sites");
   const [enSources, setEnSources] = useState([]);
   const [enUsage, setEnUsage] = useState("constant");
   const [equipment, setEquipment] = useState("");
 
   useEffect(() => {
     window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
+    setAssessmentAnswers((prevState) => {
+      return { ...prevState, stepTwoAns: stepTwoAns };
+    });
   }, [stepTwoAns]);
 
   useEffect(() => {
     if (storedData !== null) {
       setStepTwoAns(storedData);
-      setDropdown(storedData.dropdown);
-      setRadio(storedData.radio);
-      setEnSources(storedData.checkboxEnSource);
-      setEnUsage(storedData.radioEnUsage);
-      setEquipment(storedData.choice);
+      setDropdown(storedData.typeOfIndustry);
+      setRadio(storedData.businessSites);
+      setEnSources(storedData.energySources);
+      setEnUsage(storedData.energyUsage);
+      setEquipment(storedData.spaceForInstallation);
     }
   }, []);
 
   const handleChange = (data) => {
     setStepTwoAns({
-      dropdown: data.dropdown,
-      radio: data.radio,
-      checkboxEnSource: data.checkboxEnSource,
-      radioEnUsage: data.radioEnUsage,
-      choice: data.choice,
+      typeOfIndustry: data.typeOfIndustry,
+      businessSites: data.businessSites,
+      energySources: data.energySources,
+      energyUsage: data.energyUsage,
+      spaceForInstallation: data.spaceForInstallation,
     });
   };
 
@@ -77,7 +73,15 @@ const StepTwoContainer = ({
   const [btn4, setBtn4] = useState(true);
 
   const handleButtonSelect = (value) => {
-    setEquipment(value.toString());
+    setEquipment(
+      value === 0
+        ? "yes"
+        : value === 1
+        ? "some"
+        : value === 2
+        ? "no"
+        : "not_sure"
+    );
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
@@ -102,8 +106,16 @@ const StepTwoContainer = ({
   };
   useEffect(() => {
     if (equipment !== "") {
-      setValue("choice", equipment);
-      handleButtonSelect(parseInt(equipment));
+      setValue("spaceForInstallation", equipment);
+      handleButtonSelect(
+        equipment === "yes"
+          ? 0
+          : equipment === "some"
+          ? 1
+          : equipment === "no"
+          ? 2
+          : 3
+      );
     }
   }, [equipment]);
 
@@ -116,13 +128,13 @@ const StepTwoContainer = ({
         <div className="mt-8">
           <FormInputDropdown
             onChange={watch(handleChange)}
-            name={"dropdown"}
+            name={"typeOfIndustry"}
             control={control}
             options={dropDwnQsts.options}
             setValue={setValue}
             dropdownValue={dropdown}
             label={"Industry"}
-            defaultDropdown={19}
+            defaultDropdown={"Other Services"}
             // id={dropdown?.id}
           />
         </div>
@@ -130,12 +142,12 @@ const StepTwoContainer = ({
         <QuestionContainer style={"px-0"} text={radioQsts?.text}>
           <div className="mt-5">
             <FormInputRadio
-              name={"radio"}
+              name={"businessSites"}
               control={control}
               options={radioQsts?.options}
               setValue={setValue}
               radioValue={radio}
-              radioDefault={"1-2"}
+              radioDefault={"1-2 sites"}
             />
           </div>
         </QuestionContainer>
@@ -153,7 +165,7 @@ const StepTwoContainer = ({
               answer={setEnSources}
               answers={enSources}
               setValue={setValue}
-              name={"checkboxEnSource"}
+              name={"energySources"}
               options={iconQsts?.options}
             />
           </div>
@@ -164,7 +176,7 @@ const StepTwoContainer = ({
       <QuestionContainer id={chkBoxQsts?.id} text={chkBoxQsts?.text}>
         <div className="mt-5">
           <FormInputRadio
-            name={"radioEnUsage"}
+            name={"energyUsage"}
             control={control}
             options={chkBoxQsts?.questionsList}
             setValue={setValue}
@@ -188,7 +200,7 @@ const StepTwoContainer = ({
           >
             <Controller
               control={control}
-              name={"choice"}
+              name={"spaceForInstallation"}
               render={() => {
                 return (
                   <>

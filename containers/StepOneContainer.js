@@ -14,6 +14,7 @@ const StepOneContainer = ({
   sldrQsts,
   glsQsts,
   radioQsts,
+  setAssessmentAnswers,
 }) => {
   const [goals, setGoals] = useState("");
   const [choice, setChoice] = useState("");
@@ -38,33 +39,36 @@ const StepOneContainer = ({
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
+    setAssessmentAnswers((prevState) => {
+      return { ...prevState, stepOneAns: stepOneAns };
+    });
   }, [stepOneAns]);
 
   useEffect(() => {
     if (storedData) {
       setStepOneAns(storedData);
-      setEnSourceValue(storedData.enSource);
-      setGenOpValue(storedData.genOp);
-      setSliderValue(storedData.slider);
-      setChoice(storedData.choice);
-      setGoals(storedData.goals);
-      setRadioValue(storedData.radio);
+      setEnSourceValue(storedData.energySourceChanges);
+      setGenOpValue(storedData.generalOperationsChanges);
+      setSliderValue(storedData.howMuchPriority);
+      setChoice(storedData.implementSustainability);
+      setGoals(storedData.goalsConsidered);
+      setRadioValue(storedData.howMuchTimeAndEnergy);
     }
   }, []);
 
   useEffect(() => {
     if (choice !== "") {
-      setValue("choice", choice);
-      handleButtonSelect(parseInt(choice));
+      setValue("implementSustainability", choice);
+      handleButtonSelect(choice === "yes" ? 1 : 0);
     }
 
-    if (btn2) {
+    if (choice === "no") {
       setGoals("");
     }
   }, [choice]);
 
   const handleButtonSelect = (value) => {
-    setChoice(value.toString());
+    setChoice(value === 0 ? "no" : "yes");
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
@@ -75,19 +79,19 @@ const StepOneContainer = ({
   };
 
   useEffect(() => {
-    setValue("goals", goals);
+    setValue("goalsConsidered", goals);
   }, [goals]);
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   const handleChange = (data) => {
     setStepOneAns({
-      goals: data.goals,
-      choice: data.choice,
-      enSource: data.enSource,
-      genOp: data.genOp,
-      slider: data.slider,
-      radio: data.radio,
+      goalsConsidered: data.goalsConsidered,
+      implementSustainability: data.implementSustainability,
+      energySourceChanges: data.energySourceChanges,
+      generalOperationsChanges: data.generalOperationsChanges,
+      howMuchPriority: data.howMuchPriority,
+      howMuchTimeAndEnergy: data.howMuchTimeAndEnergy,
     });
   };
 
@@ -108,7 +112,7 @@ const StepOneContainer = ({
           >
             <Controller
               control={control}
-              name={"choice"}
+              name={"implementSustainability"}
               render={() => {
                 return (
                   <>
@@ -197,7 +201,7 @@ const StepOneContainer = ({
               onChange={watch(handleChange)}
               control={control}
               setValue={setValue}
-              name="enSource"
+              name="energySourceChanges"
               options={chkBoxQsts[0]?.questionsList}
               checkboxValue={enSourceValue}
               setCheckboxValue={setEnSourceValue}
@@ -227,7 +231,7 @@ const StepOneContainer = ({
               onChange={watch(handleChange)}
               control={control}
               setValue={setValue}
-              name="genOp"
+              name="generalOperationsChanges"
               options={chkBoxQsts[1]?.questionsList}
               checkboxValue={genOpValue}
               setCheckboxValue={setGenOpValue}
@@ -239,7 +243,7 @@ const StepOneContainer = ({
       <QuestionContainer id={radioQsts?.id} text={radioQsts?.text}>
         <div className="mt-8">
           <FormInputRadio
-            name={"radio"}
+            name={"howMuchTimeAndEnergy"}
             control={control}
             options={radioQsts?.options}
             setValue={setValue}
@@ -252,7 +256,7 @@ const StepOneContainer = ({
       <QuestionContainer id={sldrQsts?.id} text={sldrQsts?.text}>
         <SliderQuestion
           setValue={setValue}
-          name={"slider"}
+          name={"howMuchPriority"}
           setSliderValue={setSliderValue}
           sliderValue={sliderValue}
           qst={sldrQsts?.options}

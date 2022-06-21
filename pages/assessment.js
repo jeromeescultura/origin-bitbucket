@@ -56,6 +56,10 @@ const Assessment = ({ questions }) => {
   };
 
   // STORED STATES //
+  const [assessmentAnswers, setAssessmentAnswers] = useState({
+    stepOneAns: {},
+    stepTwoAns: {},
+  });
 
   const [stepNo, setStepNo] = useState(1);
 
@@ -63,6 +67,13 @@ const Assessment = ({ questions }) => {
     secondStep: "w-0 opacity-0",
     thirdStep: "w-0 opacity-0",
   });
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ASSESSMENT_ANSWERS",
+      JSON.stringify(assessmentAnswers)
+    );
+  }, [assessmentAnswers]);
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -179,6 +190,7 @@ const Assessment = ({ questions }) => {
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
                 radioQsts={timeAndEnergyQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
               />
             )}
 
@@ -190,6 +202,7 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
               />
             )}
           </div>
