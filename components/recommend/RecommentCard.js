@@ -26,13 +26,13 @@ const RecommentCard = ({
         <p className="text-[18px] lg:text-[20px] font-medium mb-8 text-primaryText">
           We recommend
         </p>
-        <LeafRating
+        {/* <LeafRating
           count={
             (recommend === "carbonOffset" && 2) ||
             (recommend === "solar" && 4) ||
             (recommend === "greenPower" && 3)
           }
-        />
+        /> */}
 
         <div className="flex justify-center items-center">
           <p className="font-medium subtitle">

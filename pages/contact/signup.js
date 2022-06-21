@@ -102,13 +102,13 @@ function signup() {
           <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
-              <LeafRating
+              {/* <LeafRating
                 count={
                   (product === "carbonOffset" && 2) ||
                   (product === "greenPower" && 3) ||
                   (product === "solar" && 4)
                 }
-              />
+              /> */}
               <p className="font-medium subtitle">
                 {product === "carbonOffset" &&
                   "Origin Go Zero 100% carbon offset"}

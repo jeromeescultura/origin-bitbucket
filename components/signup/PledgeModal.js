@@ -43,13 +43,13 @@ const PledgeModal = ({
         </div>
         <div className="text-center space-y-2 mt-4">
           <p className="text-sm pb-4">You have chosen to pledge with</p>
-          <LeafRating
+          {/* <LeafRating
             count={
               (product === "carbonOffset" && 2) ||
               (product === "greenPower" && 3) ||
               (product === "solar" && 4)
             }
-          />
+          /> */}
           <p className="font-medium subtitle">
             {product === "carbonOffset" && "Origin Go Zero 100% carbon offset"}
             {product === "greenPower" && `GreenPower ${greenPowerLevel}%`}
