@@ -5,9 +5,6 @@ import { useRouter } from "next/router";
 const ProgressBar = ({
   step,
   stepNo,
-  stepOneAns,
-  stepTwoAns,
-  stepThreeAns,
 }) => {
   const router = useRouter();
 

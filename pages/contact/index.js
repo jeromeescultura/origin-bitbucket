@@ -37,7 +37,7 @@ function interested() {
       </section>
 
       <ContentContainer style="grid gap-6 lg:gap-8 lg:grid-col-5 lg:grid-flow-col lg:grid-flow-col relative max-w-[610px] mx-auto z-10">
-        <div className="hidden lg:inline absolute w-[150px]  top-[50px] -right-[125px] -z-10">
+        {/* <div className="hidden lg:inline absolute w-[150px]  top-[50px] -right-[125px] -z-10">
           <Image
             src="/icons/bg-plant.svg"
             width={180}
@@ -45,7 +45,7 @@ function interested() {
             objectFit="contain"
             alt="Plant"
           />
-        </div>
+        </div> */}
         <ContactForms text="Please give us a few details, and one of our specialists will contact you about other bespoke options that might be available to you." />
       </ContentContainer>
     </div>

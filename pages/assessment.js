@@ -29,8 +29,8 @@ const Assessment = ({ questions }) => {
 
   const assessIntro = [
     {
-      header: "Climate action & your business",
-      desc: "This initial set of questions are designed to understand what climate action means for you and your business.",
+      header: "Sustainability & your business",
+      desc: "This initial set of questions is designed to understand what sort of actions your business has taken so far - or are looking to explore further.",
       plant: "/icons/plant.svg",
     },
     {
