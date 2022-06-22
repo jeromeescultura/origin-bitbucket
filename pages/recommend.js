@@ -167,7 +167,7 @@ const Recommend = ({ industries }) => {
     if (myref.current) {
       observer.observe(myref.current);
     }
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     setPages(products.length);
@@ -547,15 +547,14 @@ const Recommend = ({ industries }) => {
             <Faqs />
           </div>
         ) : (
-          <div className="absolute top-0 left-0 w-full h-full border bg-gray-300 bg-opacity-50 border-red-500 backdrop-blur-lg">
+          <div className="absolute top-0 left-0 w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
             <CircularProgress
-            size='5rem'
+              size="5rem"
               color="secondary"
               sx={{
                 position: "absolute",
                 left: "50%",
                 top: "50%",
-                transform: "translate(-50%, -50%)",
               }}
             />
           </div>

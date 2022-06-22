@@ -15,6 +15,7 @@ const StepOneContainer = ({
   glsQsts,
   radioQsts,
   setAssessmentAnswers,
+  stepForwardHandler,
 }) => {
   const [goals, setGoals] = useState("");
   const [choice, setChoice] = useState("");
@@ -101,6 +102,10 @@ const StepOneContainer = ({
     });
   };
 
+  const handleNextButton = () => {
+    stepForwardHandler();
+  };
+
   return (
     <>
       {/* STEP ONE - QUESTION ONE */}
@@ -161,16 +166,27 @@ const StepOneContainer = ({
         {btn2 && (
           <QuestionContainer style={"px-0"} text={glsQsts?.text}>
             <div className="mt-12 h-[192px]">
-              <TextField
-                error={goals ? false : true}
-                helperText={goals ? "" : "More info required"}
-                multiline
-                rows={6}
-                fullWidth
-                placeholder="Type here"
-                value={goals}
-                onChange={(e) => setGoals(e.target.value)}
-                color="secondary"
+              <Controller
+                control={control}
+                name="goalsConsidered"
+                rules={{ required: "More info required" }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    helperText={error ? error.message : null}
+                    size="large"
+                    error={!!error}
+                    onChange={onChange}
+                    value={value}
+                    fullWidth
+                    color="secondary"
+                    multiline
+                    rows={6}
+                    placeholder="Type here"
+                  />
+                )}
               />
             </div>
           </QuestionContainer>
@@ -268,6 +284,21 @@ const StepOneContainer = ({
           high={"High priority"}
         />
       </QuestionContainer>
+      <div className="">
+        <Button
+          size="large"
+          variant="contained"
+          style={{
+            borderRadius: 200,
+            boxShadow: "none",
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+          }}
+          onClick={handleSubmit(handleNextButton)}
+        >
+          Next
+        </Button>
+      </div>
     </>
   );
 };

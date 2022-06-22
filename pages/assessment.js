@@ -219,6 +219,7 @@ const Assessment = ({ questions }) => {
                 glsQsts={goalsQuestion}
                 radioQsts={timeAndEnergyQuestion}
                 setAssessmentAnswers={setAssessmentAnswers}
+                stepForwardHandler={stepForwardHandler}
               />
             )}
 
@@ -231,53 +232,10 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
                 setAssessmentAnswers={setAssessmentAnswers}
+                stepBackwardHandler={stepBackwardHandler}
+                submitAssessment={submitAssessment}
               />
             )}
-          </div>
-          <div className="flex gap-16 mt-16 justify-between sm:justify-start">
-            {stepNo !== 1 && (
-              <Button
-                size="large"
-                style={{
-                  fontWeight: 600,
-                }}
-                onClick={stepBackwardHandler}
-              >
-                Back
-              </Button>
-            )}
-
-            <div className="">
-              {stepNo !== 2 ? (
-                <Button
-                  size="large"
-                  variant="contained"
-                  style={{
-                    borderRadius: 200,
-                    boxShadow: "none",
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
-                  }}
-                  onClick={stepForwardHandler}
-                >
-                  Next
-                </Button>
-              ) : (
-                <Button
-                  size="large"
-                  variant="contained"
-                  style={{
-                    borderRadius: 200,
-                    boxShadow: "none",
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
-                  }}
-                  onClick={submitAssessment}
-                >
-                  View recommendations
-                </Button>
-              )}
-            </div>
           </div>
         </div>
       </div>
