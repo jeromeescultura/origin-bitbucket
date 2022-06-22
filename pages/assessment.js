@@ -26,6 +26,7 @@ const Assessment = ({ questions }) => {
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
   const [timeAndEnergyQuestion, setTimeAndEnergy] = useState({});
+  const [uuid, setUuid] = useState("");
 
   const assessIntro = [
     {
@@ -122,7 +123,6 @@ const Assessment = ({ questions }) => {
     }
 
     if (stepNo < 2) {
-      console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
       router.push("/recommend");
@@ -159,6 +159,39 @@ const Assessment = ({ questions }) => {
     if (stepNo <= 1) {
       setStepNo(1);
     }
+  };
+
+  const submitAssessment = () => {
+    const json = fetch("https://dev.peek.net.au/origin/answers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        answers: [
+          {
+            id: 1,
+            answer: "foo",
+          },
+          {
+            id: 2,
+            answer: 5,
+          },
+          {
+            id: 3,
+            answer: "Other",
+            extra: "I didn't like the options",
+          },
+        ],
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        router.push({
+          pathname: "/contact/signup",
+          query: { uuid: data.uuid },
+        })
+      );
   };
 
   return (
@@ -232,7 +265,7 @@ const Assessment = ({ questions }) => {
                     paddingLeft: "2rem",
                     paddingRight: "2rem",
                   }}
-                  onClick={stepForwardHandler}
+                  onClick={submitAssessment}
                 >
                   View recommendations
                 </Button>

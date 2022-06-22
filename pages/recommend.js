@@ -353,12 +353,11 @@ const Recommend = ({ industries }) => {
           window.localStorage.getItem("RECOMMENDED")
       ) || null;
 
-    console.log("RECOMMENDATION LOCAL STORAGE", data);
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
+    const uid = 1231;
+    router.push({
+      pathname: "/contact/signup",
+      query: { uid: uid },
+    });
   };
 
   const [impactRanges, setImpactRanges] = useState(false);

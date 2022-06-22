@@ -26,10 +26,15 @@ import ContactForms from "../../components/ContactForms";
 
 function signup() {
   const router = useRouter();
+  const [userID, setUserID] = useState();
   const handleClick = (e) => {
     e.preventDefault();
     router.push("/");
   };
+
+  useEffect(() => {
+    setUserID(router.query.uuid);
+  }, [router.query]);
 
   return (
     <div className="bg-primaryBG pb-32">
@@ -175,6 +180,7 @@ function signup() {
         <ContactForms
           text="Please give us a few details, and one of our specialists will contact
         you about finalising your application."
+          withUserId={userID}
         />
       </ContentContainer>
     </div>

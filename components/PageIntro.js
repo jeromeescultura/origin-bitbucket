@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const PageIntro = ({ assessIntro, stepNo }) => {
   const [pageIntro, setPageIntro] = useState(assessIntro[stepNo - 1]);
   useEffect(() => {
-    console.log("STEPNO", stepNo);
     if (stepNo < 3) {
       setPageIntro(assessIntro[stepNo - 1]);
     }
