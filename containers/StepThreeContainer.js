@@ -11,10 +11,6 @@ const StepThreeContainer = ({
   setStepThreeAns,
   stepThreeAns,
 }) => {
-  useEffect(() => {
-    console.log(stepThreeAns);
-  }, [stepThreeAns]);
-
   return (
     <>
       {/* STEP THREE - QUESTION 1 */}

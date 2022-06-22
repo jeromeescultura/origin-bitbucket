@@ -326,12 +326,11 @@ const Recommend = ({ industries }) => {
           window.localStorage.getItem("RECOMMENDED")
       ) || null;
 
-    console.log("RECOMMENDATION LOCAL STORAGE", data);
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
+    const uid = 1231;
+    router.push({
+      pathname: "/contact/signup",
+      query: { uid: uid },
+    });
   };
 
   const [impactRanges, setImpactRanges] = useState(false);
@@ -374,7 +373,6 @@ const Recommend = ({ industries }) => {
                 pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
               }`}
             >
-              {" "}
               <p className="text-subTextColor lg:hidden">
                 Keen to do more? Toggle to see options for different levels of
                 investment.

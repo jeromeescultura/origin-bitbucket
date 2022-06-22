@@ -58,7 +58,6 @@ const StepOneContainer = ({
     }
   }, []);
 
-
   // SETTING SELECTED BUTTON BASED ON choice STATE AND CLEAR goals STATE WHEN SELECTING THE 'NO' OPTION
   useEffect(() => {
     if (choice !== "") {
@@ -101,7 +100,6 @@ const StepOneContainer = ({
       howMuchTimeAndEnergy: data.howMuchTimeAndEnergy,
     });
   };
-
 
   return (
     <>

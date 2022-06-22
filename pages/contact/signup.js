@@ -30,10 +30,15 @@ import PledgeModal from "../../components/signup/PledgeModal";
 
 function signup() {
   const router = useRouter();
+  const [userID, setUserID] = useState();
   const handleClick = (e) => {
     e.preventDefault();
     router.push("/");
   };
+
+  useEffect(() => {
+    setUserID(router.query.uuid);
+  }, [router.query]);
 
   const recommendData =
     JSON.parse(
@@ -345,6 +350,7 @@ function signup() {
         <ContactForms
           text="Please give us a few details, and one of our specialists will contact
         you about finalising your application."
+          withUserId={userID}
         />
       </ContentContainer>
     </div>

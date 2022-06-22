@@ -6,6 +6,7 @@ import {
   FormGroup,
   Grid,
 } from "@mui/material";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import FormInputDropdown from "../form-components/FormInputDropdown";
@@ -13,13 +14,7 @@ import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbo
 import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
 
-function ContactForms({ text }) {
-  const checkboxOptions = [
-    {
-      label: "I am the primary account holder for this account",
-      value: "1",
-    },
-  ];
+function ContactForms({ text, withUserId }) {
   const states = [
     {
       name: "australian capital territory",
@@ -76,7 +71,7 @@ function ContactForms({ text }) {
     streetNo: "",
     street: "",
     city: "",
-    dropdown: "",
+    state: "",
     postcode: "",
     firstName: "",
     lastName: "",
@@ -104,7 +99,7 @@ function ContactForms({ text }) {
   const [streetNo, setStreetNo] = useState("");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [dropdown, setDropdown] = useState("");
+  const [state, setState] = useState("");
   const [postcode, setpostcode] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -123,7 +118,7 @@ function ContactForms({ text }) {
       setStreetNo(storedData?.streetNo);
       setStreet(storedData?.street);
       setCity(storedData?.city);
-      setDropdown(storedData?.dropdown);
+      setState(storedData?.state);
       setpostcode(storedData?.postcode);
       setFirstName(storedData?.firstName);
       setLastName(storedData?.lastName);
@@ -144,7 +139,37 @@ function ContactForms({ text }) {
 
   const methods = useForm({ defaultValues: contactFormsDetails });
   const { handleSubmit, control, watch, setValue } = methods;
-  const onSubmit = (data) => console.log(data.primaryAccountHolder);
+  const router = useRouter();
+
+  const onSubmit = (data) => {
+    if (withUserId) {
+      const json = fetch(
+        "https://dev.peek.net.au/origin/contact/" + withUserId,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then((response) => response.json())
+        .then(
+          (data) => console.log(data),
+          router.push({ pathname: "/thankyou", query: { uuid: withUserId } })
+        );
+    } else {
+      const json = fetch("https://dev.peek.net.au/origin/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data), router.push("/thankyou"));
+    }
+  };
 
   const handleChange = (data) => {
     setContactFormsDetails({
@@ -154,7 +179,7 @@ function ContactForms({ text }) {
       streetNo: data.streetNo,
       street: data.street,
       city: data.city,
-      dropdown: data.dropdown,
+      state: data.state,
       postcode: data.postcode,
       firstName: data.firstName,
       lastName: data.lastName,
@@ -325,12 +350,12 @@ function ContactForms({ text }) {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <FormInputDropdown
-            name="dropdown"
+            name="state"
             control={control}
             label="State"
             states={states}
             setValue={setValue}
-            dropdownValue={dropdown}
+            dropdownValue={state}
             onChange={watch(handleChange)}
             validation={{ required: "Required" }}
           />

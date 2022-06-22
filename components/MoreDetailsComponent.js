@@ -9,7 +9,6 @@ const MoreDetailsComponent = ({ text, children }) => {
 
   const changeIcon = () => {
     setIcon(!icon);
-    console.log(icon);
   };
 
   return (
@@ -21,7 +20,7 @@ const MoreDetailsComponent = ({ text, children }) => {
             !icon ? (
               <img src="/icons/expand.svg" alt="expand" />
             ) : (
-              <img src="/icons/shrink.svg" alt="shrink"/>
+              <img src="/icons/shrink.svg" alt="shrink" />
             )
           }
           aria-controls="panel1a-content"
