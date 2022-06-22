@@ -193,8 +193,9 @@ const Assessment = ({ questions }) => {
           router.push({
             pathname: "/recommend",
             query: { uuid: data.uuid },
-          })
-        // Clear StepNo
+          }),
+        window.localStorage.removeItem("PAGE"),
+        window.localStorage.removeItem("STEP")
       );
   };
 

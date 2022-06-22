@@ -48,10 +48,11 @@ function ProductContainer() {
       ],
     },
     {
-      title: "Net-Zero strategy review",
+      title: "Net-Zero research program",
       leaf: 5,
       icon: "/icons/products/net-zero.svg",
-      impact: "Have input in the development of impact reduction services",
+      impact:
+        "Participate in research to help us develop future services tailored to your business",
       plan: "Available on any Origin Energy plan",
       siteChanges: "None",
       contracts: "None",

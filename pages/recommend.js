@@ -304,16 +304,17 @@ const Recommend = ({ industries }) => {
   useEffect(() => {
     setStoredData({
       product: showContent,
-      greenPowerLevel: level * 100,
+      greenPowerLevel: showContent === "greenPower" ? level * 100 : 0,
       biggerDiff: pledges,
-      extraCost: extraCost,
-      estimatedSavings: solarSavings,
+      extraCost: showContent !== "solar" ? extraCost : 0,
+      estimatedSavings: showContent === "solar" ? solarSavings : 0,
       impact: impact,
     });
   }, [showContent, level, pledges, extraCost, solarSavings, impact]);
 
   useEffect(() => {
     window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
+    console.log("storedData", storedData);
   }, [storedData]);
 
   useEffect(() => {
