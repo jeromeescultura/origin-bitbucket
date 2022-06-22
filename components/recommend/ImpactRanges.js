@@ -25,7 +25,7 @@ const ImpactRanges = ({ impactRanges, closeModal, showContent }) => {
             />
           </button>
         </div>
-        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll sm:overflow-visible max-h-[400px] sm:max-h-full">
+        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll sm:overflow-visible max-h-[450px] sm:max-h-full">
           <div>
             By understanding the industry your business is in, we’re able to
             make an estimated assessment of the impact your business could make

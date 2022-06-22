@@ -11,7 +11,11 @@ function ProductContainer() {
       plan: "Available on any Origin Energy plan",
       siteChanges: "None",
       contracts: "None",
-      benefits: ["All standard clean business club benefits"],
+      benefits: [
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
+      ],
     },
     {
       title: "GreenPower",
@@ -22,7 +26,9 @@ function ProductContainer() {
       siteChanges: "None",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Tariff review to reduce your energy costs",
       ],
     },
@@ -35,7 +41,9 @@ function ProductContainer() {
       siteChanges: "Yes",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Mimise energy costs by using clean, self generated solar power",
       ],
     },
@@ -48,7 +56,9 @@ function ProductContainer() {
       siteChanges: "None",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Have your say in future & upcoming solutions",
       ],
     },
@@ -123,7 +133,7 @@ function ProductContainer() {
   };
 
   return (
-    <div className="py-8 lg:w-[80vw] mx-auto mb-16 sm:mt-[110px] md:mt-[48px]">
+    <div className="py-8 lg:w-[80vw] mx-auto mb-16">
       <Slider {...settings}>
         {productDetails.map((detail, index) => (
           <ProductCard

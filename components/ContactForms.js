@@ -12,6 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import FormInputDropdown from "../form-components/FormInputDropdown";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { FormInputText } from "../form-components/FormInputText";
+import FormInputRadio from "../form-components/FormInputRadio";
 
 function ContactForms({ text, withUserId }) {
   const states = [
@@ -76,9 +77,11 @@ function ContactForms({ text, withUserId }) {
     lastName: "",
     email: "",
     phone: "",
-    existingBusiness: false,
+    existingBusiness: "1",
     accountNumber: "",
     primaryAccountHolder: false,
+    contactMethod: "",
+    preferredTime: [],
   };
 
   const storedData =
@@ -103,6 +106,8 @@ function ContactForms({ text, withUserId }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [primaryAccountHolder, setPrimaryAccountHolder] = useState(false);
+  const [contactMethod, setContactMethod] = useState("");
+  const [preferredTime, setPreferredTime] = useState([]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -120,6 +125,8 @@ function ContactForms({ text, withUserId }) {
       setEmail(storedData?.email);
       setPhone(storedData?.phone);
       setPrimaryAccountHolder(storedData?.primaryAccountHolder);
+      setContactMethod(storedData?.contactMethod);
+      setPreferredTime(storedData?.preferredTime);
     }
   }, []);
 
@@ -179,12 +186,14 @@ function ContactForms({ text, withUserId }) {
       email: data.email,
       phone: data.phone,
       primaryAccountHolder: data.primaryAccountHolder,
+      contactMethod: data.contactMethod,
+      preferredTime: data.preferredTime,
     });
   };
 
   // Handle Existing Button
   const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(false);
+  const [btn2, setBtn2] = useState(true);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
@@ -447,6 +456,44 @@ function ContactForms({ text, withUserId }) {
           />
         </Grid>
       </Grid>
+      <Grid container>
+        <Grid item xs={12}>
+          <p className="text-sm font-medium mb-3">Contact preferences</p>
+          <FormInputRadio
+            name="contactMethod"
+            control={control}
+            validation={{ required: "Required" }}
+            options={[
+              { label: "Email", value: "email" },
+              { label: "Phone", value: "phone" },
+            ]}
+            radioValue={contactMethod}
+            setValue={setValue}
+          />
+        </Grid>
+      </Grid>
+      {contactFormsDetails?.contactMethod === "phone" && (
+        <Grid container>
+          <Grid item xs={12}>
+            <p className="text-sm font-medium mb-3">
+              What time would you like us to contact you?
+            </p>
+            <FormInputMultiCheckbox
+              name="preferredTime"
+              control={control}
+              setValue={setValue}
+              options={[
+                { label: "Morning", value: "morning" },
+                { label: "Afternoon", value: "afternoon" },
+                { label: "Evening", value: "evening" },
+              ]}
+              validation={{ required: "Required" }}
+              checkboxValue={preferredTime}
+              setCheckboxValue={setPreferredTime}
+            />
+          </Grid>
+        </Grid>
+      )}
       {/* <Grid container>
         <Grid item xs={12}>
           <FormInputMultiCheckbox
