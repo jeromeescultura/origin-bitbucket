@@ -55,9 +55,10 @@ export default function Home() {
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
             <h2>
-              Australia&#39;s 2.4 million small-medium enterprises are
-              responsible for over 1 quarter of the nation&#39;s carbon
-              emissions annually.
+              Australia's 2.4 million small & medium businesses are responsible
+              for over 1 quarter of the nation's carbon emissions annually. We
+              want to work together to change that - without impacting your
+              operational cost.
             </h2>
             <p className="my-6 lg:my-8 sm:leading-loose">
               At Origin, we believe you shouldn&#39;t have to choose between
@@ -70,13 +71,13 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row lg:gap-32 mx-auto pt-12 pb-[88px] sm:pb-16 sm:pt-0">
             <div className="text-center lg:text-left">
               <h2 className="text-primaryText font-bold">
-                Three simple steps to cleaner, and cost-effective energy
+                Just three simple steps towards supporting cleaner energy
                 solutions
               </h2>
               <p className="mt-6 mb-8 lg:w-[80%]">
-                So we&#39;ve taken a new approach to getting energy right for
-                communities and the planet - and it&#39;s 100% data driven,
-                tailored to you.
+                We’ve taken a new approach to getting energy right for
+                communities and the planet – tailored to your assessment
+                responses.
               </p>
             </div>
             <div className="flex flex-col gap-12">
@@ -97,22 +98,27 @@ export default function Home() {
                 <h2 className="text-primaryText font-bold">2</h2>
                 <div className="flex flex-col gap-2">
                   <p className="font-bold">
-                    Start or accelerate your sustainability journey
+                    Progress or take your first actions to supporting cleaner
+                    energy solutions
                   </p>
                   <p className="font-light">
-                    Instantly we&#39;ll recommend the steps your business can
-                    take to transition to cleaner energy solutions, at a price
-                    point that suits you.
+                    Select the actions you’re interested in doing at the end of
+                    your assessment, and an energy specialist will reach out to
+                    help you find the best way forward for your business. Up to
+                    this point - its free. No payment, no commitment.
                   </p>
                 </div>
               </div>
               <div className="flex gap-6">
                 <h2 className="text-primaryText font-bold">3</h2>
                 <div className="flex flex-col gap-2">
-                  <p className="font-bold">Measure your impact</p>
+                  <p className="font-bold">
+                    Understand how your support is making a difference
+                  </p>
                   <p className="font-light">
-                    Understand the impact your business is making, and how you
-                    can further reduce it&#39;s carbon footprint with Origin.
+                    We’ll provide insights about how your support has made a
+                    difference through your Towards-Cleaner newsletter, so you
+                    can share what has been done with team members & clients.
                   </p>
                 </div>
               </div>
@@ -156,7 +162,11 @@ export default function Home() {
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">
                 <h2 className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto">
-                  Gain exclusive access to the Origin business club
+                  Get access to the Good Change club,
+                  <br />
+                  <span className="font-Gorditalight">
+                    which supports your shift towards cleaner energy in 3 ways
+                  </span>
                 </h2>
               </div>
             </ContentContainer>
