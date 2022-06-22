@@ -29,6 +29,7 @@ import ImpactRanges from "../components/recommend/ImpactRanges";
 
 const Recommend = ({ industries }) => {
   const dayjs = require("dayjs");
+  const [userID, setUserID] = useState();
   var duration = require("dayjs/plugin/duration");
   dayjs.extend(duration);
 
@@ -325,11 +326,16 @@ const Recommend = ({ industries }) => {
         typeof window !== "undefined" &&
           window.localStorage.getItem("RECOMMENDED")
       ) || null;
+  };
 
-    const uid = 1231;
+  useEffect(() => {
+    setUserID(router.query.uuid);
+  }, [router.query]);
+
+  const handleChoose = () => {
     router.push({
       pathname: "/contact/signup",
-      query: { uid: uid },
+      query: { uuid: userID },
     });
   };
 
@@ -526,6 +532,7 @@ const Recommend = ({ industries }) => {
       {showFooter && (
         <FooterReco
           handleButton={handleButton}
+          handleChoose={handleChoose}
           recommend={showContent}
           enableBtn={enableBtn}
           pageNo={pageNo}

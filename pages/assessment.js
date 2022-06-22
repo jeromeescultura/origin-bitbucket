@@ -185,30 +185,16 @@ const Assessment = ({ questions }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        answers: [
-          {
-            id: 1,
-            answer: "foo",
-          },
-          {
-            id: 2,
-            answer: 5,
-          },
-          {
-            id: 3,
-            answer: "Other",
-            extra: "I didn't like the options",
-          },
-        ],
-      }),
+      body: JSON.stringify({ answers: [assessmentAnswers] }),
     })
       .then((response) => response.json())
-      .then((data) =>
-        router.push({
-          pathname: "/contact/signup",
-          query: { uuid: data.uuid },
-        })
+      .then(
+        (data) =>
+          router.push({
+            pathname: "/recommend",
+            query: { uuid: data.uuid },
+          })
+        // Clear StepNo
       );
   };
 

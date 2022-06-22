@@ -14,7 +14,14 @@ import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbo
 import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
 
-function ContactForms({ text, withUserId }) {
+function ContactForms({ text }) {
+  const [userID, setUserID] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    setUserID(router.query.uuid);
+  }, [router.query]);
+
   const states = [
     {
       name: "australian capital territory",
@@ -139,24 +146,23 @@ function ContactForms({ text, withUserId }) {
 
   const methods = useForm({ defaultValues: contactFormsDetails });
   const { handleSubmit, control, watch, setValue } = methods;
-  const router = useRouter();
 
   const onSubmit = (data) => {
-    if (withUserId) {
-      const json = fetch(
-        "https://dev.peek.net.au/origin/contact/" + withUserId,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      )
+    if (userID) {
+      const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
         .then((response) => response.json())
         .then(
           (data) => console.log(data),
-          router.push({ pathname: "/thankyou", query: { uuid: withUserId } })
+          router.push({ pathname: "/thankyou", query: { uuid: userID } })
+          // Clear Forms
+          // Clear recommended product
+          // Clear Assessment
         );
     } else {
       const json = fetch("https://dev.peek.net.au/origin/contact/", {
@@ -168,6 +174,7 @@ function ContactForms({ text, withUserId }) {
       })
         .then((response) => response.json())
         .then((data) => console.log(data), router.push("/thankyou"));
+      // Clear Forms
     }
   };
 
@@ -487,7 +494,6 @@ function ContactForms({ text, withUserId }) {
                 { label: "Afternoon", value: "afternoon" },
                 { label: "Evening", value: "evening" },
               ]}
-              validation={{ required: "Required" }}
               checkboxValue={preferredTime}
               setCheckboxValue={setPreferredTime}
             />

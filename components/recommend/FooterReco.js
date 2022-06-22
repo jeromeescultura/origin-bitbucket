@@ -4,11 +4,18 @@ import Image from "next/image";
 import { Button } from "@mui/material";
 import ContentContainer from "../../containers/ContentContainer";
 
-function FooterReco({ handleButton, recommend, enableBtn, pageNo, pages }) {
+function FooterReco({
+  handleButton,
+  recommend,
+  enableBtn,
+  handleChoose,
+  pageNo,
+  pages,
+}) {
   const router = useRouter();
-  const handleClick = (e, url) => {
+  const handleClick = () => {
     e.preventDefault();
-    router.push(url);
+    router.push("/");
   };
   return (
     <div className="bg-white w-full py-2 shadow-t-sm z-50 fixed bottom-0 ">
@@ -77,7 +84,7 @@ function FooterReco({ handleButton, recommend, enableBtn, pageNo, pages }) {
           variant="contained"
           color="primary"
           size="large"
-          onClick={(e) => handleClick(e, "/contact/signup")}
+          onClick={handleChoose}
           style={{
             borderRadius: 200,
             boxShadow: "none",
@@ -91,7 +98,7 @@ function FooterReco({ handleButton, recommend, enableBtn, pageNo, pages }) {
           variant="outlined"
           size="large"
           color="error"
-          onClick={(e) => handleClick(e, "/contact")}
+          onClick={handleClick}
           style={{
             borderRadius: 200,
             boxShadow: "none",

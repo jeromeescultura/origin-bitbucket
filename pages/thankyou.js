@@ -14,6 +14,10 @@ function thankyou() {
     setUserID(router.query.uuid);
   }, [router.query]);
 
+  setTimeout(() => {
+    router.push("/");
+  }, 3000);
+
   return (
     <section className="pt-6 lg:pt-8 ">
       <div className="w-full xl:w-[1108px] mx-auto">
