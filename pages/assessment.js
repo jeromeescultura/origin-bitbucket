@@ -29,8 +29,8 @@ const Assessment = ({ questions }) => {
 
   const assessIntro = [
     {
-      header: "Climate action & your business",
-      desc: "This initial set of questions are designed to understand what climate action means for you and your business.",
+      header: "Sustainability & your business",
+      desc: "This initial set of questions is designed to understand what sort of actions your business has taken so far - or are looking to explore further.",
       plant: "/icons/plant.svg",
     },
     {
@@ -56,6 +56,10 @@ const Assessment = ({ questions }) => {
   };
 
   // STORED STATES //
+  const [assessmentAnswers, setAssessmentAnswers] = useState({
+    stepOneAns: {},
+    stepTwoAns: {},
+  });
 
   const [stepNo, setStepNo] = useState(1);
 
@@ -64,12 +68,22 @@ const Assessment = ({ questions }) => {
     thirdStep: "w-0 opacity-0",
   });
 
+  // STORING ASSESSMENT ANSWERS TO LOCAL STORAGE
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ASSESSMENT_ANSWERS",
+      JSON.stringify(assessmentAnswers)
+    );
+  }, [assessmentAnswers]);
+
+  // SCROLL TO TOP WHEN PAGE IS LOADED
   useEffect(() => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
   }, []);
 
+  // GETTING QUESTIONS DATA FROM API
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -102,11 +116,13 @@ const Assessment = ({ questions }) => {
     });
   }, [questions]);
 
+  // STORE CURRENT PAGE TO LOCAL STORAGE
   useEffect(() => {
     window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
     window.localStorage.setItem("STEP", JSON.stringify(step));
   }, [stepNo, step]);
 
+  // GETTING STORED PAGE DATA FROM LOCAL STORAGE
   useEffect(() => {
     if (storedData.storedPage !== null && storedData.storedStep !== null) {
       setStepNo(storedData.storedPage);
@@ -116,6 +132,7 @@ const Assessment = ({ questions }) => {
 
   const [activeState, changeState] = useState(0);
 
+  // FUNCTION TO HANDLE NEXT BUTTON
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
@@ -138,6 +155,7 @@ const Assessment = ({ questions }) => {
     window.scrollTo({ top: 580, left: 0 });
   };
 
+  // FUNCTION TO HANDLE BACK BUTTON
   const stepBackwardHandler = () => {
     // if (step.thirdStep === "w-full opacity-100") {
     //   setStep({ ...step, thirdStep: "w-0 opacity-0" });
@@ -179,6 +197,7 @@ const Assessment = ({ questions }) => {
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
                 radioQsts={timeAndEnergyQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
               />
             )}
 
@@ -190,6 +209,7 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
               />
             )}
           </div>

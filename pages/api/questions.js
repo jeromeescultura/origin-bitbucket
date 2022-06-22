@@ -119,22 +119,22 @@ const questions = [
         {
           id: 1,
           label: "1-2 sites",
-          value: "1-2",
+          value: "1-2 sites",
         },
         {
           id: 2,
           label: "2-5 sites",
-          value: "2-5",
+          value: "2-5 sites",
         },
         {
           id: 3,
           label: "5-10 sites",
-          value: "5-10",
+          value: "5-10 sites",
         },
         {
           id: 4,
           label: "10+ sites",
-          value: "10+",
+          value: "10+ sites",
         },
         {
           id: 5,

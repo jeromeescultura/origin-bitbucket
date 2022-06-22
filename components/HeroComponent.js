@@ -23,13 +23,13 @@ function HeroComponent() {
       </div>
       <div className="absolute max-w-[920px] pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
         <h2 className="text-4xl lg:text-[56px] lg:leading-snug  text-primaryText font-bold px-10 sm:px-10 lg:px-0 lg:w-[500px]">
-          Business energy that&#39;s affordable <br />
-          &amp; future proof
+          We help your business take steps to support cleaner energy
         </h2>
         <p className="text-secondaryText mt-8 font-light px-4 sm:px-4 lg:px-0 lg:w-[70%]">
-          By taking our sustainability assessment, we will connect your business
-          to the right products and services that drive value for you and the
-          environment.
+          Our Assessment takes the effort out of understanding how your business
+          can access or support cleaner energy solutions. Get tailored guidance
+          for you to do this. That’s good for business - and good for our
+          planet, too.
         </p>
         <div className="flex flex-col w-[60%] md:flex-row sm:w-[80%] md:w-[80%] lg:w-[60%] mx-auto lg:mx-0 gap-4 mt-10 lg:mt-16 items-center sm:flex-row justify-center lg:justify-start">
           <Button
@@ -58,7 +58,7 @@ function HeroComponent() {
               paddingRight: "2rem",
             }}
           >
-            Let's have a chat
+            Get in touch
           </Button>
         </div>
       </div>
