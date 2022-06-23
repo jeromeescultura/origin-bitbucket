@@ -10,6 +10,8 @@ function interested() {
     router.push("/");
   };
 
+ 
+
   return (
     <div className="bg-primaryBG pb-32">
       <section className="pt-6 lg:pt-8 ">

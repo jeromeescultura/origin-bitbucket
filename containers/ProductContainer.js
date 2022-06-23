@@ -4,20 +4,6 @@ import ProductCard from "../components/ProductCard";
 function ProductContainer() {
   const productDetails = [
     {
-      title: "Origin Go Zero",
-      leaf: 2,
-      icon: "/icons/products/go-zero.svg",
-      impact: "Through offsetting your energy use",
-      plan: "Available on any Origin Energy plan",
-      siteChanges: "None",
-      contracts: "None",
-      benefits: [
-        <span key="0">
-          All standard <u>clean business club benefits</u>
-        </span>,
-      ],
-    },
-    {
       title: "GreenPower",
       leaf: 3,
       icon: "/icons/products/greenpower.svg",
@@ -45,6 +31,20 @@ function ProductContainer() {
           All standard <u>clean business club benefits</u>
         </span>,
         "Mimise energy costs by using clean, self generated solar power",
+      ],
+    },
+    {
+      title: "Origin Go Zero",
+      leaf: 2,
+      icon: "/icons/products/go-zero.svg",
+      impact: "Through offsetting your energy use",
+      plan: "Available on any Origin Energy plan",
+      siteChanges: "None",
+      contracts: "None",
+      benefits: [
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
       ],
     },
     {

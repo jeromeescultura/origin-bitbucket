@@ -86,12 +86,14 @@ const ToggleCard = ({
             >
               <CardContent sx={{ transition: "all 0.3s ease" }}>
                 <div>
-                  <Switch
-                    color="secondary"
-                    onChange={expandInterview}
-                    checked={interview}
-                  />
-                  <div>Take part in the net zero research interview</div>
+                  <div className="flex items-center justify-between">
+                    <div>Take part in the net zero research interview</div>
+                    <Switch
+                      color="secondary"
+                      onChange={expandInterview}
+                      checked={interview}
+                    />
+                  </div>
                   <Collapse in={interview}>
                     <List dense={true}>
                       <ListItem>
@@ -133,12 +135,14 @@ const ToggleCard = ({
             >
               <CardContent>
                 <div>
-                  <Switch
-                    color="secondary"
-                    onChange={expandGreenPower}
-                    checked={greenPower}
-                  />
-                  <div>GreenPower</div>
+                  <div className='flex items-center justify-between'>
+                    <div>GreenPower</div>
+                    <Switch
+                      color="secondary"
+                      onChange={expandGreenPower}
+                      checked={greenPower}
+                    />
+                  </div>
                   <Collapse in={greenPower}>
                     <div className="mt-6">
                       One of our Good Change club representatives will get in

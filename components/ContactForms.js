@@ -149,37 +149,36 @@ function ContactForms({ text }) {
 
   const onSubmit = (data) => {
     if (userID) {
-      const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then(
-          (data) => console.log(data),
-          router.push({ pathname: "/thankyou", query: { uuid: userID } }),
-          // Clear Forms
-          // Clear recommended product
-          // Clear Assessment
-          window.localStorage.removeItem("STEP_ONE_ANS"),
-          window.localStorage.removeItem("STEP_TWO_ANS"),
-          window.localStorage.removeItem("ASSESSMENT_ANSWERS"),
-          window.localStorage.removeItem("RECOMMENDED"),
-          window.localStorage.removeItem("CONTACT_FORMS_DETAILS")
-        );
+      // const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // })
+      //   .then((response) => response.json())
+      //   .then(
+      //     (data) => console.log(data),
+      //     router.push({ pathname: "/thankyou", query: { uuid: userID } }),
+      //     // Clear Forms
+      //     // Clear recommended product
+      //     // Clear Assessment
+      //     window.localStorage.clear();
+      //   );
+      router.push({ pathname: "/thankyou", query: { uuid: userID } });
+
+      window.localStorage.clear();
     } else {
-      const json = fetch("https://dev.peek.net.au/origin/contact/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data), router.push("/thankyou"));
-      // Clear Forms
+      // const json = fetch("https://dev.peek.net.au/origin/contact/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => console.log(data), router.push("/thankyou"));
+      router.push("/thankyou");
     }
   };
 
