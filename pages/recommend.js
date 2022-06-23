@@ -86,9 +86,9 @@ const Recommend = ({ industries }) => {
     decarbEOI: 0,
   });
 
-  const goZeroScore = Object.values(goZero).reduce(sumArray);
-  const greenPowerScore = Object.values(greenPower).reduce(sumArray);
-  const solarPowerScore = Object.values(solarPower).reduce(sumArray);
+  const goZeroScore = goZero.carbonOffset;
+  const greenPowerScore = greenPower.greenPower;
+  const solarPowerScore = solarPower.solar;
 
   useEffect(() => {
     setTimeout(() => {
@@ -110,6 +110,8 @@ const Recommend = ({ industries }) => {
       goZeroScore,
       greenPowerScore,
       solarPowerScore,
+      router,
+      userID,
       setRecommend
     );
 
@@ -128,6 +130,7 @@ const Recommend = ({ industries }) => {
     greenPowerScore,
     solarPowerScore,
     recommend,
+    userID,
   ]);
 
   useEffect(() => {
@@ -161,7 +164,6 @@ const Recommend = ({ industries }) => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       setShowFooter(entry.isIntersecting);
-      console.log("Entry", entry);
     });
 
     if (myref.current) {
@@ -304,6 +306,7 @@ const Recommend = ({ industries }) => {
 
   const [storedData, setStoredData] = useState({
     product: "",
+    otherRecommendations: [],
     greenPowerLevel: "",
     biggerDiff: [],
     extraCost: 0,
@@ -323,9 +326,13 @@ const Recommend = ({ industries }) => {
   }, [showContent, level, pledges, extraCost, solarSavings, impact]);
 
   useEffect(() => {
-    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
-    // console.log("storedData", storedData);
-  }, [storedData]);
+    window.localStorage.setItem("PRODUCT_SELECTED", JSON.stringify(storedData));
+    window.localStorage.setItem(
+      "OTHER_RECOMMENDATIONS",
+      JSON.stringify(otherRecommendations)
+    );
+    console.log("storedData", storedData);
+  }, [storedData, otherRecommendations]);
 
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
@@ -335,7 +342,7 @@ const Recommend = ({ industries }) => {
     let data =
       JSON.parse(
         typeof window !== "undefined" &&
-          window.localStorage.getItem("RECOMMENDED")
+          window.localStorage.getItem("PRODUCT_SELECTED")
       ) || null;
   };
 

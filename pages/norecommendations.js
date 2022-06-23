@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const NoRecommendations = () => {
   const router = useRouter();
@@ -8,6 +9,12 @@ const NoRecommendations = () => {
     e.preventDefault();
     router.push("/");
   };
+
+  const [userID, setUserID] = useState();
+
+  useEffect(() => {
+    setUserID(router.query.uuid);
+  }, [router.query]);
 
   return (
     <div className="p-6">
@@ -49,7 +56,11 @@ const NoRecommendations = () => {
           }}
           onClick={(e) => {
             e.preventDefault();
-            router.push("/contact");
+            window.localStorage.clear();
+            router.push({
+              pathname: "/contact",
+              query: { uuid: userID },
+            });
           }}
         >
           Submit expression of interest

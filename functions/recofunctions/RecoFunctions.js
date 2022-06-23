@@ -208,17 +208,24 @@ export const stepTwoScore = (val, setSP) => {
   }
 };
 
-export const recommendProduct = (gz, gp, sp, setRP) => {
-  if (gz > gp && gz > sp) {
-    setRP("carbonOffset");
-  } else if (gp > gz && gp > sp) {
-    setRP("greenPower");
-  } else if (sp > gz && sp > gp) {
-    setRP("solar");
-  } else if (gz === gp) {
-    setRP("greenPower");
-  } else if (gz === sp || gp === sp) {
-    setRP("solar");
+export const recommendProduct = (gz, gp, sp, router, userID, setRP) => {
+  if (gz >= 0 || gp >= 0 || sp >= 0) {
+    if (gz > gp && gz > sp) {
+      setRP("carbonOffset");
+    } else if (gp > gz && gp > sp) {
+      setRP("greenPower");
+    } else if (sp > gz && sp > gp) {
+      setRP("solar");
+    } else if (gz === gp) {
+      setRP("greenPower");
+    } else if (gz === sp || gp === sp) {
+      setRP("solar");
+    }
+  } else {
+    router.push({
+      pathname: "/norecommendations",
+      query: { uuid: userID },
+    });
   }
 };
 

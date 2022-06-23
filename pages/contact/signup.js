@@ -43,7 +43,7 @@ function signup() {
   const recommendData =
     JSON.parse(
       typeof window !== "undefined" &&
-        window.localStorage.getItem("RECOMMENDED")
+        window.localStorage.getItem("PRODUCT_SELECTED")
     ) || null;
 
   const [product, setProduct] = useState("");
