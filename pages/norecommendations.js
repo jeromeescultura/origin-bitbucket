@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const NoRecommendations = () => {
   const router = useRouter();
@@ -49,6 +50,7 @@ const NoRecommendations = () => {
           }}
           onClick={(e) => {
             e.preventDefault();
+            window.localStorage.clear();
             router.push("/contact");
           }}
         >

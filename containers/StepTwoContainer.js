@@ -17,6 +17,8 @@ const StepTwoContainer = ({
   chkBoxQsts,
   btnQsts,
   setAssessmentAnswers,
+  stepBackwardHandler,
+  submitAssessment,
 }) => {
   // STORING DATA UPLOADED BY stepTwoAns STATE
   const storedData =
@@ -287,6 +289,33 @@ const StepTwoContainer = ({
           </ButtonGroup>
         </div>
       </QuestionContainer>
+      <div className="flex gap-16 mt-16 justify-between sm:justify-start">
+        <Button
+          size="large"
+          style={{
+            fontWeight: 600,
+          }}
+          onClick={stepBackwardHandler}
+        >
+          Back
+        </Button>
+
+        <div className="">
+          <Button
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 200,
+              boxShadow: "none",
+              paddingLeft: "2rem",
+              paddingRight: "2rem",
+            }}
+            onClick={submitAssessment}
+          >
+            View recommendations
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

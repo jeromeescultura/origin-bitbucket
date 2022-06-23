@@ -11,7 +11,13 @@ import {
 } from "../components/recommend";
 import ContentContainer from "../containers/ContentContainer";
 import Image from "next/image";
-import { Box, Button, ButtonGroup, Modal } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  CircularProgress,
+  Modal,
+} from "@mui/material";
 import {
   handleContent,
   handleImpactData,
@@ -80,14 +86,14 @@ const Recommend = ({ industries }) => {
     decarbEOI: 0,
   });
 
-  const goZeroScore = Object.values(goZero).reduce(sumArray);
-  const greenPowerScore = Object.values(greenPower).reduce(sumArray);
-  const solarPowerScore = Object.values(solarPower).reduce(sumArray);
+  const goZeroScore = goZero.carbonOffset;
+  const greenPowerScore = greenPower.greenPower;
+  const solarPowerScore = solarPower.solar;
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 150);
+    }, 1000);
   }, [recommend]);
 
   useEffect(() => {
@@ -104,6 +110,8 @@ const Recommend = ({ industries }) => {
       goZeroScore,
       greenPowerScore,
       solarPowerScore,
+      router,
+      userID,
       setRecommend
     );
 
@@ -122,6 +130,7 @@ const Recommend = ({ industries }) => {
     greenPowerScore,
     solarPowerScore,
     recommend,
+    userID,
   ]);
 
   useEffect(() => {
@@ -156,8 +165,11 @@ const Recommend = ({ industries }) => {
       const entry = entries[0];
       setShowFooter(entry.isIntersecting);
     });
-    observer.observe(myref.current);
-  }, []);
+
+    if (myref.current) {
+      observer.observe(myref.current);
+    }
+  }, [loading]);
 
   useEffect(() => {
     setPages(products.length);
@@ -294,6 +306,7 @@ const Recommend = ({ industries }) => {
 
   const [storedData, setStoredData] = useState({
     product: "",
+    otherRecommendations: [],
     greenPowerLevel: "",
     biggerDiff: [],
     extraCost: 0,
@@ -304,17 +317,23 @@ const Recommend = ({ industries }) => {
   useEffect(() => {
     setStoredData({
       product: showContent,
-      greenPowerLevel: level * 100,
+      greenPowerLevel: showContent === "greenPower" ? level * 100 : 0,
       biggerDiff: pledges,
-      extraCost: extraCost,
-      estimatedSavings: solarSavings,
+      extraCost: showContent !== "solar" ? extraCost : 0,
+      estimatedSavings: showContent === "solar" ? solarSavings : 0,
       impact: impact,
     });
   }, [showContent, level, pledges, extraCost, solarSavings, impact]);
 
   useEffect(() => {
-    window.localStorage.setItem("RECOMMENDED", JSON.stringify(storedData));
-  }, [storedData]);
+    window.localStorage.setItem("PRODUCT_SELECTED", JSON.stringify(storedData));
+    window.localStorage.setItem(
+      "OTHER_RECOMMENDATIONS",
+      JSON.stringify(otherRecommendations)
+    );
+    window.localStorage.setItem("TOP_RECOMMENDATION", recommend);
+    console.log("storedData", storedData);
+  }, [storedData, otherRecommendations, recommend]);
 
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
@@ -324,7 +343,7 @@ const Recommend = ({ industries }) => {
     let data =
       JSON.parse(
         typeof window !== "undefined" &&
-          window.localStorage.getItem("RECOMMENDED")
+          window.localStorage.getItem("PRODUCT_SELECTED")
       ) || null;
   };
 
@@ -360,174 +379,194 @@ const Recommend = ({ industries }) => {
             </div>
           </div>
         </section>
-        <ContentContainer style="space-y-8">
-          <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8">
-            <p className="text-[18px] text-secondaryText">
-              Your assessment is ready!
-            </p>
-            <p className="text-subTextColor mt-6">
-              Based on what you’ve told us, your business is interested in
-              taking climate action, but aren’t ready to invest too much yet.
-              And that’s okay. We want to be able to support everyone in the
-              transition. Let’s review your next steps below.
-            </p>
-          </div>
+        {!loading ? (
+          <div>
+            <ContentContainer style="space-y-8">
+              <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8">
+                <p className="text-[18px] text-secondaryText">
+                  Your assessment is ready!
+                </p>
+                <p className="text-subTextColor mt-6">
+                  Based on what you’ve told us, your business is interested in
+                  taking climate action, but aren’t ready to invest too much
+                  yet. And that’s okay. We want to be able to support everyone
+                  in the transition. Let’s review your next steps below.
+                </p>
+              </div>
 
-          {pages !== 1 && (
-            <div
-              className={`text-center  ${
-                pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
-              }`}
-            >
-              <p className="text-subTextColor lg:hidden">
-                Keen to do more? Toggle to see options for different levels of
-                investment.
-              </p>
-              <ButtonGroup
-                fullWidth
-                className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
-                aria-label="outlined button group"
-              >
-                <Button
-                  disabled={pageNo === 0 && true}
-                  size="large"
-                  onClick={() => handleButton("back")}
-                  variant="contained"
-                  className={`${
-                    pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-                  } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
-                  startIcon={
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      className={`${
-                        pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
-                      } rotate-90`}
-                    >
-                      <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                    </svg>
-                  }
+              {pages !== 1 && (
+                <div
+                  className={`text-center  ${
+                    pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
+                  }`}
                 >
-                  Do less
-                </Button>
-                <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
-                  <p>
-                    Keen to do more?
-                    <br /> Toggle to see options for different levels of
-                    investment.
+                  <p className="text-subTextColor lg:hidden">
+                    Keen to do more? Toggle to see options for different levels
+                    of investment.
                   </p>
-                </div>
-
-                <Button
-                  disabled={pageNo === pages - 1 && true}
-                  size="large"
-                  onClick={() => handleButton("next")}
-                  variant="contained"
-                  className={`${
-                    pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
-                  } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
-                  endIcon={
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
+                  <ButtonGroup
+                    fullWidth
+                    className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
+                    aria-label="outlined button group"
+                  >
+                    <Button
+                      disabled={pageNo === 0 && true}
+                      size="large"
+                      onClick={() => handleButton("back")}
+                      variant="contained"
                       className={`${
-                        pageNo === pages - 1
-                          ? "fill-[#ABABAB]"
-                          : "fill-primaryText"
-                      } -rotate-90`}
+                        pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
+                      } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
+                      startIcon={
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          className={`${
+                            pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
+                          } rotate-90`}
+                        >
+                          <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                        </svg>
+                      }
                     >
-                      <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                    </svg>
-                  }
-                >
-                  Do more
-                </Button>
-              </ButtonGroup>
-            </div>
-          )}
+                      Do less
+                    </Button>
+                    <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
+                      <p>
+                        Keen to do more?
+                        <br /> Toggle to see options for different levels of
+                        investment.
+                      </p>
+                    </div>
 
-          <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
-            <h2 className="text-primaryText font-bold">Making a difference</h2>
-            {!loading && (
-              <h2 className="text-primaryText">
-                with{" "}
-                {showContent === "carbonOffset" &&
-                  "Origin Go Zero 100% carbon offset"}{" "}
-                {showContent === "solar" && "Solar"}
-                {showContent === "greenPower" && "GreenPower"}
-              </h2>
-            )}
-            <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
-              Impact estimates below are calculated with usage averages
-              collected from Origin’s small & medium business customers in{" "}
-              <span className="font-medium">{industry?.name}</span>. This will
-              change based on your business’ specific usage.{" "}
-              <span className="underline cursor-pointer" onClick={openModal}>
-                See your impact ranges.
-              </span>
-            </div>
-          </div>
-          <ImpactRanges
-            impactRanges={impactRanges}
-            closeModal={closeModal}
-            showContent={showContent}
-          />
-          <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
-            <div className="break-inside-avoid">
-              <ImpactCard
-                recommend={showContent}
-                impact={impact}
-                level={level}
-              />
-            </div>
-            <div className="break-inside-avoid">
-              <FinanceCalc
-                recommend={showContent}
-                industry={industry}
-                level={level}
-                impactLevel={impactLevel}
-                handleButtonSelect={handleButtonSelect}
-                usage={usage}
-                industryCost={industryCost}
-                increasePercentage={increasePercentage}
-                withoutSolar={withoutSolar}
-                withSolar={withSolar}
-                solarReduction={solarReduction}
-                totalCost={totalCost}
-                btn1={btn1}
-                btn2={btn2}
-                btn3={btn3}
-              />
-            </div>
-            <div className="break-inside-avoid">
-              <RecommentCard
-                recommend={showContent}
-                solarSavings={solarSavings}
-                extraCost={extraCost}
-                level={level}
-                handleLevel={handleLevel}
-              />
-            </div>
-            <div className="break-inside-avoid" ref={myref}>
-              {(subCategory?.includes("decarbEOI") ||
-                (subCategory?.includes("greenPower") &&
-                  showContent === "solar")) && (
-                <ToggleCard
-                  recommend={showContent}
-                  adds={subCategory}
-                  level={level}
-                  handleLevel={handleLevel}
-                  pledges={pledges}
-                  setPledges={setPledges}
-                  setLevel={setLevel}
-                />
+                    <Button
+                      disabled={pageNo === pages - 1 && true}
+                      size="large"
+                      onClick={() => handleButton("next")}
+                      variant="contained"
+                      className={`${
+                        pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                      } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
+                      endIcon={
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          className={`${
+                            pageNo === pages - 1
+                              ? "fill-[#ABABAB]"
+                              : "fill-primaryText"
+                          } -rotate-90`}
+                        >
+                          <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                        </svg>
+                      }
+                    >
+                      Do more
+                    </Button>
+                  </ButtonGroup>
+                </div>
               )}
-            </div>
+
+              <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
+                <h2 className="text-primaryText font-bold">
+                  Making a difference
+                </h2>
+                <h2 className="text-primaryText">
+                  with{" "}
+                  {showContent === "carbonOffset" &&
+                    "Origin Go Zero 100% carbon offset"}{" "}
+                  {showContent === "solar" && "Solar"}
+                  {showContent === "greenPower" && "GreenPower"}
+                </h2>
+
+                <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
+                  Impact estimates below are calculated with usage averages
+                  collected from Origin’s small & medium business customers in{" "}
+                  <span className="font-medium">{industry?.name}</span>. This
+                  will change based on your business’ specific usage.{" "}
+                  <span
+                    className="underline cursor-pointer"
+                    onClick={openModal}
+                  >
+                    See your impact ranges.
+                  </span>
+                </div>
+              </div>
+              <ImpactRanges
+                impactRanges={impactRanges}
+                closeModal={closeModal}
+                showContent={showContent}
+              />
+              <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
+                <div className="break-inside-avoid">
+                  <ImpactCard
+                    recommend={showContent}
+                    impact={impact}
+                    level={level}
+                  />
+                </div>
+                <div className="break-inside-avoid">
+                  <FinanceCalc
+                    recommend={showContent}
+                    industry={industry}
+                    level={level}
+                    impactLevel={impactLevel}
+                    handleButtonSelect={handleButtonSelect}
+                    usage={usage}
+                    industryCost={industryCost}
+                    increasePercentage={increasePercentage}
+                    withoutSolar={withoutSolar}
+                    withSolar={withSolar}
+                    solarReduction={solarReduction}
+                    totalCost={totalCost}
+                    btn1={btn1}
+                    btn2={btn2}
+                    btn3={btn3}
+                  />
+                </div>
+                <div className="break-inside-avoid">
+                  <RecommentCard
+                    recommend={showContent}
+                    solarSavings={solarSavings}
+                    extraCost={extraCost}
+                    level={level}
+                    handleLevel={handleLevel}
+                  />
+                </div>
+                <div className="break-inside-avoid" ref={myref}>
+                  {(subCategory?.includes("decarbEOI") ||
+                    (subCategory?.includes("greenPower") &&
+                      showContent === "solar")) && (
+                    <ToggleCard
+                      recommend={showContent}
+                      adds={subCategory}
+                      level={level}
+                      handleLevel={handleLevel}
+                      pledges={pledges}
+                      setPledges={setPledges}
+                      setLevel={setLevel}
+                    />
+                  )}
+                </div>
+              </div>
+            </ContentContainer>
+            <Faqs />
           </div>
-        </ContentContainer>
-        <Faqs />
+        ) : (
+          <div className="absolute top-0 left-0 w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
+            <CircularProgress
+              size="5rem"
+              color="secondary"
+              sx={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+              }}
+            />
+          </div>
+        )}
       </div>
       {showFooter && (
         <FooterReco

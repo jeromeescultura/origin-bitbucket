@@ -14,6 +14,10 @@ export default function Home() {
   const myref = useRef();
 
   useEffect(() => {
+    window.localStorage.clear();
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       setShowFooter(entry.isIntersecting);
