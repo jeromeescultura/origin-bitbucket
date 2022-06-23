@@ -3,14 +3,12 @@ import { useRouter } from "next/router";
 import ContactForms from "../../components/ContactForms";
 import ContentContainer from "../../containers/ContentContainer";
 
-function interested() {
+function Interested() {
   const router = useRouter();
   const handleClick = (e) => {
     e.preventDefault();
     router.push("/");
   };
-
- 
 
   return (
     <div className="bg-primaryBG pb-32">
@@ -54,4 +52,4 @@ function interested() {
   );
 }
 
-export default interested;
+export default Interested;

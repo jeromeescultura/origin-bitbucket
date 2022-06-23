@@ -97,6 +97,23 @@ function ContactForms({ text }) {
         window.localStorage.getItem("CONTACT_FORMS_DETAILS")
     ) || null;
 
+  const topRecommendation =
+    (typeof window !== "undefined" &&
+      window.localStorage.getItem("TOP_RECOMMENDATION")) ||
+    null;
+
+  const otherRecommendations =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("OTHER_RECOMMENDATIONS")
+    ) || null;
+
+  const selectedProduct =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("PRODUCT_SELECTED")
+    ) || null;
+
   const [contactFormsDetails, setContactFormsDetails] = useState(defaultValues);
 
   // Retain Values
@@ -138,6 +155,12 @@ function ContactForms({ text }) {
   }, []);
 
   useEffect(() => {
+    console.log("top", topRecommendation);
+    console.log("other", otherRecommendations);
+    console.log("selected", selectedProduct);
+  }, [topRecommendation]);
+
+  useEffect(() => {
     window.localStorage.setItem(
       "CONTACT_FORMS_DETAILS",
       JSON.stringify(contactFormsDetails)
@@ -149,36 +172,37 @@ function ContactForms({ text }) {
 
   const onSubmit = (data) => {
     if (userID) {
-      // const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // })
-      //   .then((response) => response.json())
-      //   .then(
-      //     (data) => console.log(data),
-      //     router.push({ pathname: "/thankyou", query: { uuid: userID } }),
-      //     // Clear Forms
-      //     // Clear recommended product
-      //     // Clear Assessment
-      //     window.localStorage.clear();
-      //   );
-      router.push({ pathname: "/thankyou", query: { uuid: userID } });
-
-      window.localStorage.clear();
+      const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data,
+          topRecommend: topRecommendation,
+          otherRecommendation: otherRecommendations,
+          productSelected: selectedProduct.product,
+        }),
+      })
+        .then((response) => response.json())
+        .then(
+          (data) => console.log(data),
+          router.push({ pathname: "/thankyou", query: { uuid: userID } }),
+          // Clear Forms
+          // Clear recommended product
+          // Clear Assessment
+          window.localStorage.clear()
+        );
     } else {
-      // const json = fetch("https://dev.peek.net.au/origin/contact/", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => console.log(data), router.push("/thankyou"));
-      router.push("/thankyou");
+      const json = fetch("https://dev.peek.net.au/origin/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data), router.push("/thankyou"));
     }
   };
 

@@ -10,12 +10,6 @@ const NoRecommendations = () => {
     router.push("/");
   };
 
-  const [userID, setUserID] = useState();
-
-  useEffect(() => {
-    setUserID(router.query.uuid);
-  }, [router.query]);
-
   return (
     <div className="p-6">
       <div className="flex justify-end lg:justify">
@@ -57,10 +51,7 @@ const NoRecommendations = () => {
           onClick={(e) => {
             e.preventDefault();
             window.localStorage.clear();
-            router.push({
-              pathname: "/contact",
-              query: { uuid: userID },
-            });
+            router.push("/contact");
           }}
         >
           Submit expression of interest

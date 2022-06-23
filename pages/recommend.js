@@ -331,8 +331,9 @@ const Recommend = ({ industries }) => {
       "OTHER_RECOMMENDATIONS",
       JSON.stringify(otherRecommendations)
     );
+    window.localStorage.setItem("TOP_RECOMMENDATION", recommend);
     console.log("storedData", storedData);
-  }, [storedData, otherRecommendations]);
+  }, [storedData, otherRecommendations, recommend]);
 
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);

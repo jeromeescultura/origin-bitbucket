@@ -181,29 +181,23 @@ const Assessment = ({ questions }) => {
 
   const submitAssessment = () => {
     const data = 234234234;
-    // const json = fetch("https://dev.peek.net.au/origin/answers", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ answers: [assessmentAnswers] }),
-    // })
-    //   .then((response) => response.json())
-    //   .then(
-    //     (data) =>
-    //       router.push({
-    //         pathname: "/recommend",
-    //         query: { uuid: data.uuid },
-    //       }),
-    //     window.localStorage.removeItem("PAGE"),
-    //     window.localStorage.removeItem("STEP")
-    //   );
-    window.localStorage.removeItem("PAGE");
-    window.localStorage.removeItem("STEP");
-    router.push({
-      pathname: "/recommend",
-      query: { uuid: data },
-    });
+    const json = fetch("https://dev.peek.net.au/origin/answers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ answers: [assessmentAnswers] }),
+    })
+      .then((response) => response.json())
+      .then(
+        (data) =>
+          router.push({
+            pathname: "/recommend",
+            query: { uuid: data.uuid },
+        }),
+        window.localStorage.removeItem("PAGE"),
+        window.localStorage.removeItem("STEP")
+      );
   };
 
   return (
