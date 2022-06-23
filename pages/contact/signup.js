@@ -93,17 +93,8 @@ function signup() {
         </div>
       </section>
 
-      <ContentContainer style="grid gap-6 lg:gap-8 lg:grid-col-5 lg:grid-flow-col lg:grid-flow-col">
-        <section className="w-full  lg:order-2 lg:col-span-2 relative z-10">
-          <div className="hidden xl:inline absolute w-[150px]  top-[50px] -right-[125px] -z-10">
-            <Image
-              src="/icons/bg-plant.svg"
-              width={180}
-              height={180}
-              objectFit="contain"
-              alt="Plant"
-            />
-          </div>
+      <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5">
+        <section className="lg:col-span-2 lg:order-2 relative z-10">
           <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
@@ -347,10 +338,12 @@ function signup() {
             </div>
           </div>
         </section>
-        <ContactForms
-          text="Please give us a few details, and one of our specialists will contact
+        <div className="lg:col-span-3 lg:order-1 ">
+          <ContactForms
+            text="Please give us a few details, and one of our specialists will contact
         you about finalising your application."
-        />
+          />
+        </div>
       </ContentContainer>
     </div>
   );

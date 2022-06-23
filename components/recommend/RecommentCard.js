@@ -83,8 +83,8 @@ const RecommentCard = ({
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
         <div className="space-y-2  pr-5 lg:border-r text-center lg:text-left ">
           {recommend === "solar" ? (
-            <div className="min-w-[160px]">
-              <p className="font-medium">Estimated Savings</p>
+            <div className="">
+              <p className="font-medium whitespace-nowrap">Estimated Savings</p>
               <h2 className="text-secondaryText my-4 lg:my-3">
                 {formatPrice(solarSavings)}
               </h2>
@@ -94,8 +94,8 @@ const RecommentCard = ({
               </p>
             </div>
           ) : (
-            <div className="min-w-[160px]">
-              <p className="font-medium">Estimated cost</p>
+            <div className="">
+              <p className="font-medium whitespace-nowrap">Estimated cost</p>
               <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />

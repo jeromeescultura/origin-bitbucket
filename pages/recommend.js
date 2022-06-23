@@ -344,7 +344,7 @@ const Recommend = ({ industries }) => {
   const closeModal = () => setImpactRanges(false);
 
   return (
-    <div className="bg-primaryBG h-full pb-24 sm:pb-20 ">
+    <div className="bg-primaryBG h-full  ">
       <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
         <section className="pt-6 lg:pt-8">
           <div className="w-full xl:w-[1108px] mx-auto">

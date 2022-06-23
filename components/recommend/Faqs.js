@@ -3,7 +3,7 @@ import MoreDetailsComponent from "../MoreDetailsComponent";
 
 const Faqs = () => {
   return (
-    <div className="relative  bg-white rotate-180">
+    <div className="relative  bg-white rotate-180 pt-40 sm:pt-32">
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"

@@ -18,6 +18,7 @@ const FinanceCalc = ({
   impactLevel,
   handleButtonSelect,
   usage,
+  industry,
   industryCost,
   increasePercentage,
   withoutSolar,
@@ -34,6 +35,7 @@ const FinanceCalc = ({
   const handleUsage = (data) => setButtonSelect(data.usage);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
+  console.log(industry?.industryCost?.high, "industry");
 
   return (
     <Card
@@ -98,25 +100,27 @@ const FinanceCalc = ({
                   >
                     {"Medium"}
                   </Button>
-                  <Button
-                    className={
-                      btn3
-                        ? activeStyles
-                        : `hover:border hover:border-gray-300 ${
-                            btn2 &&
-                            "border-l-accentColor hover:border-l-accentColor"
-                          }`
-                    }
-                    value={"high"}
-                    onClick={() => handleButtonSelect(2)}
-                    sx={{
-                      color: "#505050",
-                      borderColor: "#E3E3E3",
-                      fontSize: "16",
-                    }}
-                  >
-                    {"High"}
-                  </Button>
+                  {industry?.industryCost?.high > 0 && (
+                    <Button
+                      className={
+                        btn3
+                          ? activeStyles
+                          : `hover:border hover:border-gray-300 ${
+                              btn2 &&
+                              "border-l-accentColor hover:border-l-accentColor"
+                            }`
+                      }
+                      value={"high"}
+                      onClick={() => handleButtonSelect(2)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "16",
+                      }}
+                    >
+                      {"High"}
+                    </Button>
+                  )}
                 </>
               );
             }}

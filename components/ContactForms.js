@@ -231,7 +231,7 @@ function ContactForms({ text }) {
     }
   }, [existingBusiness]);
   return (
-    <section className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg lg:col-span-3">
+    <section className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg">
       <p>{text}</p>
       <p className="font-medium text-sm">
         Do you have an existing business account with Origin?
