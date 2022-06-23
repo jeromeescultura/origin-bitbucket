@@ -52,6 +52,7 @@ const Recommend = ({ industries }) => {
     ) || null;
 
   const [loading, setLoading] = useState(true);
+  const [animate, setAnimate] = useState(false);
 
   const [industryId, setIndustryId] = useState();
   const [industry, setIndustry] = useState("");
@@ -186,25 +187,31 @@ const Recommend = ({ industries }) => {
   };
 
   const handleButton = (value) => {
-    switch (value) {
-      case "next":
-        if (pageNo >= 2) {
-          setPageNo(2);
-        } else {
-          setPageNo((prevState) => prevState + 1);
-        }
-        break;
-      case "back":
-        if (pageNo <= 0) {
-          setPageNo(0);
-        } else {
-          setPageNo((prevState) => prevState - 1);
-        }
-        break;
+    setAnimate(!animate);
+    setTimeout(() => {
+      setAnimate(false);
+    }, 200);
+    setTimeout(() => {
+      switch (value) {
+        case "next":
+          if (pageNo >= 2) {
+            setPageNo(2);
+          } else {
+            setPageNo((prevState) => prevState + 1);
+          }
+          break;
+        case "back":
+          if (pageNo <= 0) {
+            setPageNo(0);
+          } else {
+            setPageNo((prevState) => prevState - 1);
+          }
+          break;
 
-      default:
-        break;
-    }
+        default:
+          break;
+      }
+    }, 100);
   };
 
   useEffect(() => {
@@ -468,87 +475,94 @@ const Recommend = ({ industries }) => {
                   </ButtonGroup>
                 </div>
               )}
+              <div
+                className={`${
+                  animate
+                    ? "opacity-0 translate-x-2"
+                    : "opacity-100 translate-x-0"
+                } transition ease-in-out `}
+              >
+                <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
+                  <h2 className="text-primaryText font-bold">
+                    Making a difference
+                  </h2>
+                  <h2 className="text-primaryText">
+                    with{" "}
+                    {showContent === "carbonOffset" &&
+                      "Origin Go Zero 100% carbon offset"}{" "}
+                    {showContent === "solar" && "Solar"}
+                    {showContent === "greenPower" && "GreenPower"}
+                  </h2>
 
-              <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
-                <h2 className="text-primaryText font-bold">
-                  Making a difference
-                </h2>
-                <h2 className="text-primaryText">
-                  with{" "}
-                  {showContent === "carbonOffset" &&
-                    "Origin Go Zero 100% carbon offset"}{" "}
-                  {showContent === "solar" && "Solar"}
-                  {showContent === "greenPower" && "GreenPower"}
-                </h2>
-
-                <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
-                  Impact estimates below are calculated with usage averages
-                  collected from Origin’s small & medium business customers in{" "}
-                  <span className="font-medium">{industry?.name}</span>. This
-                  will change based on your business’ specific usage.{" "}
-                  <span
-                    className="underline cursor-pointer"
-                    onClick={openModal}
-                  >
-                    See your impact ranges.
-                  </span>
+                  <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
+                    Impact estimates below are calculated with usage averages
+                    collected from Origin’s small & medium business customers in{" "}
+                    <span className="font-medium">{industry?.name}</span>. This
+                    will change based on your business’ specific usage.{" "}
+                    <span
+                      className="underline cursor-pointer"
+                      onClick={openModal}
+                    >
+                      See your impact ranges.
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <ImpactRanges
-                impactRanges={impactRanges}
-                closeModal={closeModal}
-                showContent={showContent}
-              />
-              <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
-                <div className="break-inside-avoid">
-                  <ImpactCard
-                    recommend={showContent}
-                    impact={impact}
-                    level={level}
-                  />
-                </div>
-                <div className="break-inside-avoid">
-                  <FinanceCalc
-                    recommend={showContent}
-                    industry={industry}
-                    level={level}
-                    impactLevel={impactLevel}
-                    handleButtonSelect={handleButtonSelect}
-                    usage={usage}
-                    industryCost={industryCost}
-                    increasePercentage={increasePercentage}
-                    withoutSolar={withoutSolar}
-                    withSolar={withSolar}
-                    solarReduction={solarReduction}
-                    totalCost={totalCost}
-                    btn1={btn1}
-                    btn2={btn2}
-                    btn3={btn3}
-                  />
-                </div>
-                <div className="break-inside-avoid">
-                  <RecommentCard
-                    recommend={showContent}
-                    solarSavings={solarSavings}
-                    extraCost={extraCost}
-                    level={level}
-                    handleLevel={handleLevel}
-                  />
-                </div>
-                <div className="break-inside-avoid" ref={myref}>
-                  {(subCategory?.includes("decarbEOI") ||
-                    (subCategory?.includes("greenPower") &&
-                      showContent === "solar")) && (
-                    <ToggleCard
+                <ImpactRanges
+                  impactRanges={impactRanges}
+                  closeModal={closeModal}
+                  showContent={showContent}
+                />
+                <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
+                  <div className="break-inside-avoid">
+                    <ImpactCard
                       recommend={showContent}
-                      adds={subCategory}
+                      impact={impact}
+                      level={level}
+                    />
+                  </div>
+                  <div className="break-inside-avoid">
+                    <FinanceCalc
+                      recommend={showContent}
+                      industry={industry}
+                      level={level}
+                      impactLevel={impactLevel}
+                      handleButtonSelect={handleButtonSelect}
+                      usage={usage}
+                      industryCost={industryCost}
+                      increasePercentage={increasePercentage}
+                      withoutSolar={withoutSolar}
+                      withSolar={withSolar}
+                      solarReduction={solarReduction}
+                      totalCost={totalCost}
+                      btn1={btn1}
+                      btn2={btn2}
+                      btn3={btn3}
+                    />
+                  </div>
+                  <div className="break-inside-avoid">
+                    <RecommentCard
+                      recommend={showContent}
+                      solarSavings={solarSavings}
+                      extraCost={extraCost}
                       level={level}
                       handleLevel={handleLevel}
-                      pledges={pledges}
-                      setPledges={setPledges}
-                      setLevel={setLevel}
                     />
-                  )}
+                  </div>
+                  <div className="break-inside-avoid" ref={myref}>
+                    {(subCategory?.includes("decarbEOI") ||
+                      (subCategory?.includes("greenPower") &&
+                        showContent === "solar")) && (
+                      <ToggleCard
+                        recommend={showContent}
+                        adds={subCategory}
+                        level={level}
+                        handleLevel={handleLevel}
+                        pledges={pledges}
+                        setPledges={setPledges}
+                        setLevel={setLevel}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </ContentContainer>
