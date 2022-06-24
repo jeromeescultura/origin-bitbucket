@@ -25,11 +25,13 @@ const Assessment = ({ questions }) => {
   const [iconsRadioQuestion, setIconsRadioQuestion] = useState({});
   const [investmentQuestion, setInvestment] = useState({});
   const [largerInvestmentQuestion, setLargerInvestment] = useState({});
+  const [timeAndEnergyQuestion, setTimeAndEnergy] = useState({});
+  const [uuid, setUuid] = useState("");
 
   const assessIntro = [
     {
-      header: "Climate action & your business",
-      desc: "This initial set of questions are designed to understand what climate action means for you and your business.",
+      header: "Sustainability & your business",
+      desc: "This initial set of questions is designed to understand what sort of actions your business has taken so far - or are looking to explore further.",
       plant: "/icons/plant.svg",
     },
     {
@@ -55,6 +57,10 @@ const Assessment = ({ questions }) => {
   };
 
   // STORED STATES //
+  const [assessmentAnswers, setAssessmentAnswers] = useState({
+    stepOneAns: {},
+    stepTwoAns: {},
+  });
 
   const [stepNo, setStepNo] = useState(1);
 
@@ -63,12 +69,22 @@ const Assessment = ({ questions }) => {
     thirdStep: "w-0 opacity-0",
   });
 
+  // STORING ASSESSMENT ANSWERS TO LOCAL STORAGE
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ASSESSMENT_ANSWERS",
+      JSON.stringify(assessmentAnswers)
+    );
+  }, [assessmentAnswers]);
+
+  // SCROLL TO TOP WHEN PAGE IS LOADED
   useEffect(() => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
   }, []);
 
+  // GETTING QUESTIONS DATA FROM API
   useEffect(() => {
     questions.map((item) => {
       if (item.buttonQuestion !== undefined) {
@@ -95,15 +111,19 @@ const Assessment = ({ questions }) => {
         setInvestment(item.investmentQuestion);
       } else if (item.largerInvestmentQuestion !== undefined) {
         setLargerInvestment(item.largerInvestmentQuestion);
+      } else if (item.timeAndEnergy !== undefined) {
+        setTimeAndEnergy(item.timeAndEnergy);
       }
     });
   }, [questions]);
 
+  // STORE CURRENT PAGE TO LOCAL STORAGE
   useEffect(() => {
     window.localStorage.setItem("PAGE", JSON.stringify(stepNo));
     window.localStorage.setItem("STEP", JSON.stringify(step));
   }, [stepNo, step]);
 
+  // GETTING STORED PAGE DATA FROM LOCAL STORAGE
   useEffect(() => {
     if (storedData.storedPage !== null && storedData.storedStep !== null) {
       setStepNo(storedData.storedPage);
@@ -113,16 +133,16 @@ const Assessment = ({ questions }) => {
 
   const [activeState, changeState] = useState(0);
 
+  // FUNCTION TO HANDLE NEXT BUTTON
   const stepForwardHandler = () => {
     if (step.secondStep === "w-0 opacity-0") {
       setStep({ ...step, secondStep: "w-full opacity-100" });
     }
 
     if (stepNo < 2) {
-      console.log("STEPNO ASSESSMENT", stepNo);
       setStepNo((prevState) => prevState + 1);
     } else {
-      router.push("/recoscore");
+      router.push("/recommend");
     }
 
     changeState((prevState) => {
@@ -136,6 +156,7 @@ const Assessment = ({ questions }) => {
     window.scrollTo({ top: 580, left: 0 });
   };
 
+  // FUNCTION TO HANDLE BACK BUTTON
   const stepBackwardHandler = () => {
     // if (step.thirdStep === "w-full opacity-100") {
     //   setStep({ ...step, thirdStep: "w-0 opacity-0" });
@@ -158,6 +179,27 @@ const Assessment = ({ questions }) => {
     }
   };
 
+  const submitAssessment = () => {
+    const data = 234234234;
+    const json = fetch("https://dev.peek.net.au/origin/answers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ answers: [assessmentAnswers] }),
+    })
+      .then((response) => response.json())
+      .then(
+        (data) =>
+          router.push({
+            pathname: "/recommend",
+            query: { uuid: data.uuid },
+        }),
+        window.localStorage.removeItem("PAGE"),
+        window.localStorage.removeItem("STEP")
+      );
+  };
+
   return (
     <div className="bg-primaryBG h-full pb-16">
       <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
@@ -176,6 +218,9 @@ const Assessment = ({ questions }) => {
                 chkBoxQsts={checkboxQuestions}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
+                radioQsts={timeAndEnergyQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
+                stepForwardHandler={stepForwardHandler}
               />
             )}
 
@@ -187,53 +232,11 @@ const Assessment = ({ questions }) => {
                 iconQsts={iconsQuestions}
                 chkBoxQsts={energyUsageQuestions}
                 btnQsts={landQuestion}
+                setAssessmentAnswers={setAssessmentAnswers}
+                stepBackwardHandler={stepBackwardHandler}
+                submitAssessment={submitAssessment}
               />
             )}
-          </div>
-          <div className="flex gap-16 mt-16 justify-between sm:justify-start">
-            {stepNo !== 1 && (
-              <Button
-                size="large"
-                style={{
-                  fontWeight: 600,
-                }}
-                onClick={stepBackwardHandler}
-              >
-                Back
-              </Button>
-            )}
-
-            <div className="">
-              {stepNo !== 2 ? (
-                <Button
-                  size="large"
-                  variant="contained"
-                  style={{
-                    borderRadius: 200,
-                    boxShadow: "none",
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
-                  }}
-                  onClick={stepForwardHandler}
-                >
-                  Next
-                </Button>
-              ) : (
-                <Button
-                  size="large"
-                  variant="contained"
-                  style={{
-                    borderRadius: 200,
-                    boxShadow: "none",
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
-                  }}
-                  onClick={stepForwardHandler}
-                >
-                  View recommendations
-                </Button>
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -243,7 +246,7 @@ const Assessment = ({ questions }) => {
 
 export default Assessment;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const questions = await fetch(`${server}/api/questions`).then((rest) =>
     rest.json()
   );

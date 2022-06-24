@@ -12,7 +12,7 @@ function Footer() {
   };
 
   return (
-    <div className="bg-white p-8 shadow-xl fixed  bottom-0 w-full">
+    <div className="bg-white p-8 shadow-xl fixed bottom-0 w-full">
       <div className="lg:w-[95%] xl:w-[80%] mx-auto grid sm:grid-cols-2 gap-4 sm:gap-10">
         <div className="text-center sm:text-left">
           <p className="text-primaryText text-lg font-bold">
@@ -29,7 +29,7 @@ function Footer() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={(e) => handleClick(e, "/assessment")}
+            onClick={(e) => handleClick(e, "/disclaimer")}
             style={{
               borderRadius: 200,
               boxShadow: "none",
@@ -43,7 +43,7 @@ function Footer() {
             variant="outlined"
             size="large"
             color="error"
-            onClick={(e) => handleClick(e, "/signup")}
+            onClick={(e) => handleClick(e, "/contact")}
             style={{
               borderRadius: 200,
               boxShadow: "none",

@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const ProgressBar = ({
-  step,
-  stepNo,
-  stepOneAns,
-  stepTwoAns,
-  stepThreeAns,
-}) => {
+const ProgressBar = ({ step, stepNo }) => {
   const router = useRouter();
 
   const handleClick = (e) => {
@@ -53,7 +47,11 @@ const ProgressBar = ({
         </div>
       </div>
       <div className="w-full md:w-[50%] h-[8px] flex flex-row justify-between gap-2 md:gap-2">
-        <div className="first-step w-full h-[8px] bg-accentColor"></div>
+        <div
+          className={`first-step w-full h-[8px] ${
+            stepNo === 2 ? "bg-[#F1F1F1]" : "bg-accentColor"
+          }`}
+        ></div>
         <div className="second-step w-full h-[8px] relative bg-[#F1F1F1]">
           <div
             className={`second-step-inner bg-accentColor h-full transition-all ease-linear duration-200 ${step.secondStep}`}

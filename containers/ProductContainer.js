@@ -4,16 +4,6 @@ import ProductCard from "../components/ProductCard";
 function ProductContainer() {
   const productDetails = [
     {
-      title: "Origin Go Zero",
-      leaf: 2,
-      icon: "/icons/products/go-zero.svg",
-      impact: "Through offsetting your energy use",
-      plan: "Available on any Origin Energy plan",
-      siteChanges: "None",
-      contracts: "None",
-      benefits: ["All standard clean business club benefits"],
-    },
-    {
       title: "GreenPower",
       leaf: 3,
       icon: "/icons/products/greenpower.svg",
@@ -22,7 +12,9 @@ function ProductContainer() {
       siteChanges: "None",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Tariff review to reduce your energy costs",
       ],
     },
@@ -35,20 +27,39 @@ function ProductContainer() {
       siteChanges: "Yes",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Mimise energy costs by using clean, self generated solar power",
       ],
     },
     {
-      title: "Net-Zero strategy review",
-      leaf: 5,
-      icon: "/icons/products/net-zero.svg",
-      impact: "Have input in the development of impact reduction services",
+      title: "Origin Go Zero",
+      leaf: 2,
+      icon: "/icons/products/go-zero.svg",
+      impact: "Through offsetting your energy use",
       plan: "Available on any Origin Energy plan",
       siteChanges: "None",
       contracts: "None",
       benefits: [
-        "All standard clean business club benefits",
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
+      ],
+    },
+    {
+      title: "Net-Zero research program",
+      leaf: 5,
+      icon: "/icons/products/net-zero.svg",
+      impact:
+        "Participate in research to help us develop future services tailored to your business",
+      plan: "Available on any Origin Energy plan",
+      siteChanges: "None",
+      contracts: "None",
+      benefits: [
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
         "Have your say in future & upcoming solutions",
       ],
     },
@@ -64,6 +75,17 @@ function ProductContainer() {
     responsive: [
       {
         breakpoint: 1440,
+        settings: {
+          centerMode: false,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          initialSlide: 4,
+          infinite: false,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
         settings: {
           centerMode: false,
           slidesToShow: 3,
@@ -112,7 +134,7 @@ function ProductContainer() {
   };
 
   return (
-    <div className="py-8 lg:w-[80vw] mx-auto mb-16 sm:mt-[110px] md:mt-[48px]">
+    <div className="py-8 lg:w-[80vw] mx-auto mb-16">
       <Slider {...settings}>
         {productDetails.map((detail, index) => (
           <ProductCard

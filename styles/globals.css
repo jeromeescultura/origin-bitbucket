@@ -46,31 +46,50 @@ h2 {
   color: #ec0000;
 }
 
-/* tab */
+/* Overwrite */
 .css-102w3xa-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: #232323 !important;
   font-weight: bold !important;
+}
+.css-9lshym-MuiTypography-root {
+  font-size: 14px;
+}
+
+/* dynamic bar */
+.css-jc1gvt-MuiLinearProgress-root {
+  background-color: transparent !important;
+}
+.MuiLinearProgress-barColorPrimary {
+  background-color: #a5bb48 !important;
+}
+.MuiLinearProgress-barColorSecondary {
+  background-color: #008906 !important;
 }
 
 @layer base {
   @font-face {
     font-family: "gordita-light";
     src: url("/fonts/Origin_Gordita-Light.woff2") format("truetype");
+    font-weight: 300;
   }
   @font-face {
     font-family: "gordita-regular";
     src: url("/fonts/Origin_Gordita-Regular.woff2") format("truetype");
+    font-weight: normal;
   }
   @font-face {
     font-family: "gordita-medium";
     src: url("/fonts/Origin_Gordita-Medium.woff2") format("truetype");
+    font-weight: 500;
   }
   @font-face {
     font-family: "gordita-bold";
     src: url("/fonts/Origin_Gordita-Bold.woff2") format("truetype");
+    font-weight: bold;
   }
   @font-face {
     font-family: "gordita-black";
     src: url("/fonts/Origin_Gordita-Black.woff2") format("truetype");
+    font-weight: 900;
   }
 }

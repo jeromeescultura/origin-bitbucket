@@ -15,13 +15,21 @@ function ProductCard({
 }) {
   return (
     <>
-      <div className="text-center -mb-4 z-50">
+      {/* <div className="text-center -mb-4 z-50">
         <LeafRating count={leaf} />
-      </div>
-      <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly  h-[920px] ">
+      </div> */}
+      <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly h-[920px] ">
         <div className="pt-4">
-          <p>Pledge with</p>
-          <p className="font-bold text-[16px] mt-2 mb-4">{title}</p>
+          <p>Start your energy shift with</p>
+          <p
+            className={`font-bold text-[16px] mt-2  ${
+              title === "Net-Zero research program"
+                ? "lg:mb-3 xs:mb-6 max-w-[219px]"
+                : "mb-6"
+            }`}
+          >
+            {title}
+          </p>
           <div className="w-24 mx-auto">
             <Image
               src={icon}
@@ -34,7 +42,7 @@ function ProductCard({
         </div>
 
         <div>
-          <p className="font-medium mb-1">How you reduce impact</p>
+          <p className="font-medium mb-1">How you support cleaner energy</p>
           <p>{impact}</p>
         </div>
 

@@ -17,12 +17,13 @@ const FormInputDropdown = ({
   setValue,
   states,
   validation,
+  defaultDropdown
 }) => {
   const generateSingleOptions = () => {
     if (options) {
       return options.map((option, index) => {
         return (
-          <MenuItem key={index} value={option.value}>
+          <MenuItem key={index} value={option?.value}>
             {option.label}
           </MenuItem>
         );
@@ -31,7 +32,7 @@ const FormInputDropdown = ({
       return states.map((state, index) => {
         return (
           <MenuItem key={index} value={state.capital}>
-            <p className="capitalize">{state.capital}</p>
+            <p>{state.capital}</p>
           </MenuItem>
         );
       });
@@ -49,12 +50,12 @@ const FormInputDropdown = ({
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <FormControl
             size={"large"}
-            className="w-full"
             error={error ? true : false}
             color="secondary"
+            fullWidth
           >
             <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value} defaultValue="">
+            <Select onChange={onChange} value={value} defaultValue={defaultDropdown ?? ''}>
               {generateSingleOptions()}
             </Select>
             {error && (

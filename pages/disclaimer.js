@@ -63,7 +63,7 @@ const disclaimer = () => {
               size="large"
               color="error"
               className="lg:w-full"
-              onClick={(e) => handleClick(e, "/signup")}
+              onClick={(e) => handleClick(e, "/contact")}
               style={{
                 borderRadius: 200,
                 boxShadow: "none",

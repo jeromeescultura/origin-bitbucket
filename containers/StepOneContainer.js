@@ -2,16 +2,19 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import QuestionContainer from "./QuestionContainer";
 import SliderQuestion from "../components/SliderQuestion";
-import { Button, ButtonGroup, Grid } from "@mui/material";
+import { Button, ButtonGroup, Grid, TextField } from "@mui/material";
 import Image from "next/image";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { Controller } from "react-hook-form";
+import FormInputRadio from "../form-components/FormInputRadio";
 
 const StepOneContainer = ({
   btnQsts,
   chkBoxQsts,
   sldrQsts,
   glsQsts,
+  radioQsts,
+  setAssessmentAnswers,
   stepForwardHandler,
 }) => {
   const [goals, setGoals] = useState("");
@@ -19,8 +22,9 @@ const StepOneContainer = ({
   const [enSourceValue, setEnSourceValue] = useState([]);
   const [genOpValue, setGenOpValue] = useState([]);
   const [sliderValue, setSliderValue] = useState(3);
+  const [radioValue, setRadioValue] = useState("easy");
 
-  const [btn1, setBtn1] = useState(false);
+  const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
 
   const storedData =
@@ -34,23 +38,42 @@ const StepOneContainer = ({
   const methods = useForm({ defaultValues: stepOneAns });
   const { control, watch, setValue, handleSubmit } = methods;
 
+  // STORING VALUES SAVED IN stepOneAns TO LOCAL STORAGE AND assessmentAnswers STATE
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
+    setAssessmentAnswers((prevState) => {
+      return { ...prevState, stepOneAns: stepOneAns };
+    });
   }, [stepOneAns]);
 
+  // GETTING DATA FROM LOCAL STORAGE
   useEffect(() => {
-    if (storedData !== null) {
+    if (storedData) {
       setStepOneAns(storedData);
-      setEnSourceValue(storedData.enSource);
-      setGenOpValue(storedData.genOp);
-      setSliderValue(storedData.slider);
-      setChoice(storedData.choice);
-      setGoals(storedData.goals);
+      setEnSourceValue(storedData.energySourceChanges);
+      setGenOpValue(storedData.generalOperationsChanges);
+      setSliderValue(storedData.howMuchPriority);
+      setChoice(storedData.implementSustainability);
+      setGoals(storedData.goalsConsidered);
+      setRadioValue(storedData.howMuchTimeAndEnergy);
     }
   }, []);
 
+  // SETTING SELECTED BUTTON BASED ON choice STATE AND CLEAR goals STATE WHEN SELECTING THE 'NO' OPTION
+  useEffect(() => {
+    if (choice !== "") {
+      setValue("implementSustainability", choice);
+      handleButtonSelect(choice === "yes" ? 1 : 0);
+    }
+
+    if (choice === "no") {
+      setGoals("");
+    }
+  }, [choice]);
+
+  // FUNCTION TO HIGHLIGHT SELECTED BUTTON
   const handleButtonSelect = (value) => {
-    setChoice(value.toString());
+    setChoice(value === 0 ? "no" : "yes");
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
@@ -59,31 +82,28 @@ const StepOneContainer = ({
       setBtn2(true);
     }
   };
-  useEffect(() => {
-    if (choice !== "") {
-      setValue("choice", choice);
-      handleButtonSelect(parseInt(choice));
-    }
 
-    if (choice === "0") {
-      setGoals("");
-    }
-  }, [choice]);
-
+  // UPDATE DATA FOR goalsConsidered STATE
   useEffect(() => {
-    setValue("goals", goals);
+    setValue("goalsConsidered", goals);
   }, [goals]);
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
+  // SET stepOneAns VALUES BASED ON VALUES STORED BY FORM HOOK COMPONENTS
   const handleChange = (data) => {
     setStepOneAns({
-      goals: data.goals,
-      choice: data.choice,
-      enSource: data.enSource,
-      genOp: data.genOp,
-      slider: data.slider,
+      goalsConsidered: data.goalsConsidered,
+      implementSustainability: data.implementSustainability,
+      energySourceChanges: data.energySourceChanges,
+      generalOperationsChanges: data.generalOperationsChanges,
+      howMuchPriority: data.howMuchPriority,
+      howMuchTimeAndEnergy: data.howMuchTimeAndEnergy,
     });
+  };
+
+  const handleNextButton = () => {
+    stepForwardHandler();
   };
 
   return (
@@ -101,7 +121,7 @@ const StepOneContainer = ({
           >
             <Controller
               control={control}
-              name={"choice"}
+              name={"implementSustainability"}
               render={() => {
                 return (
                   <>
@@ -122,11 +142,11 @@ const StepOneContainer = ({
                       {"Not really"}
                     </Button>
                     <Button
-                      className={
+                      className={`${
                         btn2
                           ? activeStyles
-                          : "hover:border hover:border-gray-300"
-                      }
+                          : "hover:border hover:border-gray-300 hover:border-l-accentColor"
+                      } ${btn1 && "border-l-accentColor"}`}
                       value={"Yes, I'm considering it"}
                       onClick={() => handleButtonSelect(1)}
                       sx={{
@@ -143,17 +163,31 @@ const StepOneContainer = ({
             />
           </ButtonGroup>
         </div>
-        {choice === "1" && (
+        {btn2 && (
           <QuestionContainer style={"px-0"} text={glsQsts?.text}>
             <div className="mt-12 h-[192px]">
-              <textarea
-                name=""
-                id=""
-                placeholder="Type here"
-                className="w-full h-full border-2 rounded-xl resize-none focus:outline-accentColor p-4 font-light"
-                value={goals}
-                onChange={(e) => setGoals(e.target.value)}
-              ></textarea>
+              <Controller
+                control={control}
+                name="goalsConsidered"
+                rules={{ required: "More info required" }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    helperText={error ? error.message : null}
+                    size="large"
+                    error={!!error}
+                    onChange={onChange}
+                    value={value}
+                    fullWidth
+                    color="secondary"
+                    multiline
+                    rows={6}
+                    placeholder="Type here"
+                  />
+                )}
+              />
             </div>
           </QuestionContainer>
         )}
@@ -187,11 +221,10 @@ const StepOneContainer = ({
               onChange={watch(handleChange)}
               control={control}
               setValue={setValue}
-              name="enSource"
+              name="energySourceChanges"
               options={chkBoxQsts[0]?.questionsList}
               checkboxValue={enSourceValue}
               setCheckboxValue={setEnSourceValue}
-              validation={{ required: "Required" }}
             />
           </div>
         </div>
@@ -218,7 +251,7 @@ const StepOneContainer = ({
               onChange={watch(handleChange)}
               control={control}
               setValue={setValue}
-              name="genOp"
+              name="generalOperationsChanges"
               options={chkBoxQsts[1]?.questionsList}
               checkboxValue={genOpValue}
               setCheckboxValue={setGenOpValue}
@@ -227,10 +260,23 @@ const StepOneContainer = ({
         </div>
       </QuestionContainer>
       {/* STEP ONE - QUESTION THREE */}
+      <QuestionContainer id={radioQsts?.id} text={radioQsts?.text}>
+        <div className="mt-8">
+          <FormInputRadio
+            name={"howMuchTimeAndEnergy"}
+            control={control}
+            options={radioQsts?.options}
+            setValue={setValue}
+            radioValue={radioValue && radioValue}
+            radioDefault={"easy"}
+          />
+        </div>
+      </QuestionContainer>
+      {/* STEP ONE - QUESTION FOUR */}
       <QuestionContainer id={sldrQsts?.id} text={sldrQsts?.text}>
         <SliderQuestion
           setValue={setValue}
-          name={"slider"}
+          name={"howMuchPriority"}
           setSliderValue={setSliderValue}
           sliderValue={sliderValue}
           qst={sldrQsts?.options}
@@ -238,6 +284,21 @@ const StepOneContainer = ({
           high={"High priority"}
         />
       </QuestionContainer>
+      <div className="">
+        <Button
+          size="large"
+          variant="contained"
+          style={{
+            borderRadius: 200,
+            boxShadow: "none",
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+          }}
+          onClick={handleSubmit(handleNextButton)}
+        >
+          Next
+        </Button>
+      </div>
     </>
   );
 };

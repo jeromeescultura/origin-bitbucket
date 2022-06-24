@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const PageIntro = ({ assessIntro, stepNo }) => {
   const [pageIntro, setPageIntro] = useState(assessIntro[stepNo - 1]);
   useEffect(() => {
-    console.log("STEPNO", stepNo);
     if (stepNo < 3) {
       setPageIntro(assessIntro[stepNo - 1]);
     }
@@ -21,7 +20,7 @@ const PageIntro = ({ assessIntro, stepNo }) => {
             {pageIntro.desc}
           </p>
         </div>
-        <div className="plant-container h-24 w-[60%] lg:w-auto lg:h-auto flex justify-end">
+        {/* <div className="plant-container h-24 w-[60%] lg:w-auto lg:h-auto flex justify-end">
           <div className="w-24 h-24 lg:hidden ">
             <Image
               src="/icons/plant.svg"
@@ -44,7 +43,7 @@ const PageIntro = ({ assessIntro, stepNo }) => {
               objectFit="contain"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
