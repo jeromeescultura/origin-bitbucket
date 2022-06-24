@@ -37,31 +37,36 @@ const questions = [
         questionsList: [
           {
             id: 1,
-            value: "carbon_offsets",
-            text: "Bought Carbon Offsets",
+            value: "replaced_equipments",
+            text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
           },
           {
             id: 2,
-            value: "green_power",
-            text: "Bought Green power",
+            value: "carbon_offsets",
+            text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
             id: 3,
-            value: "solar",
-            text: "Solar",
+            value: "green_power",
+            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
           },
           {
             id: 4,
-            value: "batteries",
-            text: "Batteries",
+            value: "solar",
+            text: "Installed solar at your site(s)",
           },
           {
             id: 5,
-            value: "ev",
-            text: "EV",
+            value: "batteries",
+            text: "Added battery storage to your solar system",
           },
           {
             id: 6,
+            value: "electric_vehicles",
+            text: "Replaced some or all of your vehicle fleet with electric vehicles",
+          },
+          {
+            id: 7,
             value: "expert_advice",
             text: "Worked with an expert to lower our carbon emissions",
           },
@@ -85,7 +90,7 @@ const questions = [
           {
             id: 3,
             value: "digitized",
-            text: "Digitised some or all paper based processes at the sites (s)",
+            text: "Digitised some or all paper based processes at the sites(s)",
           },
           {
             id: 4,
@@ -114,22 +119,22 @@ const questions = [
         {
           id: 1,
           label: "1-2 sites",
-          value: "1-2",
+          value: "1-2 sites",
         },
         {
           id: 2,
           label: "2-5 sites",
-          value: "2-5",
+          value: "2-5 sites",
         },
         {
           id: 3,
           label: "5-10 sites",
-          value: "5-10",
+          value: "5-10 sites",
         },
         {
           id: 4,
           label: "10+ sites",
-          value: "10+",
+          value: "10+ sites",
         },
         {
           id: 5,
@@ -163,98 +168,98 @@ const questions = [
       options: [
         {
           id: 1,
-          label: "Professional, Scientific and Technical Services",
-          value: "pro_sci_tech",
+          label: "Accommodation and Food Services",
+          value: "Accommodation and Food Services",
         },
         {
           id: 2,
-          label: "Financial and Insurance Services",
-          value: "finance_insurance",
+          label: "Administrative and Support Services",
+          value: "Administrative and Support Services",
         },
         {
           id: 3,
-          label: "Manufacturing",
-          value: "manufacturing",
+          label: "Agriculture, Forestry and Fishing",
+          value: "Agriculture, Forestry and Fishing",
         },
         {
           id: 4,
-          label: "Rental, Hiring and Real Estate Services",
-          value: "rental_hiring_real_estate",
+          label: "Arts and Recreation Services",
+          value: "Arts and Recreation Services",
         },
         {
           id: 5,
-          label: "Accommodation and Food Services",
-          value: "accom_food",
+          label: "Construction",
+          value: "Construction",
         },
         {
           id: 6,
-          label: "Health Care and Social Assistance",
-          value: "health_social",
+          label: "Education and Training",
+          value: "Education and Training",
         },
         {
           id: 7,
-          label: "Retail Trade",
-          value: "retail_trade",
+          label: "Electricity, Gas, Water and Waste Services",
+          value: "Electricity, Gas, Water and Waste Services",
         },
         {
           id: 8,
-          label: "Information Media and Telecommunications",
-          value: "info_media_telecom",
+          label: "Financial and Insurance Services",
+          value: "Financial and Insurance Services",
         },
         {
           id: 9,
-          label: "Wholesale Trade",
-          value: "wholesale_trade",
+          label: "Health Care and Social Assistance",
+          value: "Health Care and Social Assistance",
         },
         {
           id: 10,
-          label: "Administrative and Support Services",
-          value: "admin_support",
+          label: "Information Media and Telecommunications",
+          value: "Information Media and Telecommunications",
         },
         {
           id: 11,
-          label: "Education and Training",
-          value: "educ_training",
+          label: "Manufacturing",
+          value: "Manufacturing",
         },
         {
           id: 12,
           label: "Mining",
-          value: "mining",
+          value: "Mining",
         },
         {
           id: 13,
-          label: "Construction",
-          value: "construction",
+          label: "Professional, Scientific and Technical Services",
+          value: "Professional, Scientific and Technical Services",
         },
         {
           id: 14,
-          label: "Arts and Recreation Services",
-          value: "arts_rec",
+          label: "Public Administration and Safety",
+          value: "Public Administration and Safety",
         },
         {
           id: 15,
-          label: "Transport, Postal and Warehousing",
-          value: "transport_postal_warehousing",
+          label: "Rental, Hiring and Real Estate Services",
+          value: "Rental, Hiring and Real Estate Services",
         },
         {
           id: 16,
-          label: "Agriculture, Forestry and Fishing",
-          value: "agri_forest_fishing",
+          label: "Retail Trade",
+          value: "Retail Trade",
         },
         {
           id: 17,
-          label: "Public Administration and Safety",
-          value: "public_admin_safety",
+          label: "Transport, Postal and Warehousing",
+          value: "Transport, Postal and Warehousing",
         },
         {
           id: 18,
-          label: "Electricity, Gas, Water and Waste Services",
-          value: "elec_gas_water_waste",
+          label: "Wholesale Trade",
+          value: "Wholesale Trade",
         },
         {
           id: 19,
-          label: "Other",
-          value: "other",
+          label: "Other Services",
+          value: "Other Services",
         },
       ],
     },
@@ -279,7 +284,7 @@ const questions = [
   },
   {
     sliderQuestion: {
-      id: "03",
+      id: "04",
       text: "How much of a priority is sustainability for your business?",
       options: [
         {
@@ -312,33 +317,33 @@ const questions = [
       questionsList: [
         {
           id: 1,
-          value: "eu_chk_1",
-          text: "Constant (Requires 24 hour supply)",
+          value: "constant",
+          label: "Constant",
           subText:
             "It requires 24 hour supply (eg. to run refrigeration units or warehouse temperature)",
         },
         {
           id: 2,
-          value: "eu_chk_2",
-          text: "Mornings (Roughly between 1am – 9am",
+          value: "mornings",
+          label: "Mornings",
           subText: "Roughly between 1am – 9am",
         },
         {
           id: 3,
-          value: "eu_chk_3",
-          text: "Evenings (Roughly between 5pm - 1am)",
+          value: "evenings",
+          label: "Evenings",
           subText: "Roughly between 5pm - 1am",
         },
         {
           id: 4,
-          value: "eu_chk_4",
-          text: "Standard times (Roughly between 9am - 5pm)",
+          value: "standard",
+          label: "Standard times",
           subText: "Roughly between 9am - 5pm",
         },
         {
           id: 5,
-          value: "eu_chk_5",
-          text: "Unconstrained by specific operating hours (Depends on business priorities)",
+          value: "unconstrained",
+          label: "Unconstrained by specific operating hours",
           subText: "Energy use varies greatly depending on business priorities",
         },
       ],
@@ -390,6 +395,31 @@ const questions = [
         {
           id: "3",
           text: "I'm not sure",
+        },
+      ],
+    },
+  },
+  {
+    timeAndEnergy: {
+      id: "03",
+      text: "How much time and energy do you want to spend on moving towards your sustainability goals?",
+      options: [
+        {
+          id: 1,
+          value: "easy",
+          label: "Not much. Make it as easy as possible, please!",
+        },
+        {
+          id: 2,
+          value: "open_decision",
+          label:
+            "I'm open to having a chat or two and then deciding how to proceed",
+        },
+        {
+          id: 3,
+          value: "fully_invest",
+          label:
+            "I'm happy to invest time and energy into finding the best and most sustainable option that works for me.",
         },
       ],
     },

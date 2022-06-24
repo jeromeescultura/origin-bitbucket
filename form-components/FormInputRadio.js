@@ -11,12 +11,30 @@ import { Controller } from "react-hook-form";
 
 const generateRadioOptions = (options) => {
   return options?.map((singleOption, index) => (
-    <FormControlLabel
-      key={index}
-      value={singleOption.value}
-      label={singleOption.label}
-      control={<Radio color="secondary" size='medium' />}
-    />
+    <div key={index}>
+      <FormControlLabel
+        sx={singleOption?.subText && { display: "flex", alignItems: "start", mb:5}}
+        value={singleOption?.value ?? ""}
+        label={
+          <div className="">
+            {" "}
+            <span
+              className={`${
+                singleOption?.subText && "text-lg font-GorditaMedium"
+              }`}
+            >
+              {singleOption?.label}
+            </span>
+            {singleOption?.subText && (
+              <p className="text-base font-light ml-20">
+                {singleOption?.subText}
+              </p>
+            )}
+          </div>
+        }
+        control={<Radio color="secondary" size="medium" />}
+      />
+    </div>
   ));
 };
 
@@ -28,6 +46,7 @@ const FormInputRadio = ({
   options,
   radioValue,
   setValue,
+  radioDefault,
 }) => {
   useEffect(() => {
     if (radioValue) setValue(name, radioValue);
@@ -44,7 +63,11 @@ const FormInputRadio = ({
               {label}
             </FormLabel>
           )}
-          <RadioGroup value={value} onChange={onChange}>
+          <RadioGroup
+            value={value}
+            onChange={onChange}
+            defaultValue={radioDefault ?? ""}
+          >
             {generateRadioOptions(options)}
           </RadioGroup>
           {error && (
