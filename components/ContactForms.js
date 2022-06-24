@@ -547,6 +547,7 @@ function ContactForms({ text }) {
         color="primary"
         size="large"
         style={{
+          backgroundColor: "#EC0000",
           borderRadius: 200,
           boxShadow: "none",
           paddingLeft: "2rem",

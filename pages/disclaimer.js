@@ -18,6 +18,7 @@ const Disclaimer = () => {
           objectFit="contain"
           alt="origin-logo"
           onClick={(e) => handleClick(e, "/")}
+          priority
         />
       </div>
       <div className="inline-grid md:grid-cols-3 gap-8 xl:gap-32 mt-8 lg:mt-24">

@@ -19,6 +19,7 @@ function HeroComponent() {
           alt="bg-image"
           className="rounded-2xl"
           objectPosition="left"
+          priority
         />
       </div>
       <div className="absolute max-w-[920px] pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
