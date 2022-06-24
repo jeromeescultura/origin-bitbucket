@@ -51,7 +51,7 @@ function Footer() {
               paddingRight: "2rem",
             }}
           >
-            Let's have a chat
+            Let&#39;s have a chat
           </Button>
         </div>
       </div>

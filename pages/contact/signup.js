@@ -28,7 +28,7 @@ import MoreDetailsComponent from "../../components/MoreDetailsComponent";
 import ContactForms from "../../components/ContactForms";
 import PledgeModal from "../../components/signup/PledgeModal";
 
-function signup() {
+function Signup() {
   const router = useRouter();
   const [userID, setUserID] = useState();
   const handleClick = (e) => {
@@ -349,4 +349,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

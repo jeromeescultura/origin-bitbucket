@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const disclaimer = () => {
+const Disclaimer = () => {
   const router = useRouter();
   const handleClick = (e, url) => {
     e.preventDefault();
@@ -96,4 +96,4 @@ const disclaimer = () => {
   );
 };
 
-export default disclaimer;
+export default Disclaimer;

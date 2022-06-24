@@ -59,10 +59,10 @@ export default function Home() {
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
             <h2>
-              Australia's 2.4 million small & medium businesses are responsible
-              for over 1 quarter of the nation's carbon emissions annually. We
-              want to work together to change that - without impacting your
-              operational cost.
+              Australia&#39;s 2.4 million small & medium businesses are
+              responsible for over 1 quarter of the nation&#39;s carbon
+              emissions annually. We want to work together to change that -
+              without impacting your operational cost.
             </h2>
             <p className="my-6 lg:my-8 sm:leading-loose">
               At Origin, we believe you shouldn&#39;t have to choose between

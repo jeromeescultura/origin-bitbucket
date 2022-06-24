@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-function thankyou() {
+function Thankyou() {
   const router = useRouter();
   const [userID, setUserID] = useState();
 
@@ -46,4 +46,4 @@ function thankyou() {
   );
 }
 
-export default thankyou;
+export default Thankyou;
