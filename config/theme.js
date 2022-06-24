@@ -2,9 +2,8 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    type: "light",
     primary: {
-      main: "#EC0000 !important",
+      main: "#EC0000",
     },
     secondary: {
       main: "#FFB432",
@@ -13,7 +12,7 @@ const theme = createTheme({
       primary: "#232323",
     },
     error: {
-      main: "#EC0000",
+      main: "#EC0000 ",
     },
     success: {
       main: "#008906",
@@ -25,6 +24,7 @@ const theme = createTheme({
       default: "#FFFFFF",
     },
   },
+
   typography: {
     fontFamily: "gordita-regular, Segoe UI, Roboto, sans-serif",
     button: {

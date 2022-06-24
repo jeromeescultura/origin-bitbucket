@@ -86,6 +86,7 @@ function FooterReco({
           size="large"
           onClick={handleChoose}
           style={{
+            backgroundColor: "#EC0000",
             borderRadius: 200,
             boxShadow: "none",
             fontSize: 14,

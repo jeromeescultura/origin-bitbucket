@@ -31,6 +31,7 @@ function Footer() {
             size="large"
             onClick={(e) => handleClick(e, "/disclaimer")}
             style={{
+              backgroundColor: "#EC0000",
               borderRadius: 200,
               boxShadow: "none",
               paddingLeft: "2rem",

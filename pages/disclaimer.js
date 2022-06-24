@@ -52,6 +52,7 @@ const Disclaimer = () => {
               className="lg:w-full"
               onClick={(e) => handleClick(e, "/assessment")}
               style={{
+                backgroundColor: "#EC0000",
                 borderRadius: 200,
                 boxShadow: "none",
               }}

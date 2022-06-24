@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -13,10 +17,6 @@ a {
 * {
   box-sizing: border-box;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 p {
   @apply font-GorditaRegular text-sm font-light text-secondaryText;
@@ -46,7 +46,6 @@ h2 {
   color: #ec0000;
 }
 
-/* Overwrite */
 .css-102w3xa-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: #232323 !important;
   font-weight: bold !important;
@@ -55,7 +54,6 @@ h2 {
   font-size: 14px;
 }
 
-/* dynamic bar */
 .css-jc1gvt-MuiLinearProgress-root {
   background-color: transparent !important;
 }

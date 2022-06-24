@@ -308,6 +308,7 @@ const StepTwoContainer = ({
               borderRadius: 200,
               boxShadow: "none",
               paddingLeft: "2rem",
+              backgroundColor: "#EC0000",
               paddingRight: "2rem",
             }}
             onClick={submitAssessment}

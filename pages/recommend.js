@@ -569,16 +569,8 @@ const Recommend = ({ industries }) => {
             <Faqs />
           </div>
         ) : (
-          <div className="absolute top-0 left-0 w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
-            <CircularProgress
-              size="5rem"
-              color="secondary"
-              sx={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-              }}
-            />
+          <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
+            <CircularProgress size="5rem" color="secondary" />
           </div>
         )}
       </div>
