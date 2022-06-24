@@ -87,7 +87,7 @@ function ContactForms({ text }) {
     existingBusiness: "1",
     accountNumber: "",
     primaryAccountHolder: false,
-    contactMethod: "",
+    contactMethod: [],
     preferredTime: [],
   };
 
@@ -130,7 +130,7 @@ function ContactForms({ text }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [primaryAccountHolder, setPrimaryAccountHolder] = useState(false);
-  const [contactMethod, setContactMethod] = useState("");
+  const [contactMethod, setContactMethod] = useState([]);
   const [preferredTime, setPreferredTime] = useState([]);
 
   useEffect(() => {
@@ -494,7 +494,7 @@ function ContactForms({ text }) {
       <Grid container>
         <Grid item xs={12}>
           <p className="text-sm font-medium mb-3">Contact preferences</p>
-          <FormInputRadio
+          <FormInputMultiCheckbox
             name="contactMethod"
             control={control}
             validation={{ required: "Required" }}
@@ -502,12 +502,13 @@ function ContactForms({ text }) {
               { label: "Email", value: "email" },
               { label: "Phone", value: "phone" },
             ]}
-            radioValue={contactMethod}
+            checkboxValue={contactMethod}
+            setCheckboxValue={setContactMethod}
             setValue={setValue}
           />
         </Grid>
       </Grid>
-      {contactFormsDetails?.contactMethod === "phone" && (
+      {contactFormsDetails?.contactMethod.includes("phone") && (
         <Grid container>
           <Grid item xs={12}>
             <p className="text-sm font-medium mb-3">

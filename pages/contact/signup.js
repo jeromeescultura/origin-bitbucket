@@ -95,7 +95,7 @@ function Signup() {
 
       <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5">
         <section className="lg:col-span-2 lg:order-2 relative z-10">
-          <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
+          <div className="bg-white py-8 px-4 lg:py-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
               {/* <LeafRating
@@ -156,32 +156,32 @@ function Signup() {
                         Origin Energy plan*
                       </p>
                     </div>
-                    <div className="space-y-2 mt-8 pl-5">
-                      <p className="font-medium text-left">
+                    <div className="space-y-2 mt-8 pl-2">
+                      <p className="font-medium text-left max-w-[150px]">
                         In addition, we will also support you with
                       </p>
                       <List dense={true} className="space-y-4 text-left py-3">
                         <ListItem className="flex items-start pl-0">
-                          <ListItemIcon>
+                          <ListItemIcon sx={{minWidth:'40px'}}>
                             <Image
                               src="/icons/check-yellow.svg"
-                              width={30}
-                              height={30}
+                              width={25}
+                              height={25}
                               objectFit="contain"
                               alt="check"
                             />
                           </ListItemIcon>
-                          <p>
+                          <p> 
                             {" "}
                             <u>Progress reporting</u> on your impact
                           </p>
                         </ListItem>
                         <ListItem className="flex items-start pl-0">
-                          <ListItemIcon>
+                          <ListItemIcon sx={{minWidth:'40px'}}>
                             <Image
                               src="/icons/check-yellow.svg"
-                              width={30}
-                              height={30}
+                              width={25}
+                              height={25}
                               objectFit="contain"
                               alt="check"
                             />
@@ -193,11 +193,11 @@ function Signup() {
                           </p>
                         </ListItem>
                         <ListItem className="flex items-start pl-0">
-                          <ListItemIcon>
+                          <ListItemIcon sx={{minWidth:'40px'}}>
                             <Image
                               src="/icons/check-yellow.svg"
-                              width={30}
-                              height={30}
+                              width={25}
+                              height={25}
                               objectFit="contain"
                               alt="check"
                             />
@@ -209,11 +209,11 @@ function Signup() {
                         </ListItem>
                         {(product === "greenPower" || product === "solar") && (
                           <ListItem className="flex items-start pl-0">
-                            <ListItemIcon>
+                            <ListItemIcon sx={{minWidth:'40px'}}>
                               <Image
                                 src="/icons/star.svg"
-                                width={30}
-                                height={30}
+                                width={25}
+                                height={25}
                                 objectFit="contain"
                                 alt="star"
                               />
