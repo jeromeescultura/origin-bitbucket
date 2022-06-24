@@ -90,7 +90,7 @@ const questions = [
           {
             id: 3,
             value: "digitized",
-            text: "Digitised some or all paper based processes at the sites(s)",
+            text: "Digitised some or all paper based processes at your sites(s)",
           },
           {
             id: 4,
