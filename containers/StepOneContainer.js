@@ -20,9 +20,10 @@ const StepOneContainer = ({
   const [goals, setGoals] = useState("");
   const [choice, setChoice] = useState("");
   const [enSourceValue, setEnSourceValue] = useState([]);
-  const [genOpValue, setGenOpValue] = useState([]);
+  const [genOpValue, setGenOpValue] = useState("");
   const [sliderValue, setSliderValue] = useState(3);
   const [radioValue, setRadioValue] = useState("easy");
+  const [other, setOther] = useState("");
 
   const [btn1, setBtn1] = useState(true);
   const [btn2, setBtn2] = useState(false);
@@ -56,6 +57,7 @@ const StepOneContainer = ({
       setChoice(storedData.implementSustainability);
       setGoals(storedData.goalsConsidered);
       setRadioValue(storedData.howMuchTimeAndEnergy);
+      setOther(storedData.otherInfo);
     }
   }, []);
 
@@ -67,9 +69,23 @@ const StepOneContainer = ({
     }
 
     if (choice === "no") {
-      setGoals("");
+      setValue("goalsConsidered", "");
     }
   }, [choice]);
+
+  useEffect(() => {
+    if (typeof genOpValue === "object") {
+      console.log("true");
+      if (!genOpValue.includes("other")) {
+        setValue("otherInfo", "");
+      }
+    }
+  }, [genOpValue]);
+
+  useEffect(() => {
+    console.log("otherInfo ", other);
+    setValue("otherInfo", other);
+  }, [other]);
 
   // FUNCTION TO HIGHLIGHT SELECTED BUTTON
   const handleButtonSelect = (value) => {
@@ -99,6 +115,7 @@ const StepOneContainer = ({
       generalOperationsChanges: data.generalOperationsChanges,
       howMuchPriority: data.howMuchPriority,
       howMuchTimeAndEnergy: data.howMuchTimeAndEnergy,
+      otherInfo: data.otherInfo,
     });
   };
 
@@ -256,6 +273,33 @@ const StepOneContainer = ({
               checkboxValue={genOpValue}
               setCheckboxValue={setGenOpValue}
             />
+            {genOpValue.includes("other") && (
+              <div className="space-y-5 mt-5">
+                <p>Can you tell us a bit more?</p>
+                <Controller
+                  control={control}
+                  name="otherInfo"
+                  rules={{ required: "More info required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      helperText={error ? error.message : null}
+                      size="large"
+                      error={!!error}
+                      onChange={onChange}
+                      value={value}
+                      fullWidth
+                      color="secondary"
+                      multiline
+                      rows={6}
+                      placeholder="Type here"
+                    />
+                  )}
+                />
+              </div>
+            )}
           </div>
         </div>
       </QuestionContainer>
