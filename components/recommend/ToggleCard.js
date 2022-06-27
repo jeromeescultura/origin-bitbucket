@@ -3,6 +3,7 @@ import {
   CardContent,
   Collapse,
   FormControl,
+  Grid,
   List,
   ListItem,
   ListItemIcon,
@@ -84,19 +85,20 @@ const ToggleCard = ({
                   : "bg-[#F8F8F8]"
               }`}
             >
-              <CardContent sx={{ transition: "all 0.3s ease" }}>
+              <CardContent>
                 <div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div>Take part in the net zero research interview</div>
                     <Switch
+                      className="order-first lg:order-last"
                       color="secondary"
                       onChange={expandInterview}
                       checked={interview}
                     />
                   </div>
                   <Collapse in={interview}>
-                    <List dense={true}>
-                      <ListItem>
+                    <List dense={true} className="lg:max-w-[280px]">
+                      <ListItem className="p-0">
                         <ListItemIcon>
                           <Image
                             src="/icons/check-yellow.svg"
@@ -107,7 +109,7 @@ const ToggleCard = ({
                         </ListItemIcon>
                         <ListItemText primary="Free to participate" />
                       </ListItem>
-                      <ListItem alignItems="flex-start">
+                      <ListItem alignItems="flex-start" className="p-0">
                         <ListItemIcon>
                           <Image
                             src="/icons/check-yellow.svg"
@@ -117,6 +119,17 @@ const ToggleCard = ({
                           />
                         </ListItemIcon>
                         <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
+                      </ListItem>
+                      <ListItem className="p-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Help us understand how to support businesses like yours to decarbonise " />
                       </ListItem>
                     </List>
                   </Collapse>
@@ -135,9 +148,10 @@ const ToggleCard = ({
             >
               <CardContent>
                 <div>
-                  <div className='flex items-center justify-between'>
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div>GreenPower</div>
                     <Switch
+                      className="order-first lg:order-last"
                       color="secondary"
                       onChange={expandGreenPower}
                       checked={greenPower}

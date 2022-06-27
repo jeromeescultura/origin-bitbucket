@@ -62,7 +62,13 @@ const RecommentCard = ({
       </div>
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
-        <p>Through offsetting your energy use</p>
+        <p>
+          {recommend === "carbonOffset" && "Through offsetting your energy use"}
+          {recommend === "solar" &&
+            "Through using self generated renewable energy"}
+          {recommend === "greenPower" &&
+            "Through supporting Australian renewables"}
+        </p>
       </div>
       <MoreDetailsComponent text="More Details">
         <div className="grid grid-rows-3">
@@ -81,7 +87,7 @@ const RecommentCard = ({
         </div>
       </MoreDetailsComponent>
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
-        <div className="space-y-2  pr-5 lg:border-r text-center lg:text-left ">
+        <div className="space-y-2  lg:pr-5  lg:border-r text-center lg:text-left ">
           {recommend === "solar" ? (
             <div className="">
               <p className="font-medium whitespace-nowrap">Estimated Savings</p>

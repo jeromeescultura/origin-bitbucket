@@ -500,11 +500,12 @@ const Recommend = ({ industries }) => {
                     <span className="font-medium">{industry?.name}</span>. This
                     will change based on your business’ specific usage.{" "}
                     <span
-                      className="underline cursor-pointer"
+                      className="underline cursor-pointer hover:bg-[#FFC72C] py-[3px]"
                       onClick={openModal}
                     >
-                      See your impact ranges.
+                      See the range of possible outcomes
                     </span>
+                    .
                   </div>
                 </div>
                 <ImpactRanges
