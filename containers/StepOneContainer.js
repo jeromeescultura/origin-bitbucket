@@ -75,15 +75,13 @@ const StepOneContainer = ({
 
   useEffect(() => {
     if (typeof genOpValue === "object") {
-      console.log("true");
-      if (!genOpValue.includes("other")) {
+      if (!genOpValue?.includes("other")) {
         setValue("otherInfo", "");
       }
     }
   }, [genOpValue]);
 
   useEffect(() => {
-    console.log("otherInfo ", other);
     setValue("otherInfo", other);
   }, [other]);
 
@@ -273,7 +271,7 @@ const StepOneContainer = ({
               checkboxValue={genOpValue}
               setCheckboxValue={setGenOpValue}
             />
-            {genOpValue.includes("other") && (
+            {genOpValue?.includes("other") && (
               <div className="space-y-5 mt-5">
                 <p>Can you tell us a bit more?</p>
                 <Controller

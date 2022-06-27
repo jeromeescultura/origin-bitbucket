@@ -383,14 +383,36 @@ export const handleImpactData = (
     if (impactCalc?.$d?.days > 0) {
       if (impactCalc?.$d?.days > 1) {
         setImpact(`${impactCalc?.$d?.days} days`);
+        if (impactCalc?.$d?.hours > 0) {
+          if (impactCalc?.$d?.hours > 1) {
+            setImpact(
+              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hrs`
+            );
+          } else {
+            setImpact(
+              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hr`
+            );
+          }
+        }
       } else {
         setImpact(`${impactCalc?.$d?.days} day`);
+        if (impactCalc?.$d?.hours > 0) {
+          if (impactCalc?.$d?.hours > 1) {
+            setImpact(
+              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hours`
+            );
+          } else {
+            setImpact(
+              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hour`
+            );
+          }
+        }
       }
     } else if (impactCalc?.$d?.hours > 0) {
       if (impactCalc?.$d?.hours > 1) {
-        setImpact(`${impactCalc?.$d?.hours} hrs`);
+        setImpact(`${impactCalc?.$d?.hours} hours`);
       } else {
-        setImpact(`${impactCalc?.$d?.hours} hr`);
+        setImpact(`${impactCalc?.$d?.hours} hour`);
       }
     }
   } else if (showContent === "solar") {
