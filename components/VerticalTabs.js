@@ -103,7 +103,7 @@ export default function VerticalTabs() {
             />
           </div>
         </div>
-        <div className="py-10 pr-2 pl-2 lg:pl-8">
+        <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             Direct line access to our club support representatives for:
           </p>

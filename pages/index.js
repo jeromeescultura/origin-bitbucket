@@ -8,6 +8,7 @@ import ContentContainer from "../containers/ContentContainer";
 import HeroComponent from "../components/HeroComponent";
 import PerksTab from "../containers/PerksTab";
 import VerticalTabs from "../components/VerticalTabs";
+import Head from "next/head";
 
 export default function Home() {
   const [showFooter, setShowFooter] = useState(false);
@@ -53,6 +54,14 @@ export default function Home() {
   ];
   return (
     <div>
+      <Head>
+        <title>Origin Shift</title>
+        <meta
+          property="og:title"
+          content="Origin Shift Assessment tool"
+          key="title"
+        />
+      </Head>
       <NavBar />
       <div className="w-full bg-white overflow-auto h-full">
         <HeroComponent />
@@ -72,7 +81,7 @@ export default function Home() {
             <p className="text-secondaryBG font-bold">Learn more</p>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:gap-32 mx-auto pt-12 pb-[88px] sm:pb-16 sm:pt-0">
+          <div className="flex flex-col lg:flex-row lg:gap-32 mx-auto pt-12 pb-[88px] sm:pb-16">
             <div className="text-center lg:text-left">
               <h2 className="text-primaryText font-bold">
                 Just three simple steps towards supporting cleaner energy
@@ -129,11 +138,11 @@ export default function Home() {
             </div>
           </div>
         </ContentContainer>
-        <div className="bg-primaryBG pb-80 sm:pb-56 md:pb-48 lg:pb-36">
+        <div className="bg-primaryBG pb-80 sm:pb-56 md:pb-48 ">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             <ContentContainer>
               <div>
-                <h2 className="text-center font-medium text-primaryText ">
+                <h2 className="text-center text-primaryText font-bold">
                   Every little bit counts
                 </h2>
                 <p className="text-center text-sm font-light mt-6">
@@ -175,7 +184,7 @@ export default function Home() {
               </div>
             </ContentContainer>
             <ContentContainer>
-              <div className="mt-16 pb-16">
+              <div className="pt-4 pb-4">
                 <VerticalTabs />
               </div>
               {/* <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">

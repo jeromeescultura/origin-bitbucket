@@ -9,6 +9,7 @@ import StepOneContainer from "../containers/StepOneContainer";
 import StepTwoContainer from "../containers/StepTwoContainer";
 import StepThreeContainer from "../containers/StepThreeContainer";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Assessment = ({ questions }) => {
   const router = useRouter();
@@ -194,53 +195,64 @@ const Assessment = ({ questions }) => {
           router.push({
             pathname: "/recommend",
             query: { uuid: data.uuid },
-        }),
+          }),
         window.localStorage.removeItem("PAGE"),
         window.localStorage.removeItem("STEP")
       );
   };
 
   return (
-    <div className="bg-primaryBG h-full pb-16">
-      <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
-        <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar step={step} stepNo={stepNo} />
-          <PageIntro
-            assessIntro={assessIntro}
-            activeState={activeState}
-            stepNo={stepNo}
-          />
-          <div className="space-y-8">
-            {/* Step 1 */}
-            {stepNo === 1 && (
-              <StepOneContainer
-                btnQsts={buttonQuestions}
-                chkBoxQsts={checkboxQuestions}
-                sldrQsts={sliderQuestion}
-                glsQsts={goalsQuestion}
-                radioQsts={timeAndEnergyQuestion}
-                setAssessmentAnswers={setAssessmentAnswers}
-                stepForwardHandler={stepForwardHandler}
-              />
-            )}
+    <>
+      <Head>
+        <title>Origin Shift | Assessment</title>
+        <meta
+          property="og:title"
+          content="Origin Shift Assessment tool"
+          key="title"
+        />
+      </Head>
 
-            {/* Step 2 */}
-            {stepNo === 2 && (
-              <StepTwoContainer
-                dropDwnQsts={dropdownQuestions}
-                radioQsts={radioQuestions}
-                iconQsts={iconsQuestions}
-                chkBoxQsts={energyUsageQuestions}
-                btnQsts={landQuestion}
-                setAssessmentAnswers={setAssessmentAnswers}
-                stepBackwardHandler={stepBackwardHandler}
-                submitAssessment={submitAssessment}
-              />
-            )}
+      <div className="bg-primaryBG h-full pb-16">
+        <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
+          <div className="w-[90%] md:w-[80%] mx-auto h-full">
+            <ProgressBar step={step} stepNo={stepNo} />
+            <PageIntro
+              assessIntro={assessIntro}
+              activeState={activeState}
+              stepNo={stepNo}
+            />
+            <div className="space-y-8">
+              {/* Step 1 */}
+              {stepNo === 1 && (
+                <StepOneContainer
+                  btnQsts={buttonQuestions}
+                  chkBoxQsts={checkboxQuestions}
+                  sldrQsts={sliderQuestion}
+                  glsQsts={goalsQuestion}
+                  radioQsts={timeAndEnergyQuestion}
+                  setAssessmentAnswers={setAssessmentAnswers}
+                  stepForwardHandler={stepForwardHandler}
+                />
+              )}
+
+              {/* Step 2 */}
+              {stepNo === 2 && (
+                <StepTwoContainer
+                  dropDwnQsts={dropdownQuestions}
+                  radioQsts={radioQuestions}
+                  iconQsts={iconsQuestions}
+                  chkBoxQsts={energyUsageQuestions}
+                  btnQsts={landQuestion}
+                  setAssessmentAnswers={setAssessmentAnswers}
+                  stepBackwardHandler={stepBackwardHandler}
+                  submitAssessment={submitAssessment}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

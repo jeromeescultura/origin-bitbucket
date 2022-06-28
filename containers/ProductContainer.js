@@ -47,28 +47,28 @@ function ProductContainer() {
         </span>,
       ],
     },
-    {
-      title: "Net-Zero research program",
-      leaf: 5,
-      icon: "/icons/products/net-zero.svg",
-      impact:
-        "Participate in research to help us develop future services tailored to your business",
-      plan: "Available on any Origin Energy plan",
-      siteChanges: "None",
-      contracts: "None",
-      benefits: [
-        <span key="0">
-          All standard <u>clean business club benefits</u>
-        </span>,
-        "Have your say in future & upcoming solutions",
-      ],
-    },
+    // {
+    //   title: "Net-Zero research program",
+    //   leaf: 5,
+    //   icon: "/icons/products/net-zero.svg",
+    //   impact:
+    //     "Participate in research to help us develop future services tailored to your business",
+    //   plan: "Available on any Origin Energy plan",
+    //   siteChanges: "None",
+    //   contracts: "None",
+    //   benefits: [
+    //     <span key="0">
+    //       All standard <u>clean business club benefits</u>
+    //     </span>,
+    //     "Have your say in future & upcoming solutions",
+    //   ],
+    // },
   ];
 
   var settings = {
     centerMode: false,
     infinite: false,
-    slidesToShow: 4,
+    slidesToShow: 3,
     speed: 500,
     initialSlide: 1,
     arrows: false,
@@ -77,7 +77,7 @@ function ProductContainer() {
         breakpoint: 1440,
         settings: {
           centerMode: false,
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1,
           initialSlide: 4,
           infinite: false,

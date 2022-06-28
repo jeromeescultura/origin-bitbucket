@@ -11,9 +11,15 @@ import { Controller } from "react-hook-form";
 
 const generateRadioOptions = (options) => {
   return options?.map((singleOption, index) => (
-    <div key={index}>
+    <div key={index} className="mt-4">
       <FormControlLabel
-        sx={singleOption?.subText && { display: "flex", alignItems: "start", mb:5}}
+        sx={
+          singleOption?.subText && {
+            display: "flex",
+            alignItems: "start",
+            mb: 5,
+          }
+        }
         value={singleOption?.value ?? ""}
         label={
           <div className="">

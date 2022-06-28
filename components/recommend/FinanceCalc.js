@@ -35,7 +35,6 @@ const FinanceCalc = ({
   const handleUsage = (data) => setButtonSelect(data.usage);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
-  console.log(industry?.industryCost?.high, "industry");
 
   return (
     <Card
@@ -134,7 +133,7 @@ const FinanceCalc = ({
             <div className="bg-[#F8F8F8] rounded-lg h-[125px] w-full ">
               {recommend === "solar" ? (
                 <div className="flex items-end w-full h-full justify-center">
-                  <div className="mb-4 min-w-[80px] text-right">
+                  <div className="mb-4 text-right">
                     <p className="mt-10 text-xs">{formatPrice(withoutSolar)}</p>
                   </div>
                   <Box className="-rotate-90 mb-4 w-[100px] ">
@@ -151,7 +150,7 @@ const FinanceCalc = ({
                       value={100 - solarReduction}
                     />
                   </Box>
-                  <div className="mb-4 min-w-[120px] text-left">
+                  <div className="mb-4 text-left">
                     <div className="bg-[#FFC72C] text-center rounded-md">
                       <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
                         {solarReduction}% saving
@@ -162,7 +161,7 @@ const FinanceCalc = ({
                 </div>
               ) : (
                 <div className="flex items-end w-full h-full justify-center">
-                  <div className="mb-4 min-w-[80px] text-right">
+                  <div className="mb-4 text-right">
                     <p className="mt-10 text-xs">{formatPrice(industryCost)}</p>
                   </div>
                   <Box className="-rotate-90 mb-4 w-[100px] ">
@@ -179,7 +178,7 @@ const FinanceCalc = ({
                       value={50 + increasePercentage}
                     />
                   </Box>
-                  <div className="mb-4 min-w-[120px] text-left">
+                  <div className="mb-4 text-left">
                     <div className=" bg-[#FFC72C] rounded-md text-center">
                       <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
                         {increasePercentage}% increase

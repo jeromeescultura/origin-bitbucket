@@ -17,22 +17,22 @@ const FormInputDropdown = ({
   setValue,
   states,
   validation,
-  defaultDropdown
+  defaultDropdown,
 }) => {
   const generateSingleOptions = () => {
     if (options) {
       return options.map((option, index) => {
         return (
           <MenuItem key={index} value={option?.value}>
-            {option.label}
+            <p className="text-xs xs:text-base">{option.label}</p>
           </MenuItem>
         );
       });
     } else if (states) {
       return states.map((state, index) => {
         return (
-          <MenuItem key={index} value={state.capital}>
-            <p>{state.capital}</p>
+          <MenuItem key={index} value={state.name}>
+            <p className="capitalize text-xs xs:text-base">{state.name}</p>
           </MenuItem>
         );
       });
@@ -43,6 +43,16 @@ const FormInputDropdown = ({
     if (dropdownValue) setValue(name, dropdownValue);
   }, [dropdownValue]);
 
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        left: "0px !important",
+      },
+    },
+  };
   return (
     <>
       <Controller
@@ -55,7 +65,13 @@ const FormInputDropdown = ({
             fullWidth
           >
             <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value} defaultValue={defaultDropdown ?? ''}>
+            <Select
+              onChange={onChange}
+              value={value}
+              defaultValue={defaultDropdown ?? ""}
+              MenuProps={MenuProps}
+              className="!left-0"
+            >
               {generateSingleOptions()}
             </Select>
             {error && (
