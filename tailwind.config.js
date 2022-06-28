@@ -1,5 +1,4 @@
 module.exports = {
-  mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -26,11 +25,13 @@ module.exports = {
       xl: "1440px",
       // => @media (min-width: 1440px) { ... }
     },
+
+    // box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+
     extend: {
       boxShadow: {
         "t-sm": "0 -1px 2px 0 rgba(0, 0, 0, 0.05)",
-        "t-md":
-          "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        "t-md": "0 0px 16px rgba(0, 0, 0, 0.1)",
         "t-lg":
           "0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
         "t-xl":

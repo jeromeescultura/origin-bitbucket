@@ -30,7 +30,7 @@ const PledgeModal = ({
   }, [orient]);
   return (
     <Modal open={pledgeModal} onClose={closeModal}>
-      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-5 rounded-lg ">
+      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full max-w-[600px] p-5 rounded-lg ">
         <div className="flex justify-end" onClick={closeModal}>
           <button className="w-5 h-5">
             <Image
@@ -70,100 +70,18 @@ const PledgeModal = ({
           </div>
           <div className="mt-6">
             <MoreDetailsComponent text="More Details">
-              <div className="flex">
-                <div className="space-y-2 mt-6 pr-5 border-r text-left">
-                  <p className="font-medium">
-                    {product === "solar"
-                      ? "Estimated savings"
-                      : "Estimated cost"}
-                  </p>
-                  <h2 className="text-secondaryText">
-                    {product === "solar"
-                      ? `$${estimatedSavings}`
-                      : `$${extraCost}`}
-                  </h2>
-                  <p className="text-xs text-subTextColor">
-                    extra p/month on any <br />
-                    Origin Energy plan*
-                  </p>
+              <div className="grid grid-rows-3 text-left">
+                <div className="grid grid-cols-2 items-center border-t py-2">
+                  <p className="font-medium">Plan</p>
+                  <p>Available on any Origin Energy plan</p>
                 </div>
-                <div className="space-y-2 mt-8 pl-5">
-                  <p className="font-medium text-left">
-                    In addition, we will also support you with
-                  </p>
-                  <List dense={true} className="space-y-4 text-left py-3">
-                    <ListItem className="flex items-start pl-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          objectFit="contain"
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <p>
-                        {" "}
-                        <u>Progress reporting</u> on your impact
-                      </p>
-                    </ListItem>
-                    <ListItem className="flex items-start pl-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          objectFit="contain"
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <p>
-                        {" "}
-                        <u>Free Marketing toolkit</u> to communicate your impact
-                        to communicate your impact
-                      </p>
-                    </ListItem>
-                    <ListItem className="flex items-start pl-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          objectFit="contain"
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <p>
-                        {" "}
-                        Dedicated <u>Good Change Club</u> support
-                      </p>
-                    </ListItem>
-                    {(product === "greenPower" || product === "solar") && (
-                      <ListItem className="flex items-start pl-0">
-                        <ListItemIcon>
-                          <Image
-                            src="/icons/star.svg"
-                            width={30}
-                            height={30}
-                            objectFit="contain"
-                            alt="star"
-                          />
-                        </ListItemIcon>
-                        {product === "greenPower" && (
-                          <p>
-                            <u>Tariff review</u> to reduce your overall energy
-                            costs
-                          </p>
-                        )}
-                        {product === "solar" && (
-                          <p>
-                            <u>Reduced energy costs</u> through self generated
-                            power
-                          </p>
-                        )}
-                      </ListItem>
-                    )}
-                  </List>
+                <div className="grid grid-cols-2 items-center border-t py-2">
+                  <p>Site changes</p>
+                  <p>None</p>
+                </div>
+                <div className="grid grid-cols-2 items-center border-t pt-2">
+                  <p>Lock-in contracts</p>
+                  <p>None</p>
                 </div>
               </div>
             </MoreDetailsComponent>

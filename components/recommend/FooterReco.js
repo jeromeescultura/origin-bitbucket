@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { Button } from "@mui/material";
@@ -9,14 +8,10 @@ function FooterReco({
   recommend,
   enableBtn,
   handleChoose,
+  handleExpress,
   pageNo,
   pages,
 }) {
-  const router = useRouter();
-  const handleClick = () => {
-    e.preventDefault();
-    router.push("/");
-  };
   return (
     <div className="bg-white w-full py-2 shadow-t-sm z-50 fixed bottom-0 ">
       {pages !== 1 && (
@@ -99,7 +94,7 @@ function FooterReco({
           variant="outlined"
           size="large"
           color="error"
-          onClick={handleClick}
+          onClick={handleExpress}
           style={{
             borderRadius: 200,
             boxShadow: "none",
