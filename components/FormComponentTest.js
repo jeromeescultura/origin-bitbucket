@@ -11,7 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 import QuestionContainer from "../containers/QuestionContainer";
 import FormInputRadio from "../form-components/FormInputRadio";
 
-const FormComponentTest = ({options}) => {
+const FormComponentTest = ({ options, buttonHandler }) => {
   const storedData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -84,6 +84,10 @@ const FormComponentTest = ({options}) => {
       goals: data.goalsConsidered,
       radio: data.radio,
     });
+
+  const actionHandler = () => {
+    buttonHandler("next");
+  };
 
   return (
     <div>
@@ -187,7 +191,22 @@ const FormComponentTest = ({options}) => {
         />
       </div>
 
-      <Button onClick={handleSubmit(handleChange)}>Click me</Button>
+      <div className="">
+        <Button
+          size="large"
+          variant="contained"
+          style={{
+            backgroundColor: "#EC0000",
+            borderRadius: 200,
+            boxShadow: "none",
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+          }}
+          onClick={handleSubmit(actionHandler)}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

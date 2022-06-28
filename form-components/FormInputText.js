@@ -9,9 +9,12 @@ export const FormInputText = ({
   setValue,
   validation,
   inputValue,
+  multiline,
+  rows
 }) => {
   useEffect(() => {
     if (inputValue) setValue(name, inputValue);
+    
   }, [inputValue]);
 
   return (
@@ -30,6 +33,8 @@ export const FormInputText = ({
           label={label}
           variant="filled"
           color="secondary"
+          multiline={multiline ?? false}
+          rows={rows ?? 1}
         />
       )}
     />

@@ -13,7 +13,13 @@ const generateRadioOptions = (options) => {
   return options?.map((singleOption, index) => (
     <div key={index}>
       <FormControlLabel
-        sx={singleOption?.subText && { display: "flex", alignItems: "start", mb:5}}
+        sx={
+          singleOption?.subText && {
+            display: "flex",
+            alignItems: "start",
+            mb: 5,
+          }
+        }
         value={singleOption?.value ?? ""}
         label={
           <div className="">
@@ -48,9 +54,9 @@ const FormInputRadio = ({
   setValue,
   radioDefault,
 }) => {
-  useEffect(() => {
-    if (radioValue) setValue(name, radioValue);
-  }, [radioValue]);
+  // useEffect(() => {
+  //   if (radioValue) setValue(name, radioValue);
+  // }, [radioValue]);
   return (
     <Controller
       name={name}
@@ -63,11 +69,7 @@ const FormInputRadio = ({
               {label}
             </FormLabel>
           )}
-          <RadioGroup
-            value={value}
-            onChange={onChange}
-            defaultValue={radioDefault ?? ""}
-          >
+          <RadioGroup value={value ?? ""} onChange={onChange} defaultChecked={value ?? false}>
             {generateRadioOptions(options)}
           </RadioGroup>
           {error && (

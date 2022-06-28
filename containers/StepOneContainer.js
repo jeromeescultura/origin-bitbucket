@@ -34,6 +34,8 @@ const StepOneContainer = ({
         window.localStorage.getItem("STEP_ONE_ANS")
     ) || [];
 
+
+
   const [stepOneAns, setStepOneAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepOneAns });

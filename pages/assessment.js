@@ -11,21 +11,23 @@ import StepThreeContainer from "../containers/StepThreeContainer";
 import { useRouter } from "next/router";
 
 const Assessment = ({ questions }) => {
+  const {
+    buttonQuestion,
+    checkboxQuestion,
+    dropdownQuestion,
+    energyUsageQuestion,
+    goalsQuestion,
+    iconsQuestion,
+    iconsRadioQuestion,
+    investmentQuestion,
+    landQuestion,
+    largerInvestmentQuestion,
+    radioQuestion,
+    sliderQuestion,
+    timeAndEnergy,
+  } = questions;
   const router = useRouter();
 
-  const [buttonQuestions, setButtonQuestions] = useState({});
-  const [checkboxQuestions, setCheckboxQuestions] = useState([]);
-  const [radioQuestions, setRadioQuestions] = useState({});
-  const [iconsQuestions, setIconsQuestions] = useState({});
-  const [sliderQuestion, setSliderQuestion] = useState({});
-  const [dropdownQuestions, setDropdownQuestions] = useState({});
-  const [energyUsageQuestions, setEnergyUsage] = useState({});
-  const [goalsQuestion, setGoals] = useState({});
-  const [landQuestion, setLand] = useState({});
-  const [iconsRadioQuestion, setIconsRadioQuestion] = useState({});
-  const [investmentQuestion, setInvestment] = useState({});
-  const [largerInvestmentQuestion, setLargerInvestment] = useState({});
-  const [timeAndEnergyQuestion, setTimeAndEnergy] = useState({});
   const [uuid, setUuid] = useState("");
 
   const assessIntro = [
@@ -85,37 +87,6 @@ const Assessment = ({ questions }) => {
   }, []);
 
   // GETTING QUESTIONS DATA FROM API
-  useEffect(() => {
-    questions.map((item) => {
-      if (item.buttonQuestion !== undefined) {
-        setButtonQuestions(item.buttonQuestion);
-      } else if (item.checkboxQuestion !== undefined) {
-        setCheckboxQuestions(item.checkboxQuestion);
-      } else if (item.radioQuestion !== undefined) {
-        setRadioQuestions(item.radioQuestion);
-      } else if (item.iconsQuestion !== undefined) {
-        setIconsQuestions(item.iconsQuestion);
-      } else if (item.sliderQuestion !== undefined) {
-        setSliderQuestion(item.sliderQuestion);
-      } else if (item.dropdownQuestion !== undefined) {
-        setDropdownQuestions(item.dropdownQuestion);
-      } else if (item.energyUsageQuestion !== undefined) {
-        setEnergyUsage(item.energyUsageQuestion);
-      } else if (item.goalsQuestion !== undefined) {
-        setGoals(item.goalsQuestion);
-      } else if (item.landQuestion !== undefined) {
-        setLand(item.landQuestion);
-      } else if (item.iconsRadioQuestion !== undefined) {
-        setIconsRadioQuestion(item.iconsRadioQuestion);
-      } else if (item.investmentQuestion !== undefined) {
-        setInvestment(item.investmentQuestion);
-      } else if (item.largerInvestmentQuestion !== undefined) {
-        setLargerInvestment(item.largerInvestmentQuestion);
-      } else if (item.timeAndEnergy !== undefined) {
-        setTimeAndEnergy(item.timeAndEnergy);
-      }
-    });
-  }, [questions]);
 
   // STORE CURRENT PAGE TO LOCAL STORAGE
   useEffect(() => {
@@ -214,11 +185,11 @@ const Assessment = ({ questions }) => {
             {/* Step 1 */}
             {stepNo === 1 && (
               <StepOneContainer
-                btnQsts={buttonQuestions}
-                chkBoxQsts={checkboxQuestions}
+                btnQsts={buttonQuestion}
+                chkBoxQsts={checkboxQuestion}
                 sldrQsts={sliderQuestion}
                 glsQsts={goalsQuestion}
-                radioQsts={timeAndEnergyQuestion}
+                radioQsts={timeAndEnergy}
                 setAssessmentAnswers={setAssessmentAnswers}
                 stepForwardHandler={stepForwardHandler}
               />
@@ -227,10 +198,10 @@ const Assessment = ({ questions }) => {
             {/* Step 2 */}
             {stepNo === 2 && (
               <StepTwoContainer
-                dropDwnQsts={dropdownQuestions}
-                radioQsts={radioQuestions}
-                iconQsts={iconsQuestions}
-                chkBoxQsts={energyUsageQuestions}
+                dropDwnQsts={dropdownQuestion}
+                radioQsts={radioQuestion}
+                iconQsts={iconsQuestion}
+                chkBoxQsts={energyUsageQuestion}
                 btnQsts={landQuestion}
                 setAssessmentAnswers={setAssessmentAnswers}
                 stepBackwardHandler={stepBackwardHandler}
