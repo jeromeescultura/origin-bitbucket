@@ -27,6 +27,7 @@ const StepTwoContainer = ({
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || [];
 
+
   const [stepTwoAns, setStepTwoAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepTwoAns });
@@ -71,56 +72,41 @@ const StepTwoContainer = ({
 
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
-  const [btn3, setBtn3] = useState(false);
-  const [btn4, setBtn4] = useState(true);
+  const [btn3, setBtn3] = useState(true);
+  // const [btn4, setBtn4] = useState(true);
 
   // FUNCTION TO HIGHLIGHT SELECTED BUTTON
   const handleButtonSelect = (value) => {
-    setEquipment(
-      value === 0
-        ? "yes"
-        : value === 1
-        ? "some"
-        : value === 2
-        ? "no"
-        : "not_sure"
-    );
+    setEquipment(value === 0 ? "yes" : value === 1 ? "no" : "not_sure");
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
       setBtn3(false);
-      setBtn4(false);
+      // setBtn4(false);
     } else if (value === 1) {
       setBtn1(false);
       setBtn2(true);
       setBtn3(false);
-      setBtn4(false);
+      // setBtn4(false);
     } else if (value === 2) {
       setBtn1(false);
       setBtn2(false);
       setBtn3(true);
-      setBtn4(false);
-    } else if (value === 3) {
-      setBtn1(false);
-      setBtn2(false);
-      setBtn3(false);
-      setBtn4(true);
+      // setBtn4(false);
     }
+    // else if (value === 3) {
+    //   setBtn1(false);
+    //   setBtn2(false);
+    //   setBtn3(false);
+    //   setBtn4(true);
+    // }
   };
 
   // SETTING SELECTED BUTTON BASED ON equipment STATE
   useEffect(() => {
     if (equipment !== "") {
       setValue("spaceForInstallation", equipment);
-      handleButtonSelect(
-        equipment === "yes"
-          ? 0
-          : equipment === "some"
-          ? 1
-          : equipment === "no"
-          ? 2
-          : 3
-      );
+      handleButtonSelect(equipment === "yes" ? 0 : equipment === "no" ? 1 : 2);
     }
   }, [equipment]);
 
@@ -200,7 +186,7 @@ const StepTwoContainer = ({
             size="large"
             color="secondary"
             arial-label="contained button group"
-            orientation={`${orient ? "horizontal" : "vertical"}`}
+            // orientation={`${orient ? "horizontal" : "vertical"}`}
             fullWidth
           >
             <Controller
@@ -220,12 +206,14 @@ const StepTwoContainer = ({
                       sx={{
                         color: "#505050",
                         borderColor: "#E3E3E3",
-                        fontSize: "16",
+                        fontSize: "14",
+                        px: 0,
+                        py: 1,
                       }}
                     >
                       {"Yes"}
                     </Button>
-                    <Button
+                    {/* <Button
                       className={`${
                         btn2
                           ? activeStyles
@@ -239,10 +227,31 @@ const StepTwoContainer = ({
                       sx={{
                         color: "#505050",
                         borderColor: "#E3E3E3",
-                        fontSize: "16",
+                        fontSize: "14",
                       }}
                     >
                       {"At some of my sites"}
+                    </Button> */}
+                    <Button
+                      className={`${
+                        btn2
+                          ? activeStyles
+                          : "hover:border hover:border-gray-300"
+                      } ${
+                        btn1 &&
+                        "border-t-gray-300 hover:border-t-gray-300 border-l-accentColor hover:border-l-accentColor"
+                      }`}
+                      value={"No"}
+                      onClick={() => handleButtonSelect(1)}
+                      sx={{
+                        color: "#505050",
+                        borderColor: "#E3E3E3",
+                        fontSize: "14",
+                        px: 0,
+                        py: 1,
+                      }}
+                    >
+                      {"No"}
                     </Button>
                     <Button
                       className={`${
@@ -251,33 +260,16 @@ const StepTwoContainer = ({
                           : "hover:border hover:border-gray-300"
                       } ${
                         btn2 &&
-                        "border-t-accentColor hover:border-t-accentColor lg:border-t-gray-300 lg:hover:border-t-gray-300 lg:border-l-accentColor lg:hover:border-l-accentColor"
+                        "border-t-gray-300 hover:border-t-gray-300 border-l-accentColor hover:border-l-accentColor"
                       }`}
-                      value={"No"}
+                      value={"I'm not sure"}
                       onClick={() => handleButtonSelect(2)}
                       sx={{
                         color: "#505050",
                         borderColor: "#E3E3E3",
-                        fontSize: "16",
-                      }}
-                    >
-                      {"No"}
-                    </Button>
-                    <Button
-                      className={`${
-                        btn4
-                          ? activeStyles
-                          : "hover:border hover:border-gray-300"
-                      } ${
-                        btn3 &&
-                        "border-t-accentColor hover:border-t-accentColor lg:border-t-gray-300 lg:hover:border-t-gray-300 lg:border-l-accentColor lg:hover:border-l-accentColor"
-                      }`}
-                      value={"I'm not sure"}
-                      onClick={() => handleButtonSelect(3)}
-                      sx={{
-                        color: "#505050",
-                        borderColor: "#E3E3E3",
-                        fontSize: "16",
+                        fontSize: "14",
+                        px: 0,
+                        py: 1,
                       }}
                     >
                       {"I'm not sure"}

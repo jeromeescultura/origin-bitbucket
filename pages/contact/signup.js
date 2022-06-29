@@ -100,6 +100,7 @@ function Signup() {
           </div>
         </section>
 
+
         <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5">
           <section className="lg:col-span-2 lg:order-2 relative z-10">
             <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
