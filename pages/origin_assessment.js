@@ -34,6 +34,15 @@ const OriginAssessment = () => {
     JSON.parse(
       typeof window !== "undefined" && window.localStorage.getItem("PAGE")
     ) || null;
+  const startAssesment =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STARTASSESSMENT")
+    ) || null;
+
+  useEffect(() => {
+    if (startAssesment === null || undefined || "") router.push("/");
+  }, [startAssesment]);
 
   const [stepNo, setStepNo] = useState(1);
 
