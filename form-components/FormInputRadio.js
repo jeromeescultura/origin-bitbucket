@@ -70,6 +70,7 @@ const FormInputRadio = ({
             </FormLabel>
           )}
           <RadioGroup
+            sx={{border: error && '2px solid red', p: error && '5px', borderRadius: error && '10px'}}
             value={value ? value : ""}
             onChange={onChange}
           >

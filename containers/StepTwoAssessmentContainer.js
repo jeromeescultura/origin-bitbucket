@@ -1,11 +1,6 @@
-import {
-  Button,
-  ButtonGroup,
-  FormControl,
-  FormHelperText,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import IconsQuestion from "../components/IconsQuestion";
 import FormInputDropdown from "../form-components/FormInputDropdown";
 import FormInputRadio from "../form-components/FormInputRadio";
@@ -244,12 +239,29 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
   const [energyUsage, setEnergyUsage] = useState("");
   const [spaceForInstallation, setSpaceForInstallation] = useState("");
 
-  const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(false);
-  const [btn3, setBtn3] = useState(false);
-
   const methods = useForm({ defaultValues: stepTwoAns });
-  const { control, watch, setValue, handleSubmit } = methods;
+  const {
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
+  useEffect(() => {
+    if (Object.keys(errors).length !== 0) {
+      if (
+        Object.keys(errors).includes("typeOfIndustry") ||
+        Object.keys(errors).includes("businessSites")
+      ) {
+        document.getElementById("qone").scrollIntoView();
+      } else if (Object.keys(errors).includes("energyUsage")) {
+        document.getElementById("qthree").scrollIntoView();
+      } else if (Object.keys(errors).includes("spaceForInstallation")) {
+        document.getElementById("qfour").scrollIntoView();
+      }
+    }
+  }, [errors]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -282,35 +294,38 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
   return (
     <>
       {/* STEP TWO - QUESTION 1 */}
-      <QuestionContainer id={dropDwnQsts?.id} text={dropDwnQsts?.text}>
-        <div className="mt-8">
-          <FormInputDropdown
-            onChange={watch(handleChange)}
-            name={"typeOfIndustry"}
-            control={control}
-            options={dropDwnQsts?.options}
-            setValue={setValue}
-            dropdownValue={typeOfIndustry}
-            validation={{ required: "Please select an Industry" }}
-            label={"Industry"}
-            // id={dropdown?.id}
-          />
-        </div>
-
-        <QuestionContainer style={"px-0"} text={radioQsts?.text}>
-          <div className="mt-5">
-            <FormInputRadio
-              name={"businessSites"}
+      <div id="qone">
+        <QuestionContainer id={dropDwnQsts?.id} text={dropDwnQsts?.text}>
+          <div className="mt-8">
+            <FormInputDropdown
+              onChange={watch(handleChange)}
+              name={"typeOfIndustry"}
               control={control}
-              options={radioQsts?.options}
+              options={dropDwnQsts?.options}
               setValue={setValue}
-              radioValue={businessSites}
-              validation={{ required: "Please choose an option" }}
+              dropdownValue={typeOfIndustry}
+              validation={{ required: "Please select an Industry" }}
+              label={"Industry"}
+              // id={dropdown?.id}
             />
           </div>
-        </QuestionContainer>
-      </QuestionContainer>
 
+          <QuestionContainer style={"px-0"} text={radioQsts?.text}>
+            <div className="mt-5">
+              <FormInputRadio
+                name={"businessSites"}
+                control={control}
+                options={radioQsts?.options}
+                setValue={setValue}
+                radioValue={businessSites}
+                validation={{ required: "Please choose an option" }}
+              />
+            </div>
+          </QuestionContainer>
+        </QuestionContainer>
+      </div>
+
+      {/* STEP TWO - QUESTION 2 */}
       <QuestionContainer
         id={iconQsts?.id}
         text={iconQsts?.text}
@@ -330,32 +345,36 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
       </QuestionContainer>
 
       {/* STEP TWO - QUESTION 3 */}
-      <QuestionContainer id={enUsage?.id} text={enUsage?.text}>
-        <div className="mt-5">
-          <FormInputRadio
-            name={"energyUsage"}
-            control={control}
-            options={enUsage?.questionsList}
-            setValue={setValue}
-            radioValue={energyUsage}
-            validation={{ required: "Please choose one" }}
-          />
-        </div>
-      </QuestionContainer>
+      <div id="qthree">
+        <QuestionContainer id={enUsage?.id} text={enUsage?.text}>
+          <div className="mt-5">
+            <FormInputRadio
+              name={"energyUsage"}
+              control={control}
+              options={enUsage?.questionsList}
+              setValue={setValue}
+              radioValue={energyUsage}
+              validation={{ required: "Please choose one" }}
+            />
+          </div>
+        </QuestionContainer>
+      </div>
 
       {/* STEP TWO - QUESTION 4 */}
-      <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
-        <div className="mt-8 w-full">
-          <FormInputRadio
-            name={"spaceForInstallation"}
-            control={control}
-            options={btnQsts?.options}
-            setValue={setValue}
-            radioValue={spaceForInstallation}
-            validation={{ required: "Please choose an option" }}
-          />
-        </div>
-      </QuestionContainer>
+      <div id="qfour">
+        <QuestionContainer id={btnQsts?.id} text={btnQsts?.text}>
+          <div className="mt-8 w-full">
+            <FormInputRadio
+              name={"spaceForInstallation"}
+              control={control}
+              options={btnQsts?.options}
+              setValue={setValue}
+              radioValue={spaceForInstallation}
+              validation={{ required: "Please choose an option" }}
+            />
+          </div>
+        </QuestionContainer>
+      </div>
 
       <div className="flex gap-16 mt-16 justify-between sm:justify-start">
         <Button

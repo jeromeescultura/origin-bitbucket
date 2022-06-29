@@ -17,7 +17,7 @@ const FormInputDropdown = ({
   setValue,
   states,
   validation,
-  defaultDropdown
+  defaultDropdown,
 }) => {
   const generateSingleOptions = () => {
     if (options) {
@@ -54,8 +54,15 @@ const FormInputDropdown = ({
             color="secondary"
             fullWidth
           >
-            <InputLabel>{label}</InputLabel>
-            <Select onChange={onChange} value={value} defaultValue={defaultDropdown ?? ''}>
+            <InputLabel id="select-helper-label">{label}</InputLabel>
+            <Select
+              label={label}
+              labelId="select-helper-label"
+              onChange={onChange}
+              value={value}
+              defaultValue={defaultDropdown ?? ""}
+              variant="outlined"
+            >
               {generateSingleOptions()}
             </Select>
             {error && (

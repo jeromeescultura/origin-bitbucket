@@ -95,7 +95,7 @@ function Signup() {
 
       <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5">
         <section className="lg:col-span-2 lg:order-2 relative z-10">
-          <div className="bg-white py-8 px-4 lg:py-12 rounded-lg">
+          <div className="bg-white py-8 px-8 lg:py-12 rounded-lg">
             <div className="text-center space-y-2">
               <p className="text-sm pb-4">You have chosen to pledge with</p>
               {/* <LeafRating

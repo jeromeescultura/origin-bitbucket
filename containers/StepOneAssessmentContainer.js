@@ -31,7 +31,7 @@ const StepOneAssessmentContainer = ({
           {
             id: 1,
             value: "replaced_equipments",
-            text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
+            text: "Replaced some or all energy inefficient equipment at your site(s) with more efficient ones",
           },
           {
             id: 2,
@@ -320,6 +320,13 @@ const StepOneAssessmentContainer = ({
                 return (
                   <FormControl component="fieldset">
                     <ButtonGroup
+                      sx={{
+                        border:
+                          error &&
+                          implementSustainability?.length <= 0 &&
+                          "2px solid red",
+                        p: error && implementSustainability?.length <= 0 && 1,
+                      }}
                       variant="outlined"
                       aria-label="outlined button group"
                       size="large"
