@@ -9,10 +9,18 @@ export const FormInputText = ({
   setValue,
   validation,
   inputValue,
+  minValue,
+  maxValue,
+  type,
 }) => {
   useEffect(() => {
     if (inputValue) setValue(name, inputValue);
   }, [inputValue]);
+
+  const inputProps = {
+    max: maxValue,
+    min: minValue,
+  };
 
   return (
     <Controller
@@ -30,6 +38,8 @@ export const FormInputText = ({
           label={label}
           variant="filled"
           color="secondary"
+          type={type ? type : "text"}
+          inputProps={minValue && inputProps}
         />
       )}
     />
