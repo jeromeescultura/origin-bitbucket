@@ -54,9 +54,9 @@ const FormInputRadio = ({
   setValue,
   radioDefault,
 }) => {
-  // useEffect(() => {
-  //   if (radioValue) setValue(name, radioValue);
-  // }, [radioValue]);
+  useEffect(() => {
+    if (radioValue) setValue(name, radioValue);
+  }, [radioValue]);
   return (
     <Controller
       name={name}
@@ -69,7 +69,10 @@ const FormInputRadio = ({
               {label}
             </FormLabel>
           )}
-          <RadioGroup value={value ?? ""} onChange={onChange} defaultChecked={value ?? false}>
+          <RadioGroup
+            value={value ? value : ""}
+            onChange={onChange}
+          >
             {generateRadioOptions(options)}
           </RadioGroup>
           {error && (

@@ -71,7 +71,7 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
   }
 
   //   TIME AND ENERGY
-  if (val.howMuchTimeAndEnergy === "easy") {
+  if (val.timeAndEnergy === "easy") {
     setGZ((prevState) => {
       return {
         carbonOffset: prevState.carbonOffset + 3,
@@ -91,14 +91,14 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
         decarbEOI: prevState.decarbEOI - 9999,
       };
     });
-  } else if (val.howMuchTimeAndEnergy === "open_decision") {
+  } else if (val.timeAndEnergy === "open_decision") {
     setGP((prevState) => {
       return { ...prevState, greenPower: prevState.greenPower + 1 };
     });
     setSP((prevState) => {
       return { ...prevState, solar: prevState.solar + 1 };
     });
-  } else if (val.howMuchTimeAndEnergy === "fully_invest") {
+  } else if (val.timeAndEnergy === "fully_invest") {
     setSP((prevState) => {
       return { ...prevState, solar: prevState.solar + 3 };
     });

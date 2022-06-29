@@ -68,6 +68,11 @@ const questions = {
           value: "expert_advice",
           text: "Worked with an expert to lower our carbon emissions",
         },
+        {
+          id: 8,
+          value: "other",
+          text: "Other",
+        },
       ],
     },
     {

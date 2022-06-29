@@ -14,16 +14,171 @@ import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbo
 import FormInputRadio from "../form-components/FormInputRadio";
 
 const StepOneAssessmentContainer = ({
-  btnQsts,
-  chkBoxQsts,
-  sldrQsts,
-  glsQsts,
-  radioQsts,
   buttonHandler,
   setAssessmentAnswers,
   assessmentAnswers,
   gatherAnswers,
 }) => {
+  const questions = {
+    chkBoxQsts: [
+      {
+        id: "02",
+        icon: "/icons/bulb.svg",
+        title: "Energy sourcing changes",
+        text: "What sort of changes have been implemented (if any) to help reduce the impact your business has on the environment?",
+        subText: "Select none or as many that apply.",
+        questionsList: [
+          {
+            id: 1,
+            value: "replaced_equipments",
+            text: "Replaced some or all energy inneficient equipment at your site(s) with more efficient ones",
+          },
+          {
+            id: 2,
+            value: "carbon_offsets",
+            text: "Switch to an energy plan that carbon offsets your energy use",
+          },
+          {
+            id: 3,
+            value: "green_power",
+            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
+          },
+          {
+            id: 4,
+            value: "solar",
+            text: "Installed solar at your site(s)",
+          },
+          {
+            id: 5,
+            value: "batteries",
+            text: "Added battery storage to your solar system",
+          },
+          {
+            id: 6,
+            value: "electric_vehicles",
+            text: "Replaced some or all of your vehicle fleet with electric vehicles",
+          },
+          {
+            id: 7,
+            value: "expert_advice",
+            text: "Worked with an expert to lower our carbon emissions",
+          },
+          {
+            id: 8,
+            value: "other",
+            text: "Other",
+          },
+        ],
+      },
+      {
+        id: "02",
+        icon: "/icons/leaf.svg",
+        title: "General operations changes",
+        questionsList: [
+          {
+            id: 1,
+            value: "sustain_strategy",
+            text: "Created a sustainability strategy",
+          },
+          {
+            id: 2,
+            value: "alternatives",
+            text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
+          },
+          {
+            id: 3,
+            value: "digitized",
+            text: "Digitised some or all paper based processes at your sites(s)",
+          },
+          {
+            id: 4,
+            value: "recycling",
+            text: "Introduced recycling and waste reduction processes at office sites",
+          },
+          {
+            id: 5,
+            value: "optimized_supply_chain",
+            text: "Optimised supply chain processes to reduce material wastage",
+          },
+          {
+            id: 6,
+            value: "other",
+            text: "Other",
+          },
+        ],
+      },
+    ],
+    btnQsts: {
+      id: "01",
+      text: "Are you currently looking to implement any specific sustainability or energy efficiency goals at your business for the future?",
+      options: [
+        {
+          id: 1,
+          text: "Not really",
+        },
+
+        {
+          id: 2,
+          text: "Yes, I'm considering it",
+        },
+      ],
+    },
+    sldrQsts: {
+      id: "04",
+      text: "How much of a priority is sustainability for your business?",
+      options: [
+        {
+          id: 1,
+          value: "low_priority",
+        },
+        {
+          id: 2,
+          value: "medium_priority",
+        },
+        {
+          id: 3,
+          value: "priority",
+        },
+        {
+          id: 4,
+          value: "high_priority",
+        },
+        {
+          id: 5,
+          value: "very_high_priority",
+        },
+      ],
+    },
+    glsQsts: {
+      text: "Can you tell us a bit more about what type of goals you are considering?",
+    },
+    radioQsts: {
+      id: "03",
+      text: "How much time and energy do you want to spend on moving towards your sustainability goals?",
+      options: [
+        {
+          id: 1,
+          value: "easy",
+          label: "Not much. Make it as easy as possible, please!",
+        },
+        {
+          id: 2,
+          value: "open_decision",
+          label:
+            "I'm open to having a chat or two and then deciding how to proceed",
+        },
+        {
+          id: 3,
+          value: "fully_invest",
+          label:
+            "I'm happy to invest time and energy into finding the best and most sustainable option that works for me.",
+        },
+      ],
+    },
+  };
+
+  const { chkBoxQsts, btnQsts, sldrQsts, glsQsts, radioQsts } = questions;
+
   const storedData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -34,8 +189,9 @@ const StepOneAssessmentContainer = ({
   const [goalsConsidered, setGoalsConsidered] = useState("");
   const [timeAndEnergy, setTimeAndEnergy] = useState("");
   const [energySourceChanges, setEnergySourceChanges] = useState([]);
+  const [energySourceOtherInfo, setEnergySourceOtherInfo] = useState("");
   const [generalOperationsChanges, setGeneralOperationsChanges] = useState([]);
-  const [otherInfo, setOtherInfo] = useState("");
+  const [generalOpsOtherInfo, setGeneralOpsOtherInfo] = useState("");
   const [howMuchPriority, setHowMuchPriority] = useState(3);
   const [stepOneAns, setStepOneAns] = useState(storedData);
   const [btn1, setBtn1] = useState(false);
@@ -59,13 +215,13 @@ const StepOneAssessmentContainer = ({
         document.getElementById("qone").scrollIntoView();
       } else if (Object.keys(errors).includes("timeAndEnergy")) {
         document.getElementById("qthree").scrollIntoView();
+      } else if (Object.keys(errors).includes("energySourceOtherInfo")) {
+        document.getElementById("qtwo-esc").scrollIntoView();
+      } else if (Object.keys(errors).includes("generalOpsOtherInfo")) {
+        document.getElementById("qtwo-goc").scrollIntoView();
       }
     }
   }, [errors]);
-
-  useEffect(() => {
-    window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
-  }, [stepOneAns]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -73,12 +229,17 @@ const StepOneAssessmentContainer = ({
       setImplementSustainability(storedData.implementSustainability);
       setGoalsConsidered(storedData.goalsConsidered);
       setEnergySourceChanges(storedData.energySourceChanges);
+      setEnergySourceOtherInfo(storedData.energySourceOtherInfo);
       setGeneralOperationsChanges(storedData.generalOperationsChanges);
-      setOtherInfo(storedData.otherInfo);
+      setGeneralOpsOtherInfo(storedData.generalOpsOtherInfo);
       setTimeAndEnergy(storedData.timeAndEnergy);
       setHowMuchPriority(storedData.howMuchPriority);
     }
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
+  }, [stepOneAns]);
 
   useEffect(() => {
     if (implementSustainability?.length > 1) {
@@ -98,13 +259,23 @@ const StepOneAssessmentContainer = ({
 
   useEffect(() => {
     if (!generalOperationsChanges?.includes("other")) {
-      setValue("otherInfo", "");
+      setValue("generalOpsOtherInfo", "");
     }
   }, [generalOperationsChanges]);
 
   useEffect(() => {
-    setValue("otherInfo", otherInfo);
-  }, [otherInfo]);
+    setValue("generalOpsOtherInfo", generalOpsOtherInfo);
+  }, [generalOpsOtherInfo]);
+
+  useEffect(() => {
+    if (!energySourceChanges?.includes("other")) {
+      setValue("energySourceOtherInfo", "");
+    }
+  }, [energySourceChanges]);
+
+  useEffect(() => {
+    setValue("energySourceOtherInfo", energySourceOtherInfo);
+  }, [energySourceOtherInfo]);
 
   const handleButtonSelect = (value) => {
     setImplementSustainability(value === 0 ? "no" : "yes");
@@ -124,8 +295,9 @@ const StepOneAssessmentContainer = ({
       implementSustainability: data.implementSustainability,
       goalsConsidered: data.goalsConsidered,
       energySourceChanges: data.energySourceChanges,
+      energySourceOtherInfo: data.energySourceOtherInfo,
       generalOperationsChanges: data.generalOperationsChanges,
-      otherInfo: data.otherInfo,
+      generalOpsOtherInfo: data.generalOpsOtherInfo,
       timeAndEnergy: data.timeAndEnergy,
       howMuchPriority: data.howMuchPriority,
     });
@@ -143,17 +315,16 @@ const StepOneAssessmentContainer = ({
             <Controller
               control={control}
               name={"implementSustainability"}
-              rules={{ required: "Please choose" }}
+              rules={{ required: "Please choose one" }}
               render={({ field: { onChange }, fieldState: { error } }) => {
                 return (
-                  <FormControl component="fieldset" fullWidth>
+                  <FormControl component="fieldset">
                     <ButtonGroup
                       variant="outlined"
                       aria-label="outlined button group"
                       size="large"
                       color="secondary"
                       arial-label="contained button group"
-                      fullWidth
                       onChange={onChange}
                     >
                       <Button
@@ -168,6 +339,7 @@ const StepOneAssessmentContainer = ({
                           color: "#505050",
                           borderColor: "#E3E3E3",
                           fontSize: "16",
+                          py: 1,
                         }}
                       >
                         {"Not really"}
@@ -187,13 +359,14 @@ const StepOneAssessmentContainer = ({
                           color: "#505050",
                           borderColor: "#E3E3E3",
                           fontSize: "16",
+                          py: 1,
                         }}
                       >
                         {"Yes, I'm considering it"}
                       </Button>
                     </ButtonGroup>
 
-                    {error && implementSustainability === "" ? (
+                    {error && implementSustainability?.length <= 0 ? (
                       <FormHelperText>Please choose one</FormHelperText>
                     ) : null}
                   </FormControl>
@@ -239,7 +412,7 @@ const StepOneAssessmentContainer = ({
         text={chkBoxQsts[0]?.text}
         subText={chkBoxQsts[0]?.subText}
       >
-        <div className="flex flex-col gap-5 mt-12">
+        <div className="flex flex-col gap-5 mt-12" id="qtwo-esc">
           <div className="flex items-center gap-4">
             <div className="w-6 h-6 lg:w-12 lg:h-12">
               {chkBoxQsts[0] && (
@@ -266,10 +439,37 @@ const StepOneAssessmentContainer = ({
               checkboxValue={energySourceChanges}
               setCheckboxValue={setEnergySourceChanges}
             />
+            {energySourceChanges?.includes("other") && (
+              <div className="space-y-5 mt-5">
+                <p>Can you tell us a bit more?</p>
+                <Controller
+                  control={control}
+                  name="energySourceOtherInfo"
+                  rules={{ required: "More info required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      helperText={error ? error.message : null}
+                      size="large"
+                      error={!!error}
+                      onChange={onChange}
+                      value={value}
+                      fullWidth
+                      color="secondary"
+                      multiline
+                      rows={6}
+                      placeholder="Type here"
+                    />
+                  )}
+                />
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 mt-12">
+        <div className="flex flex-col gap-5 mt-12" id="qtwo-goc">
           <div className="flex items-center gap-4">
             <div className="w-6 h-6 lg:w-12 lg:h-12">
               {chkBoxQsts[1] && (
@@ -301,7 +501,7 @@ const StepOneAssessmentContainer = ({
                 <p>Can you tell us a bit more?</p>
                 <Controller
                   control={control}
-                  name="otherInfo"
+                  name="generalOpsOtherInfo"
                   rules={{ required: "More info required" }}
                   render={({
                     field: { onChange, value },
@@ -373,10 +573,6 @@ const StepOneAssessmentContainer = ({
         >
           Next
         </Button>
-      </div>
-
-      <div>
-        <Button onClick={handleSubmit(actionHandler)}>Click me</Button>
       </div>
     </>
   );

@@ -27,6 +27,7 @@ const StepTwoContainer = ({
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || [];
 
+
   const [stepTwoAns, setStepTwoAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepTwoAns });
