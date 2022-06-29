@@ -20,10 +20,12 @@ const Disclaimer = () => {
           content="Origin Shift Disclaimer"
           key="title"
         />
+
       </Head>
 
       <div className="w-[90vw] sm:w-[80vw] md:w-[90vw] max-w-[1140px] mx-auto">
         <div className="w-16 lg:w-20 cursor-pointer pt-4 lg:pt-8">
+
           <Image
             src="/images/origin-logo.svg"
             width={90}
@@ -64,7 +66,7 @@ const Disclaimer = () => {
                 color="primary"
                 size="large"
                 className="lg:w-full"
-                onClick={(e) => handleClick(e, "/assessment")}
+                onClick={(e) => handleClick(e, "/origin_assessment")}
                 style={{
                   backgroundColor: "#EC0000",
                   borderRadius: 200,

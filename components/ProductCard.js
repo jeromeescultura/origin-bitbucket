@@ -18,7 +18,13 @@ function ProductCard({
       {/* <div className="text-center -mb-4 z-50">
         <LeafRating count={leaf} />
       </div> */}
-      <div className="bg-white  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly h-[920px] ">
+      <div
+        className={`${
+          title === "Net-Zero research program"
+            ? "bg-[rgba(0, 185, 215, 0.04)] border-2"
+            : "bg-white"
+        }  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly h-[920px] `}
+      >
         <div className="pt-4">
           <p>Start your energy shift with</p>
           <p

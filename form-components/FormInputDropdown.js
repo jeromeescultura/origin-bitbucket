@@ -66,13 +66,16 @@ const FormInputDropdown = ({
             color="secondary"
             fullWidth
           >
+
             <InputLabel>{label}</InputLabel>
             <Select
+              label={label}
+            
               onChange={onChange}
               value={value}
               defaultValue={defaultDropdown ?? ""}
-              MenuProps={MenuProps}
-              className="!left-0"
+              variant="outlined"
+
             >
               {generateSingleOptions()}
             </Select>

@@ -545,6 +545,99 @@ const Recommend = ({ industries }) => {
                         See your impact ranges.
                       </span>
                     </div>
+
+                    <Button
+                      disabled={pageNo === pages - 1 && true}
+                      size="large"
+                      onClick={() => handleButton("next")}
+                      variant="contained"
+                      className={`${
+                        pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                      } text-sm font-medium !bg-white p-6 !rounded-r-full lg:shadow-md`}
+                      endIcon={
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          className={`${
+                            pageNo === pages - 1
+                              ? "fill-[#ABABAB]"
+                              : "fill-primaryText"
+                          } -rotate-90`}
+                        >
+                          <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                        </svg>
+                      }
+                    >
+                      Do more
+                    </Button>
+                  </ButtonGroup>
+                </div>
+              )}
+              <div
+                className={`${
+                  animate
+                    ? "opacity-0 translate-x-2"
+                    : "opacity-100 translate-x-0"
+                } transition ease-in-out `}
+              >
+                <div className={`${pages === 1 && "pt-12"} text-center mb-8 `}>
+                  <h2 className="text-primaryText font-bold">
+                    Making a difference
+                  </h2>
+                  <h2 className="text-primaryText">
+                    with{" "}
+                    {showContent === "carbonOffset" &&
+                      "Origin Go Zero 100% carbon offset"}{" "}
+                    {showContent === "solar" && "Solar"}
+                    {showContent === "greenPower" && "GreenPower"}
+                  </h2>
+
+                  <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
+                    Impact estimates below are calculated with usage averages
+                    collected from Origin’s small & medium business customers in{" "}
+                    <span className="font-medium">{industry?.name}</span>. This
+                    will change based on your business’ specific usage.{" "}
+                    <span
+                      className="underline cursor-pointer hover:bg-[#FFC72C] py-[3px]"
+                      onClick={openModal}
+                    >
+                      See the range of possible outcomes
+                    </span>
+                    .
+                  </div>
+                </div>
+                <ImpactRanges
+                  impactRanges={impactRanges}
+                  closeModal={closeModal}
+                  showContent={showContent}
+                />
+                <div className="lg:columns-2 gap-3 space-y-3 pb-32  ">
+                  <div className="break-inside-avoid">
+                    <ImpactCard
+                      recommend={showContent}
+                      impact={impact}
+                      level={level}
+                    />
+                  </div>
+                  <div className="break-inside-avoid">
+                    <FinanceCalc
+                      recommend={showContent}
+                      industry={industry}
+                      level={level}
+                      impactLevel={impactLevel}
+                      handleButtonSelect={handleButtonSelect}
+                      usage={usage}
+                      industryCost={industryCost}
+                      increasePercentage={increasePercentage}
+                      withoutSolar={withoutSolar}
+                      withSolar={withSolar}
+                      solarReduction={solarReduction}
+                      totalCost={totalCost}
+                      btn1={btn1}
+                      btn2={btn2}
+                      btn3={btn3}
+                    />
                   </div>
                   <ImpactRanges
                     impactRanges={impactRanges}

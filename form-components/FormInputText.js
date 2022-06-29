@@ -12,6 +12,8 @@ export const FormInputText = ({
   minValue,
   maxValue,
   type,
+  multiline,
+  rows,
 }) => {
   useEffect(() => {
     if (inputValue) setValue(name, inputValue);
@@ -40,6 +42,8 @@ export const FormInputText = ({
           color="secondary"
           type={type ? type : "text"}
           inputProps={minValue && inputProps}
+          multiline={multiline ?? false}
+          rows={rows ?? 1}
         />
       )}
     />

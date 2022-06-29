@@ -70,9 +70,9 @@ const FormInputRadio = ({
             </FormLabel>
           )}
           <RadioGroup
-            value={value}
+            sx={{border: error && '2px solid red', p: error && '5px', borderRadius: error && '10px'}}
+            value={value ? value : ""}
             onChange={onChange}
-            defaultValue={radioDefault ?? ""}
           >
             {generateRadioOptions(options)}
           </RadioGroup>
