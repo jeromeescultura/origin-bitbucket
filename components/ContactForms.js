@@ -60,7 +60,7 @@ function ContactForms({ text }) {
     lastName: "",
     email: "",
     phone: "",
-    existingBusiness: "1",
+    existingBusiness: false,
     accountNumber: "",
     primaryAccountHolder: false,
     contactMethod: [],
@@ -93,7 +93,7 @@ function ContactForms({ text }) {
   const [contactFormsDetails, setContactFormsDetails] = useState(defaultValues);
 
   // Retain Values
-  const [existingBusiness, setExistingBusiness] = useState("");
+  const [existingBusiness, setExistingBusiness] = useState(false);
   const [accountNumber, setAccountNumber] = useState("");
   const [unitNo, setUnitNo] = useState("");
   const [streetNo, setStreetNo] = useState("");
@@ -209,8 +209,8 @@ function ContactForms({ text }) {
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
   const handleButtonSelect = (value) => {
-    setExistingBusiness(value.toString());
-    if (value === 0) {
+    setExistingBusiness(value);
+    if (value === true) {
       setBtn1(true);
       setBtn2(false);
     } else {
@@ -229,11 +229,12 @@ function ContactForms({ text }) {
   }, [primaryAccountHolder]);
 
   useEffect(() => {
-    if (existingBusiness !== "") {
-      setValue("existingBusiness", existingBusiness);
-      handleButtonSelect(parseInt(existingBusiness));
+    setValue("existingBusiness", existingBusiness);
+    if (existingBusiness) {
+      handleButtonSelect(existingBusiness);
     }
   }, [existingBusiness]);
+
   return (
     <section className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg">
       <p>{text}</p>
@@ -257,7 +258,7 @@ function ContactForms({ text }) {
                 <Button
                   className={btn1 ? activeStyles : ""}
                   value={"Yes"}
-                  onClick={() => handleButtonSelect(0)}
+                  onClick={() => handleButtonSelect(true)}
                   sx={{
                     color: "#505050",
                     borderColor: "#E3E3E3",
@@ -269,7 +270,7 @@ function ContactForms({ text }) {
                 <Button
                   className={btn2 ? activeStyles : ""}
                   value={"No"}
-                  onClick={() => handleButtonSelect(1)}
+                  onClick={() => handleButtonSelect(false)}
                   sx={{
                     color: "#505050",
                     borderColor: "#E3E3E3",
@@ -284,7 +285,7 @@ function ContactForms({ text }) {
         />
       </ButtonGroup>
 
-      {btn1 && (
+      {existingBusiness && (
         <>
           <p className="font-medium text-sm">
             What is your Origin Account Number?
@@ -316,7 +317,6 @@ function ContactForms({ text }) {
             setValue={setValue}
             inputValue={unitNo}
             onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
           />
         </Grid>
         <Grid item xs={6}>
@@ -381,6 +381,9 @@ function ContactForms({ text }) {
             inputValue={postcode}
             onChange={watch(handleChange)}
             validation={{ required: "Required" }}
+            type="number"
+            minValue={1000}
+            maxValue={9999}
           />
         </Grid>
       </Grid>

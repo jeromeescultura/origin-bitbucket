@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { server } from "../config";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 
 import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
@@ -57,7 +57,15 @@ const Assessment = ({ questions }) => {
     storedStep: JSON.parse(
       typeof window !== "undefined" && window.localStorage.getItem("STEP")
     ),
+    started: JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STARTASSESSMENT")
+    ),
   };
+
+  useEffect(() => {
+    if (storedData.started === null || undefined || "") router.push("/");
+  }, [storedData.started]);
 
   // STORED STATES //
   const [assessmentAnswers, setAssessmentAnswers] = useState({
