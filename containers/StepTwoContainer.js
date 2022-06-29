@@ -124,7 +124,7 @@ const StepTwoContainer = ({
             options={dropDwnQsts.options}
             setValue={setValue}
             dropdownValue={dropdown}
-            label={"Industry"}
+            label={"Please select"}
             defaultDropdown={"Other Services"}
             // id={dropdown?.id}
           />
