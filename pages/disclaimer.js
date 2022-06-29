@@ -7,6 +7,8 @@ const Disclaimer = () => {
   const router = useRouter();
   const handleClick = (e, url) => {
     e.preventDefault();
+    localStorage.setItem("STARTASSESSMENT", true);
+
     router.push(url);
   };
   return (
