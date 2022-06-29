@@ -16,6 +16,7 @@ import {
   Button,
   ButtonGroup,
   CircularProgress,
+  fabClasses,
   Modal,
 } from "@mui/material";
 import {
@@ -32,6 +33,7 @@ import {
   sumArray,
 } from "../functions/recofunctions/RecoFunctions";
 import ImpactRanges from "../components/recommend/ImpactRanges";
+import Head from "next/head";
 
 const Recommend = ({ industries }) => {
   const dayjs = require("dayjs");
@@ -159,16 +161,32 @@ const Recommend = ({ industries }) => {
 
   const [showFooter, setShowFooter] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
-  const myref = useRef();
+  const showref = useRef();
+  const hideref = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      setShowFooter(entry.isIntersecting);
+      if (entry.isIntersecting) {
+        setShowFooter(true);
+      }
     });
 
-    if (myref.current) {
-      observer.observe(myref.current);
+    if (showref.current) {
+      observer.observe(showref.current);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setShowFooter(false);
+      }
+    });
+
+    if (hideref.current) {
+      observer.observe(hideref.current);
     }
   }, [loading]);
 
@@ -339,7 +357,6 @@ const Recommend = ({ industries }) => {
       JSON.stringify(otherRecommendations)
     );
     window.localStorage.setItem("TOP_RECOMMENDATION", recommend);
-    console.log("storedData", storedData);
   }, [storedData, otherRecommendations, recommend]);
 
   useEffect(() => {
@@ -364,87 +381,169 @@ const Recommend = ({ industries }) => {
       query: { uuid: userID },
     });
   };
+  const handleExpress = () => {
+    router.push({
+      pathname: "/contact/",
+      query: { uuid: userID },
+    });
+  };
 
   const [impactRanges, setImpactRanges] = useState(false);
   const openModal = () => setImpactRanges(true);
   const closeModal = () => setImpactRanges(false);
 
   return (
-    <div className="bg-primaryBG h-full  ">
-      <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
-        <section className="pt-6 lg:pt-8">
-          <div className="w-full xl:w-[1108px] mx-auto">
-            <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
-              <Image
-                src="/images/origin-logo.svg"
-                width={90}
-                height={90}
-                objectFit="contain"
-                alt="origin-logo"
-                onClick={handleClick}
-              />
-            </div>
-          </div>
-        </section>
-        {!loading ? (
-          <div>
-            <ContentContainer style="space-y-8">
-              <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8">
-                <p className="text-[18px] text-secondaryText">
-                  Your assessment is ready!
-                </p>
-                <p className="text-subTextColor mt-6">
-                  Based on what you’ve told us, your business is interested in
-                  taking climate action, but aren’t ready to invest too much
-                  yet. And that’s okay. We want to be able to support everyone
-                  in the transition. Let’s review your next steps below.
-                </p>
-              </div>
+    <>
+      <Head>
+        <title>Origin Shift | We Suggest</title>
+        <meta
+          property="og:title"
+          content="Origin Shift Product Suggestion"
+          key="title"
+        />
+      </Head>
 
-              {pages !== 1 && (
-                <div
-                  className={`text-center  ${
-                    pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
-                  }`}
-                >
-                  <p className="text-subTextColor lg:hidden">
-                    Keen to do more? Toggle to see options for different levels
-                    of investment.
+      <div className="bg-primaryBG h-full  ">
+        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
+          <section className="pt-6 lg:pt-8">
+            <div className="w-full xl:w-[1108px] mx-auto">
+              <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
+                <Image
+                  src="/images/origin-logo.svg"
+                  width={90}
+                  height={90}
+                  objectFit="contain"
+                  alt="origin-logo"
+                  onClick={handleClick}
+                />
+              </div>
+            </div>
+          </section>
+          {!loading ? (
+            <div>
+              <ContentContainer style="space-y-8">
+                <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8">
+                  <p className="text-[18px] text-secondaryText font-bold">
+                    Your assessment is ready!
                   </p>
-                  <ButtonGroup
-                    fullWidth
-                    className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
-                    aria-label="outlined button group"
+                  <p className="text-subTextColor mt-6">
+                    Based on what you’ve told us, your business is interested in
+                    taking climate action, but aren’t ready to invest too much
+                    yet. And that’s okay. We want to be able to support everyone
+                    in the transition. Let’s review your next steps below.
+                  </p>
+                </div>
+
+                {pages !== 1 && (
+                  <div
+                    className={`text-center  ${
+                      pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
+                    }`}
                   >
-                    <Button
-                      disabled={pageNo === 0 && true}
-                      size="large"
-                      onClick={() => handleButton("back")}
-                      variant="contained"
-                      className={`${
-                        pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-                      } text-sm font-medium !bg-white p-6 !rounded-l-full lg:shadow-md`}
-                      startIcon={
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          className={`${
-                            pageNo === 0 ? "fill-[#ABABAB]" : "fill-primaryText"
-                          } rotate-90`}
-                        >
-                          <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
-                        </svg>
-                      }
+                    <p className="text-subTextColor lg:hidden mt-16">
+                      Keen to do more? Toggle to see options for different
+                      levels of investment.
+                    </p>
+                    <ButtonGroup
+                      fullWidth
+                      className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
+                      aria-label="outlined button group"
                     >
-                      Do less
-                    </Button>
-                    <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 shadow-md">
-                      <p>
-                        Keen to do more?
-                        <br /> Toggle to see options for different levels of
-                        investment.
-                      </p>
+                      <Button
+                        disabled={pageNo === 0 && true}
+                        size="large"
+                        onClick={() => handleButton("back")}
+                        variant="contained"
+                        className={`${
+                          pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
+                        } text-sm font-medium !bg-white p-6 !rounded-l-full !shadow-md`}
+                        startIcon={
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            className={`${
+                              pageNo === 0
+                                ? "fill-[#ABABAB]"
+                                : "fill-primaryText"
+                            } rotate-90`}
+                          >
+                            <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                          </svg>
+                        }
+                      >
+                        Do less
+                      </Button>
+                      <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 !shadow-md">
+                        <p>
+                          Keen to do more?
+                          <br /> Toggle to see options for different levels of
+                          investment.
+                        </p>
+                      </div>
+
+                      <Button
+                        disabled={pageNo === pages - 1 && true}
+                        disableElevation
+                        size="large"
+                        onClick={() => handleButton("next")}
+                        variant="contained"
+                        className={`${
+                          pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
+                        } text-sm font-medium !bg-white p-6 !rounded-r-full !shadow-md`}
+                        endIcon={
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            className={`${
+                              pageNo === pages - 1
+                                ? "fill-[#ABABAB]"
+                                : "fill-primaryText"
+                            } -rotate-90`}
+                          >
+                            <path d="M10.585 0.584961L6 5.16996L1.415 0.584961L0 1.99996L6 7.99996L12 1.99996L10.585 0.584961Z" />
+                          </svg>
+                        }
+                      >
+                        Do more
+                      </Button>
+                    </ButtonGroup>
+                  </div>
+                )}
+                <div
+                  className={`${
+                    animate
+                      ? "opacity-0 translate-x-2"
+                      : "opacity-100 translate-x-0"
+                  } transition ease-in-out `}
+                >
+                  <div
+                    className={`${pages === 1 && "pt-12"} text-center mb-8 `}
+                    ref={hideref}
+                  >
+                    <h2 className="text-primaryText font-bold">
+                      Making a difference
+                    </h2>
+                    <h2 className="text-primaryText">
+                      with{" "}
+                      {showContent === "carbonOffset" &&
+                        "Origin Go Zero 100% carbon offset"}{" "}
+                      {showContent === "solar" && "Solar"}
+                      {showContent === "greenPower" && "GreenPower"}
+                    </h2>
+
+                    <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
+                      Impact estimates below are calculated with usage averages
+                      collected from Origin’s small & medium business customers
+                      in <span className="font-medium">{industry?.name}</span>.
+                      This will change based on your business’ specific usage.{" "}
+                      <span
+                        className="underline cursor-pointer"
+                        onClick={openModal}
+                      >
+                        See your impact ranges.
+                      </span>
                     </div>
 
                     <Button
@@ -540,52 +639,86 @@ const Recommend = ({ industries }) => {
                       btn3={btn3}
                     />
                   </div>
-                  <div className="break-inside-avoid">
-                    <RecommentCard
-                      recommend={showContent}
-                      solarSavings={solarSavings}
-                      extraCost={extraCost}
-                      level={level}
-                      handleLevel={handleLevel}
-                    />
-                  </div>
-                  <div className="break-inside-avoid" ref={myref}>
-                    {(subCategory?.includes("decarbEOI") ||
-                      (subCategory?.includes("greenPower") &&
-                        showContent === "solar")) && (
-                      <ToggleCard
+                  <ImpactRanges
+                    impactRanges={impactRanges}
+                    closeModal={closeModal}
+                    showContent={showContent}
+                  />
+                  <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
+                    <div className="break-inside-avoid">
+                      <ImpactCard
                         recommend={showContent}
-                        adds={subCategory}
+                        impact={impact}
+                        level={level}
+                      />
+                    </div>
+                    <div className="break-inside-avoid">
+                      <FinanceCalc
+                        recommend={showContent}
+                        industry={industry}
+                        level={level}
+                        impactLevel={impactLevel}
+                        handleButtonSelect={handleButtonSelect}
+                        usage={usage}
+                        industryCost={industryCost}
+                        increasePercentage={increasePercentage}
+                        withoutSolar={withoutSolar}
+                        withSolar={withSolar}
+                        solarReduction={solarReduction}
+                        totalCost={totalCost}
+                        btn1={btn1}
+                        btn2={btn2}
+                        btn3={btn3}
+                      />
+                    </div>
+                    <div className="break-inside-avoid">
+                      <RecommentCard
+                        recommend={showContent}
+                        solarSavings={solarSavings}
+                        extraCost={extraCost}
                         level={level}
                         handleLevel={handleLevel}
-                        pledges={pledges}
-                        setPledges={setPledges}
-                        setLevel={setLevel}
                       />
-                    )}
+                    </div>
+                    <div className="break-inside-avoid" ref={showref}>
+                      {(subCategory?.includes("decarbEOI") ||
+                        (subCategory?.includes("greenPower") &&
+                          showContent === "solar")) && (
+                        <ToggleCard
+                          recommend={showContent}
+                          adds={subCategory}
+                          level={level}
+                          handleLevel={handleLevel}
+                          pledges={pledges}
+                          setPledges={setPledges}
+                          setLevel={setLevel}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ContentContainer>
-            <Faqs />
-          </div>
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
-            <CircularProgress size="5rem" color="secondary" />
-          </div>
+              </ContentContainer>
+              <Faqs />
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
+              <CircularProgress size="5rem" color="secondary" />
+            </div>
+          )}
+        </div>
+        {showFooter && (
+          <FooterReco
+            handleButton={handleButton}
+            handleExpress={handleExpress}
+            handleChoose={handleChoose}
+            recommend={showContent}
+            enableBtn={enableBtn}
+            pageNo={pageNo}
+            pages={pages}
+          />
         )}
       </div>
-      {showFooter && (
-        <FooterReco
-          handleButton={handleButton}
-          handleChoose={handleChoose}
-          recommend={showContent}
-          enableBtn={enableBtn}
-          pageNo={pageNo}
-          pages={pages}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "gordita", Segoe UI, Roboto, sans-serif;
+  font-family: "gordita-regular", Segoe UI, Roboto, sans-serif;
 }
 
 a {
@@ -54,14 +54,18 @@ h2 {
   font-size: 14px;
 }
 
-.css-jc1gvt-MuiLinearProgress-root {
+.MuiLinearProgress-root {
   background-color: transparent !important;
 }
 .MuiLinearProgress-barColorPrimary {
-  background-color: #a5bb48 !important;
+  background-color: #a3e635 !important;
 }
 .MuiLinearProgress-barColorSecondary {
   background-color: #008906 !important;
+}
+
+.MuiTabs-scrollButtons {
+  display: flex !important;
 }
 
 @layer base {

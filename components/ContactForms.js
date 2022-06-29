@@ -24,52 +24,28 @@ function ContactForms({ text }) {
 
   const states = [
     {
-      name: "australian capital territory",
-      abbreviation: "act",
-      capital: "canberra",
-      type: "territory",
+      name: "Australian Capital Territory",
     },
     {
-      name: "new south wales",
-      abbreviation: "nsw",
-      capital: "sydney",
-      type: "state",
+      name: "New South Wales",
     },
     {
-      name: "northern territory",
-      abbreviation: "nt",
-      capital: "darwin",
-      type: "territory",
+      name: "Northern Territory",
     },
     {
-      name: "queensland",
-      abbreviation: "qld",
-      capital: "brisbane",
-      type: "state",
+      name: "Queensland",
     },
     {
-      name: "south australia",
-      abbreviation: "sa",
-      capital: "adelaide",
-      type: "state",
+      name: "South Australia",
     },
     {
-      name: "tasmania",
-      abbreviation: "tas",
-      capital: "hobart",
-      type: "state",
+      name: "Tasmania",
     },
     {
-      name: "victoria",
-      abbreviation: "vic",
-      capital: "melbourne",
-      type: "state",
+      name: "Victoria",
     },
     {
-      name: "western australia",
-      abbreviation: "wa",
-      capital: "perth",
-      type: "state",
+      name: "Western Australia",
     },
   ];
 
@@ -548,6 +524,7 @@ function ContactForms({ text }) {
         color="primary"
         size="large"
         style={{
+          backgroundColor: "#EC0000",
           borderRadius: 200,
           boxShadow: "none",
           paddingLeft: "2rem",

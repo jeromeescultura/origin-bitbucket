@@ -59,7 +59,7 @@ export const FormInputMultiCheckbox = ({
         return (
           options &&
           options.map((option, index) => (
-            <div key={index}>
+            <div key={index} className="mt-4">
               <FormGroup>
                 <FormControlLabel
                   label={option.label || option.text}

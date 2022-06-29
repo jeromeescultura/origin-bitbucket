@@ -11,20 +11,15 @@ const PageIntro = ({ assessIntro, stepNo }) => {
   }, [stepNo]);
 
   return (
-    <div className="relative w-full h-[400px] flex items-center mt-0 lg:mt-24">
-      <div className="page-intro-container flex justify-between w-full  absolute">
-        <div
-          className={`lg:w-[45%] ${
+
+    <div className="page-intro-container flex justify-between w-full my-16 lg:my-24">
+      <div className={`md:w-[70%] lg:w-[60%] ${
             animate ? "opacity-0 translate-x-3" : "opacity-100 translate-x-0"
-          } transition ease-in-out `}
-        >
-          <h1 className="font-bold text-4xl lg:text-[56px] lg:leading-[64px] text-[#FA4616] mb-[32px] w-[231px] sm:w-[242px] md:w-full">
-            {pageIntro.header}
-          </h1>
-          <p className="text-base lg:text-xl leading-[24px]">
-            {pageIntro.desc}
-          </p>
-        </div>
+          } transition ease-in-out`}>
+        <h1 className="font-bold text-4xl lg:text-[56px] lg:leading-[64px] text-[#FA4616] mb-6 lg:mb-12">
+          {pageIntro.header}
+        </h1>
+        <p className="text-base lg:text-xl leading-[24px]">{pageIntro.desc}</p>
       </div>
     </div>
   );
