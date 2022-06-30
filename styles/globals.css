@@ -68,6 +68,10 @@ h2 {
   display: flex !important;
 }
 
+.MuiSelect-select {
+  white-space: pre-wrap !important;
+}
+
 @layer base {
   @font-face {
     font-family: "gordita-light";

@@ -376,7 +376,7 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
         </QuestionContainer>
       </div>
 
-      <div className="flex gap-16 mt-16 justify-between sm:justify-start">
+      <div className="flex gap-2 xs:gap-12 mt-16 justify-between sm:justify-start">
         <Button
           size="large"
           style={{
@@ -391,12 +391,11 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
           <Button
             size="large"
             variant="contained"
+            className="px-4 xs:px-4 sm:px-[2rem] text-xs xs:text-base"
             style={{
               borderRadius: 200,
               boxShadow: "none",
-              paddingLeft: "2rem",
               backgroundColor: "#EC0000",
-              paddingRight: "2rem",
             }}
             onClick={handleSubmit(handleAnswers)}
           >

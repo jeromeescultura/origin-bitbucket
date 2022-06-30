@@ -3,6 +3,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
+import { FB_PIXEL_ID } from "../lib/fpixel";
+import { GOOGLE_ID } from "../lib/gAnalytics";
 
 export default class MyDocument extends Document {
   render() {
@@ -30,6 +32,42 @@ export default class MyDocument extends Document {
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {this.props.emotionStyleTags}
           {/* Analytics */}
+          {/* Adobe */}
+          <script
+            src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-EN92bec34db9c84af69ed78945eed39c3d-development.min.js"
+            async
+          ></script>
+
+          <script
+            src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
+            async
+          ></script>
+          {/* Facebook */}
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+            />
+          </noscript>
+          {/* Google */}
+
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=DC-${GOOGLE_ID}`}
+          ></script>
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GOOGLE_ID}', { page_path: window.location.pathname });
+            `,
+            }}
+          />
         </Head>
         <body>
           <Main />
