@@ -48,14 +48,14 @@ export default class MyDocument extends Document {
               height="1"
               width="1"
               style={{ display: "none" }}
-              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+              src={`https://www.facebook.com/tr?id=1041470032612059&ev=PageView&noscript=1`}
             />
           </noscript>
           {/* Google */}
 
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=DC-${GOOGLE_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=DC-11918918`}
           ></script>
 
           <script
@@ -64,7 +64,7 @@ export default class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GOOGLE_ID}', { page_path: window.location.pathname });
+              gtag('config', 'DC-11918918', { page_path: window.location.pathname });
             `,
             }}
           />

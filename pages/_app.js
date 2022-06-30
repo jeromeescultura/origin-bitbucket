@@ -10,7 +10,6 @@ import "../styles/globals.css";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import * as fbq from "../lib/fpixel";
-import { GOOGLE_ID } from "../lib/gAnalytics";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -19,7 +18,7 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   const handleRouteChange = (url) => {
-    window.gtag("config", GOOGLE_ID, {
+    window.gtag("config", "DC-11918918", {
       page_path: url,
     });
     fbq.pageview();
@@ -56,7 +55,7 @@ export default function MyApp(props) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', ${fbq.FB_PIXEL_ID});
+            fbq('init', '1041470032612059');
           `,
           }}
         />
