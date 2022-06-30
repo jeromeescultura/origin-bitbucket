@@ -598,7 +598,6 @@ const Recommend = () => {
                       extraCost={extraCost}
                       level={level}
                       handleLevel={handleLevel}
-                      suggestedProduct={recommend}
                     />
                   </div>
                   <div className="break-inside-avoid" ref={showref}>

@@ -19,7 +19,6 @@ const RecommentCard = ({
   extraCost,
   level,
   handleLevel,
-  suggestedProduct,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
