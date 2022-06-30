@@ -36,7 +36,7 @@ const NoRecommendations = () => {
         <div className="space-y-6 mt-8 lg:mt-0 max-w-[728px] mx-auto">
           <div className="text-xl font-medium text-center">
             It looks like our ready to go product range may not fit your
-            sustainability requirements, but that’s not a problem.
+            sustainability requirements, but that&apos;s not a problem.
           </div>
           <div className="text-center font-light text-lg">
             Sign up to speak to one of our friendly staff members. They will be

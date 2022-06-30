@@ -19,8 +19,8 @@ function Footer() {
             Start saving more than money
           </p>
           <p className="my-4 lg:max-w-[80%]">
-            In just 5 minutes, you can make a huge impact on Australia&#39;s
-            transition to 100% renewables.
+            In just 5 minutes, you can make a difference towards
+            Australia&apos;s net-zero plan
           </p>
         </div>
 

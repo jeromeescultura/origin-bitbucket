@@ -37,7 +37,7 @@ function FooterReco({
               </svg>
             }
           >
-            Do less
+            Previous option
           </Button>
           <div className="lg:py-3">
             <p className="text-center">
@@ -69,7 +69,7 @@ function FooterReco({
               </svg>
             }
           >
-            Do more
+            Next option
           </Button>
         </div>
       )}
@@ -101,7 +101,7 @@ function FooterReco({
             fontSize: 14,
           }}
         >
-          Let’s chat more
+          Let&apos;s chat more
         </Button>
       </div>
     </div>

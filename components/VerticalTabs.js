@@ -75,7 +75,7 @@ export default function VerticalTabs() {
         sx={{ borderRight: 1, borderColor: "divider", color: "#232323" }}
       >
         <Tab
-          label="Clean-Ready club access"
+          label="Dedicated energy Busines Club Specialist"
           className="md:items-start md:text-left text-sm text-secondaryText"
           {...a11yProps(0)}
         />
@@ -105,7 +105,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            Direct line access to our club support representatives for:
+            Direct line access to our support representatives for:
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
@@ -117,7 +117,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                 />
               </div>
-              <p> Bespoke site analysis for renewable installs</p>
+              <p> Bespoke site analysis for solar installs</p>
             </li>
             <li className="flex items-start gap-4">
               <div className="max-w-[20px] max-h-[20px]">
@@ -128,7 +128,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                 />
               </div>
-              <p> Energy efficiency advice for your business</p>
+              <p> Energy efficiency support for your business</p>
             </li>
             <li className="flex items-start gap-4">
               <div className="max-w-[20px] max-h-[20px]">
@@ -140,8 +140,8 @@ export default function VerticalTabs() {
                 />
               </div>
               <p>
-                Access to a dedicated consultant to support you for ongoing and
-                future clean energy transitions
+                Access to a dedicated Busines Club Specialist to support you for
+                ongoing and future clean energy transitions
               </p>
             </li>
           </ul>
@@ -162,7 +162,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            All businesses choosing a pledge with us will receive
+            All businesses choosing to participate with us will receive
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
@@ -174,9 +174,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                 />
               </div>
-              <p>
-                Progress reporting on how your business has reduced your impact.
-              </p>
+              <p>Communicating on how your business has reduced its impact</p>
             </li>
             <li className="flex items-start gap-4">
               <div className="max-w-[20px] max-h-[20px]">
@@ -198,7 +196,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                 />
               </div>
-              <p> Give feedback on future bespoke carbon reduction projects</p>
+              <p> Give feedback on future bespoke decarbonisation services</p>
             </li>
           </ul>
         </div>
@@ -218,7 +216,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            Let others know about the impact you’re making through our free
+            Let others know about the impact you&apos;re making through our free
             toolkit which includes
           </p>
           <ul className="space-y-8 text-left py-8">
@@ -233,7 +231,7 @@ export default function VerticalTabs() {
               </div>
               <p>
                 Downloadable assets to help you and your employees share the
-                steps you’ve made
+                steps you&apos;ve made
               </p>
             </li>
             <li className="flex items-start gap-4">
@@ -246,8 +244,8 @@ export default function VerticalTabs() {
                 />
               </div>
               <p>
-                Opportunities to step up and be recognised in our customer case
-                studies & blogs
+                Opportunities to be recognised in our customer case studies
+                &amp; blogs
               </p>
             </li>
           </ul>

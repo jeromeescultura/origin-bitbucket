@@ -19,6 +19,7 @@ const RecommentCard = ({
   extraCost,
   level,
   handleLevel,
+  suggestedProduct,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
@@ -63,9 +64,10 @@ const RecommentCard = ({
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
         <p>
-          {recommend === "carbonOffset" && "Through offsetting your energy use"}
+          {recommend === "carbonOffset" &&
+            "Through offsetting your electricity use"}
           {recommend === "solar" &&
-            "Through using self generated renewable energy"}
+            "Through using self generated renewable electricity"}
           {recommend === "greenPower" &&
             "Through supporting Australian renewables"}
         </p>
@@ -158,7 +160,7 @@ const RecommentCard = ({
               </ListItemIcon>
               <p>
                 {" "}
-                Dedicated <u>Good Change Club</u> support
+                Dedicated <u>Business Club</u> support
               </p>
             </ListItem>
             {(recommend === "greenPower" || recommend === "solar") && (
@@ -188,7 +190,7 @@ const RecommentCard = ({
         </div>
       </div>
       <p className="text-xs text-subTextColor text-center leading-6">
-        *Once you submit your application, one of our Clean Ambition club
+        *Once you submit your application, one of our Business Club
         representatives will get in contact to review your energy plan options.
       </p>
     </div>

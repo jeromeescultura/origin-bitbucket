@@ -537,7 +537,7 @@ function ContactForms({ text }) {
         Submit
       </Button>
       <p>
-        *Once you submit your application, one of our Clean Ambition club
+        *Once you submit your application, one of our Business Club
         representatives will get in contact to review your energy plan options.
       </p>
     </section>

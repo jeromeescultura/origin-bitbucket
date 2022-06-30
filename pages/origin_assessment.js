@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, CircularProgress } from "@mui/material";
 import { data } from "autoprefixer";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import FormComponentTest from "../components/FormComponentTest";
@@ -136,35 +137,46 @@ const OriginAssessment = () => {
   }, []);
 
   return (
-    <div className="bg-primaryBG h-full pb-16">
-      <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
-        <div className="w-[90%] md:w-[80%] mx-auto h-full">
-          <ProgressBar stepNo={stepNo} />
-          <PageIntro assessIntro={assessIntro} stepNo={stepNo} />
+    <>
+      <Head>
+        <title>Origin Shift | Assessment</title>
+        <meta
+          property="og:title"
+          content="Origin Shift Assessment tool"
+          key="title"
+        />
+      </Head>
 
-          {isSubmitting ? (
-            <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
-              <CircularProgress size="5rem" color="secondary" />
-            </div>
-          ) : (
-            <div className="space-y-8 mt-12">
-              {/* STEP ONE */}
-              {stepNo === 1 && (
-                <StepOneAssessmentContainer buttonHandler={buttonHandler} />
-              )}
+      <div className="bg-primaryBG h-full pb-16">
+        <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
+          <div className="w-[90%] md:w-[80%] mx-auto h-full">
+            <ProgressBar stepNo={stepNo} />
+            <PageIntro assessIntro={assessIntro} stepNo={stepNo} />
 
-              {/* STEP TWO */}
-              {stepNo === 2 && (
-                <StepTwoAssessmentContainer
-                  buttonHandler={buttonHandler}
-                  gatherAnswers={gatherAnswers}
-                />
-              )}
-            </div>
-          )}
+            {isSubmitting ? (
+              <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
+                <CircularProgress size="5rem" color="secondary" />
+              </div>
+            ) : (
+              <div className="space-y-8 mt-12">
+                {/* STEP ONE */}
+                {stepNo === 1 && (
+                  <StepOneAssessmentContainer buttonHandler={buttonHandler} />
+                )}
+
+                {/* STEP TWO */}
+                {stepNo === 2 && (
+                  <StepTwoAssessmentContainer
+                    buttonHandler={buttonHandler}
+                    gatherAnswers={gatherAnswers}
+                  />
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

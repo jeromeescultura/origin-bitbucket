@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React, { useEffect } from "react";
+import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
@@ -42,7 +43,7 @@ const PledgeModal = ({
           </button>
         </div>
         <div className="text-center space-y-2 mt-4">
-          <p className="text-sm pb-4">You have chosen to pledge with</p>
+          <p className="text-sm pb-4">You have chosen to participate with</p>
           {/* <LeafRating
             count={
               (product === "carbonOffset" && 2) ||
@@ -61,11 +62,11 @@ const PledgeModal = ({
             <p className="font-medium">How you reduce impact</p>
             <p>
               {product === "carbonOffset" &&
-                "Through offsetting your energy use"}
+                "Through offsetting your electricity use"}
               {product === "greenPower" &&
                 "Through funding renewable generators"}
               {product === "solar" &&
-                "Through using self generated renewable energy"}
+                "Through using self generated renewable electricity"}
             </p>
           </div>
           <div className="mt-6">
@@ -91,7 +92,9 @@ const PledgeModal = ({
               {product === "solar" ? "Estimated savings" : "Estimated cost"}
             </p>
             <h2>
-              {product === "solar" ? `$${estimatedSavings}` : `$${extraCost}`}
+              {product === "solar"
+                ? formatPrice(estimatedSavings)
+                : formatPrice(extraCost)}
             </h2>
             <p className="text-xs text-subTextColor">
               extra p/month on any <br />
@@ -139,7 +142,7 @@ const PledgeModal = ({
           </div>
           {biggerDiff.length > 0 && (
             <div className="mt-8">
-              <p className="font-medium">You’ve chosen to do more</p>
+              <p className="font-medium">You&apos;ve chosen to do more</p>
               <div className="flex justify-center">
                 <div className="flex flex-col">
                   {biggerDiff.includes("interview") && (

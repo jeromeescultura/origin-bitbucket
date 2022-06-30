@@ -27,9 +27,9 @@ const ImpactRanges = ({ impactRanges, closeModal, showContent }) => {
         </div>
         <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll sm:overflow-visible max-h-[450px] sm:max-h-full">
           <div>
-            By understanding the industry your business is in, we’re able to
-            make an estimated assessment of the impact your business could make
-            from{" "}
+            By understanding the industry your business is in, we&apos;re able
+            to make an estimated assessment of the impact your business could
+            make from{" "}
             <span className="font-GorditaMedium">
               {showContent === "carbonOffset" &&
                 "offsetting your carbon emissions for a year"}
