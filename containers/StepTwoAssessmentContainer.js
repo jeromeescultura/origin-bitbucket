@@ -305,7 +305,7 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
               setValue={setValue}
               dropdownValue={typeOfIndustry}
               validation={{ required: "Please select an Industry" }}
-              label={"Industry"}
+              label={"Please select"}
               // id={dropdown?.id}
             />
           </div>

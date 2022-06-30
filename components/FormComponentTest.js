@@ -47,7 +47,7 @@ const FormComponentTest = ({ options, buttonHandler }) => {
       setGoals(storedData.goals);
       setRadio(storedData.radio);
     }
-  }, []);
+  } ,[]);
 
   useEffect(() => {
     if (choice?.length > 1) {

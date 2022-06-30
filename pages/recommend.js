@@ -313,8 +313,9 @@ const Recommend = () => {
   const withoutSolar =
     Math.round(((dailyUsage * offSet * 365) / 12 + Number.EPSILON) * 100) / 100;
 
-  const solarSavings =
-    Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100;
+  const solarSavings = Math.round(
+    Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100
+  );
   const solarReduction =
     Math.round(
       (((withoutSolar - withSolar) / withoutSolar) * 100 + Number.EPSILON) * 100
@@ -328,6 +329,7 @@ const Recommend = () => {
     setBtn1(true);
     setBtn2(false);
     setBtn3(false);
+    setLevel(1);
   }, [showContent]);
 
   useEffect(() => {
@@ -451,8 +453,8 @@ const Recommend = () => {
                     }`}
                   >
                     <p className="text-subTextColor lg:hidden mt-16">
-                      Keen to do more? Toggle to see options for different
-                      levels of investment.
+                      Keen to understand more options? Toggle to see options for
+                      different levels of investment.
                     </p>
                     <ButtonGroup
                       fullWidth
@@ -482,11 +484,11 @@ const Recommend = () => {
                           </svg>
                         }
                       >
-                        Do less
+                        Previous option
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 !shadow-md">
                         <p>
-                          Keen to do more?
+                          Keen to understand more options?
                           <br /> Toggle to see options for different levels of
                           investment.
                         </p>
@@ -516,7 +518,7 @@ const Recommend = () => {
                           </svg>
                         }
                       >
-                        Do more
+                        Next option
                       </Button>
                     </ButtonGroup>
                   </div>
@@ -593,6 +595,7 @@ const Recommend = () => {
                   </div>
                   <div className="break-inside-avoid">
                     <RecommentCard
+                      topRecommend={recommend}
                       recommend={showContent}
                       solarSavings={solarSavings}
                       extraCost={extraCost}

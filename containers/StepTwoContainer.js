@@ -27,7 +27,6 @@ const StepTwoContainer = ({
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || [];
 
-
   const [stepTwoAns, setStepTwoAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepTwoAns });
@@ -57,7 +56,7 @@ const StepTwoContainer = ({
       setEnUsage(storedData.energyUsage);
       setEquipment(storedData.spaceForInstallation);
     }
-  }, []);
+  },[]);
 
   // SET stepTwoAns VALUES BASED ON VALUES STORED BY FORM HOOK COMPONENTS
   const handleChange = (data) => {
@@ -124,7 +123,7 @@ const StepTwoContainer = ({
             options={dropDwnQsts.options}
             setValue={setValue}
             dropdownValue={dropdown}
-            label={"Industry"}
+            label={"Please select"}
             defaultDropdown={"Other Services"}
             // id={dropdown?.id}
           />

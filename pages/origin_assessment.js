@@ -15,7 +15,7 @@ const OriginAssessment = () => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
-  }, []);
+  },[]);
   const router = useRouter();
 
   const [assessmentAnswers, setAssessmentAnswers] = useState([]);
@@ -134,7 +134,7 @@ const OriginAssessment = () => {
     if (storedPage !== null) {
       setStepNo(storedPage);
     }
-  }, []);
+  },[]);
 
   return (
     <>
