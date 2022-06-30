@@ -105,7 +105,7 @@ const RecommentCard = ({
               <p className="font-medium whitespace-nowrap">Estimated cost</p>
               <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
               <p className="text-xs text-subTextColor">
-                extra p/daily on any <br />
+                extra p/day on any <br />
                 Origin Energy plan*
               </p>
             </div>
