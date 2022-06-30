@@ -71,7 +71,7 @@ function Signup() {
       setBiggerDiff(recommendData.biggerDiff);
       setImpact(recommendData.impact);
     }
-  }, []);
+  });
 
   return (
     <>

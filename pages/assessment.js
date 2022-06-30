@@ -181,7 +181,6 @@ const Assessment = ({ questions }) => {
   };
 
   return (
-
     <>
       <Head>
         <title>Origin Shift | Assessment</title>

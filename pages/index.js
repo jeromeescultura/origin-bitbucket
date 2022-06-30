@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     window.localStorage.clear();
-  }, []);
+  },[]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -24,7 +24,7 @@ export default function Home() {
       setShowFooter(entry.isIntersecting);
     });
     observer.observe(myref.current);
-  }, []);
+  },[]);
 
   const exclusiveAccess = [
     {

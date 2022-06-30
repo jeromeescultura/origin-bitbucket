@@ -19,12 +19,13 @@ const RecommentCard = ({
   extraCost,
   level,
   handleLevel,
+  topRecommend,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
       <div className="text-center space-y-2">
         <p className="text-[18px] lg:text-[20px] font-medium mb-8 text-primaryText">
-          We recommend
+          {recommend === topRecommend ? "We suggest" : "Alternative option"}
         </p>
         {/* <LeafRating
           count={
@@ -104,7 +105,7 @@ const RecommentCard = ({
               <p className="font-medium whitespace-nowrap">Estimated cost</p>
               <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
               <p className="text-xs text-subTextColor">
-                extra p/month on any <br />
+                extra p/daily on any <br />
                 Origin Energy plan*
               </p>
             </div>
@@ -158,7 +159,7 @@ const RecommentCard = ({
               </ListItemIcon>
               <p>
                 {" "}
-                Dedicated <u>Good Change Club</u> support
+                Dedicated <u>Business club</u> support
               </p>
             </ListItem>
             {(recommend === "greenPower" || recommend === "solar") && (
@@ -188,7 +189,7 @@ const RecommentCard = ({
         </div>
       </div>
       <p className="text-xs text-subTextColor text-center leading-6">
-        *Once you submit your application, one of our Clean Ambition club
+        *Once you submit your application, one of our Business club
         representatives will get in contact to review your energy plan options.
       </p>
     </div>

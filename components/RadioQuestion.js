@@ -13,8 +13,6 @@ function RadioQuestion({ id, text, action, answer, answers }) {
     }
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div className="form-check flex items-center mt-8">
       <div>

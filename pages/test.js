@@ -39,13 +39,12 @@ const Test = ({ questions }) => {
       setDefaultValues(storedData);
       setRadio(storedData.radio);
     }
-  }, []);
+  },[]);
 
   const handleChange = (data) => {
     setDefaultValues({
       radio: data.radio,
     });
-
   };
 
   return (

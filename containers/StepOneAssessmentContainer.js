@@ -24,7 +24,7 @@ const StepOneAssessmentContainer = ({
       {
         id: "02",
         icon: "/icons/bulb.svg",
-        title: "Energy sourcing changes",
+        title: "Energy changes",
         text: "What sort of changes have been implemented (if any) to help reduce the impact your business has on the environment?",
         subText: "Select none or as many that apply.",
         questionsList: [
@@ -74,7 +74,7 @@ const StepOneAssessmentContainer = ({
       {
         id: "02",
         icon: "/icons/leaf.svg",
-        title: "General operations changes",
+        title: "General operational changes",
         questionsList: [
           {
             id: 1,
@@ -231,7 +231,7 @@ const StepOneAssessmentContainer = ({
       setTimeAndEnergy(storedData.timeAndEnergy);
       setHowMuchPriority(storedData.howMuchPriority);
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -343,6 +343,8 @@ const StepOneAssessmentContainer = ({
                           borderColor: "#E3E3E3",
                           fontSize: "16",
                           py: 1,
+                          maxWidth: "150px",
+                          minWidth: "100px",
                         }}
                       >
                         {"Not really"}

@@ -15,7 +15,7 @@ const OriginAssessment = () => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
-  }, []);
+  },[]);
   const router = useRouter();
 
   const [assessmentAnswers, setAssessmentAnswers] = useState([]);
@@ -134,49 +134,38 @@ const OriginAssessment = () => {
     if (storedPage !== null) {
       setStepNo(storedPage);
     }
-  }, []);
+  },[]);
 
   return (
-    <>
-      <Head>
-        <title>Origin Shift | Assessment</title>
-        <meta
-          property="og:title"
-          content="Origin Shift Assessment tool"
-          key="title"
-        />
-      </Head>
+    <div className="bg-primaryBG h-full pb-16">
+      <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
+        <div className="w-[90%] md:w-[80%] mx-auto h-full">
+          <ProgressBar stepNo={stepNo} />
+          <PageIntro assessIntro={assessIntro} stepNo={stepNo} />
 
-      <div className="bg-primaryBG h-full pb-16">
-        <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
-          <div className="w-[90%] md:w-[80%] mx-auto h-full">
-            <ProgressBar stepNo={stepNo} />
-            <PageIntro assessIntro={assessIntro} stepNo={stepNo} />
+          {isSubmitting ? (
+            <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
+              <CircularProgress size="5rem" color="secondary" />
+            </div>
+          ) : (
+            <div className="space-y-8 mt-12">
+              {/* STEP ONE */}
+              {stepNo === 1 && (
+                <StepOneAssessmentContainer buttonHandler={buttonHandler} />
+              )}
 
-            {isSubmitting ? (
-              <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
-                <CircularProgress size="5rem" color="secondary" />
-              </div>
-            ) : (
-              <div className="space-y-8 mt-12">
-                {/* STEP ONE */}
-                {stepNo === 1 && (
-                  <StepOneAssessmentContainer buttonHandler={buttonHandler} />
-                )}
-
-                {/* STEP TWO */}
-                {stepNo === 2 && (
-                  <StepTwoAssessmentContainer
-                    buttonHandler={buttonHandler}
-                    gatherAnswers={gatherAnswers}
-                  />
-                )}
-              </div>
-            )}
-          </div>
+              {/* STEP TWO */}
+              {stepNo === 2 && (
+                <StepTwoAssessmentContainer
+                  buttonHandler={buttonHandler}
+                  gatherAnswers={gatherAnswers}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
