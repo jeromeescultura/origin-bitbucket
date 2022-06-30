@@ -20,6 +20,8 @@ import {
   Modal,
 } from "@mui/material";
 import {
+  getExtraCost,
+  getIndustryByName,
   handleContent,
   handleImpactData,
   handleOffset,
@@ -35,7 +37,7 @@ import {
 import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
 
-const Recommend = ({ industries }) => {
+const Recommend = () => {
   const dayjs = require("dayjs");
   const [userID, setUserID] = useState();
   var duration = require("dayjs/plugin/duration");
@@ -104,7 +106,7 @@ const Recommend = ({ industries }) => {
       stepOneScore(storedStepOneData, setGoZero, setGreenPower, setSolarPower);
       stepTwoScore(storedStepTwoData, setSolarPower);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     setIndustryId(storedStepTwoData?.typeOfIndustry);
@@ -151,8 +153,7 @@ const Recommend = ({ industries }) => {
   }, [recommend, otherRecommendations]);
 
   useEffect(() => {
-    let currIndustry = industries?.filter((item) => item.name === industryId);
-    setIndustry(currIndustry[0]);
+    setIndustry(getIndustryByName(industryId));
   }, [industryId]);
 
   useEffect(() => {
@@ -298,6 +299,8 @@ const Recommend = ({ industries }) => {
   // Round of formula
   // Math.round((num + Number.EPSILON) * 100) / 100;
 
+  const [extraXX, setextraXX] = useState(0);
+
   const extraCost =
     Math.round((dailyUsage * offSet * level + Number.EPSILON) * 100) / 100;
 
@@ -328,6 +331,14 @@ const Recommend = ({ industries }) => {
     setBtn3(false);
     setLevel(1);
   }, [showContent]);
+
+  useEffect(() => {
+    setextraXX(getExtraCost(dailyUsage, offSet, level));
+  }, [dailyUsage, offSet, level]);
+
+  useEffect(() => {
+    console.log(extraXX, "extraXX");
+  }, [extraXX]);
 
   const [storedData, setStoredData] = useState({
     product: "",
@@ -427,11 +438,11 @@ const Recommend = ({ industries }) => {
                     Your assessment is ready!
                   </p>
                   <p className="text-subTextColor mt-6">
-                    Based on what you’ve told us, your business is interested in
-                    making the shift towards cleaner energy, without investing
-                    in too much extra first. We want to be able to support
-                    everyone in the transition. Let’s review your next steps
-                    below.
+                    Based on what you&apos;ve told us, your business is
+                    interested in taking climate action, but aren&apos;t ready
+                    to invest too much yet. And that&apos;s okay. We want to be
+                    able to support everyone in the transition. Let&apos;s
+                    review your next steps below.
                   </p>
                 </div>
 
@@ -536,9 +547,11 @@ const Recommend = ({ industries }) => {
 
                     <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
                       Impact estimates below are calculated with usage averages
-                      collected from Origin’s small & medium business customers
-                      in <span className="font-medium">{industry?.name}</span>.
-                      This will change based on your business’ specific usage.{" "}
+                      collected from Origin&apos;s small & medium business
+                      customers in{" "}
+                      <span className="font-medium">{industry?.name}</span>.
+                      This will change based on your business&apos; specific
+                      usage.{" "}
                       <span
                         className="underline cursor-pointer"
                         onClick={openModal}
@@ -632,15 +645,3 @@ const Recommend = ({ industries }) => {
 };
 
 export default Recommend;
-
-export async function getServerSideProps() {
-  const industries = await fetch(`${server}/api/industries`).then((rest) =>
-    rest.json()
-  );
-
-  return {
-    props: {
-      industries,
-    },
-  };
-}

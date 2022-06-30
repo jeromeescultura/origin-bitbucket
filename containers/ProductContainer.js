@@ -7,38 +7,38 @@ function ProductContainer() {
       title: "GreenPower",
       leaf: 3,
       icon: "/icons/products/greenpower.svg",
-      impact: "Through funding renewable generators",
-      plan: "Available on any Origin Energy plan",
+      impact: "Through supporting Australian renewables",
+      plan: "Available on any Origin Electricity plan",
       siteChanges: "None",
       contracts: "None",
       benefits: [
         <span key="0">
           All standard <u>clean business club benefits</u>
         </span>,
-        "Tariff review to reduce your energy costs",
+        "Plus Tariff review to potentially minimise electricity costs",
       ],
     },
     {
       title: "Solar",
       leaf: 4,
       icon: "/icons/products/solar.svg",
-      impact: "Through using self generated renewable energy",
-      plan: "Competitive solar plans available",
+      impact: "Through using self generated renewable electricity",
+      plan: "A range of solar plans available",
       siteChanges: "Yes",
       contracts: "None",
       benefits: [
         <span key="0">
           All standard <u>clean business club benefits</u>
         </span>,
-        "Mimise energy costs by using clean, self generated solar power",
+        "Minimise electricity costs by using clean, self generated solar power",
       ],
     },
     {
       title: "Origin Go Zero",
       leaf: 2,
       icon: "/icons/products/go-zero.svg",
-      impact: "Through offsetting your energy use",
-      plan: "Available on any Origin Energy plan",
+      impact: "Through offsetting your electricity use",
+      plan: "Available on any Origin electricity plan",
       siteChanges: "None",
       contracts: "None",
       benefits: [
@@ -47,22 +47,22 @@ function ProductContainer() {
         </span>,
       ],
     },
-    // {
-    //   title: "Net-Zero research program",
-    //   leaf: 5,
-    //   icon: "/icons/products/net-zero.svg",
-    //   impact:
-    //     "Participate in research to help us develop future services tailored to your business",
-    //   plan: "Available on any Origin Energy plan",
-    //   siteChanges: "None",
-    //   contracts: "None",
-    //   benefits: [
-    //     <span key="0">
-    //       All standard <u>clean business club benefits</u>
-    //     </span>,
-    //     "Have your say in future & upcoming solutions",
-    //   ],
-    // },
+    {
+      title: "Net-Zero research program",
+      leaf: 5,
+      icon: "/icons/products/net-zero.svg",
+      impact:
+        "Participate in research to help us develop future services tailored to your business",
+      plan: "Available on any Origin Electricity plan",
+      siteChanges: "None",
+      contracts: "None",
+      benefits: [
+        <span key="0">
+          All standard <u>clean business club benefits</u>
+        </span>,
+        "Have your say in future & upcoming solutions",
+      ],
+    },
   ];
 
   var settings = {

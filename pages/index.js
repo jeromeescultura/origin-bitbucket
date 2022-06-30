@@ -8,6 +8,7 @@ import ContentContainer from "../containers/ContentContainer";
 import HeroComponent from "../components/HeroComponent";
 import PerksTab from "../containers/PerksTab";
 import VerticalTabs from "../components/VerticalTabs";
+import CaseStudyRow from "../components/CaseStudyRow";
 import Head from "next/head";
 
 export default function Home() {
@@ -68,10 +69,10 @@ export default function Home() {
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
             <h2>
-              Australia&#39;s 2.4 million small & medium businesses are
-              responsible for over 1 quarter of the nation&#39;s carbon
-              emissions annually. We want to work together to change that -
-              without impacting your operational cost.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui at
+              nisi illum incidunt asperiores pariatur soluta, laudantium, amet
+              itaque tenetur earum! Totam natus, itaque a doloribus ea vel
+              veritatis corporis
             </h2>
             <p className="my-6 lg:my-8 sm:leading-loose">
               At Origin, we believe you shouldn&#39;t have to choose between
@@ -88,7 +89,7 @@ export default function Home() {
                 solutions
               </h2>
               <p className="mt-6 mb-8 lg:w-[80%]">
-                We’ve taken a new approach to getting energy right for
+                We&apos;ve taken a new approach to getting energy right for
                 communities and the planet – tailored to your assessment
                 responses.
               </p>
@@ -102,8 +103,8 @@ export default function Home() {
                   </div>
                   <p className="font-bold ">Complete assessment</p>
                   <p className="font-light">
-                    First we need to understand your current needs, motivations
-                    and energy behaviours.
+                    First we need to understand your current energy needs,
+                    motivations and energy behaviours.
                   </p>
                 </div>
               </div>
@@ -115,10 +116,11 @@ export default function Home() {
                     energy solutions
                   </p>
                   <p className="font-light">
-                    Select the actions you’re interested in doing at the end of
-                    your assessment, and an energy specialist will reach out to
-                    help you find the best way forward for your business. Up to
-                    this point - its free. No payment, no commitment.
+                    Select the actions you&apos;re interested in doing at the
+                    end of your assessment, and an energy Busines Club
+                    Specialist will reach out to help you find the best way
+                    forward for your business. Up to this point - its free. No
+                    payment, no commitment.
                   </p>
                 </div>
               </div>
@@ -129,9 +131,10 @@ export default function Home() {
                     Understand how your support is making a difference
                   </p>
                   <p className="font-light">
-                    We’ll provide insights about how your support has made a
-                    difference through your Towards-Cleaner newsletter, so you
-                    can share what has been done with team members & clients.
+                    We&apos;ll provide insights about how your support has made
+                    a difference through your Towards-Cleaner newsletter, so you
+                    can understand the good change your business has made and
+                    further actions to continue your sustainability journey.
                   </p>
                 </div>
               </div>
@@ -146,11 +149,11 @@ export default function Home() {
                   Every little bit counts
                 </h2>
                 <p className="text-center text-sm font-light mt-6">
-                  There’s no pressure on your business to take on a full scale
-                  clean energy transition plan. We help you identify the best
-                  actions for your business to support cleaner energy solutions,
-                  based on our understanding of how much your business has
-                  capacity to do.
+                  There&apos;s no pressure on your business to take on a full
+                  scale clean energy transition plan. We help you identify the
+                  best actions for your business to support cleaner energy
+                  solutions, based on our understanding of how much your
+                  business has capacity to do.
                 </p>
                 <div className="flex justify-center mt-6">
                   <div className="flex items-start max-w-[254px] sm:max-w-full cursor-pointer">
@@ -175,16 +178,17 @@ export default function Home() {
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">
                 <h2 className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto">
-                  Get access to the Good Change club,
+                  Get access to the Business Club
                   <br />
                   <span className="font-Gorditalight">
-                    which supports your shift towards cleaner energy in 3 ways
+                    for guidance on supporting cleaner energy solutions for your
+                    business
                   </span>
                 </h2>
               </div>
             </ContentContainer>
             <ContentContainer>
-              <div className="pt-4 pb-4">
+              <div className="pt-4 pb-4" ref={myref}>
                 <VerticalTabs />
               </div>
               {/* <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">
@@ -198,48 +202,7 @@ export default function Home() {
                 ))}
               </div> */}
             </ContentContainer>
-            <ContentContainer>
-              <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-32 mx-auto mt-16">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-primaryText font-bold lg:w-[380px] xl:w-[330px]">
-                    Together we are driving the Australia&#39;s transition to
-                    net-zero.
-                  </h2>
-                  <p className="mt-6 mb-8 lg:w-[415px] xl:w-[380px]">
-                    Over 1,200 businesses of all shapes and sizes, have used the
-                    Origin assessment tool to transition to cleaner energy
-                    solutions, at a price point that suits them.
-                  </p>
-                  <p className="text-secondaryBG font-bold">
-                    Read the success stories
-                  </p>
-                </div>
-                <div
-                  className="bg-white w-[327px] md:w-full rounded-2xl px-5 py-8 flex flex-col gap-6 mx-auto"
-                  ref={myref}
-                >
-                  <div className="w-full h-[200px] md:h-[160px] lg:h-[230px]">
-                    <Image
-                      src="/images/betty.png"
-                      width={800}
-                      height={400}
-                      objectFit="cover"
-                      alt="betty"
-                      className="rounded-xl"
-                    />
-                  </div>
-                  <p className="text-[112px] text-[#E3E3E3]">“</p>
-                  <p className="text-base">
-                    At no extra cost to me and without making any changes to my
-                    cafe, my carbon emissions were offset by Origin.
-                  </p>
-                  <div>
-                    <p>Betty</p>
-                    <p>Black Kettle Cafe</p>
-                  </div>
-                </div>
-              </div>
-            </ContentContainer>
+            {/* <CaseStudyRow /> */}
           </div>
         </div>
       </div>

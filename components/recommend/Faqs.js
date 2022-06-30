@@ -17,7 +17,7 @@ const Faqs = () => {
       <div className="px-4 py-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="max-w-[550px] px-4   space-y-4 mx-auto rotate-180">
           <p className="text-[24px] font-medium pb-4 text-primaryText text-center">
-            FAQ’s
+            FAQ&apos;s
           </p>
           <MoreDetailsComponent text="Can I leave the program at any time?">
             <p>

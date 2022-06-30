@@ -41,8 +41,9 @@ function Interested() {
               Expression of interest
             </h2>
             <p className="subtitle my-6 leading-loose w-[80vw] sm:w-[60vw] md:w-[65vw] lg:w-[40vw] xl:w-[40vw] mx-auto">
-              Interested in speaking to one of our Energy Shift specialists
-              about your options? Leave your details below.
+              Interested in speaking to one of our Energy Shift Busines Club
+              Busines Club Specialists about your options? Leave your details
+              below.
             </p>
           </div>
         </section>
@@ -57,7 +58,7 @@ function Interested() {
             alt="Plant"
           />
         </div> */}
-          <ContactForms text="Please give us a few details, and one of our specialists will contact you about other bespoke options that might be available to you." />
+          <ContactForms text="Please give us a few details, and one of our Busines Club Specialists will contact you about other bespoke options that might be available to you." />
         </ContentContainer>
       </div>
     </>

@@ -159,7 +159,7 @@ const ToggleCard = ({
                   </div>
                   <Collapse in={greenPower}>
                     <div className="mt-6">
-                      One of our Good Change club representatives will get in
+                      One of our Business Club representatives will get in
                       contact to review your GreenPower options
                     </div>
                   </Collapse>

@@ -44,8 +44,8 @@ function Thankyou() {
           </h2>
           <p className="subtitle my-6 leading-loose w-full px-8 sm:px-0 max-w-[550px] mx-auto">
             {userID
-              ? "Thank you for choosing to make a difference. One of our specialists will contact you to finalise your choice in energy shift."
-              : "One of our specialists will contact you about other bespoke options that might be available to you."}
+              ? "Thank you for choosing to make a difference. One of our Busines Club Specialists will contact you to finalise your choice in energy shift."
+              : "One of our Busines Club Specialists will contact you about other bespoke options that might be available to you."}
           </p>
         </div>
       </section>{" "}

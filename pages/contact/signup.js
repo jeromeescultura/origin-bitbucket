@@ -28,6 +28,7 @@ import MoreDetailsComponent from "../../components/MoreDetailsComponent";
 import ContactForms from "../../components/ContactForms";
 import PledgeModal from "../../components/signup/PledgeModal";
 import Head from "next/head";
+import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
 
 function Signup() {
   const router = useRouter();
@@ -97,7 +98,7 @@ function Signup() {
             </div>
             <div className="text-center font-light w-full mt-4 lg:-mt-8">
               <h2 className="text-primaryText font-bold w-full sm:w-[60vw] lg:w-[50vw] mx-auto">
-                Applying to Origin&#39;s Clean Ambition Program
+                Applying to Origin&#39;s Business Club
               </h2>
               <p className="subtitle my-6 leading-loose w-[300px] sm:w-full mx-auto">
                 Thank you for choosing to join the program!
@@ -109,7 +110,9 @@ function Signup() {
             <section className="lg:col-span-2 lg:order-2 relative z-10">
               <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
                 <div className="text-center space-y-2">
-                  <p className="text-sm pb-4">You have chosen to pledge with</p>
+                  <p className="text-sm pb-4">
+                    You have chosen to participate with
+                  </p>
                   {/* <LeafRating
                 count={
                   (product === "carbonOffset" && 2) ||
@@ -143,11 +146,11 @@ function Signup() {
                     <p className="font-medium">How you reduce impact</p>
                     <p>
                       {product === "carbonOffset" &&
-                        "Through offsetting your energy use"}
+                        "Through offsetting your electricity use"}
                       {product === "greenPower" &&
                         "Through funding renewable generators"}
                       {product === "solar" &&
-                        "Through using self generated renewable energy"}
+                        "Through using self generated renewable electricity"}
                     </p>
                   </div>
                   <div className="mt-8">
@@ -176,8 +179,8 @@ function Signup() {
                     </p>
                     <h2>
                       {product === "solar"
-                        ? `$${estimatedSavings}`
-                        : `$${extraCost}`}
+                        ? formatPrice(estimatedSavings)
+                        : formatPrice(extraCost)}
                     </h2>
                     <p className="text-xs text-subTextColor">
                       extra p/month on any <br />
@@ -225,7 +228,9 @@ function Signup() {
                   </div>
                   {biggerDiff.length > 0 && (
                     <div className="mt-16">
-                      <p className="font-medium">You’ve chosen to do more</p>
+                      <p className="font-medium">
+                        You&apos;ve chosen to do more
+                      </p>
                       <div className="flex justify-center">
                         <div className="flex flex-col max-w-[227px]">
                           {biggerDiff.includes("interview") && (
@@ -259,7 +264,7 @@ function Signup() {
                               <p className="text-left">
                                 GreenPower
                                 <br />
-                                One of our Good Change club representatives will
+                                One of our Business Club representatives will
                                 get in contact to review your GreenPower options
                               </p>
                             </div>
@@ -273,7 +278,7 @@ function Signup() {
             </section>
             <div className="lg:col-span-3 lg:order-1 ">
               <ContactForms
-                text="Please give us a few details, and one of our specialists will contact
+                text="Please give us a few details, and one of our Busines Club Specialists will contact
         you about finalising your application."
               />
             </div>

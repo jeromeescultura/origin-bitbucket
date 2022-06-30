@@ -20,12 +20,10 @@ const Disclaimer = () => {
           content="Origin Shift Disclaimer"
           key="title"
         />
-
       </Head>
 
       <div className="w-[90vw] sm:w-[80vw] md:w-[90vw] max-w-[1140px] mx-auto">
         <div className="w-16 lg:w-20 cursor-pointer pt-4 lg:pt-8">
-
           <Image
             src="/images/origin-logo.svg"
             width={90}
@@ -39,25 +37,23 @@ const Disclaimer = () => {
         <div className="inline-grid md:grid-cols-3 gap-8 xl:gap-32 mt-8 lg:mt-24">
           <div className="space-y-8 lg:space-y-12 col-span-2">
             <h2 className="text-primaryText font-bold">
-              Getting started with your Clean Energy Consultant
+              Get started - assess how your business can support cleaner energy
             </h2>
             <div>
               <p className="font-medium subtitle">Eligibility</p>
-              <p className="my-4 lg:hidden">
-                Our small & medium business Clean Ambition Program is currently
-                running a trial only in <strong>South Australia</strong> and{" "}
-                <strong>Victoria.</strong>
-              </p>
-              <p className="hidden lg:block my-6">
-                Our online Clean Energy Consultant is currently able to identify
-                clean energy altertives for small & medium businesses in{" "}
-                <strong>South Australia, Queensland</strong> and{" "}
-                <strong>Victoria.</strong>
+              <p className="my-4 lg:my-6">
+                Our online assessment is currently able to identify clean energy
+                altertives for small &amp; medium businesses in{" "}
+                <span className="font-bold">
+                  South Australia, Victoria, New South Wales
+                </span>{" "}
+                and <span className="font-bold">Queensland.</span>
               </p>
               <p>
                 If your business does not operate in these states, but you would
                 like to find out when the program becomes available to you,
-                please let us know by indicating your expression of interest.
+                please let us know by completing your expression of interest
+                below.
               </p>
             </div>
             <div className="flex flex-col gap-4 md:w-2/3 lg:flex-row lg:w-full xl:pr-12">

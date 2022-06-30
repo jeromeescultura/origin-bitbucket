@@ -64,9 +64,10 @@ const RecommentCard = ({
       <div className="space-y-1 mt-8 text-center">
         <p className="font-medium">How you reduce impact</p>
         <p>
-          {recommend === "carbonOffset" && "Through offsetting your energy use"}
+          {recommend === "carbonOffset" &&
+            "Through offsetting your electricity use"}
           {recommend === "solar" &&
-            "Through using self generated renewable energy"}
+            "Through using self generated renewable electricity"}
           {recommend === "greenPower" &&
             "Through supporting Australian renewables"}
         </p>
