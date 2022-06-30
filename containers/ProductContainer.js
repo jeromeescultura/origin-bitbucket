@@ -68,7 +68,7 @@ function ProductContainer() {
   var settings = {
     centerMode: false,
     infinite: false,
-    slidesToShow: 3,
+    slidesToShow: 4,
     speed: 500,
     initialSlide: 1,
     arrows: false,
@@ -77,7 +77,7 @@ function ProductContainer() {
         breakpoint: 1440,
         settings: {
           centerMode: false,
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 4,
           infinite: false,
@@ -85,7 +85,7 @@ function ProductContainer() {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
           centerMode: false,
           slidesToShow: 3,
@@ -111,7 +111,7 @@ function ProductContainer() {
         settings: {
           centerPadding: "30px",
           centerMode: true,
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 0,
           infinite: true,
@@ -119,7 +119,7 @@ function ProductContainer() {
         },
       },
       {
-        breakpoint: 375,
+        breakpoint: 565,
         settings: {
           centerPadding: "30px",
           centerMode: true,
