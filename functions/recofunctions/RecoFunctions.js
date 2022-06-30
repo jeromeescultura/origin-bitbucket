@@ -366,14 +366,22 @@ export const handleImpactData = (
   dayjs
 ) => {
   let impactCalc;
+  let tempImpactCalc;
   let metricTons;
+  let tempMetricTons;
   let cars;
+  let tempCars;
 
   if (showContent === "carbonOffset") {
     impactCalc = Math.round(
       ((dailyUsage * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) / 100
     );
-    setImpact(impactCalc.toString());
+    if (impactCalc > 1) {
+      tempImpactCalc = Math.round(impactCalc);
+    } else {
+      tempImpactCalc = Math.ceil(impactCalc);
+    }
+    setImpact(tempImpactCalc.toString());
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(
       ((dailyUsage * 365) / 33.333 / 60 / 24) * level,
@@ -416,14 +424,24 @@ export const handleImpactData = (
       }
     }
   } else if (showContent === "solar") {
-    metricTons =
+    tempMetricTons =
       Math.round(
         (0.0004 * (dailyUsage * 365) - 0.0593 + Number.EPSILON) * 100
       ) / 100;
-    cars =
+    if (tempMetricTons > 1) {
+      metricTons = Math.round(tempMetricTons);
+    } else {
+      metricTons = Math.ceil(tempMetricTons);
+    }
+    tempCars =
       Math.round(
         (0.00009 * (dailyUsage * 365) - 0.0073 + Number.EPSILON) * 100
       ) / 100;
+    if (tempCars > 1) {
+      cars = Math.round(tempCars);
+    } else {
+      cars = Math.ceil(tempCars);
+    }
     setImpact([metricTons.toString(), cars.toString()]);
   }
 };

@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, CircularProgress } from "@mui/material";
 import { data } from "autoprefixer";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import FormComponentTest from "../components/FormComponentTest";
@@ -14,7 +15,7 @@ const OriginAssessment = () => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
-  }, []);
+  },[]);
   const router = useRouter();
 
   const [assessmentAnswers, setAssessmentAnswers] = useState([]);
@@ -133,7 +134,7 @@ const OriginAssessment = () => {
     if (storedPage !== null) {
       setStepNo(storedPage);
     }
-  }, []);
+  },[]);
 
   return (
     <div className="bg-primaryBG h-full pb-16">

@@ -24,7 +24,7 @@ const StepOneAssessmentContainer = ({
       {
         id: "02",
         icon: "/icons/bulb.svg",
-        title: "Energy sourcing changes",
+        title: "Energy changes",
         text: "What sort of changes have been implemented (if any) to help reduce the impact your business has on the environment?",
         subText: "Select none or as many that apply.",
         questionsList: [
@@ -33,35 +33,36 @@ const StepOneAssessmentContainer = ({
             value: "replaced_equipments",
             text: "Replaced some or all energy inefficient equipment at your site(s) with more efficient ones",
           },
+
           {
             id: 2,
-            value: "carbon_offsets",
-            text: "Switch to an energy plan that carbon offsets your energy use",
-          },
-          {
-            id: 3,
             value: "green_power",
             text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
           },
           {
-            id: 4,
+            id: 3,
             value: "solar",
             text: "Installed solar at your site(s)",
           },
           {
-            id: 5,
+            id: 4,
             value: "batteries",
             text: "Added battery storage to your solar system",
           },
           {
-            id: 6,
+            id: 5,
             value: "electric_vehicles",
             text: "Replaced some or all of your vehicle fleet with electric vehicles",
           },
           {
-            id: 7,
+            id: 6,
             value: "expert_advice",
-            text: "Worked with an expert to lower our carbon emissions",
+            text: "Created a sustainability strategy",
+          },
+          {
+            id: 7,
+            value: "carbon_offsets",
+            text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
             id: 8,
@@ -73,35 +74,30 @@ const StepOneAssessmentContainer = ({
       {
         id: "02",
         icon: "/icons/leaf.svg",
-        title: "General operations changes",
+        title: "General operational changes",
         questionsList: [
           {
             id: 1,
-            value: "sustain_strategy",
-            text: "Created a sustainability strategy",
-          },
-          {
-            id: 2,
             value: "alternatives",
             text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
           },
           {
-            id: 3,
+            id: 2,
             value: "digitized",
             text: "Digitised some or all paper based processes at your sites(s)",
           },
           {
-            id: 4,
+            id: 3,
             value: "recycling",
             text: "Introduced recycling and waste reduction processes at office sites",
           },
           {
-            id: 5,
+            id: 4,
             value: "optimized_supply_chain",
             text: "Optimised supply chain processes to reduce material wastage",
           },
           {
-            id: 6,
+            id: 5,
             value: "other",
             text: "Other",
           },
@@ -159,13 +155,13 @@ const StepOneAssessmentContainer = ({
         {
           id: 1,
           value: "easy",
-          label: "Not much. Make it as easy as possible, please!",
+          label: "Not much - make it as easy as possible please",
         },
         {
           id: 2,
           value: "open_decision",
           label:
-            "I'm open to having a chat or two and then deciding how to proceed",
+            "I'm open to having a chat or two, and deciding how to proceed",
         },
         {
           id: 3,
@@ -235,7 +231,7 @@ const StepOneAssessmentContainer = ({
       setTimeAndEnergy(storedData.timeAndEnergy);
       setHowMuchPriority(storedData.howMuchPriority);
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -347,6 +343,8 @@ const StepOneAssessmentContainer = ({
                           borderColor: "#E3E3E3",
                           fontSize: "16",
                           py: 1,
+                          maxWidth: "150px",
+                          minWidth: "100px",
                         }}
                       >
                         {"Not really"}

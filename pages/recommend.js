@@ -104,7 +104,7 @@ const Recommend = ({ industries }) => {
       stepOneScore(storedStepOneData, setGoZero, setGreenPower, setSolarPower);
       stepTwoScore(storedStepTwoData, setSolarPower);
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
     setIndustryId(storedStepTwoData?.typeOfIndustry);
@@ -299,9 +299,7 @@ const Recommend = ({ industries }) => {
   // Math.round((num + Number.EPSILON) * 100) / 100;
 
   const extraCost =
-    Math.round(
-      (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
-    ) / 100;
+    Math.round((dailyUsage * offSet * level + Number.EPSILON) * 100) / 100;
 
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
@@ -312,8 +310,9 @@ const Recommend = ({ industries }) => {
   const withoutSolar =
     Math.round(((dailyUsage * offSet * 365) / 12 + Number.EPSILON) * 100) / 100;
 
-  const solarSavings =
-    Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100;
+  const solarSavings = Math.round(
+    Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100
+  );
   const solarReduction =
     Math.round(
       (((withoutSolar - withSolar) / withoutSolar) * 100 + Number.EPSILON) * 100
@@ -327,6 +326,7 @@ const Recommend = ({ industries }) => {
     setBtn1(true);
     setBtn2(false);
     setBtn3(false);
+    setLevel(1);
   }, [showContent]);
 
   const [storedData, setStoredData] = useState({
@@ -428,9 +428,10 @@ const Recommend = ({ industries }) => {
                   </p>
                   <p className="text-subTextColor mt-6">
                     Based on what you’ve told us, your business is interested in
-                    taking climate action, but aren’t ready to invest too much
-                    yet. And that’s okay. We want to be able to support everyone
-                    in the transition. Let’s review your next steps below.
+                    making the shift towards cleaner energy, without investing
+                    in too much extra first. We want to be able to support
+                    everyone in the transition. Let’s review your next steps
+                    below.
                   </p>
                 </div>
 
@@ -441,8 +442,8 @@ const Recommend = ({ industries }) => {
                     }`}
                   >
                     <p className="text-subTextColor lg:hidden mt-16">
-                      Keen to do more? Toggle to see options for different
-                      levels of investment.
+                      Keen to understand more options? Toggle to see options for
+                      different levels of investment.
                     </p>
                     <ButtonGroup
                       fullWidth
@@ -472,11 +473,11 @@ const Recommend = ({ industries }) => {
                           </svg>
                         }
                       >
-                        Do less
+                        Previous option
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 !shadow-md">
                         <p>
-                          Keen to do more?
+                          Keen to understand more options?
                           <br /> Toggle to see options for different levels of
                           investment.
                         </p>
@@ -506,7 +507,7 @@ const Recommend = ({ industries }) => {
                           </svg>
                         }
                       >
-                        Do more
+                        Next option
                       </Button>
                     </ButtonGroup>
                   </div>
@@ -581,6 +582,7 @@ const Recommend = ({ industries }) => {
                   </div>
                   <div className="break-inside-avoid">
                     <RecommentCard
+                      topRecommend={recommend}
                       recommend={showContent}
                       solarSavings={solarSavings}
                       extraCost={extraCost}

@@ -34,8 +34,6 @@ const StepOneContainer = ({
         window.localStorage.getItem("STEP_ONE_ANS")
     ) || [];
 
-
-
   const [stepOneAns, setStepOneAns] = useState(storedData);
 
   const methods = useForm({ defaultValues: stepOneAns });
@@ -61,7 +59,7 @@ const StepOneContainer = ({
       setRadioValue(storedData.howMuchTimeAndEnergy);
       setOther(storedData.otherInfo);
     }
-  }, []);
+  },[]);
 
   // SETTING SELECTED BUTTON BASED ON choice STATE AND CLEAR goals STATE WHEN SELECTING THE 'NO' OPTION
   useEffect(() => {

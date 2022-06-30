@@ -49,13 +49,13 @@ const ImpactRanges = ({ impactRanges, closeModal, showContent }) => {
             <div>
               {showContent === "carbonOffset" &&
                 `Equivalent to planting and growing 80 tree seedlings for 10
-                    years And approximately $13.82 extra per month to your business energy bills`}
+                    years And approximately $14 extra per month to your business energy bills`}
               {showContent === "greenPower" &&
                 `It will take approximately 5 hours to put the same amount of renewable energy back into the grid
-And approximately $25.81 extra per month to your business energy bills`}
+And approximately $26 extra per month to your business energy bills`}
               {showContent === "solar" &&
-                `Prevent 4.36 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 0.99 cars off the road
-And save approximately $133.61 per month to your business energy bills`}
+                `Prevent 4 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 1 car off the road
+And save approximately $134 per month to your business energy bills`}
             </div>
           </div>
           <div className="space-y-3 mt-6">
@@ -65,13 +65,13 @@ And save approximately $133.61 per month to your business energy bills`}
             <div>
               {showContent === "carbonOffset" &&
                 `Equivalent to planting and growing 1,403 tree seedlings for 10
-                    years And approximately $243.55 extra per month to your business energy bills`}
+                    years And approximately $244 extra per month to your business energy bills`}
               {showContent === "greenPower" &&
                 `It will take approximately 4 days to put the same amount of renewable energy back into the grid
-And approximately $454.62 extra per month to your business energy bills`}
+And approximately $455 extra per month to your business energy bills`}
               {showContent === "solar" &&
-                `Prevent 77.88 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 17.53 cars off the road
-And save approximately $2007.78 per month to your business energy bills`}
+                `Prevent 78 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 18 cars off the road
+And save approximately $2008 per month to your business energy bills`}
             </div>
           </div>
           <div className="text-xs mt-6">
