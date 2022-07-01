@@ -40,11 +40,10 @@ function Signup() {
 
   useEffect(() => {
     setUserID(router.query.uuid);
-    console.log(router.query.uuid, "router.query.uuid");
     if (router.query.uuid === undefined || "" || null) {
       router.push("/");
     }
-  }, [router.query]);
+  }, [router]);
 
   const recommendData =
     JSON.parse(

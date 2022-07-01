@@ -359,7 +359,7 @@ function ContactForms({ text }) {
       </Grid>
 
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormInputDropdown
             name="state"
             control={control}
@@ -372,7 +372,7 @@ function ContactForms({ text }) {
           />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormInputText
             name="postcode"
             label="Postcode"
