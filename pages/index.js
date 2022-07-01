@@ -10,6 +10,7 @@ import PerksTab from "../containers/PerksTab";
 import VerticalTabs from "../components/VerticalTabs";
 import CaseStudyRow from "../components/CaseStudyRow";
 import Head from "next/head";
+import ProductModal from "../components/ProductModal";
 
 export default function Home() {
   const [showFooter, setShowFooter] = useState(false);
@@ -17,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     window.localStorage.clear();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -25,7 +26,7 @@ export default function Home() {
       setShowFooter(entry.isIntersecting);
     });
     observer.observe(myref.current);
-  },[]);
+  }, []);
 
   const exclusiveAccess = [
     {
@@ -116,11 +117,10 @@ export default function Home() {
                     energy solutions
                   </p>
                   <p className="font-light">
-                    Select the actions you&apos;re interested in doing at the
-                    end of your assessment, and an energy Busines Club
-                    Specialist will reach out to help you find the best way
-                    forward for your business. Up to this point - its free. No
-                    payment, no commitment.
+                    Select the actions you&apos;re interested in doing at the end of
+                    your assessment, and a Business Club Specialist will reach
+                    out to help you find the best way forward for your business.
+                    Up to this point - its free. No payment, no commitment.
                   </p>
                 </div>
               </div>

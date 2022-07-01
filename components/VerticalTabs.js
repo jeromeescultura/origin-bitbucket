@@ -75,7 +75,7 @@ export default function VerticalTabs() {
         sx={{ borderRight: 1, borderColor: "divider", color: "#232323" }}
       >
         <Tab
-          label="Dedicated energy Busines Club Specialist"
+          label="Dedicated Business Club Specialist"
           className="md:items-start md:text-left text-sm text-secondaryText"
           {...a11yProps(0)}
         />
