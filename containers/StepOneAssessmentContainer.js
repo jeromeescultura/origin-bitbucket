@@ -38,7 +38,7 @@ const StepOneAssessmentContainer = ({
           {
             id: 2,
             value: "green_power",
-            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
+            text: "Supporting Australian renewables through programs like GreenPower",
           },
           {
             id: 3,
