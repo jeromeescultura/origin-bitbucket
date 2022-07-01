@@ -30,15 +30,15 @@ function CaseStudyRow() {
           </div>
           <p className="text-[112px] text-[#E3E3E3]">“</p>
           <p className="text-base">
-            an Gray is an Operations Manager for an Australian grape, wine &amp;
-            chocolate business and an Origin customer. Ian manages the energy
-            portfolio for vineyards spread across the Barossa, Clare, McLaren
-            Vale, Langhorne Creek, Padthaway, Heathcote and Margaret River
-            regions along with their large chocolate factory located in the
-            heart of Barossa Valley. Like most small to medium businesses, Ian
-            wanted to shift towards cleaner and more cost-effective energy for
-            his portfolio but wasn’t sure how. When Ian took over the portfolio,
-            he was caught between engaging with energy brokers who he
+            Ian Gray Gray is an Operations Manager for an Australian grape, wine
+            &amp; chocolate business and an Origin customer. Ian manages the
+            energy portfolio for vineyards spread across the Barossa, Clare,
+            McLaren Vale, Langhorne Creek, Padthaway, Heathcote and Margaret
+            River regions along with their large chocolate factory located in
+            the heart of Barossa Valley. Like most small to medium businesses,
+            Ian wanted to shift towards cleaner and more cost-effective energy
+            for his portfolio but wasn’t sure how. When Ian took over the
+            portfolio, he was caught between engaging with energy brokers who he
             didn&apos;t have a trusted relationship with. His other option was
             to try to navigate and negotiate directly for the right combination
             of products and for a better deal. We knew this wasn’t ok. Based on
@@ -56,8 +56,8 @@ function CaseStudyRow() {
             and good for our planet too. Origin – Where all GOOD change starts.
           </p>
           <div>
-            <p>Betty</p>
-            <p>Black Kettle Cafe</p>
+            <p>Ian Gray</p>
+            <p>Operations Manager</p>
           </div>
         </div>
       </div>

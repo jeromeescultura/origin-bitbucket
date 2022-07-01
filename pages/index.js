@@ -14,7 +14,8 @@ import ProductModal from "../components/ProductModal";
 
 export default function Home() {
   const [showFooter, setShowFooter] = useState(false);
-  const myref = useRef();
+  const showref = useRef();
+  const hideref = useRef();
 
   useEffect(() => {
     window.localStorage.clear();
@@ -23,9 +24,27 @@ export default function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      setShowFooter(entry.isIntersecting);
+      if (entry.isIntersecting) {
+        setShowFooter(true);
+      }
     });
-    observer.observe(myref.current);
+
+    if (showref.current) {
+      observer.observe(showref.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setShowFooter(false);
+      }
+    });
+
+    if (hideref.current) {
+      observer.observe(hideref.current);
+    }
   }, []);
 
   const exclusiveAccess = [
@@ -131,7 +150,7 @@ export default function Home() {
                   <p className="font-bold">
                     Understand how your support is making a difference
                   </p>
-                  <p className="font-light">
+                  <p className="font-light" ref={hideref}>
                     We&apos;ll provide insights about how your support has made
                     a difference through your Towards-Cleaner newsletter, so you
                     can understand the good change your business has made and
@@ -189,7 +208,7 @@ export default function Home() {
               </div>
             </ContentContainer>
             <ContentContainer>
-              <div className="pt-4 pb-4" ref={myref}>
+              <div className="pt-4 pb-4" ref={showref}>
                 <VerticalTabs />
               </div>
               {/* <div className="flex md:justify-center md:flex-wrap lg:flex overflow-y-hidden overflow-x-scroll scrollbar-hide gap-4 mt-8 lg:mt-16 px-4 sm:px-0">
@@ -203,7 +222,7 @@ export default function Home() {
                 ))}
               </div> */}
             </ContentContainer>
-            {/* <CaseStudyRow /> */}
+            <CaseStudyRow />
           </div>
         </div>
       </div>

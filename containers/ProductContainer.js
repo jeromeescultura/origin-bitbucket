@@ -82,12 +82,8 @@ function ProductContainer() {
       {
         breakpoint: 1440,
         settings: {
-          centerMode: true,
           slidesToShow: 4,
-          slidesToScroll: 1,
           initialSlide: 4,
-          infinite: true,
-          dots: true,
         },
       },
       {
@@ -95,7 +91,6 @@ function ProductContainer() {
         settings: {
           slidesToShow: 3,
           initialSlide: 4,
-          dots: true,
         },
       },
       {
@@ -103,7 +98,6 @@ function ProductContainer() {
         settings: {
           slidesToShow: 2,
           initialSlide: 0,
-          dots: true,
         },
       },
       {
@@ -111,7 +105,6 @@ function ProductContainer() {
         settings: {
           slidesToShow: 2,
           initialSlide: 0,
-          dots: true,
         },
       },
       {
@@ -119,7 +112,6 @@ function ProductContainer() {
         settings: {
           slidesToShow: 1,
           initialSlide: 1,
-          dots: true,
         },
       },
     ],
@@ -129,19 +121,17 @@ function ProductContainer() {
     <div className="py-8 lg:w-[80vw] mx-auto mb-16">
       <Slider {...settings}>
         {productDetails.map((detail, index) => (
-          <>
-            <ProductCard
-              key={index}
-              title={detail.title}
-              leaf={detail.leaf}
-              icon={detail.icon}
-              impact={detail.impact}
-              plan={detail.plan}
-              siteChanges={detail.siteChanges}
-              contracts={detail.contracts}
-              benefits={detail.benefits}
-            />
-          </>
+          <ProductCard
+            key={index}
+            title={detail.title}
+            leaf={detail.leaf}
+            icon={detail.icon}
+            impact={detail.impact}
+            plan={detail.plan}
+            siteChanges={detail.siteChanges}
+            contracts={detail.contracts}
+            benefits={detail.benefits}
+          />
         ))}
       </Slider>
     </div>
