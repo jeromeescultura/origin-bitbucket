@@ -1,6 +1,7 @@
 import {
   Button,
   ButtonGroup,
+  CircularProgress,
   FormControl,
   FormHelperText,
   TextField,
@@ -17,15 +18,8 @@ import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
 import Head from "next/head";
 
-const StepOneAssessmentContainer = ({
-  buttonHandler,
-  setAssessmentAnswers,
-  assessmentAnswers,
-  gatherAnswers,
-  stepNo,
-}) => {
+const AssessmentFirstStep = () => {
   const router = useRouter();
-  const location = router.pathname;
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -225,8 +219,6 @@ const StepOneAssessmentContainer = ({
     formState: { errors },
   } = methods;
 
-  console.log(errors);
-
   useEffect(() => {
     if (Object.keys(errors).length !== 0) {
       if (
@@ -333,9 +325,22 @@ const StepOneAssessmentContainer = ({
         window.localStorage.getItem("STARTASSESSMENT")
     ) || null;
 
+  const [displayContents, setDisplayContents] = useState();
+
   useEffect(() => {
-    if (startAssesment === null || undefined || "") router.push("/");
+    if (startAssesment === null || undefined || "") {
+      router.push("/");
+    } else {
+      setDisplayContents(startAssesment);
+    }
   }, [startAssesment]);
+
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    setAnimate(!animate);
+    setTimeout(() => setAnimate(false), 500);
+  }, []);
 
   return (
     <>
@@ -350,11 +355,21 @@ const StepOneAssessmentContainer = ({
 
       <div className="bg-primaryBG h-full pb-16">
         <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
-          <div className="w-[90%] md:w-[80%] mx-auto h-full">
+          <div
+            className={`w-[90%] md:w-[80%] mx-auto h-full  ${
+              displayContents === true ? "visible" : "invisible"
+            }  `}
+          >
             <ProgressBar />
             <PageIntro />
 
-            <div className="space-y-8">
+            <div
+              className={`space-y-8 ${
+                animate
+                  ? "opacity-0 translate-x-3"
+                  : "opacity-100 translate-x-0"
+              } transition duration-500 ease-in-out`}
+            >
               {" "}
               {/* STEP ONE - QUESTION 1 */}
               <div id="qone">
@@ -636,4 +651,4 @@ const StepOneAssessmentContainer = ({
   );
 };
 
-export default StepOneAssessmentContainer;
+export default AssessmentFirstStep;
