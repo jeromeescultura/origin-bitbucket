@@ -1,6 +1,8 @@
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/ProductModal";
+import { useState } from "react";
+import { Button } from "@mui/material";
 
 function ProductContainer() {
   const productDetails = [
@@ -134,6 +136,8 @@ function ProductContainer() {
     ],
   };
 
+  
+
   return (
     <div className="py-8 lg:w-[80vw] mx-auto mb-16">
       <Slider {...settings}>
@@ -150,7 +154,6 @@ function ProductContainer() {
               contracts={detail.contracts}
               benefits={detail.benefits}
             />
-            <ProductModal product={detail.title} />
           </>
         ))}
       </Slider>

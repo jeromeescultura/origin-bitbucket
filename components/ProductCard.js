@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@mui/material";
 import LeafRating from "../components/LeafRating";
 import ProductModal from "./ProductModal";
+import { useState } from "react";
 
 function ProductCard({
   title,
@@ -14,6 +15,14 @@ function ProductCard({
   contracts,
   benefits,
 }) {
+  const [productModal, setProductModal] = useState(false);
+
+  const openModal = () => {
+    console.log(productModal);
+    setProductModal(true);
+  };
+
+  const closeModal = () => setProductModal(false);
   return (
     <>
       {/* <div className="text-center -mb-4 z-50">
@@ -84,9 +93,15 @@ function ProductCard({
             paddingLeft: "2rem",
             paddingRight: "2rem",
           }}
+          onClick={openModal}
         >
           Find out more
         </Button>
+        <ProductModal
+          open={productModal}
+          product={title}
+          closeModal={closeModal}
+        />
       </div>
     </>
   );
