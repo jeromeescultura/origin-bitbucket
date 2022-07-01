@@ -231,7 +231,7 @@ const StepOneAssessmentContainer = ({
       setTimeAndEnergy(storedData.timeAndEnergy);
       setHowMuchPriority(storedData.howMuchPriority);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -537,14 +537,12 @@ const StepOneAssessmentContainer = ({
         <QuestionContainer id={radioQsts?.id} text={radioQsts?.text}>
           <div className="mt-8">
             <FormInputRadio
-              onChange={watch(handleChange)}
               name="timeAndEnergy"
               validation={{ required: "Please select one" }}
               control={control}
               options={radioQsts?.options}
               setValue={setValue}
               radioValue={timeAndEnergy}
-              radioDefault={"easy"}
             />
           </div>
         </QuestionContainer>
