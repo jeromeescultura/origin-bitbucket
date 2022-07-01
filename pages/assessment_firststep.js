@@ -45,7 +45,7 @@ const AssessmentFirstStep = () => {
           {
             id: 2,
             value: "green_power",
-            text: "Invested in renewable generators through programs like GreenPower, to feed renewables into the grid",
+            text: "Supporting Australian renewables through programs like GreenPower",
           },
           {
             id: 3,
@@ -64,16 +64,11 @@ const AssessmentFirstStep = () => {
           },
           {
             id: 6,
-            value: "expert_advice",
-            text: "Created a sustainability strategy",
-          },
-          {
-            id: 7,
             value: "carbon_offsets",
             text: "Switch to an energy plan that carbon offsets your energy use",
           },
           {
-            id: 8,
+            id: 7,
             value: "other",
             text: "Other",
           },
@@ -86,26 +81,31 @@ const AssessmentFirstStep = () => {
         questionsList: [
           {
             id: 1,
+            value: "sustainability_strategy",
+            text: "Created a sustainability strategy",
+          },
+          {
+            id: 2,
             value: "alternatives",
             text: "Replaced some or all packaging used for your business to use more sustainable alternatives",
           },
           {
-            id: 2,
+            id: 3,
             value: "digitized",
             text: "Digitised some or all paper based processes at your sites(s)",
           },
           {
-            id: 3,
+            id: 4,
             value: "recycling",
             text: "Introduced recycling and waste reduction processes at office sites",
           },
           {
-            id: 4,
+            id: 5,
             value: "optimized_supply_chain",
             text: "Optimised supply chain processes to reduce material wastage",
           },
           {
-            id: 5,
+            id: 6,
             value: "other",
             text: "Other",
           },

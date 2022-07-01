@@ -453,8 +453,8 @@ const Recommend = () => {
                     }`}
                   >
                     <p className="text-subTextColor lg:hidden mt-16">
-                      Keen to understand more options? Toggle to see options for
-                      different levels of investment.
+                      Keen to understand more options? Toggle to view options at
+                      different cost levels.
                     </p>
                     <ButtonGroup
                       fullWidth
@@ -489,8 +489,8 @@ const Recommend = () => {
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 !shadow-md">
                         <p>
                           Keen to understand more options?
-                          <br /> Toggle to see options for different levels of
-                          investment.
+                          <br /> Toggle to view options at different cost
+                          levels.
                         </p>
                       </div>
 
@@ -546,9 +546,9 @@ const Recommend = () => {
                     </h2>
 
                     <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
-                      Impact estimates below are calculated with usage averages
-                      collected from Origin&apos;s small & medium business
-                      customers in{" "}
+                      These impact estimates are based on electricity usage
+                      averages compiled from Origin&apos;s small and medium
+                      business customer base in the{' '}
                       <span className="font-medium">{industry?.name}</span>.
                       This will change based on your business&apos; specific
                       usage.{" "}

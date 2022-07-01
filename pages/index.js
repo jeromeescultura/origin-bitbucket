@@ -10,6 +10,7 @@ import PerksTab from "../containers/PerksTab";
 import VerticalTabs from "../components/VerticalTabs";
 import CaseStudyRow from "../components/CaseStudyRow";
 import Head from "next/head";
+import ProductModal from "../components/ProductModal";
 
 export default function Home() {
   const [showFooter, setShowFooter] = useState(false);
@@ -116,11 +117,18 @@ export default function Home() {
                     energy solutions
                   </p>
                   <p className="font-light">
+<<<<<<< HEAD
                     Select the actions you&apos;re interested in doing at the
                     end of your assessment, and an energy Business Club
                     Specialist will reach out to help you find the best way
                     forward for your business. Up to this point - its free. No
                     payment, no commitment.
+=======
+                    Select the actions you&apos;re interested in doing at the end of
+                    your assessment, and a Business Club Specialist will reach
+                    out to help you find the best way forward for your business.
+                    Up to this point - its free. No payment, no commitment.
+>>>>>>> 605af75ad2e2bd362308ae00c548277e720e5ff7
                   </p>
                 </div>
               </div>

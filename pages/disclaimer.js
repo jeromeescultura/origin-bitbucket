@@ -43,7 +43,7 @@ const Disclaimer = () => {
               <p className="font-medium subtitle">Eligibility</p>
               <p className="my-4 lg:my-6">
                 Our online assessment is currently able to identify clean energy
-                altertives for small &amp; medium businesses in{" "}
+                alternatives for small &amp; medium businesses in{" "}
                 <span className="font-bold">
                   South Australia, Victoria, New South Wales
                 </span>{" "}
