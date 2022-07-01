@@ -39,9 +39,13 @@ h2 {
 .slick-list {
   margin: 0 -8px;
 }
+.slick-slide {
+  max-width: 350px;
+}
 .slick-slide > div {
   padding: 0 8px;
 }
+
 .MuiFormHelperText-root {
   color: #ec0000;
 }

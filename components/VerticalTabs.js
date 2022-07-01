@@ -109,18 +109,19 @@ export default function VerticalTabs() {
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p> Bespoke site analysis for solar installs</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -132,7 +133,7 @@ export default function VerticalTabs() {
               <p> Energy efficiency support for your business</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -162,40 +163,43 @@ export default function VerticalTabs() {
             />
           </div>
         </div>
-        <div className="py-10 pr-2 pl-2 lg:pl-8">
+        <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             All businesses choosing to participate with us will receive
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p>Communicating on how your business has reduced its impact</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p> Energy efficiency checklist</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p> Give feedback on future bespoke decarbonisation services</p>
@@ -216,19 +220,20 @@ export default function VerticalTabs() {
             />
           </div>
         </div>
-        <div className="py-10 pr-2 pl-2 lg:pl-8">
+        <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             Let others know about the impact you&apos;re making through our free
             toolkit which includes
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p>
@@ -237,12 +242,13 @@ export default function VerticalTabs() {
               </p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="max-w-[20px] max-h-[20px]">
+              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p>

@@ -128,8 +128,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                {" "}
-                <u>Progress reporting</u> on your impact
+                A <u>newsletter</u> on your impact
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -143,9 +142,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                {" "}
-                <u>Free Marketing toolkit</u> to communicate your impact to
-                communicate your impact
+                <u>Free marketing toolkit</u> to communicate your impact
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -159,8 +156,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                {" "}
-                Dedicated <u>Business club</u> support
+                Dedicated <u>Business Club support</u>
               </p>
             </ListItem>
             {(recommend === "greenPower" || recommend === "solar") && (
@@ -176,7 +172,7 @@ const RecommentCard = ({
                 </ListItemIcon>
                 {recommend === "greenPower" && (
                   <p>
-                    <u>Tariff review</u> to reduce your overall energy costs
+                    <u>Tariff review</u> to help reduce your electricity costs
                   </p>
                 )}
                 {recommend === "solar" && (
