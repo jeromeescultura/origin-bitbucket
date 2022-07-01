@@ -161,7 +161,7 @@ function Signup() {
                         </div>
                         <div className="grid grid-cols-2 items-center border-t py-2">
                           <p>Site changes</p>
-                          <p>None</p>
+                          <p> {product === "solar" ? "Yes" : "None"}</p>
                         </div>
                         <div className="grid grid-cols-2 items-center border-t pt-2">
                           <p>Lock-in contracts</p>
@@ -182,7 +182,8 @@ function Signup() {
                         : formatPrice(extraCost)}
                     </h2>
                     <p className="text-xs text-subTextColor">
-                      extra p/month on any <br />
+                      extra p/{product === "solar" ? "month" : "day"} on any{" "}
+                      <br />
                       Origin Energy plan*
                     </p>
                   </div>
