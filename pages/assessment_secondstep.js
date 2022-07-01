@@ -11,6 +11,8 @@ import PageIntro from "../components/PageIntro";
 import Head from "next/head";
 
 const AssessmentSecondStep = () => {
+  const [displayContents, setDisplayContents] = useState();
+
   const startAssesment =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -18,7 +20,11 @@ const AssessmentSecondStep = () => {
     ) || null;
 
   useEffect(() => {
-    if (startAssesment === null || undefined || "") router.push("/");
+    if (startAssesment === null || undefined || "") {
+      router.push("/");
+    } else {
+      setDisplayContents(startAssesment);
+    }
   }, [startAssesment]);
 
   const [animate, setAnimate] = useState(true);
@@ -403,11 +409,15 @@ const AssessmentSecondStep = () => {
 
       <div className="bg-primaryBG h-full pb-16">
         <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
-          <div className="w-[90%] md:w-[80%] mx-auto h-full">
+          <div
+            className={`w-[90%] md:w-[80%] mx-auto h-full  ${
+              displayContents === true ? "visible" : "invisible"
+            }  `}
+          >
             <ProgressBar />
             <PageIntro />
 
-            {isSubmitting || startAssesment === null ? (
+            {isSubmitting ? (
               <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
                 <CircularProgress size="5rem" color="secondary" />
               </div>
