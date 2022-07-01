@@ -1,5 +1,6 @@
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
+import ProductModal from "../components/ProductModal";
 
 function ProductContainer() {
   const productDetails = [
@@ -13,7 +14,7 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>clean business club benefits</u>
+          All standard <u>business club benefits</u>
         </span>,
         "Plus Tariff review to potentially minimise electricity costs",
       ],
@@ -28,7 +29,7 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>clean business club benefits</u>
+          All standard <u>business club benefits</u>
         </span>,
         "Minimise electricity costs by using clean, self generated solar power",
       ],
@@ -43,24 +44,24 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>clean business club benefits</u>
+          All standard <u>business club benefits</u>
         </span>,
       ],
     },
     {
-      title: "Net-Zero research program",
+      title: "Decarbonisation Interview",
       leaf: 5,
       icon: "/icons/products/net-zero.svg",
       impact:
         "Participate in research to help us develop future services tailored to your business",
-      plan: "Available on any Origin Electricity plan",
+      plan: "Available on any Origin energy plan",
       siteChanges: "None",
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>clean business club benefits</u>
+          All standard <u>business club benefits</u>
         </span>,
-        "Have your say in future & upcoming solutions",
+        "Have your say in future energy solutions",
       ],
     },
   ];
@@ -137,17 +138,20 @@ function ProductContainer() {
     <div className="py-8 lg:w-[80vw] mx-auto mb-16">
       <Slider {...settings}>
         {productDetails.map((detail, index) => (
-          <ProductCard
-            key={index}
-            title={detail.title}
-            leaf={detail.leaf}
-            icon={detail.icon}
-            impact={detail.impact}
-            plan={detail.plan}
-            siteChanges={detail.siteChanges}
-            contracts={detail.contracts}
-            benefits={detail.benefits}
-          />
+          <>
+            <ProductCard
+              key={index}
+              title={detail.title}
+              leaf={detail.leaf}
+              icon={detail.icon}
+              impact={detail.impact}
+              plan={detail.plan}
+              siteChanges={detail.siteChanges}
+              contracts={detail.contracts}
+              benefits={detail.benefits}
+            />
+            <ProductModal product={detail.title} />
+          </>
         ))}
       </Slider>
     </div>

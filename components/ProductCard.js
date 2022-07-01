@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "@mui/material";
 import LeafRating from "../components/LeafRating";
+import ProductModal from "./ProductModal";
 
 function ProductCard({
   title,
@@ -20,16 +21,16 @@ function ProductCard({
       </div> */}
       <div
         className={`${
-          title === "Net-Zero research program"
+          title === "Decarbonisation Interview"
             ? "bg-[rgba(0, 185, 215, 0.04)] border-2"
             : "bg-white"
         }  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly h-[920px] lg:max-w-sm`}
       >
         <div className="pt-4">
-          <p>Start your energy shift with</p>
+          <p>Take action with</p>
           <p
             className={`font-bold text-[16px] mt-2  ${
-              title === "Net-Zero research program"
+              title === "Decarbonisation Interview"
                 ? "lg:mb-3 xs:mb-6 max-w-[219px]"
                 : "mb-6"
             }`}

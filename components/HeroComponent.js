@@ -29,7 +29,7 @@ function HeroComponent() {
         <p className="text-secondaryText mt-2 xs:mt-8 font-light px-4 sm:px-4 lg:px-0 lg:w-[70%]">
           Our online assessment tool takes the effort out of understanding how
           your busines can access or support cleaner energy solutions. Get
-          tailored guidance for you to do this. That&apos; good for business -
+          tailored guidance for you to do this. That&apos;s good for business -
           and good for our planet, too.
         </p>
         <div className="flex flex-col w-[70%] md:flex-row sm:w-[80%] md:w-[80%] lg:w-[60%] mx-auto lg:mx-0 gap-4 mt-2 xs:mt-10 lg:mt-16 items-center sm:flex-row justify-center lg:justify-start">
