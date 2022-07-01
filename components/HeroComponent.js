@@ -28,7 +28,7 @@ function HeroComponent() {
         </h2>
         <p className="text-secondaryText mt-2 xs:mt-8 font-light px-4 sm:px-4 lg:px-0 lg:w-[70%]">
           Our online assessment tool takes the effort out of understanding how
-          your busines can access or support cleaner energy solutions. Get
+          your business can access or support cleaner energy solutions. Get
           tailored guidance for you to do this. That&apos; good for business -
           and good for our planet, too.
         </p>

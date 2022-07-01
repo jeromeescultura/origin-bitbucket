@@ -161,7 +161,10 @@ const OriginAssessment = () => {
               <div className="space-y-8 mt-12">
                 {/* STEP ONE */}
                 {stepNo === 1 && (
-                  <StepOneAssessmentContainer buttonHandler={buttonHandler} stepNo={stepNo} />
+                  <StepOneAssessmentContainer
+                    buttonHandler={buttonHandler}
+                    stepNo={stepNo}
+                  />
                 )}
 
                 {/* STEP TWO */}

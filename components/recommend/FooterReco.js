@@ -87,7 +87,7 @@ function FooterReco({
             fontSize: 14,
           }}
         >
-          Choose this energy shift
+          I&apos;m interested in this
         </Button>
         <Button
           className="w-[230px] lg:py-3"

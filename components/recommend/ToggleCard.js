@@ -88,7 +88,7 @@ const ToggleCard = ({
               <CardContent>
                 <div>
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-                    <div>Take part in the net zero research interview</div>
+                    <div>Participate in the Decarbonisation Interview</div>
                     <Switch
                       className="order-first lg:order-last"
                       color="secondary"

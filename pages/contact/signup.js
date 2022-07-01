@@ -277,7 +277,7 @@ function Signup() {
             </section>
             <div className="lg:col-span-3 lg:order-1 ">
               <ContactForms
-                text="Please give us a few details, and one of our Busines Club Specialists will contact
+                text="Please give us a few details, and one of our Business Club Specialists will contact
         you about finalising your application."
               />
             </div>

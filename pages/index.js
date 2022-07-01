@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     window.localStorage.clear();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -25,7 +25,7 @@ export default function Home() {
       setShowFooter(entry.isIntersecting);
     });
     observer.observe(myref.current);
-  },[]);
+  }, []);
 
   const exclusiveAccess = [
     {
@@ -68,18 +68,18 @@ export default function Home() {
         <HeroComponent />
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
-            <h2>
+            {/* <h2>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui at
               nisi illum incidunt asperiores pariatur soluta, laudantium, amet
               itaque tenetur earum! Totam natus, itaque a doloribus ea vel
               veritatis corporis
-            </h2>
+            </h2> */}
             <p className="my-6 lg:my-8 sm:leading-loose">
               At Origin, we believe you shouldn&#39;t have to choose between
               maintaining funds to keep your business running now, and choosing
               cleaner, low carbon energy solutions to power it for the future.
             </p>
-            <p className="text-secondaryBG font-bold">Learn more</p>
+            {/* <p className="text-secondaryBG font-bold">Learn more</p> */}
           </div>
 
           <div className="flex flex-col lg:flex-row lg:gap-32 mx-auto pt-12 pb-[88px] sm:pb-16">
@@ -117,7 +117,7 @@ export default function Home() {
                   </p>
                   <p className="font-light">
                     Select the actions you&apos;re interested in doing at the
-                    end of your assessment, and an energy Busines Club
+                    end of your assessment, and an energy Business Club
                     Specialist will reach out to help you find the best way
                     forward for your business. Up to this point - its free. No
                     payment, no commitment.
@@ -166,7 +166,7 @@ export default function Home() {
                       />
                     </div>
                     <p className="text-sm font-medium text-primaryText">
-                      Start with our Energy efficiency checklist
+                      Start with our Energy Efficiency Checklist
                     </p>
                   </div>
                 </div>

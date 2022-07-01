@@ -556,7 +556,7 @@ const Recommend = () => {
                         className="underline cursor-pointer"
                         onClick={openModal}
                       >
-                        See your impact ranges.
+                        See the range of possible outcomes.
                       </span>
                     </div>
                   </div>

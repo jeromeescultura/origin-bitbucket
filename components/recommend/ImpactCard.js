@@ -59,7 +59,11 @@ const ImpactCard = ({ recommend, impact, level }) => {
               level * 100
             }% GreenPower, it would only take ${impact}  to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
-            `By way of example, if all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, roughly equivalent to immidiately taking ${impact[1] > 1 ? `${impact[1]} cars`:`${impact[1]} car`} off the road.`}
+            `By way of example, if all businesses like yours did this, we could prevent ${
+              impact[0]
+            } tonnes of carbon from ever being emitted per year, roughly equivalent to immidiately taking ${
+              impact[1] > 1 ? `${impact[1]} cars` : `${impact[1]} car`
+            } off the road.`}
         </p>
       </div>
       <MoreDetailsComponent
@@ -68,15 +72,75 @@ const ImpactCard = ({ recommend, impact, level }) => {
             ? "carbon offsets work"
             : recommend === "greenPower"
             ? "GreenPower works"
-            : "solar benefits all"
+            : "How solar benefits all"
         }`}
       >
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-          molestiae possimus, mollitia distinctio, unde non modi quas asperiores
-          ratione dolore corrupti fugit culpa reiciendis error omnis in ea
-          voluptates ipsa?
-        </p>
+        {recommend === "carbonOffset" ? (
+          <div className="space-y-4 text-secondaryText">
+            <p>
+              Our Origin Go Zero add-on is 100% carbon neutral and certified by
+              Climate Active – an initiative backed by the Australian Government
+              to help reduce gas emissions.
+            </p>
+            <p>
+              Add Origin Go Zero to your energy plan (for a bit extra on your
+              bill each month) and we’ll offset the amount of greenhouse
+              emissions created by the amount of electricity you use.
+            </p>
+            <p>
+              Origin will support a number of credible offset options sourced
+              locally and internationally.
+            </p>
+            <p>By adding Origin Go Zero you’ll be:</p>
+            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
+              <li>Reducing your carbon emissions</li>
+              <li>Helping contribute to a healthier environment </li>
+            </ul>
+          </div>
+        ) : recommend === "greenPower" ? (
+          <div className="space-y-4 text-secondaryText">
+            <p>
+              GreenPower is a government-accredited program. When you add
+              GreenPower to your electricity plan (for a bit extra on your bill
+              each month), we’ll match your electricity use by sending the same
+              amount of renewable energy back into the energy grid.
+            </p>
+            <p>
+              The best part is, you can feel confident knowing your money is
+              supporting government-accredited renewable projects in Australia.
+            </p>
+
+            <p>By adding GreenPower you’ll be:</p>
+            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
+              <li>Supporting Australian renewables</li>
+              <li>Reducing carbon emissions</li>
+              <li>Helping contribute to a healthier environment </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="space-y-4 text-secondaryText">
+            <p>
+              Solar uses clean, renewable energy from the sun, making you less
+              reliant on traditional sources of electricity such as fossil
+              fuels.
+            </p>
+            <p>
+              Going solar can help your business reduce daytime electricity
+              costs and your bottom line.
+            </p>
+            <p>
+              Promoting your solar energy credentials may also assist your
+              appeal to customers and suppliers – those looking to support
+              businesses committed to sustainable energy practices.
+            </p>
+            <p>By adding solar you’ll be:</p>
+            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
+              <li>Using self generated renewable energy</li>
+              <li>Reducing carbon emissions </li>
+              <li>Helping contribute to a healthier environment</li>
+            </ul>
+          </div>
+        )}
       </MoreDetailsComponent>
     </div>
   );

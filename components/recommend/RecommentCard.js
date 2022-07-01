@@ -80,7 +80,7 @@ const RecommentCard = ({
           </div>
           <div className="grid grid-cols-2 items-center border-t py-2">
             <p>Site changes</p>
-            <p>None</p>
+            <p> {recommend === "solar" ? "Yes" : "None"}</p>
           </div>
           <div className="grid grid-cols-2 items-center border-t pt-2">
             <p>Lock-in contracts</p>
@@ -114,7 +114,7 @@ const RecommentCard = ({
         </div>
         <div className="space-y-2  pl-5">
           <p className="font-medium  text-center lg:text-left">
-            In addition, we will also support you with
+            In addition, we will support you with
           </p>
           <List dense={true} className="space-y-4 text-left py-3">
             <ListItem className="flex items-center lg:items-start pl-0">

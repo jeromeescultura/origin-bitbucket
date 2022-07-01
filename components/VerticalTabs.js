@@ -75,7 +75,7 @@ export default function VerticalTabs() {
         sx={{ borderRight: 1, borderColor: "divider", color: "#232323" }}
       >
         <Tab
-          label="Dedicated energy Busines Club Specialist"
+          label="Dedicated energy Business Club Specialist"
           className="md:items-start md:text-left text-sm text-secondaryText"
           {...a11yProps(0)}
         />
@@ -126,6 +126,7 @@ export default function VerticalTabs() {
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p> Energy efficiency support for your business</p>
@@ -137,11 +138,12 @@ export default function VerticalTabs() {
                   width={40}
                   height={40}
                   objectFit="contain"
+                  alt="check"
                 />
               </div>
               <p>
-                Access to a dedicated Busines Club Specialist to support you for
-                ongoing and future clean energy transitions
+                Access to a dedicated Business Club Specialist to support you
+                for ongoing and future clean energy transitions
               </p>
             </li>
           </ul>
