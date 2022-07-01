@@ -11,6 +11,23 @@ import PageIntro from "../components/PageIntro";
 import Head from "next/head";
 
 const AssessmentSecondStep = () => {
+  const startAssesment =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STARTASSESSMENT")
+    ) || null;
+
+  useEffect(() => {
+    if (startAssesment === null || undefined || "") router.push("/");
+  }, [startAssesment]);
+
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    setAnimate(!animate);
+    setTimeout(() => setAnimate(false), 500);
+  }, []);
+
   useEffect(() => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
@@ -390,12 +407,18 @@ const AssessmentSecondStep = () => {
             <ProgressBar />
             <PageIntro />
 
-            {isSubmitting ? (
+            {isSubmitting || startAssesment === null ? (
               <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 backdrop-blur-lg">
                 <CircularProgress size="5rem" color="secondary" />
               </div>
             ) : (
-              <div className="space-y-8">
+              <div
+                className={`space-y-8 ${
+                  animate
+                    ? "opacity-0 translate-x-3"
+                    : "opacity-100 translate-x-0"
+                } transition duration-500 ease-in-out`}
+              >
                 {/* STEP TWO - QUESTION 1 */}
                 <div id="qone">
                   <QuestionContainer
