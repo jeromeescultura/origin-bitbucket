@@ -2,7 +2,7 @@ import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 
-const ImpactRanges = ({ impactRanges, closeModal, showContent }) => {
+const ImpactRanges = ({ impactRanges, closeModal, showContent, level }) => {
   return (
     <Modal open={impactRanges} onClose={closeModal}>
       <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg">
@@ -26,62 +26,146 @@ const ImpactRanges = ({ impactRanges, closeModal, showContent }) => {
           </button>
         </div>
         <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll sm:overflow-visible max-h-[450px] sm:max-h-full">
-          <div>
-            By understanding the industry your business is in, we&apos;re able
-            to make an estimated assessment of the impact your business could
-            make from{" "}
-            <span className="font-GorditaMedium">
-              {showContent === "carbonOffset" &&
-                "offsetting your carbon emissions for a year"}
-              {(showContent === "greenPower" || showContent === "solar") &&
-                "matching your usage with 100% GreenPower for a year"}
-            </span>
-            .
-            <br />
-            <br />
-            If your usage is higher or lower than the average, these ranges
-            could better indicate the impact on your business.
-          </div>
-          <div className="space-y-2 mt-6">
-            <h1 className="text-base font-GorditaMedium">
-              Lower than the average usage
-            </h1>
+          <p>
+            These estimates are subject to change based on your business&apos;
+            individual usage.{" "}
+          </p>
+          <br />
+          <p>
+            To estimate the potential impact of purchasing this product we
+            looked at Origin business customers within your industry and found:{" "}
+          </p>
+          <br />
+          {showContent === "carbonOffset" && (
             <div>
-              {showContent === "carbonOffset" &&
-                `Equivalent to planting and growing 80 tree seedlings for 10
-                    years And approximately $14 extra per month to your business energy bills`}
-              {showContent === "greenPower" &&
-                `It will take approximately 5 hours to put the same amount of renewable energy back into the grid
-And approximately $26 extra per month to your business energy bills`}
-              {showContent === "solar" &&
-                `Prevent 4 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 1 car off the road
-And save approximately $134 per month to your business energy bills`}
+              <ul className="text-sm list-disc pl-5 space-y-2">
+                <li>
+                  Smaller customers (between 0 and 40kwh daily usage) on average
+                  used [Xkwh] per year. Which, if offset would roughly be
+                  equivalent to the carbon [X-Y] trees absorb per year{" "}
+                </li>
+                <li>
+                  Medium customers (between 40 and 440kwh daily usage) on
+                  average used [Xkwh] per year. Which, if offset would roughly
+                  be equivalent to the carbon [X-Y] trees absorb per year{" "}
+                </li>
+                <li>
+                  Larger customers (over 440 kwh daily usage) on average used
+                  [Xkwh] per year. Which, if offset would roughly be equivalent
+                  to the carbon [X-Y] trees absorb per year{" "}
+                </li>
+              </ul>
             </div>
-          </div>
-          <div className="space-y-3 mt-6">
-            <h1 className="text-base font-GorditaMedium">
-              Higher than the average usage
-            </h1>
+          )}
+          {showContent === "greenPower" && (
             <div>
-              {showContent === "carbonOffset" &&
-                `Equivalent to planting and growing 1,403 tree seedlings for 10
-                    years And approximately $244 extra per month to your business energy bills`}
-              {showContent === "greenPower" &&
-                `It will take approximately 4 days to put the same amount of renewable energy back into the grid
-And approximately $455 extra per month to your business energy bills`}
-              {showContent === "solar" &&
-                `Prevent 78 tonnes of carbon from ever being emitted per year, equivalent to immediately taking 18 cars off the road
-And save approximately $2008 per month to your business energy bills`}
+              <br />
+              <ul className="text-sm list-disc pl-5 space-y-2">
+                <li>
+                  Smaller customers (between 0 and 40kwh daily usage) on average
+                  used [Xkwh] per year. Which, if replaced with {level * 100}%
+                  GreenPower would enable the injection of electricity into the
+                  grid such as that generated by [Xh] of a wind turbine
+                </li>
+                <li>
+                  Medium customers (between 40 and 440kwh daily usage) on
+                  average used Xkwh per year. Which, if replaced with{" "}
+                  {level * 100}% GreenPower would enable the injection of
+                  electricity into the grid such as that generated by [Xh] of a
+                  wind turbine
+                </li>
+                <li>
+                  Larger customers (over 440 kwh daily usage) on average used
+                  [Xkwh] per year. Which, if replaced with {level * 100}%
+                  GreenPower would enable the injection of electricity into the
+                  grid such as that generated by [Xh] of a wind turbine
+                </li>
+              </ul>
             </div>
-          </div>
+          )}
+          {showContent === "solar" && (
+            <div>
+              <br />
+              <ul className="text-sm list-disc pl-5 space-y-2">
+                <li>
+                  Smaller customers (between 0 and 40kwh daily usage) on average
+                  used [Xkwh] per year. Which, if replaced with Solar energy
+                  equals to emission reduction of removing [x] cars from the
+                  road
+                </li>
+                <li>
+                  Medium customers (between 40 and 440kwh daily usage) on
+                  average used [Xkwh] per year. Which, if replaced with Solar
+                  energy equals to emission reduction of removing [x] cars from
+                  the road
+                </li>
+                <li>
+                  Larger customers (over 440 kwh daily usage) on average used
+                  [Xkwh] per year. Which, if replaced with Solar energy equals
+                  to emission reduction of removing [x] cars from the road
+                </li>
+              </ul>
+            </div>
+          )}
           <div className="text-xs mt-6">
-            We calculate your impact analogy using credible conversions from{" "}
-            <a
-              href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
-              className="underline"
-            >
-              https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator
-            </a>
+            <p>For our estimates we leveraged the following data:</p>
+            <br />
+            {showContent === "carbonOffset" && (
+              <div className="p-2">
+                <a
+                  className="hover:underline"
+                  href="https://www.ntc.gov.au/sites/default/files/assets/files/Carbon-dioxide-emissions-intensity-for-new-Australian-light-vehicles-2019.pdf"
+                >
+                  https://www.ntc.gov.au/sites/default/files/assets/files/Carbon-dioxide-emissions-intensity-for-new-Australian-light-vehicles-2019.pdf{" "}
+                </a>
+                <br />
+                <br />
+                <a
+                  className="hover:underline"
+                  href="https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20kilometres%20a%20day."
+                >
+                  https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20
+                  <br />
+                  kilometres%20a%20day.
+                </a>
+              </div>
+            )}
+            {showContent === "greenPower" && (
+              <div className="p-2">
+                <a
+                  className="hover:underline"
+                  href="https://aemo.com.au/newsroom/news-updates/aemo-welcomes-new-connections-lead-as-the-grid-prepares-for-influx-of-renewables"
+                >
+                  https://aemo.com.au/newsroom/news-updates/aemo-welcomes-new-connections-lead-as-the-grid-prepares-for-influx-of-renewables
+                </a>
+                <br />
+                <br />
+                <a
+                  className="hover:underline"
+                  href="https://aemo.com.au/en/energy-systems/electricity/national-electricity-market-nem/data-nem/data-dashboard-nem"
+                >
+                  https://aemo.com.au/en/energy-systems/electricity/national-electricity-market-nem/data-nem/data-dashboard-nem
+                </a>
+              </div>
+            )}
+            {showContent === "solar" && (
+              <div className="p-2">
+                <a
+                  className="hover:underline"
+                  href=" https://www.awe.gov.au/agriculture-land/land/publications/20-million-trees-program-review"
+                >
+                  https://www.awe.gov.au/agriculture-land/land/publications/20-million-trees-program-review
+                </a>
+                <br />
+                <br />
+                <a
+                  className="hover:underline"
+                  href="https://www.industry.gov.au/regulations-and-standards/methods-for-the-emissions-reduction-fund"
+                >
+                  https://www.industry.gov.au/regulations-and-standards/methods-for-the-emissions-reduction-fund
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </Box>
