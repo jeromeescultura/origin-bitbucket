@@ -562,10 +562,14 @@ const Recommend = () => {
                   </div>
                 </div>
                 <ImpactRanges
+                dayjs={dayjs}
                   level={level}
                   impactRanges={impactRanges}
                   closeModal={closeModal}
                   showContent={showContent}
+                  low={industry?.dailyUsage?.low}
+                  medium={industry?.dailyUsage?.medium}
+                  high={industry?.dailyUsage?.high}
                 />
                 <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
                   <div className="break-inside-avoid">

@@ -1,8 +1,30 @@
-import { Modal } from "@mui/material";
+import { cardClasses, Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 
-const ImpactRanges = ({ impactRanges, closeModal, showContent, level }) => {
+const ImpactRanges = ({
+  impactRanges,
+  closeModal,
+  showContent,
+  level,
+  low,
+  medium,
+  high,
+  dayjs
+}) => {
+  const cars = (dailyUsage) => {
+    let tempCars =
+      Math.round(
+        (0.00009 * (dailyUsage * 365) - 0.0073 + Number.EPSILON) * 100
+      ) / 100;
+    if (tempCars > 1) {
+      return Math.round(tempCars);
+    } else {
+      return Math.ceil(tempCars);
+    }
+  };
+
+  
   return (
     <Modal open={impactRanges} onClose={closeModal}>
       <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg">
@@ -90,19 +112,25 @@ const ImpactRanges = ({ impactRanges, closeModal, showContent, level }) => {
                 <li>
                   Smaller customers (between 0 and 40kwh daily usage) on average
                   used [Xkwh] per year. Which, if replaced with Solar energy
-                  equals to emission reduction of removing [x] cars from the
-                  road
+                  equals to emission reduction of removing{" "}
+                  {cars(low) > 1 ? `${cars(low)} cars` : `${cars(low)} car`}{" "}
+                  from the road
                 </li>
                 <li>
                   Medium customers (between 40 and 440kwh daily usage) on
                   average used [Xkwh] per year. Which, if replaced with Solar
-                  energy equals to emission reduction of removing [x] cars from
-                  the road
+                  energy equals to emission reduction of removing{" "}
+                  {cars(medium) > 1
+                    ? `${cars(medium)} cars`
+                    : `${cars(medium)} car`}{" "}
+                  from the road
                 </li>
                 <li>
                   Larger customers (over 440 kwh daily usage) on average used
                   [Xkwh] per year. Which, if replaced with Solar energy equals
-                  to emission reduction of removing [x] cars from the road
+                  to emission reduction of removing{" "}
+                  {cars(high) > 1 ? `${cars(high)} cars` : `${cars(high)} car`}{" "}
+                  from the road
                 </li>
               </ul>
             </div>
