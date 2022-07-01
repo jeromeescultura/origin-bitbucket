@@ -184,7 +184,6 @@ const StepOneContainer = ({
               <Controller
                 control={control}
                 name="goalsConsidered"
-                rules={{ required: "More info required" }}
                 render={({
                   field: { onChange, value },
                   fieldState: { error },

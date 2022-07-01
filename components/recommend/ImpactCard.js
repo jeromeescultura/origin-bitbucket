@@ -59,7 +59,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
               level * 100
             }% GreenPower, it would only take ${impact}  to put the same amount of renewable energy back into the grid.`}
           {recommend === "solar" &&
-            `By way of example, if all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, roughly equivalent to immidiately taking ${impact[1]} cars off the road.`}
+            `By way of example, if all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, roughly equivalent to immidiately taking ${impact[1] > 1 ? `${impact[1]} cars`:`${impact[1]} car`} off the road.`}
         </p>
       </div>
       <MoreDetailsComponent
