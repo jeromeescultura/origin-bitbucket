@@ -15,7 +15,7 @@ const OriginAssessment = () => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
-  },[]);
+  }, []);
   const router = useRouter();
 
   const [assessmentAnswers, setAssessmentAnswers] = useState([]);
@@ -134,7 +134,7 @@ const OriginAssessment = () => {
     if (storedPage !== null) {
       setStepNo(storedPage);
     }
-  },[]);
+  }, []);
 
   return (
     <>
@@ -161,7 +161,7 @@ const OriginAssessment = () => {
               <div className="space-y-8 mt-12">
                 {/* STEP ONE */}
                 {stepNo === 1 && (
-                  <StepOneAssessmentContainer buttonHandler={buttonHandler} />
+                  <StepOneAssessmentContainer buttonHandler={buttonHandler} stepNo={stepNo} />
                 )}
 
                 {/* STEP TWO */}

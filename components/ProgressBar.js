@@ -2,8 +2,15 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const ProgressBar = ({ step, stepNo }) => {
+const ProgressBar = () => {
   const router = useRouter();
+  const location = router.pathname;
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    setAnimate(!animate);
+    setTimeout(() => setAnimate(false), 500);
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,7 +30,9 @@ const ProgressBar = ({ step, stepNo }) => {
       </div>
       <div className="flex w-full gap-16 mt-12 lg:mt-0 mb-4 lg:mb-0">
         <div className="flex items-center grow justify-between md:grow-0 md:w-[50%]">
-          <p className="text-sm lg:text-[20px]">Step {stepNo} of 2</p>
+          <p className="text-sm lg:text-[20px]">
+            Step {location === "/assessment_firststep" ? 1 : 2} of 2
+          </p>
         </div>
         <div className="w-10 h-10 md:w-20 md:h-20 hidden lg:inline ml-auto cursor-pointer">
           <Image
@@ -38,15 +47,23 @@ const ProgressBar = ({ step, stepNo }) => {
       <div className="w-20 md:w-28  flex flex-row justify-between gap-2 md:gap-2 lg:-mt-3">
         <div className="w-full h-[8px] relative bg-[#F1F1F1]">
           <div
-            className={`bg-accentColor h-full transition-all ease-linear duration-200 float-right ${
-              stepNo === 1 ? "w-full" : "w-0"
-            }`}
+            className={`bg-accentColor h-full transition-all ease-linear duration-500 ${
+              location === "/assessment_firststep"
+                ? animate
+                  ? "opacity-0"
+                  : "opacity-100"
+                : "opacity-0"
+            } `}
           ></div>
         </div>
         <div className="w-full h-[8px] relative bg-[#F1F1F1]">
           <div
-            className={`bg-accentColor h-full transition-all ease-linear duration-200 ${
-              stepNo === 2 ? "w-full" : "w-0"
+            className={`bg-accentColor h-full transition-all ease-linear duration-500 ${
+              location === "/assessment_secondstep"
+                ? animate
+                  ? "opacity-0"
+                  : "opacity-100"
+                : "opacity-0"
             }`}
           ></div>
         </div>

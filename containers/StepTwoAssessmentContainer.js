@@ -274,9 +274,9 @@ const StepTwoAssessmentContainer = ({ buttonHandler, gatherAnswers }) => {
     }
   }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
-  }, [stepTwoAns]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("STEP_TWO_ANS", JSON.stringify(stepTwoAns));
+  // }, [stepTwoAns]);
 
   const handleChange = (data) =>
     setStepTwoAns({

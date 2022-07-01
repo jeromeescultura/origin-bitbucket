@@ -18,6 +18,7 @@ const StepOneAssessmentContainer = ({
   setAssessmentAnswers,
   assessmentAnswers,
   gatherAnswers,
+  stepNo,
 }) => {
   const questions = {
     chkBoxQsts: [
@@ -189,7 +190,16 @@ const StepOneAssessmentContainer = ({
   const [generalOperationsChanges, setGeneralOperationsChanges] = useState([]);
   const [generalOpsOtherInfo, setGeneralOpsOtherInfo] = useState("");
   const [howMuchPriority, setHowMuchPriority] = useState(3);
-  const [stepOneAns, setStepOneAns] = useState(storedData);
+  const [stepOneAns, setStepOneAns] = useState({
+    implementSustainability: "",
+    goalsConsidered: "",
+    energySourceChanges: [],
+    energySourceOtherInfo: "",
+    generalOperationsChanges: [],
+    generalOpsOtherInfo: "",
+    timeAndEnergy: "",
+    howMuchPriority: 3,
+  });
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
 
@@ -201,6 +211,8 @@ const StepOneAssessmentContainer = ({
     handleSubmit,
     formState: { errors },
   } = methods;
+
+  console.log(errors);
 
   useEffect(() => {
     if (Object.keys(errors).length !== 0) {
@@ -231,7 +243,7 @@ const StepOneAssessmentContainer = ({
       setTimeAndEnergy(storedData.timeAndEnergy);
       setHowMuchPriority(storedData.howMuchPriority);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem("STEP_ONE_ANS", JSON.stringify(stepOneAns));
@@ -386,16 +398,10 @@ const StepOneAssessmentContainer = ({
                 <Controller
                   control={control}
                   name="goalsConsidered"
-                  rules={{ required: "More info required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value } }) => (
                     <TextField
                       fullWidth
-                      helperText={error ? error.message : null}
                       size="large"
-                      error={!!error}
                       onChange={onChange}
                       value={value}
                       color="secondary"

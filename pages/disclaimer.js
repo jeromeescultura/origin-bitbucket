@@ -62,7 +62,7 @@ const Disclaimer = () => {
                 color="primary"
                 size="large"
                 className="lg:w-full"
-                onClick={(e) => handleClick(e, "/origin_assessment")}
+                onClick={(e) => handleClick(e, "/assessment_firststep")}
                 style={{
                   backgroundColor: "#EC0000",
                   borderRadius: 200,
