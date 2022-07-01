@@ -548,7 +548,7 @@ const Recommend = () => {
                     <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
                       These impact estimates are based on electricity usage
                       averages compiled from Origin&apos;s small and medium
-                      business customer base in the{' '}
+                      business customer base in the{" "}
                       <span className="font-medium">{industry?.name}</span>.
                       This will change based on your business&apos; specific
                       usage.{" "}
@@ -562,9 +562,14 @@ const Recommend = () => {
                   </div>
                 </div>
                 <ImpactRanges
+                dayjs={dayjs}
+                  level={level}
                   impactRanges={impactRanges}
                   closeModal={closeModal}
                   showContent={showContent}
+                  low={industry?.dailyUsage?.low}
+                  medium={industry?.dailyUsage?.medium}
+                  high={industry?.dailyUsage?.high}
                 />
                 <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
                   <div className="break-inside-avoid">
