@@ -56,11 +56,7 @@ function ProductContainer() {
       icon: "/icons/products/net-zero.svg",
       impact:
         "Participate in research to help us develop future services tailored to your business",
-<<<<<<< HEAD
       plan: "Available on any Origin Energy plan",
-=======
-      plan: "Available on any Origin energy plan",
->>>>>>> 605af75ad2e2bd362308ae00c548277e720e5ff7
       siteChanges: "None",
       contracts: "None",
       benefits: [
@@ -128,8 +124,6 @@ function ProductContainer() {
       },
     ],
   };
-
-  
 
   return (
     <div className="py-8 lg:w-[80vw] mx-auto mb-16">
