@@ -3,8 +3,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
+import { GOOGLE_ID } from "../lib/ga";
 import { FB_PIXEL_ID } from "../lib/fpixel";
-import { GOOGLE_ID } from "../lib/gAnalytics";
 
 export default class MyDocument extends Document {
   render() {
@@ -38,36 +38,37 @@ export default class MyDocument extends Document {
             async
           ></script>
 
-          <script
+          {/* <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
             async
-          ></script>
-          {/* Facebook */}
+          ></script> */}
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+
+          {/* FB Pixel */}
           <noscript>
             <img
               height="1"
               width="1"
               style={{ display: "none" }}
-              src={`https://www.facebook.com/tr?id=1041470032612059&ev=PageView&noscript=1`}
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
             />
           </noscript>
-          {/* Google */}
-
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=DC-11918918`}
-          ></script>
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'DC-11918918', { page_path: window.location.pathname });
-            `,
-            }}
-          />
         </Head>
         <body>
           <Main />

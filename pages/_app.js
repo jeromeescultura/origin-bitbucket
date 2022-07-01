@@ -7,9 +7,11 @@ import { CacheProvider } from "@emotion/react";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
 import "../styles/globals.css";
-import Script from "next/script";
+
 import { useRouter } from "next/router";
 import * as fbq from "../lib/fpixel";
+import * as ga from "../lib/ga";
+import Script from "next/script";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -17,16 +19,12 @@ export default function MyApp(props) {
   const router = useRouter();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  const handleRouteChange = (url) => {
-    window.gtag("config", "DC-11918918", {
-      page_path: url,
-    });
-    fbq.pageview();
-  };
-
   useEffect(() => {
-    // This pageview only triggers the first time (it's important for Pixel to have real information)
     fbq.pageview();
+    const handleRouteChange = (url) => {
+      ga.pageview(url);
+      fbq.pageview();
+    };
 
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
@@ -55,7 +53,7 @@ export default function MyApp(props) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1041470032612059');
+            fbq('init', ${fbq.FB_PIXEL_ID});
           `,
           }}
         />
