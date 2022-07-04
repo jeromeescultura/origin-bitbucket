@@ -5,6 +5,7 @@ import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
 import { FB_PIXEL_ID } from "../lib/fpixel";
 import { GTM_ID } from "../lib/gtm";
+import Script from "next/script";
 
 export default class MyDocument extends Document {
   render() {
@@ -33,24 +34,31 @@ export default class MyDocument extends Document {
           {this.props.emotionStyleTags}
           {/* Analytics */}
           {/* Adobe */}
-          {/* <script
+          <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-EN92bec34db9c84af69ed78945eed39c3d-development.min.js"
             async
-          ></script> */}
+          ></script>
 
-          <script
+          {/* <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
             async
-          ></script>
+          ></script> */}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
+          {/* Google Tag Manager */}
+          <Script
+            id="gtag-base"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', '${GTM_ID}');
+          `,
+            }}
+          />
+
           {/* FB Pixel */}
           <noscript>
             <img
@@ -62,6 +70,14 @@ export default class MyDocument extends Document {
           </noscript>
         </Head>
         <body>
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
           <Main />
           <NextScript />
         </body>
