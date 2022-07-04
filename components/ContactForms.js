@@ -256,7 +256,9 @@ function ContactForms({ text }) {
             return (
               <>
                 <Button
-                  className={btn1 ? activeStyles : ""}
+                  className={
+                    btn1 ? activeStyles : " hover:border hover:border-gray-300"
+                  }
                   value={"Yes"}
                   onClick={() => handleButtonSelect(true)}
                   sx={{
@@ -268,7 +270,10 @@ function ContactForms({ text }) {
                   Yes
                 </Button>
                 <Button
-                  className={`${btn2 ? activeStyles : ""} ${btn1 && 'border-l-accentColor'}`}
+                  className={`${btn2 ? activeStyles : ""} ${
+                    btn1 &&
+                    "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
+                  }`}
                   value={"No"}
                   onClick={() => handleButtonSelect(false)}
                   sx={{
