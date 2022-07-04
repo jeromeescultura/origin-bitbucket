@@ -60,7 +60,7 @@ function ContactForms({ text }) {
     lastName: "",
     email: "",
     phone: "",
-    existingBusiness: false,
+    existingBusiness: null,
     accountNumber: "",
     primaryAccountHolder: false,
     contactMethod: [],
@@ -93,7 +93,7 @@ function ContactForms({ text }) {
   const [contactFormsDetails, setContactFormsDetails] = useState(defaultValues);
 
   // Retain Values
-  const [existingBusiness, setExistingBusiness] = useState(false);
+  const [existingBusiness, setExistingBusiness] = useState(null);
   const [accountNumber, setAccountNumber] = useState("");
   const [unitNo, setUnitNo] = useState("");
   const [streetNo, setStreetNo] = useState("");
@@ -204,7 +204,7 @@ function ContactForms({ text }) {
 
   // Handle Existing Button
   const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(true);
+  const [btn2, setBtn2] = useState(false);
 
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
@@ -230,7 +230,7 @@ function ContactForms({ text }) {
 
   useEffect(() => {
     setValue("existingBusiness", existingBusiness);
-    if (existingBusiness) {
+    if (existingBusiness !== null) {
       handleButtonSelect(existingBusiness);
     }
   }, [existingBusiness]);
@@ -268,7 +268,7 @@ function ContactForms({ text }) {
                   Yes
                 </Button>
                 <Button
-                  className={btn2 ? activeStyles : ""}
+                  className={`${btn2 ? activeStyles : ""} ${btn1 && 'border-l-accentColor'}`}
                   value={"No"}
                   onClick={() => handleButtonSelect(false)}
                   sx={{
