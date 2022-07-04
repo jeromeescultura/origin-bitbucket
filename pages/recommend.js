@@ -486,8 +486,8 @@ const Recommend = () => {
                       >
                         Previous option
                       </Button>
-                      <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center px-6 !shadow-md">
-                        <p>
+                      <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center justify-center px-6 !shadow-md">
+                        <p className='text-center'>
                           Keen to understand more options?
                           <br /> Toggle to view options at different cost
                           levels.
