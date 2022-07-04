@@ -3,10 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 const NoRecommendations = () => {
   const router = useRouter();
   const handleClick = (e) => {
+    ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push("/");
   };

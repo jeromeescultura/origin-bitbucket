@@ -2,12 +2,16 @@ import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
+import * as fbq from "../lib/fpixel";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Footer() {
   const router = useRouter();
 
   const handleClick = (e, url) => {
+    ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
+
     router.push(url);
   };
 
@@ -29,6 +33,8 @@ function Footer() {
             variant="contained"
             color="primary"
             size="large"
+            name="Start assessment"
+            id="start-assessment"
             onClick={(e) => handleClick(e, "/disclaimer")}
             style={{
               backgroundColor: "#EC0000",
@@ -44,6 +50,8 @@ function Footer() {
             variant="outlined"
             size="large"
             color="error"
+            name="Get in touch"
+            id="get-in-touch"
             onClick={(e) => handleClick(e, "/contact")}
             style={{
               borderRadius: 200,

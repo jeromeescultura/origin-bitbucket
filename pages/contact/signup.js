@@ -29,11 +29,13 @@ import ContactForms from "../../components/ContactForms";
 import PledgeModal from "../../components/signup/PledgeModal";
 import Head from "next/head";
 import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
+import { ButtonTrackingEvent } from "../../functions/analitycsEvents";
 
 function Signup() {
   const router = useRouter();
   const [userID, setUserID] = useState();
   const handleClick = (e) => {
+    ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
     router.push("/");
   };
@@ -91,6 +93,7 @@ function Signup() {
                   height={90}
                   objectFit="contain"
                   alt="origin-logo"
+                  name="go-home"
                   onClick={handleClick}
                 />
               </div>

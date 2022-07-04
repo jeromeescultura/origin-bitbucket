@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import LeafRating from "../components/LeafRating";
 import ProductModal from "./ProductModal";
 import { useState } from "react";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function ProductCard({
   title,
@@ -17,8 +18,8 @@ function ProductCard({
 }) {
   const [productModal, setProductModal] = useState(false);
 
-  const openModal = () => {
-    console.log(productModal);
+  const openModal = (title) => {
+    ButtonTrackingEvent("product-" + title + "-popup", true);
     setProductModal(true);
   };
 
@@ -93,7 +94,7 @@ function ProductCard({
             paddingLeft: "2rem",
             paddingRight: "2rem",
           }}
-          onClick={openModal}
+          onClick={() => openModal(title)}
         >
           Find out more
         </Button>

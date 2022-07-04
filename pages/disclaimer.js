@@ -2,15 +2,18 @@ import { Button } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
+import * as fbq from "../lib/fpixel";
 
 const Disclaimer = () => {
   const router = useRouter();
   const handleClick = (e, url) => {
+    ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
     localStorage.setItem("STARTASSESSMENT", true);
-
     router.push(url);
   };
+
   return (
     <>
       <Head>
@@ -30,6 +33,7 @@ const Disclaimer = () => {
             height={90}
             objectFit="contain"
             alt="origin-logo"
+            name="go-home"
             onClick={(e) => handleClick(e, "/")}
             priority
           />
@@ -63,6 +67,8 @@ const Disclaimer = () => {
                 size="large"
                 className="lg:w-full"
                 onClick={(e) => handleClick(e, "/assessment_firststep")}
+                name="Disclaimer Accepted"
+                id="disclaimer-accepted"
                 style={{
                   backgroundColor: "#EC0000",
                   borderRadius: 200,
@@ -77,6 +83,8 @@ const Disclaimer = () => {
                 color="error"
                 className="lg:w-full"
                 onClick={(e) => handleClick(e, "/contact")}
+                name="Submit expression of interest"
+                id="submit-expression-of-interest"
                 style={{
                   borderRadius: 200,
                   boxShadow: "none",

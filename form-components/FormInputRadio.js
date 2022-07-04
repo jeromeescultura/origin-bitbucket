@@ -8,8 +8,9 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-const generateRadioOptions = (options) => {
+const generateRadioOptions = (options, name) => {
   return options?.map((singleOption, index) => (
     <div key={index} className="mt-4">
       <FormControlLabel
@@ -23,7 +24,6 @@ const generateRadioOptions = (options) => {
         value={singleOption?.value ?? ""}
         label={
           <div className="">
-            {" "}
             <span
               className={`${
                 singleOption?.subText && "text-lg font-GorditaMedium"
@@ -38,7 +38,13 @@ const generateRadioOptions = (options) => {
             )}
           </div>
         }
-        control={<Radio color="secondary" size="medium" />}
+        control={
+          <Radio
+            color="secondary"
+            size="medium"
+            onClick={() => ButtonTrackingEvent(name, singleOption?.value)}
+          />
+        }
       />
     </div>
   ));
@@ -55,7 +61,9 @@ const FormInputRadio = ({
   radioDefault,
 }) => {
   useEffect(() => {
-    if (radioValue) setValue(name, radioValue);
+    if (radioValue) {
+      setValue(name, radioValue);
+    }
   }, [radioValue]);
   return (
     <Controller
@@ -70,11 +78,15 @@ const FormInputRadio = ({
             </FormLabel>
           )}
           <RadioGroup
-            sx={{border: error && '2px solid red', p: error && '5px', borderRadius: error && '10px'}}
+            sx={{
+              border: error && "2px solid red",
+              p: error && "5px",
+              borderRadius: error && "10px",
+            }}
             value={value ? value : ""}
             onChange={onChange}
           >
-            {generateRadioOptions(options)}
+            {generateRadioOptions(options, name)}
           </RadioGroup>
           {error && (
             <FormHelperText>{error ? error.message : null}</FormHelperText>
