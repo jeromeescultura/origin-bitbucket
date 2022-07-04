@@ -16,9 +16,9 @@ function Footer() {
   };
 
   return (
-    <div className="bg-white p-8 shadow-t-md fixed bottom-0 w-full">
-      <div className="lg:w-[95%] xl:w-[80%] mx-auto grid sm:grid-cols-2 gap-4 sm:gap-10">
-        <div className="text-center sm:text-left">
+    <div className="bg-white p-8 shadow-t-md fixed bottom-0 w-full ">
+      <div className=" w-full mx-auto grid sm:grid-cols-2 gap-4 sm:gap-10 max-w-[1400px]">
+        <div className="text-center sm:text-left px-8">
           <p className="text-primaryText text-lg font-bold">
             Start saving more than money
           </p>
