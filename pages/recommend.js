@@ -161,7 +161,8 @@ const Recommend = () => {
     handleContent(recommend, pageNo, products, pages, productPages, setContent);
   }, [pageNo, products, industry, pages, pageNo]);
 
-  const [showFooter, setShowFooter] = useState(false);
+  const [showFooter, setShowFooter] = useState(true);
+  const [bigScreen, setBigScreen] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
   const showref = useRef();
   const hideref = useRef();
@@ -170,25 +171,29 @@ const Recommend = () => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
-        setShowFooter(true);
-      }
-    });
-
-    if (showref.current) {
-      observer.observe(showref.current);
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
         setShowFooter(false);
+      } else {
+        setShowFooter(true);
       }
     });
 
     if (hideref.current) {
       observer.observe(hideref.current);
+    }
+  }, [loading]);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setBigScreen(true);
+      } else {
+        setBigScreen(false);
+        setShowFooter(false);
+      }
+    });
+
+    if (hideref.current) {
+      observer.observe(showref.current);
     }
   }, [loading]);
 
@@ -336,10 +341,6 @@ const Recommend = () => {
   useEffect(() => {
     setextraXX(getExtraCost(dailyUsage, offSet, level));
   }, [dailyUsage, offSet, level]);
-
-  useEffect(() => {
-    console.log(extraXX, "extraXX");
-  }, [extraXX]);
 
   const [storedData, setStoredData] = useState({
     product: "",
@@ -610,7 +611,7 @@ const Recommend = () => {
                       handleLevel={handleLevel}
                     />
                   </div>
-                  <div className="break-inside-avoid" ref={showref}>
+                  <div className="break-inside-avoid">
                     {(subCategory?.includes("decarbEOI") ||
                       (subCategory?.includes("greenPower") &&
                         showContent === "solar")) && (
@@ -627,7 +628,9 @@ const Recommend = () => {
                   </div>
                 </div>
               </ContentContainer>
-              <Faqs />
+              <div ref={showref}>
+                <Faqs />
+              </div>
             </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
@@ -636,6 +639,17 @@ const Recommend = () => {
           )}
         </div>
         {showFooter && (
+          <FooterReco
+            handleButton={handleButton}
+            handleExpress={handleExpress}
+            handleChoose={handleChoose}
+            recommend={showContent}
+            enableBtn={enableBtn}
+            pageNo={pageNo}
+            pages={pages}
+          />
+        )}
+        {bigScreen && (
           <FooterReco
             handleButton={handleButton}
             handleExpress={handleExpress}
