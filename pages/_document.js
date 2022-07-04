@@ -3,8 +3,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
-import { GOOGLE_ID } from "../lib/ga";
 import { FB_PIXEL_ID } from "../lib/fpixel";
+import { GTM_ID } from "../lib/gtm";
 
 export default class MyDocument extends Document {
   render() {
@@ -33,33 +33,24 @@ export default class MyDocument extends Document {
           {this.props.emotionStyleTags}
           {/* Analytics */}
           {/* Adobe */}
-          <script
+          {/* <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-EN92bec34db9c84af69ed78945eed39c3d-development.min.js"
             async
-          ></script>
+          ></script> */}
 
-          {/* <script
+          <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
             async
-          ></script> */}
+          ></script>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GOOGLE_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
-          />
-
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
           {/* FB Pixel */}
           <noscript>
             <img

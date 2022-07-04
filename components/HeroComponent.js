@@ -2,10 +2,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { Button } from "@mui/material";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function HeroComponent() {
   const router = useRouter();
   const handleClick = (e, url) => {
+    ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
     router.push(url);
   };
@@ -20,6 +22,7 @@ function HeroComponent() {
           className="rounded-2xl"
           objectPosition="left"
           priority
+          name="Home"
         />
       </div>
       <div className="absolute max-w-[920px] pt-2 xs:pt-16 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
@@ -38,6 +41,8 @@ function HeroComponent() {
             color="primary"
             size="large"
             onClick={(e) => handleClick(e, "/disclaimer")}
+            name="Start assessment"
+            id="start-assessment"
             style={{
               backgroundColor: "#EC0000",
               borderRadius: 200,
@@ -53,6 +58,8 @@ function HeroComponent() {
             size="large"
             color="error"
             onClick={(e) => handleClick(e, "/contact")}
+            name="Get in touch"
+            id="get-in-touch"
             style={{
               borderRadius: 200,
               boxShadow: "none",

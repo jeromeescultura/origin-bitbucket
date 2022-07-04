@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
 import Head from "next/head";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 const AssessmentFirstStep = () => {
   const router = useRouter();
@@ -403,6 +404,7 @@ const AssessmentFirstStep = () => {
                               color="secondary"
                               arial-label="contained button group"
                               onChange={onChange}
+                              fullWidth
                             >
                               <Button
                                 className={
@@ -412,6 +414,8 @@ const AssessmentFirstStep = () => {
                                 }
                                 value={"Not really"}
                                 onClick={() => handleButtonSelect(0)}
+                                name="Not really"
+                                id="not-really"
                                 sx={{
                                   color: "#505050",
                                   borderColor: "#E3E3E3",
@@ -432,6 +436,8 @@ const AssessmentFirstStep = () => {
                                   btn1 &&
                                   "border-l-accentColor hover:border-l-accentColor"
                                 }`}
+                                name="Yes, I'm considering it"
+                                id="yes-im-considering-it"
                                 value={"Yes, I'm considering it"}
                                 onClick={() => handleButtonSelect(1)}
                                 sx={{

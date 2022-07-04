@@ -3,10 +3,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import ContactForms from "../../components/ContactForms";
 import ContentContainer from "../../containers/ContentContainer";
+import { ButtonTrackingEvent } from "../../functions/analitycsEvents";
 
 function Interested() {
   const router = useRouter();
   const handleClick = (e) => {
+    ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push("/");
   };
@@ -32,6 +34,7 @@ function Interested() {
                 height={90}
                 objectFit="contain"
                 alt="origin-logo"
+                name="go-home"
                 onClick={handleClick}
               />
             </div>

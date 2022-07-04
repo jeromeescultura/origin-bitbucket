@@ -36,6 +36,7 @@ import {
 } from "../functions/recofunctions/RecoFunctions";
 import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -387,6 +388,7 @@ const Recommend = () => {
   }, [router.query]);
 
   const handleChoose = () => {
+    ButtonTrackingEvent("Selected Product", recommend);
     router.push({
       pathname: "/contact/signup",
       query: { uuid: userID },
@@ -562,7 +564,7 @@ const Recommend = () => {
                   </div>
                 </div>
                 <ImpactRanges
-                dayjs={dayjs}
+                  dayjs={dayjs}
                   level={level}
                   impactRanges={impactRanges}
                   closeModal={closeModal}

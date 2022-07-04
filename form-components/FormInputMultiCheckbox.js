@@ -8,6 +8,7 @@ import {
   FormLabel,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 export const FormInputMultiCheckbox = ({
   name,
@@ -20,6 +21,7 @@ export const FormInputMultiCheckbox = ({
   setCheckboxValue,
 }) => {
   const handleSelect = (value) => {
+    ButtonTrackingEvent(name, value);
     const isPresent = selectedItems.indexOf(value);
     if (isPresent !== -1) {
       const remaining = selectedItems.filter((item) => item !== value);

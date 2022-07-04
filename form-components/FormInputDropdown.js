@@ -23,7 +23,7 @@ const FormInputDropdown = ({
     if (options) {
       return options.map((option, index) => {
         return (
-          <MenuItem key={index} value={option?.value}>
+          <MenuItem key={index} value={option?.value} id={name}>
             <p className="text-xs xs:text-base md:text-base">{option.label}</p>
           </MenuItem>
         );
@@ -31,7 +31,7 @@ const FormInputDropdown = ({
     } else if (states) {
       return states.map((state, index) => {
         return (
-          <MenuItem key={index} value={state.name}>
+          <MenuItem key={index} value={state.name} id={name}>
             <p className="capitalize text-xs xs:text-base md:text-base">
               {state.name}
             </p>

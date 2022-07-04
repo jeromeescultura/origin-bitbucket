@@ -2,12 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Thankyou() {
   const router = useRouter();
   const [userID, setUserID] = useState();
 
   const handleClick = (e) => {
+    ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push("/");
   };

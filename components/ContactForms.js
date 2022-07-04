@@ -13,6 +13,7 @@ import FormInputDropdown from "../form-components/FormInputDropdown";
 import { FormInputMultiCheckbox } from "../form-components/FormInputMultiCheckbox";
 import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function ContactForms({ text }) {
   const [userID, setUserID] = useState();
@@ -147,6 +148,7 @@ function ContactForms({ text }) {
   const { handleSubmit, control, watch, setValue } = methods;
 
   const onSubmit = (data) => {
+    ButtonTrackingEvent("contact-submit", data);
     if (userID) {
       const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
         method: "POST",
@@ -221,6 +223,7 @@ function ContactForms({ text }) {
 
   const checkboxHandler = () => {
     setPrimaryAccountHolder(!primaryAccountHolder);
+    ButtonTrackingEvent("primaryAccountHolder", !primaryAccountHolder);
     setValue("primaryAccountHolder", primaryAccountHolder);
   };
 
@@ -254,7 +257,7 @@ function ContactForms({ text }) {
           name="existingBusiness"
           render={({}) => {
             return (
-              <>
+              <ButtonGroup aria-label="outlined primary button group" fullWidth>
                 <Button
                   className={btn1 ? activeStyles : ""}
                   value={"Yes"}
@@ -264,6 +267,8 @@ function ContactForms({ text }) {
                     borderColor: "#E3E3E3",
                     fontSize: "16",
                   }}
+                  name="Do you have an existing business account with Origin?"
+                  id="existing-business"
                 >
                   Yes
                 </Button>
@@ -276,10 +281,12 @@ function ContactForms({ text }) {
                     borderColor: "#E3E3E3",
                     fontSize: "16",
                   }}
+                  name="Do you have an existing business account with Origin?"
+                  id="existing-business"
                 >
                   No
                 </Button>
-              </>
+              </ButtonGroup>
             );
           }}
         />

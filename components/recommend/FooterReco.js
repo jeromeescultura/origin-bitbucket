@@ -80,6 +80,8 @@ function FooterReco({
           color="primary"
           size="large"
           onClick={handleChoose}
+          name="Im interested in this"
+          id="im-intereste-in-this"
           style={{
             backgroundColor: "#EC0000",
             borderRadius: 200,
@@ -94,6 +96,8 @@ function FooterReco({
           variant="outlined"
           size="large"
           color="error"
+          name="Lets chat more"
+          id="lets-chat-more"
           onClick={handleExpress}
           style={{
             borderRadius: 200,

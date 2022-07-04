@@ -1,10 +1,25 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function IconsQuestion({ answer, answers, ans, setValue, name, options }) {
   const [selected, setSelected] = useState([]);
+  const [electricity, setElectricity] = useState(false);
+  const [naturalGas, setnaturalGas] = useState(false);
+  const [lpg, setLpg] = useState(false);
 
-  const handleSelected = (e) => {
+  const handleSelected = (e, value) => {
+    if (value === "electricity") {
+      setElectricity(!electricity);
+      ButtonTrackingEvent("energySources", !electricity);
+    } else if (value === "natural_gas") {
+      setnaturalGas(!naturalGas);
+      ButtonTrackingEvent("energySources", !naturalGas);
+    } else if (value === "lpg") {
+      setLpg(!lpg);
+      ButtonTrackingEvent("energySources", !lpg);
+    }
+
     let target = e.target;
     let item;
 
@@ -65,7 +80,7 @@ function IconsQuestion({ answer, answers, ans, setValue, name, options }) {
               selected?.includes(item.value) &&
               "lg:bg-highlight border-accentColor"
             } form-check flex flex-col lg:items-center gap-10 lg:border rounded-xl min-w-[180px] max-w-[220px] py-4 lg:py-6 bg-white  cursor-pointer`}
-            onClick={handleSelected}
+            onClick={(e) => handleSelected(e, item.value)}
           >
             <div className="md:w-14 md:h-18 w-8 h-8 hidden lg:block pointer-events-none select-none">
               <Image
