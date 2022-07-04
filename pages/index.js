@@ -222,7 +222,7 @@ export default function Home() {
                 ))}
               </div> */}
             </ContentContainer>
-            <CaseStudyRow />
+            {/* <CaseStudyRow /> */}
           </div>
         </div>
       </div>
