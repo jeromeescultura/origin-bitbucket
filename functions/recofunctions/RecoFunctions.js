@@ -595,7 +595,7 @@ export const handleImpactData = (
     } else {
       tempImpactCalc = Math.ceil(impactCalc);
     }
-    setImpact(tempImpactCalc.toString());
+    setImpact(separator(tempImpactCalc));
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(
       ((dailyUsage * 365) / 33.333 / 60 / 24) * level,
@@ -656,7 +656,7 @@ export const handleImpactData = (
     } else {
       cars = Math.ceil(tempCars);
     }
-    setImpact([metricTons.toString(), cars.toString()]);
+    setImpact([separator(metricTons), separator(cars)]);
   }
 };
 
@@ -695,3 +695,9 @@ export function getIndustryByName(name) {
 export function getExtraCost(dailyUsage, offSet, level) {
   Math.round((dailyUsage * offSet * level + Number.EPSILON) * 100) / 100;
 }
+
+export const separator = (numb) => {
+  var str = numb.toString().split(".");
+  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return str.join(".");
+};
