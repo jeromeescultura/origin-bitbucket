@@ -150,18 +150,22 @@ function ContactForms({ text }) {
   const onSubmit = (data) => {
     ButtonTrackingEvent("contact-submit", data);
     if (userID) {
-      const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          topRecommend: topRecommendation,
-          otherRecommendation: otherRecommendations,
-          productSelected: selectedProduct.product,
-        }),
-      })
+      const json = fetch(
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/" +
+          userID,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data,
+            topRecommend: topRecommendation,
+            otherRecommendation: otherRecommendations,
+            productSelected: selectedProduct.product,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then(
           (data) => console.log(data),
@@ -172,13 +176,16 @@ function ContactForms({ text }) {
           window.localStorage.clear()
         );
     } else {
-      const json = fetch("https://dev.peek.net.au/origin/contact/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      const json = fetch(
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
         .then((response) => response.json())
         .then((data) => console.log(data), router.push("/thankyou"));
     }
