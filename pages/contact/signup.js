@@ -35,7 +35,7 @@ function Signup() {
   const router = useRouter();
   const [userID, setUserID] = useState();
   const handleClick = (e) => {
-    ButtonTrackingEvent(e.target.name, url);
+    ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push("/");
   };
