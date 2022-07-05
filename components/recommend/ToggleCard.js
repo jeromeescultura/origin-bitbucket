@@ -90,13 +90,14 @@ const ToggleCard = ({
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div>Participate in the Decarbonisation Interview</div>
                     <Switch
+                      sx={{ willChange: "transform" }}
                       className="order-first lg:order-last"
                       color="secondary"
                       onChange={expandInterview}
                       checked={interview}
                     />
                   </div>
-                  <Collapse in={interview}>
+                  <Collapse in={interview} sx={{ willChange: "transform" }}>
                     <List dense={true} className="lg:max-w-[280px]">
                       <ListItem className="p-0">
                         <ListItemIcon>
@@ -155,9 +156,10 @@ const ToggleCard = ({
                       color="secondary"
                       onChange={expandGreenPower}
                       checked={greenPower}
+                      sx={{ willChange: "transform" }}
                     />
                   </div>
-                  <Collapse in={greenPower}>
+                  <Collapse in={greenPower} sx={{ willChange: "transform" }}>
                     <div className="mt-6">
                       One of our Business Club representatives will get in
                       contact to review your GreenPower options
