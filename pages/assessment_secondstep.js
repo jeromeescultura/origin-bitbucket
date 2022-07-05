@@ -389,12 +389,12 @@ const AssessmentSecondStep = () => {
     )
       .then((response) => response.json(), setIsSubmitting(true))
       .then(
-        (data) => console.log(data, "xxxx")
-        // router.push({
-        //   pathname: "/recommend",
-        //   query: { uuid: data.UUID },
-        // }),
-        // window.localStorage.removeItem("PAGE")
+        (data) =>
+          router.push({
+            pathname: "/recommend",
+            query: { uuid: data.UUID },
+          }),
+        window.localStorage.removeItem("PAGE")
       );
   };
 
