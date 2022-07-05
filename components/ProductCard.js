@@ -34,9 +34,9 @@ function ProductCard({
           title === "Decarbonisation Interview"
             ? "bg-[rgba(0, 185, 215, 0.04)] border-2"
             : "bg-white"
-        }  z-20 px-8  rounded-xl flex flex-col gap-2 items-center text-center justify-evenly h-[920px] lg:max-w-sm`}
+        }  z-20 px-8  rounded-xl flex flex-col items-center text-center justify-between h-[920px] lg:max-w-sm py-6`}
       >
-        <div className="pt-4">
+        <div>
           <p>Take action with</p>
           <p
             className={`font-bold text-[16px] mt-2  ${
