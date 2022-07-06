@@ -46,8 +46,8 @@ const Disclaimer = () => {
             <div>
               <p className="font-medium subtitle">Eligibility</p>
               <p className="my-4 lg:my-6">
-                Our online assessment is currently able to identify clean energy
-                alternatives for small &amp; medium businesses in{" "}
+                Our online assessment is available for small &amp; medium
+                businesses in{" "}
                 <span className="font-bold">
                   South Australia, Victoria, New South Wales
                 </span>{" "}
@@ -55,7 +55,7 @@ const Disclaimer = () => {
               </p>
               <p>
                 If your business does not operate in these states, but you would
-                like to find out when the program becomes available to you,
+                like to find out how your business can support cleaner energy,
                 please let us know by completing your expression of interest
                 below.
               </p>

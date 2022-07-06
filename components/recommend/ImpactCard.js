@@ -24,7 +24,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[530px] mx-auto">
       <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
-        Your impact
+        Your estimated impact
       </p>
       <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row">
         <div className="text-center min-w-[150px]">
@@ -78,41 +78,47 @@ const ImpactCard = ({ recommend, impact, level }) => {
             <p>
               Our Origin Go Zero add-on is 100% carbon neutral and certified by
               Climate Active – an initiative backed by the Australian Government
-              to help reduce gas emissions.
+              to help reduce electricity emissions.
             </p>
+
             <p>
-              Add Origin Go Zero to your energy plan (for a bit extra on your
-              bill each month) and we’ll offset the amount of greenhouse
-              emissions created by the amount of electricity you use.
+              Add Origin Go Zero to your electricity plan and we’ll offset the
+              amount of greenhouse emissions created by the amount of
+              electricity you use.
             </p>
+
             <p>
               Origin will support a number of credible offset options sourced
               locally and internationally.
             </p>
+
             <p>By adding Origin Go Zero you’ll be:</p>
-            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
-              <li>Reducing your carbon emissions</li>
-              <li>Helping contribute to a healthier environment </li>
+
+            <ul className="text-sm list-disc pl-5">
+              <li>Offsetting your carbon emissions</li>
+              <li>Helping contribute to a healthier environment</li>
             </ul>
           </div>
         ) : recommend === "greenPower" ? (
           <div className="space-y-4 text-secondaryText">
             <p>
               GreenPower is a government-accredited program. When you add
-              GreenPower to your electricity plan (for a bit extra on your bill
-              each month), we’ll match your electricity use by sending the same
-              amount of renewable energy back into the energy grid.
+              GreenPower to your electricity plan, the equivalent electricity
+              consumed will be added to the energy grid using renewable sources.
             </p>
+
             <p>
               The best part is, you can feel confident knowing your money is
               supporting government-accredited renewable projects in Australia.
             </p>
 
             <p>By adding GreenPower you’ll be:</p>
-            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
-              <li>Supporting Australian renewables</li>
-              <li>Reducing carbon emissions</li>
-              <li>Helping contribute to a healthier environment </li>
+
+            <ul className="text-sm list-disc pl-5">
+              <li>
+                Supporting Australian renewables to reduce carbon emissions
+              </li>
+              <li>Helping contribute to a healthier environment</li>
             </ul>
           </div>
         ) : (
@@ -121,7 +127,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
               Solar uses clean, renewable energy from the sun, making you less
               reliant on traditional sources of electricity such as fossil
               fuels.
-            </p>
+            </p>{" "}
             <p>
               Going solar can help your business reduce daytime electricity
               costs and your bottom line.
@@ -132,9 +138,9 @@ const ImpactCard = ({ recommend, impact, level }) => {
               businesses committed to sustainable energy practices.
             </p>
             <p>By adding solar you’ll be:</p>
-            <ul className="font-GorditaRegular text-sm font-light list-inside list-disc space-y-1 ml-2">
+            <ul className="text-sm list-disc pl-5">
               <li>Using self generated renewable energy</li>
-              <li>Reducing carbon emissions </li>
+              <li>Reducing carbon emissions</li>
               <li>Helping contribute to a healthier environment</li>
             </ul>
           </div>

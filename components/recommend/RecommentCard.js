@@ -76,7 +76,7 @@ const RecommentCard = ({
         <div className="grid grid-rows-3">
           <div className="grid grid-cols-2 items-center border-t py-2">
             <p className="font-medium">Plan</p>
-            <p>Available on any Origin Energy plan</p>
+            <p>Available on any Origin Electricity plan</p>
           </div>
           <div className="grid grid-cols-2 items-center border-t py-2">
             <p>Site changes</p>
@@ -98,7 +98,7 @@ const RecommentCard = ({
               </h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
-                Origin Energy plan*
+                Origin Electricity plan*
               </p>
             </div>
           ) : (
@@ -107,7 +107,7 @@ const RecommentCard = ({
               <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
               <p className="text-xs text-subTextColor">
                 extra p/day on any <br />
-                Origin Energy plan*
+                Origin Electricity plan*
               </p>
             </div>
           )}
@@ -128,7 +128,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                A <u>newsletter</u> on your impact
+                <u>Insights</u> on your impact
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -143,6 +143,7 @@ const RecommentCard = ({
               </ListItemIcon>
               <p>
                 <u>Free marketing toolkit</u> to communicate your impact
+                externally
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -186,8 +187,12 @@ const RecommentCard = ({
         </div>
       </div>
       <p className="text-xs text-subTextColor text-center leading-6">
-        *Once you submit your application, one of our Business club
-        representatives will get in contact to review your energy plan options.
+        *This estimated cost is based on industry averages. The actual cost will
+        depend on your business&apos; specific usage. <br />
+        <br />
+        *Once you submit your application, one of our Business Club Specialists
+        will get in contact to discuss your energy plan options and any
+        potential costs in greater detail.
       </p>
     </div>
   );

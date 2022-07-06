@@ -442,10 +442,9 @@ const Recommend = () => {
                   </p>
                   <p className="text-subTextColor mt-6">
                     Based on what you&apos;ve told us, your business is
-                    interested in taking climate action, but aren&apos;t ready
-                    to invest too much yet. And that&apos;s okay. We want to be
-                    able to support everyone in the transition. Let&apos;s
-                    review your next steps below.
+                    interested in taking steps towards supporting cleaner
+                    energy. We want to be able to support everyone in the
+                    transition. Let&apos;s review your next steps below.
                   </p>
                 </div>
 
@@ -490,7 +489,7 @@ const Recommend = () => {
                         Previous option
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center justify-center px-6 !shadow-md">
-                        <p className='text-center'>
+                        <p className="text-center">
                           Keen to understand more options?
                           <br /> Toggle to view options at different cost
                           levels.

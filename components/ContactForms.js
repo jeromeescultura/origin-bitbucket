@@ -556,8 +556,8 @@ function ContactForms({ text }) {
         Submit
       </Button>
       <p>
-        *Once you submit your application, one of our Business Club
-        representatives will get in contact to review your energy plan options.
+        *Once you submit your application, one of our Business Club Specialists
+        will get in contact to discuss your energy plan options.
       </p>
     </section>
   );

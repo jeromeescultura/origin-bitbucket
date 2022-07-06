@@ -95,9 +95,9 @@ export default function Home() {
               veritatis corporis
             </h2> */}
             <p className="my-6 lg:my-8 sm:leading-loose">
-              At Origin, we believe you shouldn&#39;t have to choose between
-              maintaining funds to keep your business running now, and choosing
-              cleaner, low carbon energy solutions to power it for the future.
+              At Origin, we want to help businesses to support cleaner energy
+              solutions - we will work with you to see if this is possible for
+              your business.
             </p>
             {/* <p className="text-secondaryBG font-bold">Learn more</p> */}
           </div>
@@ -151,10 +151,10 @@ export default function Home() {
                     Understand how your support is making a difference
                   </p>
                   <p className="font-light" ref={hideref}>
-                    We&apos;ll provide insights about how your support has made
-                    a difference through your Towards-Cleaner newsletter, so you
-                    can understand the good change your business has made and
-                    further actions to continue your sustainability journey.
+                    We&apos;ll provide updates on how your support has made a
+                    difference through your Business Club insights. This is so
+                    you can understand the good change your business has made
+                    and further actions to continue your sustainability journey.
                   </p>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function Home() {
                 <p className="text-center text-sm font-light mt-6">
                   There&apos;s no pressure on your business to take on a full
                   scale clean energy transition plan. We help you identify the
-                  best actions for your business to support cleaner energy
+                  actions for your business to support cleaner electricity
                   solutions, based on our understanding of how much your
                   business has capacity to do.
                 </p>
@@ -217,7 +217,7 @@ export default function Home() {
                     key={item.id}
                     icon={item.icon}
                     text={item.text}
-                    desc={item.desc}
+                  desc={item.desc}
                   />
                 ))}
               </div> */}

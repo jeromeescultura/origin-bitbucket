@@ -72,13 +72,13 @@ const ProductModal = ({ product, closeModal, open }) => {
               <p>
                 Our Origin Go Zero add-on is 100% carbon neutral and certified
                 by Climate Active – an initiative backed by the Australian
-                Government to help reduce gas emissions.
+                Government to help reduce electricity emissions.
               </p>
               <br />
               <p>
-                Add Origin Go Zero to your energy plan (for a bit extra on your
-                bill each month) and we’ll offset the amount of greenhouse
-                emissions created by the amount of electricity you use.
+                Add Origin Go Zero to your electricity plan and we’ll offset the
+                amount of greenhouse emissions created by the amount of
+                electricity you use.
               </p>
               <br />
               <p>
@@ -90,7 +90,7 @@ const ProductModal = ({ product, closeModal, open }) => {
               <br />
 
               <ul className="text-sm list-disc pl-5">
-                <li>Reducing your carbon emissions</li>
+                <li>Offsetting your carbon emissions</li>
                 <li>Helping contribute to a healthier environment</li>
               </ul>
             </div>
@@ -99,9 +99,9 @@ const ProductModal = ({ product, closeModal, open }) => {
             <div className="font-light subtitle text-sm">
               <p>
                 GreenPower is a government-accredited program. When you add
-                GreenPower to your electricity plan (for a bit extra on your
-                bill each month), we’ll match your electricity use by sending
-                the same amount of renewable energy back into the energy grid.
+                GreenPower to your electricity plan, the equivalent electricity
+                consumed will be added to the energy grid using renewable
+                sources.
               </p>
               <br />
               <p>
@@ -115,8 +115,9 @@ const ProductModal = ({ product, closeModal, open }) => {
               <p>By adding GreenPower you’ll be:</p>
               <br />
               <ul className="text-sm list-disc pl-5">
-                <li>Supporting Australian renewables</li>
-                <li>Reducing your carbon emissions</li>
+                <li>
+                  Supporting Australian renewables to reduce carbon emissions
+                </li>
                 <li>Helping contribute to a healthier environment</li>
               </ul>
             </div>
@@ -125,8 +126,8 @@ const ProductModal = ({ product, closeModal, open }) => {
             <div className="font-light subtitle text-sm">
               <p>
                 The Decarbonisation Interview is an opportunity for Origin to
-                understand your business&apos; energy needs and sustainability goals
-                so that we can develop future services tailored to your
+                understand your business&apos; energy needs and sustainability
+                goals so that we can develop future services tailored to your
                 business.
               </p>
               <br />
@@ -134,7 +135,8 @@ const ProductModal = ({ product, closeModal, open }) => {
                 Express interest here, and one of our Business Club Specialists
                 will reach out to provide further information. They will discuss
                 the research approach and timing of the interview as well as
-                anything else you&apos;d like to know before agreeing to proceed.
+                anything else you&apos;d like to know before agreeing to
+                proceed.
               </p>
             </div>
           )}
