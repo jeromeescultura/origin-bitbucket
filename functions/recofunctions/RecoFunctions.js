@@ -602,6 +602,8 @@ export const handleImpactData = (
       "d"
     );
 
+    console.log('FORMULA', dayjs.duration(0.20341951875,'d'))
+
     if (impactCalc?.$d?.days > 0) {
       if (impactCalc?.$d?.days > 1) {
         setImpact(`${impactCalc?.$d?.days} days`);

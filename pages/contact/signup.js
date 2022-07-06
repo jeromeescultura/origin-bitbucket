@@ -103,7 +103,7 @@ function Signup() {
                 Applying to Origin&#39;s Business Club
               </h2>
               <p className="subtitle my-6 leading-loose w-[300px] sm:w-full mx-auto">
-                Thank you for choosing to join the program!
+                Thank you for showing interest in the Business Club!
               </p>
             </div>
           </section>
@@ -112,8 +112,8 @@ function Signup() {
             <section className="lg:col-span-2 lg:order-2 relative z-10">
               <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
                 <div className="text-center space-y-2">
-                  <p className="text-sm pb-4">
-                    You have chosen to participate with
+                  <p className="text-sm pb-4 max-w-[200px] mx-auto">
+                    You are interested in participating with
                   </p>
                   {/* <LeafRating
                 count={
@@ -160,7 +160,10 @@ function Signup() {
                       <div className="grid grid-rows-3 text-left">
                         <div className="grid grid-cols-2 items-center border-t py-2">
                           <p className="font-medium">Plan</p>
-                          <p>Available on any Origin Energy plan</p>
+                          <p>
+                            Available on any Origin Electricity plan{" "}
+                            {/* {product === "solar" ? "or as a stand-alone" : ""} */}
+                          </p>
                         </div>
                         <div className="grid grid-cols-2 items-center border-t py-2">
                           <p>Site changes</p>
@@ -187,7 +190,9 @@ function Signup() {
                     <p className="text-xs text-subTextColor">
                       extra p/{product === "solar" ? "month" : "day"} on any{" "}
                       <br />
-                      Origin Energy plan*
+                      Origin Electricity plan{" "}
+                      {/* {product === "solar" ? "or as a stand-alone" : ""} */}
+                      *
                     </p>
                   </div>
                   <div className="mt-16">
@@ -267,8 +272,8 @@ function Signup() {
                               <p className="text-left">
                                 GreenPower
                                 <br />
-                                One of our Business Club representatives will
-                                get in contact to review your GreenPower options
+                                One of our Business Club Specialist will get in
+                                contact to review your GreenPower options
                               </p>
                             </div>
                           )}
@@ -281,7 +286,7 @@ function Signup() {
             </section>
             <div className="lg:col-span-3 lg:order-1 ">
               <ContactForms
-                text="Please give us a few details, and one of our Business Club Specialists will contact
+                text="Please give us a few details, and one of our Business Club Specialist will contact
         you about finalising your application."
               />
             </div>
