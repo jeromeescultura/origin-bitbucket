@@ -37,6 +37,7 @@ import {
 import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
+import GreenPowerToggle from "../components/recommend/GreenPowerToggle";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -588,6 +589,15 @@ const Recommend = () => {
                       openModal={openModal}
                     />
                   </div>
+                  <div>
+                    {subCategory?.includes("greenPower") && (
+                      <GreenPowerToggle
+                        recommend={showContent}
+                        pledges={pledges}
+                        setPledges={setPledges}
+                      />
+                    )}
+                  </div>
                   <div className="break-inside-avoid">
                     <RecommentCard
                       topRecommend={recommend}
@@ -599,24 +609,18 @@ const Recommend = () => {
                     />
                   </div>
                   <div className="break-inside-avoid">
-                    {(subCategory?.includes("decarbEOI") ||
-                      (subCategory?.includes("greenPower") &&
-                        showContent === "solar")) && (
+                    {subCategory?.includes("decarbEOI") && (
                       <ToggleCard
                         recommend={showContent}
-                        adds={subCategory}
-                        level={level}
-                        handleLevel={handleLevel}
                         pledges={pledges}
                         setPledges={setPledges}
-                        setLevel={setLevel}
                       />
                     )}
                   </div>
                 </div>
               </ContentContainer>
-              <div ref={showref}>
-                <Faqs />
+              <div ref={showref} className="pt-36">
+                {/* <Faqs /> */}
               </div>
             </div>
           ) : (
@@ -625,7 +629,7 @@ const Recommend = () => {
             </div>
           )}
         </div>
-        {showFooter && (
+        {showFooter && !loading && (
           <FooterReco
             handleButton={handleButton}
             handleExpress={handleExpress}

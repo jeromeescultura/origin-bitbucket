@@ -4,17 +4,11 @@ import {
   Card,
   CardContent,
   Collapse,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Switch,
 } from "@mui/material";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-const ToggleCard = ({ recommend, pledges, setPledges }) => {
-  const [interview, setInterview] = useState(false);
+const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
   const [greenPower, setGreenPower] = useState(false);
 
   const [btn1, setBtn1] = useState(false);
@@ -23,37 +17,35 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   useEffect(() => {
-    setInterview(false);
     setGreenPower(false);
     handleButtonSelect(1);
     setPledges([]);
   }, [recommend]);
 
-  const expandInterview = () => {
-    setInterview(!interview);
+  const expandGreenPower = () => {
+    setGreenPower(!greenPower);
     handleButtonSelect(1);
   };
 
   const handleButtonSelect = (value) => {
-    const isPresent = pledges.indexOf("interview");
+    const isPresent = pledges.indexOf("greenPower");
 
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
       if (recommend === "solar") {
-        setPledges((prevItems) => [...prevItems, "interview"]);
-      } else {
-        setPledges(["interview"]);
+        setPledges((prevItems) => [...prevItems, "greenPower"]);
       }
     } else if (value === 1) {
       setBtn1(false);
       setBtn2(true);
       if (isPresent !== -1) {
-        const remaining = pledges.filter((item) => item !== "interview");
+        const remaining = pledges.filter((item) => item !== "greenPower");
         setPledges(remaining);
       }
     }
   };
+
   return (
     <Card
       variant="outlined"
@@ -61,66 +53,33 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-          Help us do more
+          GreenPower
         </p>
         <div className="mt-4 space-y-5 font-light">
           <Card
             variant="contained"
             className={`${
-              interview ? "bg-white border border-accentColor" : "bg-[#F8F8F8]"
+              greenPower ? "bg-white border border-accentColor" : "bg-[#F8F8F8]"
             }`}
           >
             <CardContent>
               <div>
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-                  <div>
-                    Interested in participating in the Decarbonisation
-                    Interview?
-                  </div>
+                  <div>Interested in adding GreenPower to your Solar plan?</div>
                   <Switch
                     className="order-first lg:order-last"
                     color="secondary"
-                    onChange={expandInterview}
-                    checked={interview}
+                    onChange={expandGreenPower}
+                    checked={greenPower}
                   />
                 </div>
-                <Collapse in={interview}>
-                  <List dense={true} className="lg:max-w-[280px]">
-                    <ListItem className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Free to participate" />
-                    </ListItem>
-                    <ListItem alignItems="flex-start" className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
-                    </ListItem>
-                    <ListItem className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Help us understand how to support businesses like yours to decarbonise " />
-                    </ListItem>
-                  </List>
-                  <div>
+                <Collapse in={greenPower}>
+                  <div className="space-y-8">
+                    <div className="mt-6">
+                      If so, click yes below and one of our Business Club
+                      Specialists will get in contact to review your GreenPower
+                      options.
+                    </div>
                     <ButtonGroup
                       variant="outlined"
                       aria-label="outlined button group"
@@ -174,10 +133,11 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
               </div>
             </CardContent>
           </Card>
+          <div></div>
         </div>
       </CardContent>
     </Card>
   );
 };
 
-export default ToggleCard;
+export default GreenPowerToggle;
