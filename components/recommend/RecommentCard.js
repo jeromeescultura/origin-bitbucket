@@ -105,7 +105,7 @@ const RecommentCard = ({
               </h2>
               <p className="text-xs text-subTextColor">
                 extra p/month on any <br />
-                Origin Electricity plan*
+                Origin Electricity plan or as a stand-alone*
               </p>
             </div>
           ) : (

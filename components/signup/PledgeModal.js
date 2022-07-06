@@ -74,7 +74,14 @@ const PledgeModal = ({
               <div className="grid grid-rows-3 text-left">
                 <div className="grid grid-cols-2 items-center border-t py-2">
                   <p className="font-medium">Plan</p>
-                  <p>Available on any Origin Energy plan</p>
+                  {product === "solar" ? (
+                    <p>
+                      Available on any Origin Electricity plan or as a
+                      stand-alone product
+                    </p>
+                  ) : (
+                    <p>Available on any Origin Electricity plan</p>
+                  )}
                 </div>
                 <div className="grid grid-cols-2 items-center border-t py-2">
                   <p>Site changes</p>
@@ -97,8 +104,9 @@ const PledgeModal = ({
                 : formatPrice(extraCost)}
             </h2>
             <p className="text-xs text-subTextColor">
-              extra p/month on any <br />
-              Origin Energy plan*
+              extra {product === "solar" ? "p/month" : "p/day"} on any <br />
+              Origin Electricity plan
+              {product === "solar" ? " or as a stand-alone" : ""}*
             </p>
           </div>
           <div className="mt-8">

@@ -590,13 +590,14 @@ const Recommend = () => {
                     />
                   </div>
                   <div>
-                    {subCategory?.includes("greenPower") && (
-                      <GreenPowerToggle
-                        recommend={showContent}
-                        pledges={pledges}
-                        setPledges={setPledges}
-                      />
-                    )}
+                    {subCategory?.includes("greenPower") &&
+                      showContent === "solar" && (
+                        <GreenPowerToggle
+                          recommend={showContent}
+                          pledges={pledges}
+                          setPledges={setPledges}
+                        />
+                      )}
                   </div>
                   <div className="break-inside-avoid">
                     <RecommentCard
@@ -619,7 +620,7 @@ const Recommend = () => {
                   </div>
                 </div>
               </ContentContainer>
-              <div ref={showref} className="pt-36">
+              <div ref={showref} className="pt-44 md:pt-36">
                 {/* <Faqs /> */}
               </div>
             </div>
