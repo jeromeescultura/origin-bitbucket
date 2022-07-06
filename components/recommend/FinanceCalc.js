@@ -28,6 +28,7 @@ const FinanceCalc = ({
   btn1,
   btn2,
   btn3,
+  openModal,
 }) => {
   const methods = useForm({ defaultValues: impactLevel });
   const { control, watch } = methods;
@@ -43,7 +44,7 @@ const FinanceCalc = ({
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-          Financial impact calculator
+          Estimated financial impact
         </p>
 
         <Typography sx={{ mt: "16px", fontSize: "14px" }}>
@@ -67,9 +68,9 @@ const FinanceCalc = ({
               return (
                 <>
                   <Button
-                    className={
+                    className={`${
                       btn1 ? activeStyles : "hover:border hover:border-gray-300"
-                    }
+                    } flex flex-col text-center`}
                     value={"low"}
                     onClick={() => handleButtonSelect(0)}
                     sx={{
@@ -78,7 +79,18 @@ const FinanceCalc = ({
                       fontSize: "16",
                     }}
                   >
-                    {"Low"}
+                    <div className="flex justify-around flex-col h-full">
+                      <p
+                        className={`${
+                          btn1 ? "font-medium" : ""
+                        } whitespace-nowrap text-[13px]`}
+                      >
+                        {"Low usage"} <br />
+                      </p>
+                      <span className="text-[10px] font-light whitespace-normal">
+                        Bill impact on {"<40"} kwh average daily use
+                      </span>
+                    </div>
                   </Button>
                   <Button
                     className={`${
@@ -88,7 +100,7 @@ const FinanceCalc = ({
                             btn1 &&
                             "border-l-accentColor hover:border-l-accentColor"
                           }`
-                    } `}
+                    } flex flex-col`}
                     value={"medium"}
                     onClick={() => handleButtonSelect(1)}
                     sx={{
@@ -97,18 +109,29 @@ const FinanceCalc = ({
                       fontSize: "16",
                     }}
                   >
-                    {"Medium"}
+                    <div className="flex justify-around flex-col h-full">
+                      <p
+                        className={`${
+                          btn2 ? "font-medium" : ""
+                        } whitespace-nowrap text-[13px]`}
+                      >
+                        {"Medium usage"} <br />
+                      </p>
+                      <span className="text-[10px] font-light whitespace-normal">
+                        Bill impact on {"40-440"} kwh average daily use
+                      </span>
+                    </div>
                   </Button>
                   {industry?.industryCost?.high > 0 && (
                     <Button
-                      className={
+                      className={`${
                         btn3
                           ? activeStyles
                           : `hover:border hover:border-gray-300 ${
                               btn2 &&
                               "border-l-accentColor hover:border-l-accentColor"
                             }`
-                      }
+                      } flex flex-col`}
                       value={"high"}
                       onClick={() => handleButtonSelect(2)}
                       sx={{
@@ -117,7 +140,18 @@ const FinanceCalc = ({
                         fontSize: "16",
                       }}
                     >
-                      {"High"}
+                      <div className="flex justify-around flex-col h-full">
+                        <p
+                          className={`${
+                            btn3 ? "font-medium" : ""
+                          } whitespace-nowrap text-[13px]`}
+                        >
+                          {"High usage"} <br />
+                        </p>
+                        <span className="text-[10px] font-light whitespace-normal">
+                          Bill impact on {">440"} kwh average daily use
+                        </span>
+                      </div>
                     </Button>
                   )}
                 </>
@@ -125,10 +159,10 @@ const FinanceCalc = ({
             }}
           />
         </ButtonGroup>
-        <Typography sx={{ mt: "32px", mb: "16px", fontSize: "14px" }}>
+        {/* <Typography sx={{ mt: "32px", mb: "16px", fontSize: "14px" }}>
           Bill impact on {usage} kWh average monthly use
-        </Typography>
-        <Grid container spacing={2}>
+        </Typography> */}
+        <Grid container spacing={2} className={"mt-4"}>
           <Grid item xs={12} sx={{ p: 0 }}>
             <div className="bg-[#F8F8F8] rounded-lg h-[125px] w-full ">
               {recommend === "solar" ? (
@@ -220,6 +254,15 @@ const FinanceCalc = ({
             </p>
           </MoreDetailsComponent>
         )}
+        <div className="font-light text-xs text-center text-subTextColor leading-5">
+          These cost estimates are based on electricity usage averages compiled
+          from Origin&apos;s small and medium business customer base in the{" "}
+          <span className="font-medium">{industry?.name}</span>. This will
+          change based on your business&apos; specific usage.{" "}
+          <span className="underline cursor-pointer" onClick={openModal}>
+            See the range of possible outcomes.
+          </span>
+        </div>
       </CardContent>
     </Card>
   );

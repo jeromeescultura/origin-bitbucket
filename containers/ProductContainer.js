@@ -16,9 +16,15 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>business club benefits</u>
+          All standard{" "}
+          <u
+            className="hover:cursor-pointer"
+            onClick={() => document.getElementById("business-club").scrollIntoView()}
+          >
+            Business Club benefits
+          </u>
         </span>,
-        "Plus Tariff review to potentially minimise electricity costs",
+        "Plus tariff review to potentially minimise electricity costs",
       ],
     },
     {
@@ -31,9 +37,15 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>business club benefits</u>
+          All standard{" "}
+          <u
+            className="hover:cursor-pointer"
+            onClick={() => document.getElementById("business-club").scrollIntoView()}
+          >
+            Business Club benefits
+          </u>
         </span>,
-        "Minimise electricity costs by using clean, self generated solar power",
+        "Aim to minimise ongoing electricity costs by using clean self generated solar power",
       ],
     },
     {
@@ -46,7 +58,13 @@ function ProductContainer() {
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>business club benefits</u>
+          All standard{" "}
+          <u
+            className="hover:cursor-pointer"
+            onClick={() => document.getElementById("business-club").scrollIntoView()}
+          >
+            Business Club benefits
+          </u>
         </span>,
       ],
     },
@@ -55,13 +73,19 @@ function ProductContainer() {
       leaf: 5,
       icon: "/icons/products/net-zero.svg",
       impact:
-        "Participate in research to help us develop future services tailored to your business",
+        "Participate in research to help develop future services tailored to your business",
       plan: "Available on any Origin Energy plan",
       siteChanges: "None",
       contracts: "None",
       benefits: [
         <span key="0">
-          All standard <u>business club benefits</u>
+          All standard{" "}
+          <u
+            className="hover:cursor-pointer"
+            onClick={() => document.getElementById("business-club").scrollIntoView()}
+          >
+            Business Club benefits
+          </u>
         </span>,
         "Have your say in future energy solutions",
       ],

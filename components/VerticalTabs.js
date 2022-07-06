@@ -5,7 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Image from "next/image";
 import json2mq from "json2mq";
-import { useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -108,7 +108,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            Direct line access to our support representatives for:
+            Direct line access to our dedicated Business Club Specialists for:
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
@@ -145,10 +145,7 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div>
-              <p>
-                Access to a dedicated Business Club Specialist to support you
-                for ongoing and future clean energy transitions
-              </p>
+              <p>Guidance on cleaner energy solutions</p>
             </li>
           </ul>
         </div>
@@ -181,7 +178,7 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div>
-              <p>Communicating on how your business has reduced its impact</p>
+              <p>Insights on how your business has supported cleaner energy</p>
             </li>
             <li className="flex items-start gap-4">
               <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
@@ -193,7 +190,7 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div>
-              <p> Energy efficiency checklist</p>
+              <p> Energy Efficiency Checklist</p>
             </li>
             <li className="flex items-start gap-4">
               <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
@@ -205,7 +202,10 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div>
-              <p> Give feedback on future bespoke decarbonisation services</p>
+              <p>
+                An opportunity to share what you would want from future
+                decarbonisation services
+              </p>
             </li>
           </ul>
         </div>
@@ -225,7 +225,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            Let others know about the impact you&apos;re making through our free
+            Let others know about the steps you&apos;re making through our free
             toolkit which includes
           </p>
           <ul className="space-y-8 text-left py-8">

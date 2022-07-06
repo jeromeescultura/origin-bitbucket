@@ -107,7 +107,7 @@ function Signup() {
               Applying to Origin&#39;s Business Club
             </h2>
             <p className="subtitle my-6 leading-loose w-[300px] sm:w-full mx-auto">
-              Thank you for choosing to join the program!
+              Thank you for showing interest in the Business Club!
             </p>
           </div>
         </section>
@@ -163,7 +163,7 @@ function Signup() {
                     <div className="grid grid-rows-3 text-left">
                       <div className="grid grid-cols-2 items-center border-t py-2">
                         <p className="font-medium">Plan</p>
-                        <p>Available on any Origin Energy plan</p>
+                        <p>Available on any Origin Electricity plan</p>
                       </div>
                       <div className="grid grid-cols-2 items-center border-t py-2">
                         <p>Site changes</p>
