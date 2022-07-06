@@ -267,7 +267,7 @@ function Signup() {
                               <p className="text-left">
                                 GreenPower
                                 <br />
-                                One of our Business Club representatives will
+                                One of our Business Club Specialist will
                                 get in contact to review your GreenPower options
                               </p>
                             </div>
@@ -281,7 +281,7 @@ function Signup() {
             </section>
             <div className="lg:col-span-3 lg:order-1 ">
               <ContactForms
-                text="Please give us a few details, and one of our Business Club Specialists will contact
+                text="Please give us a few details, and one of our Business Club Specialist will contact
         you about finalising your application."
               />
             </div>

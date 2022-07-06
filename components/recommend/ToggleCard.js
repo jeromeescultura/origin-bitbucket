@@ -82,9 +82,10 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
                     color="secondary"
                     onChange={expandInterview}
                     checked={interview}
+                    sx={{ willChange: "transform" }}
                   />
                 </div>
-                <Collapse in={interview}>
+                <Collapse in={interview} sx={{ willChange: "transform" }}>
                   <List dense={true} className="lg:max-w-[280px]">
                     <ListItem className="p-0">
                       <ListItemIcon>

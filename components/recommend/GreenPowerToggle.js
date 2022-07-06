@@ -71,11 +71,12 @@ const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
                     color="secondary"
                     onChange={expandGreenPower}
                     checked={greenPower}
+                    sx={{ willChange: "transform" }}
                   />
                 </div>
-                <Collapse in={greenPower}>
+                <Collapse in={greenPower} sx={{ willChange: "transform" }}>
                   <div className="space-y-8">
-                    <div className="mt-6">
+                    <div className="mt-6 text-sm">
                       If so, click yes below and one of our Business Club
                       Specialists will get in contact to review your GreenPower
                       options.
