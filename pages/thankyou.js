@@ -6,19 +6,21 @@ import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Thankyou() {
   const router = useRouter();
-  const [userID, setUserID] = useState();
 
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push("/");
   };
+  const startAssesment =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STARTASSESSMENT")
+    ) || null;
+
   useEffect(() => {
-    setUserID(router.query.uuid);
-    if (router.query.uuid === undefined || "" || null) {
-      router.push("/");
-    }
-  }, [router]);
+    if (startAssesment === null || undefined || "") router.push("/");
+  }, [startAssesment]);
 
   setTimeout(() => {
     router.push("/");
@@ -30,7 +32,7 @@ function Thankyou() {
         <title>Origin Shift | Thank you</title>
         <meta property="og:title" content="Origin Shift" key="title" />
       </Head>
-      {userID && (
+      {startAssesment && (
         <section className="pt-6 lg:pt-8 ">
           <div className="w-full xl:w-[1108px] mx-auto">
             <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">

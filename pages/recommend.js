@@ -387,12 +387,13 @@ const Recommend = () => {
 
   useEffect(() => {
     setUserID(router.query.uuid);
+    window.localStorage.setItem("USERID", JSON.stringify(router.query.uuid));
   }, [router.query]);
 
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
     router.push({
-      pathname: "/contact/signup",
+      pathname: "/signup",
       query: { uuid: userID },
     });
   };

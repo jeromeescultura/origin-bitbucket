@@ -16,12 +16,7 @@ import FormInputRadio from "../form-components/FormInputRadio";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function ContactForms({ text }) {
-  const [userID, setUserID] = useState();
   const router = useRouter();
-
-  useEffect(() => {
-    setUserID(router.query.uuid);
-  }, [router.query]);
 
   const states = [
     {
@@ -89,6 +84,12 @@ function ContactForms({ text }) {
     JSON.parse(
       typeof window !== "undefined" &&
         window.localStorage.getItem("PRODUCT_SELECTED")
+    ) || null;
+
+  // Redirect
+  const userID =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("USERID")
     ) || null;
 
   const [contactFormsDetails, setContactFormsDetails] = useState(defaultValues);
@@ -168,8 +169,7 @@ function ContactForms({ text }) {
       )
         .then((response) => response.json())
         .then(
-          (data) => console.log(data),
-          router.push({ pathname: "/thankyou", query: { uuid: userID } }),
+          router.push("/thankyou"),
           // Clear Forms
           // Clear recommended product
           // Clear Assessment
@@ -251,58 +251,57 @@ function ContactForms({ text }) {
       <p className="font-medium text-sm">
         Do you have an existing business account with Origin?
       </p>
-      <ButtonGroup
-        variant="outlined"
-        aria-label="outlined button group"
-        size="large"
-        color="secondary"
-        arial-label="contained button group"
-        fullWidth
-      >
-        <Controller
-          control={control}
-          name="existingBusiness"
-          render={({}) => {
-            return (
-              <ButtonGroup aria-label="outlined primary button group" fullWidth>
-                <Button
-                  className={
-                    btn1 ? activeStyles : " hover:border hover:border-gray-300"
-                  }
-                  value={"Yes"}
-                  onClick={() => handleButtonSelect(true)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
-                >
-                  Yes
-                </Button>
-                <Button
-                  className={`${btn2 ? activeStyles : ""} ${
-                    btn1 &&
-                    "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
-                  }`}
-                  value={"No"}
-                  onClick={() => handleButtonSelect(false)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
-                >
-                  No
-                </Button>
-              </ButtonGroup>
-            );
-          }}
-        />
-      </ButtonGroup>
+
+      <Controller
+        control={control}
+        name="existingBusiness"
+        render={({}) => {
+          return (
+            <ButtonGroup
+              variant="outlined"
+              aria-label="outlined button group"
+              size="large"
+              color="secondary"
+              arial-label="contained button group"
+              fullWidth
+            >
+              <Button
+                className={
+                  btn1 ? activeStyles : " hover:border hover:border-gray-300"
+                }
+                value={"Yes"}
+                onClick={() => handleButtonSelect(true)}
+                sx={{
+                  color: "#505050",
+                  borderColor: "#E3E3E3",
+                  fontSize: "16",
+                }}
+                name="Do you have an existing business account with Origin?"
+                id="existing-business"
+              >
+                Yes
+              </Button>
+              <Button
+                className={`${btn2 ? activeStyles : ""} ${
+                  btn1 &&
+                  "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
+                }`}
+                value={"No"}
+                onClick={() => handleButtonSelect(false)}
+                sx={{
+                  color: "#505050",
+                  borderColor: "#E3E3E3",
+                  fontSize: "16",
+                }}
+                name="Do you have an existing business account with Origin?"
+                id="existing-business"
+              >
+                No
+              </Button>
+            </ButtonGroup>
+          );
+        }}
+      />
 
       {existingBusiness && (
         <>
