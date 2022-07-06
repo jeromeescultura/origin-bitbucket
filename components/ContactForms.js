@@ -152,7 +152,7 @@ function ContactForms({ text }) {
     ButtonTrackingEvent("contact-submit", data);
     if (userID) {
       const json = fetch(
-        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/" +
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact/" +
           userID,
         {
           method: "POST",
@@ -177,7 +177,7 @@ function ContactForms({ text }) {
         );
     } else {
       const json = fetch(
-        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/",
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact",
         {
           method: "POST",
           headers: {
