@@ -148,19 +148,19 @@ function ContactForms({ text }) {
   const methods = useForm({ defaultValues: contactFormsDetails });
   const { handleSubmit, control, watch, setValue } = methods;
 
-  const onSubmit = (data) => {
-    ButtonTrackingEvent("contact-submit", data);
+  const onSubmit = (contact_data) => {
+    ButtonTrackingEvent("contact-submit", contact_data);
     if (userID) {
       const json = fetch(
         "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact/" +
           userID,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            data,
+            contact_data,
             topRecommend: topRecommendation,
             otherRecommendation: otherRecommendations,
             productSelected: selectedProduct.product,
@@ -169,10 +169,7 @@ function ContactForms({ text }) {
       )
         .then((response) => response.json())
         .then(
-          router.push("/thankyou"),
-          // Clear Forms
-          // Clear recommended product
-          // Clear Assessment
+          router.push({ pathname: "/thankyou", query: { uuid: userID } })
           window.localStorage.clear()
         );
     } else {
@@ -183,11 +180,13 @@ function ContactForms({ text }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(contact_data),
         }
       )
         .then((response) => response.json())
-        .then((data) => console.log(data), router.push("/thankyou"));
+        .then(() =>
+          router.push({ pathname: "/thankyou", query: { interest: 1 } })
+        );
     }
   };
 
