@@ -79,11 +79,18 @@ const FinanceCalc = ({
                       fontSize: "16",
                     }}
                   >
-                    {"Low usage"}
-                    <br />
-                    <p className="text-[10px] font-light">
-                      Bill impact on {"<40"} kwh average daily use
-                    </p>
+                    <div className="flex justify-around flex-col h-full">
+                      <p
+                        className={`${
+                          btn1 ? "font-medium" : ""
+                        } whitespace-nowrap text-[13px]`}
+                      >
+                        {"Low usage"} <br />
+                      </p>
+                      <span className="text-[10px] font-light whitespace-normal">
+                        Bill impact on {"<40"} kwh average daily use
+                      </span>
+                    </div>
                   </Button>
                   <Button
                     className={`${
@@ -102,10 +109,18 @@ const FinanceCalc = ({
                       fontSize: "16",
                     }}
                   >
-                    {"Medium usage"} <br />
-                    <p className="text-[10px] font-light">
-                      Bill impact on {"40-440"} kwh average daily use
-                    </p>
+                    <div className="flex justify-around flex-col h-full">
+                      <p
+                        className={`${
+                          btn2 ? "font-medium" : ""
+                        } whitespace-nowrap text-[13px]`}
+                      >
+                        {"Medium usage"} <br />
+                      </p>
+                      <span className="text-[10px] font-light whitespace-normal">
+                        Bill impact on {"40-440"} kwh average daily use
+                      </span>
+                    </div>
                   </Button>
                   {industry?.industryCost?.high > 0 && (
                     <Button
@@ -125,10 +140,18 @@ const FinanceCalc = ({
                         fontSize: "16",
                       }}
                     >
-                      {"High usage"} <br />
-                      <p className="text-[10px] font-light">
-                        Bill impact on {">440"} kwh average daily use
-                      </p>
+                      <div className="flex justify-around flex-col h-full">
+                        <p
+                          className={`${
+                            btn3 ? "font-medium" : ""
+                          } whitespace-nowrap text-[13px]`}
+                        >
+                          {"High usage"} <br />
+                        </p>
+                        <span className="text-[10px] font-light whitespace-normal">
+                          Bill impact on {">440"} kwh average daily use
+                        </span>
+                      </div>
                     </Button>
                   )}
                 </>
