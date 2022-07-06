@@ -169,7 +169,7 @@ function ContactForms({ text }) {
       )
         .then((response) => response.json())
         .then(
-          router.push({ pathname: "/thankyou", query: { uuid: userID } })
+          router.push({ pathname: "/thankyou", query: { uuid: userID } }),
           window.localStorage.clear()
         );
     } else {
