@@ -567,6 +567,7 @@ const Recommend = () => {
                       impact={impact}
                       level={level}
                       industry={industry?.name}
+                      dailyUsage={dailyUsage}
                       openModal={openModal}
                     />
                   </div>
