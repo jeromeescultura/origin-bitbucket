@@ -63,6 +63,7 @@ export default function VerticalTabs() {
         bgcolor: "background.paper",
       }}
     >
+      <h2>sdasd</h2>
       <Tabs
         indicatorColor="secondary"
         variant="scrollable"

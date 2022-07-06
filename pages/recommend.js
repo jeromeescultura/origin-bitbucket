@@ -386,12 +386,13 @@ const Recommend = () => {
 
   useEffect(() => {
     setUserID(router.query.uuid);
+    window.localStorage.setItem("USERID", JSON.stringify(router.query.uuid));
   }, [router.query]);
 
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
     router.push({
-      pathname: "/contact/signup",
+      pathname: "/signup",
       query: { uuid: userID },
     });
   };
@@ -490,7 +491,7 @@ const Recommend = () => {
                         Previous option
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center justify-center px-6 !shadow-md">
-                        <p className='text-center'>
+                        <p className="text-center">
                           Keen to understand more options?
                           <br /> Toggle to view options at different cost
                           levels.

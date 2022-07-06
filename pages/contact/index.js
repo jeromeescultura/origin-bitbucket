@@ -1,12 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import ContactForms from "../../components/ContactForms";
 import ContentContainer from "../../containers/ContentContainer";
 import { ButtonTrackingEvent } from "../../functions/analitycsEvents";
 
 function Interested() {
   const router = useRouter();
+
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
@@ -52,15 +54,6 @@ function Interested() {
         </section>
 
         <ContentContainer style="grid gap-6 lg:gap-8 lg:grid-col-5 lg:grid-flow-col lg:grid-flow-col relative max-w-[610px] mx-auto z-10">
-          {/* <div className="hidden lg:inline absolute w-[150px]  top-[50px] -right-[125px] -z-10">
-          <Image
-            src="/icons/bg-plant.svg"
-            width={180}
-            height={180}
-            objectFit="contain"
-            alt="Plant"
-          />
-        </div> */}
           <ContactForms text="Please give us a few details, and one of our Business Club Specialists will contact you about other bespoke options that might be available to you." />
         </ContentContainer>
       </div>
