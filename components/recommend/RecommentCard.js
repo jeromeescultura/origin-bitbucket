@@ -76,7 +76,14 @@ const RecommentCard = ({
         <div className="grid grid-rows-3">
           <div className="grid grid-cols-2 items-center border-t py-2">
             <p className="font-medium">Plan</p>
-            <p>Available on any Origin Electricity plan</p>
+            {recommend === "solar" ? (
+              <p>
+                Available on any Origin Electricity plan or as a stand-alone
+                product
+              </p>
+            ) : (
+              <p>Available on any Origin Electricity plan</p>
+            )}
           </div>
           <div className="grid grid-cols-2 items-center border-t py-2">
             <p>Site changes</p>

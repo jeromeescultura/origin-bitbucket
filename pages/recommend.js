@@ -585,6 +585,7 @@ const Recommend = () => {
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
+                      openModal={openModal}
                     />
                   </div>
                   <div className="break-inside-avoid">

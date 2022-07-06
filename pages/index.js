@@ -197,7 +197,7 @@ export default function Home() {
             </FullWidth>
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">
-                <h2 className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto">
+                <h2 className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto" id='business-club'>
                   Get access to the Business Club
                   <br />
                   <span className="font-Gorditalight">
