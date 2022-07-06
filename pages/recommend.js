@@ -546,21 +546,6 @@ const Recommend = () => {
                       {showContent === "solar" && "Solar"}
                       {showContent === "greenPower" && "GreenPower"}
                     </h2>
-
-                    <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
-                      These impact estimates are based on electricity usage
-                      averages compiled from Origin&apos;s small and medium
-                      business customer base in the{" "}
-                      <span className="font-medium">{industry?.name}</span>.
-                      This will change based on your business&apos; specific
-                      usage.{" "}
-                      <span
-                        className="underline cursor-pointer"
-                        onClick={openModal}
-                      >
-                        See the range of possible outcomes.
-                      </span>
-                    </div>
                   </div>
                 </div>
                 <ImpactRanges
@@ -579,6 +564,8 @@ const Recommend = () => {
                       recommend={showContent}
                       impact={impact}
                       level={level}
+                      industry={industry?.name}
+                      openModal={openModal}
                     />
                   </div>
                   <div className="break-inside-avoid">

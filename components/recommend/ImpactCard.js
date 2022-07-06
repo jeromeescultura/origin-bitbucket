@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import MoreDetailsComponent from "../MoreDetailsComponent";
 
-const ImpactCard = ({ recommend, impact, level }) => {
+const ImpactCard = ({ recommend, impact, level, industry, openModal }) => {
   const [icon, setIcon] = useState("trees.svg");
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
 
             <p>By adding Origin Go Zero you’ll be:</p>
 
-            <ul className="text-sm list-disc pl-5">
+            <ul className="text-sm list-disc pl-5 space-y-2">
               <li>Offsetting your carbon emissions</li>
               <li>Helping contribute to a healthier environment</li>
             </ul>
@@ -114,7 +114,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
 
             <p>By adding GreenPower you’ll be:</p>
 
-            <ul className="text-sm list-disc pl-5">
+            <ul className="text-sm list-disc pl-5 space-y-2">
               <li>
                 Supporting Australian renewables to reduce carbon emissions
               </li>
@@ -138,7 +138,7 @@ const ImpactCard = ({ recommend, impact, level }) => {
               businesses committed to sustainable energy practices.
             </p>
             <p>By adding solar you’ll be:</p>
-            <ul className="text-sm list-disc pl-5">
+            <ul className="text-sm list-disc pl-5 space-y-2">
               <li>Using self generated renewable energy</li>
               <li>Reducing carbon emissions</li>
               <li>Helping contribute to a healthier environment</li>
@@ -146,6 +146,15 @@ const ImpactCard = ({ recommend, impact, level }) => {
           </div>
         )}
       </MoreDetailsComponent>
+      <div className="font-light text-xs text-center text-subTextColor leading-5">
+        These impact estimates are based on electricity usage averages compiled
+        from Origin&apos;s small and medium business customer base in the{" "}
+        <span className="font-medium">{industry}</span>. This will change based
+        on your business&apos; specific usage.{" "}
+        <span className="underline cursor-pointer" onClick={openModal}>
+          See the range of possible outcomes.
+        </span>
+      </div>
     </div>
   );
 };

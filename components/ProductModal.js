@@ -20,24 +20,28 @@ const ProductModal = ({ product, closeModal, open }) => {
   return (
     <Modal open={open} onClose={closeModal}>
       <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full max-w-[600px] p-5 rounded-lg ">
-        <div className="flex justify-end" onClick={closeModal}>
-          <button className="w-5 h-5">
-            <Image
-              src="/icons/close-icon.svg"
-              width={500}
-              height={500}
-              alt="close-icon"
-            />
-          </button>
-        </div>
-        <div className="space-y-2 mt-4">
-          <p className="text-lg pb-4 font-medium">
-            {product === "Solar" && "Solar"}
-            {product === "GreenPower" && "GreenPower for electricity"}
-            {product === "Origin Go Zero" &&
-              "Origin Go Zero – 100% Carbon Offset"}
-            {product === "Decarbonisation Interview" && "Help us help you"}
-          </p>
+        <div className="space-y-2">
+          <div className="flex items-start mb-6 justify-between">
+            <div>
+              <p className="text-lg font-medium">
+                {product === "Solar" && "Solar"}
+                {product === "GreenPower" && "GreenPower for electricity"}
+                {product === "Origin Go Zero" &&
+                  "Origin Go Zero – 100% Carbon Offset"}
+                {product === "Decarbonisation Interview" && "Help us help you"}
+              </p>
+            </div>
+            <div onClick={closeModal}>
+              <button className="w-5 h-5 flex items-center justify-center">
+                <Image
+                  src="/icons/close-icon.svg"
+                  width={500}
+                  height={500}
+                  alt="close-icon"
+                />
+              </button>
+            </div>
+          </div>
 
           {product === "Solar" && (
             <div className="font-light subtitle text-sm">
@@ -60,7 +64,7 @@ const ProductModal = ({ product, closeModal, open }) => {
               <br />
               <p>By adding solar you’ll be:</p>
               <br />
-              <ul className="text-sm list-disc pl-5">
+              <ul className="text-sm list-disc pl-5 space-y-2">
                 <li>Using self generated renewable energy</li>
                 <li>Reducing carbon emissions</li>
                 <li>Helping contribute to a healthier environment</li>
@@ -89,7 +93,7 @@ const ProductModal = ({ product, closeModal, open }) => {
               <p>By adding Origin Go Zero you’ll be:</p>
               <br />
 
-              <ul className="text-sm list-disc pl-5">
+              <ul className="text-sm list-disc pl-5 space-y-2">
                 <li>Offsetting your carbon emissions</li>
                 <li>Helping contribute to a healthier environment</li>
               </ul>
@@ -114,7 +118,7 @@ const ProductModal = ({ product, closeModal, open }) => {
               <br />
               <p>By adding GreenPower you’ll be:</p>
               <br />
-              <ul className="text-sm list-disc pl-5">
+              <ul className="text-sm list-disc pl-5 space-y-2">
                 <li>
                   Supporting Australian renewables to reduce carbon emissions
                 </li>

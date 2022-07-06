@@ -103,7 +103,7 @@ function Signup() {
                 Applying to Origin&#39;s Business Club
               </h2>
               <p className="subtitle my-6 leading-loose w-[300px] sm:w-full mx-auto">
-                Thank you for choosing to join the program!
+                Thank you for showing interest in the Business Club!
               </p>
             </div>
           </section>
@@ -113,7 +113,7 @@ function Signup() {
               <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
                 <div className="text-center space-y-2">
                   <p className="text-sm pb-4">
-                    You have chosen to participate with
+                    You are interested in participating with
                   </p>
                   {/* <LeafRating
                 count={

@@ -39,7 +39,7 @@ const ImpactRanges = ({
   return (
     <Modal open={impactRanges} onClose={closeModal}>
       <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg">
-        <div className="flex items-start justify-between">
+        <div className={`flex items-start justify-between`}>
           <h1 className="font-GorditaMedium text-lg lg:text-xl ">
             Understanding your impact estimates with{" "}
             {showContent === "carbonOffset" && "Carbon Offsets"}
