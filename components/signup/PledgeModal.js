@@ -76,8 +76,9 @@ const PledgeModal = ({
                   <p className="font-medium">Plan</p>
                   {product === "solar" ? (
                     <p>
-                      Available on any Origin Electricity plan or as a
-                      stand-alone product
+                      Available on any Origin Electricity plan 
+                      {/* or as a
+                      stand-alone product */}
                     </p>
                   ) : (
                     <p>Available on any Origin Electricity plan</p>
@@ -106,7 +107,8 @@ const PledgeModal = ({
             <p className="text-xs text-subTextColor">
               extra {product === "solar" ? "p/month" : "p/day"} on any <br />
               Origin Electricity plan
-              {product === "solar" ? " or as a stand-alone" : ""}*
+              {/* {product === "solar" ? " or as a stand-alone" : ""} */}
+              *
             </p>
           </div>
           <div className="mt-8">

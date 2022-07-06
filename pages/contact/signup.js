@@ -162,7 +162,7 @@ function Signup() {
                           <p className="font-medium">Plan</p>
                           <p>
                             Available on any Origin Electricity plan{" "}
-                            {product === "solar" ? "or as a stand-alone" : ""}
+                            {/* {product === "solar" ? "or as a stand-alone" : ""} */}
                           </p>
                         </div>
                         <div className="grid grid-cols-2 items-center border-t py-2">
@@ -191,7 +191,8 @@ function Signup() {
                       extra p/{product === "solar" ? "month" : "day"} on any{" "}
                       <br />
                       Origin Electricity plan{" "}
-                      {product === "solar" ? "or as a stand-alone" : ""}*
+                      {/* {product === "solar" ? "or as a stand-alone" : ""} */}
+                      *
                     </p>
                   </div>
                   <div className="mt-16">
