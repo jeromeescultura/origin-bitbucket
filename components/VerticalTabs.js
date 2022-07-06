@@ -56,20 +56,22 @@ export default function VerticalTabs() {
 
   return (
     <Box
-      className="flex flex-col lg:flex-row"
+      className="flex flex-col lg:flex-row relative"
       sx={{
         flexGrow: 1,
         borderRadius: "16px",
         bgcolor: "background.paper",
       }}
     >
-      <h2>sdasd</h2>
+      <p className="flex justify-center lg:justify-start lg:pl-4 pt-4 font-medium text-primaryText absolute inset-0">
+        Business Club Benefits
+      </p>
       <Tabs
         indicatorColor="secondary"
         variant="scrollable"
         orientation={matches ? "vertical" : "horizontal"}
         scrollButtons
-        className="min-w-[250px]"
+        className="min-w-[250px] mt-12"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs"
