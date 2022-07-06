@@ -53,7 +53,7 @@ function Interested() {
         </section>
 
         <ContentContainer style="grid gap-6 lg:gap-8 lg:grid-col-5 lg:grid-flow-col lg:grid-flow-col relative max-w-[610px] mx-auto z-10">
-          <ContactForms text="Please give us a few details, and one of our Business Club Specialists will contact you about other bespoke options that might be available to you." />
+          <ContactForms text="Please give us a few details, and one of our Business Club Specialists will contact you about other options that might be available to you." />
         </ContentContainer>
       </div>
     </>
