@@ -117,7 +117,7 @@ function Signup() {
             <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
               <div className="text-center space-y-2">
                 <p className="text-sm pb-4">
-                  You have chosen to participate with
+                  You are interested in participating with
                 </p>
                 {/* <LeafRating
                 count={
