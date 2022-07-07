@@ -3,6 +3,12 @@ const INDUSTRIES_DATA = [
     id: 1,
     name: "Accommodation and Food Services",
     dailyUsage: { avg: "119.8", low: "30.3", medium: "129.5", high: "533.8" },
+    dailyCarbonEmissions: {
+      avg: 105.69,
+      low: 26.8,
+      medium: 114.2,
+      high: 470.8,
+    },
     industryCost: { low: 332.74, medium: 1093.7, high: 3712.61 },
     withSolarCost: { low: 96.8, medium: 716.9, high: 2051.32 },
   },
@@ -10,6 +16,7 @@ const INDUSTRIES_DATA = [
     id: 2,
     name: "Administrative and Support Services",
     dailyUsage: { avg: "64.18", low: "28.25", medium: "90.53" },
+    dailyCarbonEmissions: { avg: 56.61, low: 24.92, medium: 79.86, high: 0 },
     industryCost: { low: 313.13, medium: 827.12, high: 0 },
     withSolarCost: { low: 80.98, medium: 420.77, high: 0 },
   },
@@ -22,6 +29,7 @@ const INDUSTRIES_DATA = [
       medium: "121.81",
       high: "708.90",
     },
+    dailyCarbonEmissions: { avg: 93.9, low: 24.7, medium: 107.4, high: 625.3 },
     industryCost: { low: 322.25, medium: 1118.32, high: 5506.19 },
     withSolarCost: { low: 79.2, medium: 658.61, high: 3383.11 },
   },
@@ -34,6 +42,7 @@ const INDUSTRIES_DATA = [
       medium: "110.84",
       high: "522.34",
     },
+    dailyCarbonEmissions: { avg: 79.7, low: 25.9, medium: 97.8, high: 460.7 },
     industryCost: { low: 305.55, medium: 971.21, high: 3784.38 },
     withSolarCost: { low: 89.13, medium: 575.18, high: 1964.46 },
   },
@@ -41,6 +50,7 @@ const INDUSTRIES_DATA = [
     id: 5,
     name: "Construction",
     dailyUsage: { avg: "74.25", low: "28.64", medium: "96.12", high: "629.28" },
+    dailyCarbonEmissions: { avg: 65.5, low: 25.3, medium: 84.8, high: 555.1 },
     industryCost: { low: 292.42, medium: 869.81, high: 4366.86 },
     withSolarCost: { low: 83.92, medium: 463.28, high: 2777.65 },
   },
@@ -53,6 +63,7 @@ const INDUSTRIES_DATA = [
       medium: "116.20",
       high: "576.02",
     },
+    dailyCarbonEmissions: { avg: 79.7, low: 25.5, medium: 102.5, high: 508.1 },
     industryCost: { low: 310.86, medium: 1089.8, high: 5259.51 },
     withSolarCost: { low: 86.05, medium: 615.96, high: 2372.68 },
   },
@@ -65,6 +76,7 @@ const INDUSTRIES_DATA = [
       medium: "100.47",
       high: "759.96",
     },
+    dailyCarbonEmissions: { avg: 86.4, low: 26.5, medium: 88.6, high: 670.3 },
     industryCost: { low: 310.13, medium: 864.58, high: 4936.93 },
     withSolarCost: { low: 94.97, medium: 496.32, high: 3771.34 },
   },
@@ -77,6 +89,7 @@ const INDUSTRIES_DATA = [
       medium: "110.86",
       high: "642.38",
     },
+    dailyCarbonEmissions: { avg: 75.0, low: 25.2, medium: 97.8, high: 566.6 },
     industryCost: { low: 309.78, medium: 964.72, high: 4364.62 },
     withSolarCost: { low: 83.17, medium: 575.36, high: 2877.28 },
   },
@@ -89,6 +102,7 @@ const INDUSTRIES_DATA = [
       medium: "94.93",
       high: "525.11",
     },
+    dailyCarbonEmissions: { avg: 60.8, low: 25.1, medium: 83.7, high: 463.2 },
     industryCost: { low: 294.19, medium: 842.95, high: 4320.51 },
     withSolarCost: { low: 82.56, medium: 454.2, high: 1985.55 },
   },
@@ -101,6 +115,7 @@ const INDUSTRIES_DATA = [
       medium: "101.74",
       high: "737.37",
     },
+    dailyCarbonEmissions: { avg: 77.7, low: 25.8, medium: 89.7, high: 650.4 },
     industryCost: { low: 305.63, medium: 933.31, high: 4107.25 },
     withSolarCost: { low: 88.95, medium: 505.97, high: 3599.56 },
   },
@@ -113,6 +128,12 @@ const INDUSTRIES_DATA = [
       medium: "114.97",
       high: "573.57",
     },
+    dailyCarbonEmissions: {
+      avg: 85.2,
+      low: 25.4,
+      medium: 101.4,
+      high: 505.9,
+    },
     industryCost: { low: 301.96, medium: 995.52, high: 4107.81 },
     withSolarCost: { low: 85.46, medium: 606.62, high: 2354 },
   },
@@ -124,6 +145,12 @@ const INDUSTRIES_DATA = [
       low: "29.58",
       medium: "68.38",
       high: "1057.28",
+    },
+    dailyCarbonEmissions: {
+      avg: 84.2,
+      low: 26.1,
+      medium: 60.3,
+      high: 932.6,
     },
     industryCost: { low: 1542.13, medium: 5513.74, high: 7385.18 },
     withSolarCost: { low: 91.07, medium: 252.33, high: 6032.25 },
@@ -138,6 +165,13 @@ const INDUSTRIES_DATA = [
       medium: "99.86",
       high: "648.97",
     },
+    dailyCarbonEmissions: {
+      avg: 64.6,
+      low: 25.2,
+      medium: 88.1,
+      high: 572.4,
+    },
+
     industryCost: { low: 303.85, medium: 917.33, high: 5151.62 },
     withSolarCost: { low: 83.76, medium: 491.7, high: 2927.36 },
   },
@@ -150,6 +184,13 @@ const INDUSTRIES_DATA = [
       medium: "102.01",
       high: "1332.08",
     },
+    dailyCarbonEmissions: {
+      avg: 71.5,
+      low: 25.4,
+      medium: 90.0,
+      high: 1175.0,
+    },
+
     industryCost: { low: 307.48, medium: 881.56, high: 10742.43 },
     withSolarCost: { low: 84.7, medium: 508.04, high: 8121.83 },
   },
@@ -161,6 +202,12 @@ const INDUSTRIES_DATA = [
       low: "28.59",
       medium: "90.79",
       high: "710.36",
+    },
+    dailyCarbonEmissions: {
+      avg: 58.2,
+      low: 25.2,
+      medium: 80.1,
+      high: 626.6,
     },
     industryCost: { low: 308.53, medium: 812.67, high: 4015.72 },
     withSolarCost: { low: 83.57, medium: 422.75, high: 3394.16 },
@@ -174,6 +221,12 @@ const INDUSTRIES_DATA = [
       medium: "116.15",
       high: "526.79",
     },
+    dailyCarbonEmissions: {
+      avg: 80.0,
+      low: 25.3,
+      medium: 102.5,
+      high: 464.7,
+    },
     industryCost: { low: 311.32, medium: 1000.04, high: 4292.7 },
     withSolarCost: { low: 84.08, medium: 615.57, high: 1998.32 },
   },
@@ -185,6 +238,12 @@ const INDUSTRIES_DATA = [
       low: "29.11",
       medium: "111.21",
       high: "688.47",
+    },
+    dailyCarbonEmissions: {
+      avg: 78.4,
+      low: 25.7,
+      medium: 98.1,
+      high: 607.3,
     },
     industryCost: { low: 294.08, medium: 994.45, high: 5370.06 },
     withSolarCost: { low: 87.51, medium: 578.01, high: 3227.7 },
@@ -198,6 +257,12 @@ const INDUSTRIES_DATA = [
       medium: "113.23",
       high: "576.99",
     },
+    dailyCarbonEmissions: {
+      avg: 81.1,
+      low: 25.6,
+      medium: 99.9,
+      high: 508.9,
+    },
     industryCost: { low: 304.68, medium: 969.21, high: 4078.97 },
     withSolarCost: { low: 87.19, medium: 593.33, high: 2380.05 },
   },
@@ -209,6 +274,12 @@ const INDUSTRIES_DATA = [
       low: "28.04",
       medium: "94.28",
       high: "515.81",
+    },
+    dailyCarbonEmissions: {
+      avg: 57.5,
+      low: 24.7,
+      medium: 83.2,
+      high: 455.0,
     },
     industryCost: { low: 295.77, medium: 876.18, high: 4393.07 },
     withSolarCost: { low: 79.41, medium: 449.22, high: 1914.81 },
@@ -575,6 +646,7 @@ export const handleContent = (
 export const handleImpactData = (
   showContent,
   dailyUsage,
+  dailyCarbonEmissions,
   level,
   setImpact,
   dayjs
@@ -607,11 +679,11 @@ export const handleImpactData = (
         if (impactCalc?.$d?.hours > 0) {
           if (impactCalc?.$d?.hours > 1) {
             setImpact(
-              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hrs`
+              (prevState) => `${prevState}, ${impactCalc?.$d?.hours} hours`
             );
           } else {
             setImpact(
-              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hr`
+              (prevState) => `${prevState}, ${impactCalc?.$d?.hours} hour`
             );
           }
         }
@@ -620,11 +692,11 @@ export const handleImpactData = (
         if (impactCalc?.$d?.hours > 0) {
           if (impactCalc?.$d?.hours > 1) {
             setImpact(
-              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hours`
+              (prevState) => `${prevState}, ${impactCalc?.$d?.hours} hours`
             );
           } else {
             setImpact(
-              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hour`
+              (prevState) => `${prevState}, ${impactCalc?.$d?.hours} hour`
             );
           }
         }
@@ -637,19 +709,13 @@ export const handleImpactData = (
       }
     }
   } else if (showContent === "solar") {
-    tempMetricTons =
-      Math.round(
-        (0.0004 * (dailyUsage * 365) - 0.0593 + Number.EPSILON) * 100
-      ) / 100;
+    tempMetricTons = Math.round(dailyCarbonEmissions * 365);
     if (tempMetricTons > 1) {
       metricTons = Math.round(tempMetricTons);
     } else {
       metricTons = Math.ceil(tempMetricTons);
     }
-    tempCars =
-      Math.round(
-        (0.00009 * (dailyUsage * 365) - 0.0073 + Number.EPSILON) * 100
-      ) / 100;
+    tempCars = Math.round((dailyCarbonEmissions * 365) / 2401);
     if (tempCars > 1) {
       cars = Math.round(tempCars);
     } else {
@@ -664,6 +730,7 @@ export const handleOffset = (
   industry,
   setOffSet,
   setDailyUsage,
+  setDailyCarbonEmissions,
   setIndustryCost,
   setWithSolar
 ) => {
@@ -674,7 +741,9 @@ export const handleOffset = (
   } else if (showContent === "solar") {
     setOffSet(0.25);
   }
+
   setDailyUsage(industry?.dailyUsage?.low);
+  setDailyCarbonEmissions(industry?.dailyCarbonEmissions?.low);
   setIndustryCost(industry?.industryCost?.low);
   setWithSolar(industry?.withSolarCost?.low);
 };

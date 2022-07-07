@@ -71,6 +71,7 @@ const Recommend = () => {
   const [offSet, setOffSet] = useState();
   const [usage, setUsage] = useState("<40");
   const [dailyUsage, setDailyUsage] = useState(0);
+  const [dailyCarbonEmissions, setDailyCarbonEmissions] = useState(0)
 
   const productPages = ["carbonOffset", "greenPower", "solar"];
 
@@ -298,6 +299,7 @@ const Recommend = () => {
       industry,
       setOffSet,
       setDailyUsage,
+      setDailyCarbonEmissions,
       setIndustryCost,
       setWithSolar
     );
@@ -330,6 +332,7 @@ const Recommend = () => {
     if (value === 0) {
       setUsage("<40");
       setDailyUsage(industry?.dailyUsage?.low);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.low)
       setIndustryCost(industry?.industryCost?.low);
       setWithSolar(industry?.withSolarCost?.low);
       setBtn1(true);
@@ -338,6 +341,7 @@ const Recommend = () => {
     } else if (value === 1) {
       setUsage("40-440");
       setDailyUsage(industry?.dailyUsage?.medium);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.medium)
       setIndustryCost(industry?.industryCost?.medium);
       setWithSolar(industry?.withSolarCost?.medium);
       setBtn1(false);
@@ -346,6 +350,7 @@ const Recommend = () => {
     } else if (value === 2) {
       setUsage(">440");
       setDailyUsage(industry?.dailyUsage?.high);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.high)
       setIndustryCost(industry?.industryCost?.high);
       setWithSolar(industry?.withSolarCost?.high);
       setBtn1(false);
@@ -383,6 +388,7 @@ const Recommend = () => {
   useEffect(() => {
     setUsage("<40");
     setDailyUsage(industry?.dailyUsage?.low);
+    setDailyCarbonEmissions(industry?.dailyCarbonEmissions?.low)
     setIndustryCost(industry?.industryCost?.low);
     setWithSolar(industry?.withSolarCost?.low);
     setBtn1(true);
@@ -430,7 +436,7 @@ const Recommend = () => {
   }, [storedData, otherRecommendations, recommend, highLow]);
 
   useEffect(() => {
-    handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
+    handleImpactData(showContent, dailyUsage, dailyCarbonEmissions, level, setImpact, dayjs);
   }, [showContent, dailyUsage, level]);
 
   const showLocalStorage = () => {
@@ -615,6 +621,7 @@ const Recommend = () => {
                   low={industry?.dailyUsage?.low}
                   medium={industry?.dailyUsage?.medium}
                   high={industry?.dailyUsage?.high}
+                  carbonEmissions={industry?.dailyCarbonEmissions}
                 />
                 <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
                   <div className="break-inside-avoid">

@@ -12,14 +12,11 @@ const ImpactRanges = ({
   low,
   medium,
   high,
+  carbonEmissions,
   dayjs,
 }) => {
-  const [impact, setImpact] = useState();
   const cars = (dailyUsage) => {
-    let tempCars =
-      Math.round(
-        (0.00009 * (dailyUsage * 365) - 0.0073 + Number.EPSILON) * 100
-      ) / 100;
+    let tempCars = Math.round((dailyUsage * 365) / 2401);
     if (tempCars > 1) {
       return Math.round(tempCars);
     } else {
@@ -29,8 +26,8 @@ const ImpactRanges = ({
 
   const windTurbine = (dailyUsage) => {
     let impactCalc = dayjs.duration(
-      ((dailyUsage * 365) / 33.333 / 60 / 24) * level,
-      "d"
+      dailyUsage * 365 * 0.001305873 * level,
+      "h"
     );
 
     return impactCalc;
@@ -228,9 +225,9 @@ const ImpactRanges = ({
                   used {separator(Math.round(low * 365))} kwh per year. Which,
                   if replaced with Solar energy equals to emission reduction of
                   removing{" "}
-                  {cars(low) > 1
-                    ? `${separator(cars(low))} cars`
-                    : `${cars(low)} car`}{" "}
+                  {cars(carbonEmissions?.low) > 1
+                    ? `${separator(cars(carbonEmissions?.low))} cars`
+                    : `${cars(carbonEmissions?.low)} car`}{" "}
                   from the road
                 </li>
                 <li>
@@ -238,9 +235,9 @@ const ImpactRanges = ({
                   average used {separator(Math.round(medium * 365))} kwh per
                   year. Which, if replaced with Solar energy equals to emission
                   reduction of removing{" "}
-                  {cars(medium) > 1
-                    ? `${separator(cars(medium))} cars`
-                    : `${cars(medium)} car`}{" "}
+                  {cars(carbonEmissions?.medium) > 1
+                    ? `${separator(cars(carbonEmissions?.medium))} cars`
+                    : `${cars(carbonEmissions?.medium)} car`}{" "}
                   from the road
                 </li>
                 {high && (
@@ -249,9 +246,9 @@ const ImpactRanges = ({
                     {separator(Math.round(high * 365))} kwh per year. Which, if
                     replaced with Solar energy equals to emission reduction of
                     removing{" "}
-                    {cars(high) > 1
-                      ? `${separator(cars(high))} cars`
-                      : `${cars(high)} car`}{" "}
+                    {cars(carbonEmissions?.high) > 1
+                      ? `${separator(cars(carbonEmissions?.high))} cars`
+                      : `${cars(carbonEmissions?.high)} car`}{" "}
                     from the road
                   </li>
                 )}

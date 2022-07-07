@@ -227,7 +227,7 @@ function Signup() {
                     {product === "carbonOffset" &&
                       `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
                     {product === "greenPower" &&
-                      `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
+                      `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact.replace(',', ' and')} to put the same amount of renewable energy back into the grid.`}
                     {product === "solar" &&
                       `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
                   </p>

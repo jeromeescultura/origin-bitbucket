@@ -147,7 +147,7 @@ const PledgeModal = ({
               {product === "greenPower" &&
                 `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
               {product === "solar" &&
-                `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
+                `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immediately taking ${impact[1]} cars off the road.`}
             </p>
           </div>
           {biggerDiff.length > 0 && (
@@ -155,7 +155,7 @@ const PledgeModal = ({
               <p className="font-medium">You&apos;ve chosen to do more</p>
               <div className="flex justify-center">
                 <div className="flex flex-col">
-                  {biggerDiff.includes("interview") && (
+                  {biggerDiff.includes("decarbonisation interview") && (
                     <div className="flex gap-4 mt-4">
                       <div className="w-[20px] h-[20px]">
                         <Image
