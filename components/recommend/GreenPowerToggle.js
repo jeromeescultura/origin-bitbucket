@@ -9,12 +9,15 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
-const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
-  const [greenPower, setGreenPower] = useState(false);
-
+const GreenPowerToggle = ({
+  recommend,
+  pledges,
+  setPledges,
+  greenPower,
+  setGreenPower,
+}) => {
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
-
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
@@ -23,6 +26,13 @@ const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
     setPledges([]);
   }, [recommend]);
 
+  useEffect(() => {
+    if (greenPower) {
+      handleButtonSelect(0);
+    } else {
+      handleButtonSelect(1);
+    }
+  }, [greenPower]);
 
   const expandGreenPower = () => {
     setGreenPower(!greenPower);
@@ -40,7 +50,9 @@ const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
       setBtn1(true);
       setBtn2(false);
       if (recommend === "solar") {
-        setPledges((prevItems) => [...prevItems, "greenPower"]);
+        if (isPresent === -1) {
+          setPledges((prevItems) => [...prevItems, "greenPower"]);
+        }
       }
     } else if (value === 1) {
       setBtn1(false);

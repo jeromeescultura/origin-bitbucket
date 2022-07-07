@@ -79,6 +79,8 @@ const Recommend = () => {
   const [pageNo, setPageNo] = useState(0);
   const [showContent, setContent] = useState();
 
+  const [greenPowerToggle, setGreenPowerToggle] = useState(false);
+
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
     decarbEOI: 0,
@@ -661,10 +663,12 @@ const Recommend = () => {
                       openModal={openModal}
                     />
                   </div>
-                  <div className="break-inside-avoid">
+                  <div className="break-inside-avoid lg:block hidden">
                     {subCategory?.includes("greenPower") &&
                       showContent === "solar" && (
                         <GreenPowerToggle
+                          greenPower={greenPowerToggle}
+                          setGreenPower={setGreenPowerToggle}
                           recommend={showContent}
                           pledges={pledges}
                           setPledges={setPledges}
@@ -690,16 +694,18 @@ const Recommend = () => {
                       />
                     )}
                   </div>
-                  {/* <div className="break-inside-avoid lg:hidden block">
+                  <div className="break-inside-avoid lg:hidden block">
                     {subCategory?.includes("greenPower") &&
                       showContent === "solar" && (
                         <GreenPowerToggle
+                          greenPower={greenPowerToggle}
+                          setGreenPower={setGreenPowerToggle}
                           recommend={showContent}
                           pledges={pledges}
                           setPledges={setPledges}
                         />
                       )}
-                  </div> */}
+                  </div>
                 </div>
               </ContentContainer>
               <div ref={showref} className="pt-44 md:pt-36">
