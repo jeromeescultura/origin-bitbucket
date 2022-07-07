@@ -12,19 +12,22 @@ const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
   const [greenPower, setGreenPower] = useState(false);
 
   const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(true);
+  const [btn2, setBtn2] = useState(false);
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   useEffect(() => {
     setGreenPower(false);
-    handleButtonSelect(1);
     setPledges([]);
   }, [recommend]);
 
   const expandGreenPower = () => {
     setGreenPower(!greenPower);
-    handleButtonSelect(1);
+    if (greenPower) {
+      handleButtonSelect(1);
+    } else {
+      handleButtonSelect(0);
+    }
   };
 
   const handleButtonSelect = (value) => {

@@ -237,7 +237,7 @@ function Signup() {
                     <p className="font-medium">You&apos;ve chosen to do more</p>
                     <div className="flex justify-center">
                       <div className="flex flex-col max-w-[227px]">
-                        {biggerDiff.includes("interview") && (
+                        {biggerDiff.includes("decarbonisation interview") && (
                           <div className="flex gap-4 mt-4">
                             <div className="w-[20px] h-[20px]">
                               <Image

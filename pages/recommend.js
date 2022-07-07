@@ -66,6 +66,7 @@ const Recommend = () => {
   const [subCategory, setSubCategory] = useState();
   const [otherRecommendations, setOtherRecommendations] = useState([]);
   const [products, setProducts] = useState([{}]);
+  const [highLow, setHighLow] = useState({});
 
   const [offSet, setOffSet] = useState();
   const [usage, setUsage] = useState("<40");
@@ -96,6 +97,57 @@ const Recommend = () => {
   const goZeroScore = goZero.carbonOffset;
   const greenPowerScore = greenPower.greenPower;
   const solarPowerScore = solarPower.solar;
+  // console.log("goZeroScore: ", goZeroScore);
+  // console.log("greenPowerScore: ", greenPowerScore);
+  // console.log("solarPowerScore", solarPowerScore);
+
+  useEffect(() => {
+    if (recommend === "carbonOffset") {
+      if (greenPowerScore > solarPowerScore) {
+        setHighLow({
+          high: "greenPower",
+          low: solarPowerScore > 0 ? "solar" : "none",
+        });
+      } else {
+        setHighLow({
+          high: "solar",
+          low: greenPowerScore > 0 ? "greenPower" : "none",
+        });
+      }
+    } else if (recommend === "greenPower") {
+      if (goZeroScore > solarPowerScore) {
+        setHighLow({
+          high: "carbonOffset",
+          low: solarPowerScore > 0 ? "solar" : "none",
+        });
+      } else {
+        setHighLow({
+          high: "solar",
+          low: goZeroScore > 0 ? "carbonOffset" : "none",
+        });
+      }
+    } else if (recommend === "solar") {
+      if (goZeroScore > greenPowerScore) {
+        setHighLow({
+          high: "carbonOffset",
+          low: greenPowerScore > 0 ? "greenPower" : "none",
+        });
+      } else {
+        setHighLow({
+          high: "greenPower",
+          low: goZeroScore > 0 ? "carbonOffset" : "none",
+        });
+      }
+    }
+  }, [goZeroScore, greenPowerScore, solarPowerScore, recommend]);
+
+  useEffect(() => {
+    console.log(recommend);
+  }, [recommend]);
+
+  useEffect(() => {
+    console.log(highLow);
+  }, [highLow]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -371,7 +423,11 @@ const Recommend = () => {
       JSON.stringify(otherRecommendations)
     );
     window.localStorage.setItem("TOP_RECOMMENDATION", recommend);
-  }, [storedData, otherRecommendations, recommend]);
+    window.localStorage.setItem(
+      "OTHER_PRODUCTS_RANKING",
+      JSON.stringify(highLow)
+    );
+  }, [storedData, otherRecommendations, recommend, highLow]);
 
   useEffect(() => {
     handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
