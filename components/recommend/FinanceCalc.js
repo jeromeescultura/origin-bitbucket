@@ -200,7 +200,11 @@ const FinanceCalc = ({
               ) : (
                 <div className="flex items-end w-full h-full justify-center">
                   <div className="mb-4 text-right">
-                    <p className="mt-10 text-xs">{formatPrice(industryCost)}</p>
+                    {recommend !== "carbonOffset" && (
+                      <p className="mt-10 text-xs">
+                        {formatPrice(industryCost)}
+                      </p>
+                    )}
                   </div>
                   <Box className="-rotate-90 mb-4 w-[100px] ">
                     <LinearProgress
@@ -219,10 +223,14 @@ const FinanceCalc = ({
                   <div className="mb-4 text-left">
                     <div className=" bg-[#FFC72C] rounded-md text-center">
                       <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
-                        {increasePercentage}% increase
+                        {increasePercentage > 0
+                          ? `${increasePercentage}% increase`
+                          : "no extra cost"}
                       </p>
                     </div>
-                    <p className="mt-2 text-xs">{formatPrice(totalCost)}</p>
+                    {recommend !== "carbonOffset" && (
+                      <p className="mt-2 text-xs">{formatPrice(totalCost)}</p>
+                    )}
                   </div>
                 </div>
               )}
