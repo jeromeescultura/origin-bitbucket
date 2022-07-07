@@ -48,8 +48,9 @@ const FinanceCalc = ({
         </p>
 
         <Typography sx={{ mt: "16px", fontSize: "14px" }}>
-          Toggle to compare how your monthly bills might change depending on
-          different usage levels
+          Toggle to compare how your{" "}
+          {recommend === "solar" ? "monthly" : "daily"} bills might change
+          depending on different usage levels
         </Typography>
         <ButtonGroup
           sx={{ mt: { xs: "12px", lg: "24px" } }}
@@ -88,7 +89,8 @@ const FinanceCalc = ({
                         {"Low usage"} <br />
                       </p>
                       <span className="text-[10px] font-light whitespace-normal">
-                        Bill impact on {"<40"} kwh average daily use
+                        Bill impact on {"<40"} kwh average{" "}
+                        {recommend === "solar" ? "monthly" : "daily"} use
                       </span>
                     </div>
                   </Button>
@@ -118,7 +120,8 @@ const FinanceCalc = ({
                         {"Medium usage"} <br />
                       </p>
                       <span className="text-[10px] font-light whitespace-normal">
-                        Bill impact on {"40-440"} kwh average daily use
+                        Bill impact on {"40-440"} kwh average{" "}
+                        {recommend === "solar" ? "monthly" : "daily"} use
                       </span>
                     </div>
                   </Button>
@@ -149,7 +152,8 @@ const FinanceCalc = ({
                           {"High usage"} <br />
                         </p>
                         <span className="text-[10px] font-light whitespace-normal">
-                          Bill impact on {">440"} kwh average daily use
+                          Bill impact on {">440"} kwh average{" "}
+                          {recommend === "solar" ? "monthly" : "daily"} use
                         </span>
                       </div>
                     </Button>

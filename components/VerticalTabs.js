@@ -154,7 +154,7 @@ export default function VerticalTabs() {
         <div>
           <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
-              src="/images/perks-2.png"
+              src="/images/perks-2.jpg"
               width={300}
               height={300}
               objectFit="cover"
@@ -214,7 +214,7 @@ export default function VerticalTabs() {
         <div>
           <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
-              src="/images/perks-3.png"
+              src="/images/perks-3.jpg"
               width={300}
               height={300}
               objectFit="cover"

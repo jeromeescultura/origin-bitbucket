@@ -17,8 +17,8 @@ function Thankyou() {
   useEffect(() => {
     setUserID(router.query.uuid);
     if (
-      (router.query.uuid && router.query.interest !== undefined) ||
-      null ||
+      router.query.uuid !== null ||
+      ("" && router.query.interest !== null) ||
       ""
     ) {
       router.push("/");
