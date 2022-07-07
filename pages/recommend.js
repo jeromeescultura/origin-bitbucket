@@ -108,37 +108,37 @@ const Recommend = () => {
     if (recommend === "carbonOffset") {
       if (greenPowerScore > solarPowerScore) {
         setHighLow({
-          high: "greenPower",
-          low: solarPowerScore > 0 ? "solar" : "none",
+          second: "greenPower",
+          third: solarPowerScore > 0 ? "solar" : "none",
         });
       } else {
         setHighLow({
-          high: "solar",
-          low: greenPowerScore > 0 ? "greenPower" : "none",
+          second: "solar",
+          third: greenPowerScore > 0 ? "greenPower" : "none",
         });
       }
     } else if (recommend === "greenPower") {
       if (goZeroScore > solarPowerScore) {
         setHighLow({
-          high: "carbonOffset",
-          low: solarPowerScore > 0 ? "solar" : "none",
+          second: "carbonOffset",
+          third: solarPowerScore > 0 ? "solar" : "none",
         });
       } else {
         setHighLow({
-          high: "solar",
-          low: goZeroScore > 0 ? "carbonOffset" : "none",
+          second: "solar",
+          third: goZeroScore > 0 ? "carbonOffset" : "none",
         });
       }
     } else if (recommend === "solar") {
       if (goZeroScore > greenPowerScore) {
         setHighLow({
-          high: "carbonOffset",
-          low: greenPowerScore > 0 ? "greenPower" : "none",
+          second: "carbonOffset",
+          third: greenPowerScore > 0 ? "greenPower" : "none",
         });
       } else {
         setHighLow({
-          high: "greenPower",
-          low: goZeroScore > 0 ? "carbonOffset" : "none",
+          second: "greenPower",
+          third: goZeroScore > 0 ? "carbonOffset" : "none",
         });
       }
     }
