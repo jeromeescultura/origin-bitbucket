@@ -76,7 +76,7 @@ const PledgeModal = ({
                   <p className="font-medium">Plan</p>
                   {product === "solar" ? (
                     <p>
-                      Available on any Origin Electricity plan 
+                      Available on any Origin Electricity plan
                       {/* or as a
                       stand-alone product */}
                     </p>
@@ -107,8 +107,7 @@ const PledgeModal = ({
             <p className="text-xs text-subTextColor">
               extra {product === "solar" ? "p/month" : "p/day"} on any <br />
               Origin Electricity plan
-              {/* {product === "solar" ? " or as a stand-alone" : ""} */}
-              *
+              {/* {product === "solar" ? " or as a stand-alone" : ""} */}*
             </p>
           </div>
           <div className="mt-8">
@@ -143,11 +142,11 @@ const PledgeModal = ({
             </div>
             <p className="text-xs mt-6">
               {product === "carbonOffset" &&
-                `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
+                `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact[0]} tree seedlings for 10 years.`}
               {product === "greenPower" &&
                 `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
               {product === "solar" &&
-                `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
+                `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immediately taking ${impact[1]} cars off the road.`}
             </p>
           </div>
           {biggerDiff.length > 0 && (
@@ -155,7 +154,7 @@ const PledgeModal = ({
               <p className="font-medium">You&apos;ve chosen to do more</p>
               <div className="flex justify-center">
                 <div className="flex flex-col">
-                  {biggerDiff.includes("interview") && (
+                  {biggerDiff.includes("decarbonisation interview") && (
                     <div className="flex gap-4 mt-4">
                       <div className="w-[20px] h-[20px]">
                         <Image
