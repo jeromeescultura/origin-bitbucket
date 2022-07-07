@@ -311,11 +311,19 @@ const Recommend = () => {
   const extraCost =
     Math.round((dailyUsage * offSet * level + Number.EPSILON) * 100) / 100;
 
+    console.log('extraCost', extraCost)
+
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
 
+    console.log('increasePercentage', increasePercentage)
+   
+
+
   const totalCost =
     Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
+
+    console.log('totalCost', totalCost)
 
   const withoutSolar =
     Math.round(((dailyUsage * offSet * 365) / 12 + Number.EPSILON) * 100) / 100;

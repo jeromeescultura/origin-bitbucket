@@ -391,10 +391,9 @@ const AssessmentSecondStep = () => {
       .then(
         (data) =>
           router.push({
-            pathname: "/recommend",
-            query: { uuid: data.UUID },
+            pathname: "/recommend_dis",
+            query: { uuid: data.uuid },
           }),
-        window.localStorage.removeItem("PAGE")
       );
   };
 
