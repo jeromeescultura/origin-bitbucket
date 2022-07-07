@@ -78,16 +78,20 @@ const Recommend = () => {
   const [subCategory, setSubCategory] = useState();
   const [otherRecommendations, setOtherRecommendations] = useState([]);
   const [products, setProducts] = useState([{}]);
+  const [highLow, setHighLow] = useState({});
 
   const [offSet, setOffSet] = useState();
   const [usage, setUsage] = useState("<40");
   const [dailyUsage, setDailyUsage] = useState(0);
+  const [dailyCarbonEmissions, setDailyCarbonEmissions] = useState(0);
 
   const productPages = ["carbonOffset", "greenPower", "solar"];
 
   const [pages, setPages] = useState();
   const [pageNo, setPageNo] = useState(0);
   const [showContent, setContent] = useState();
+
+  const [greenPowerToggle, setGreenPowerToggle] = useState(false);
 
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
@@ -108,6 +112,57 @@ const Recommend = () => {
   const goZeroScore = goZero.carbonOffset;
   const greenPowerScore = greenPower.greenPower;
   const solarPowerScore = solarPower.solar;
+  // console.log("goZeroScore: ", goZeroScore);
+  // console.log("greenPowerScore: ", greenPowerScore);
+  // console.log("solarPowerScore", solarPowerScore);
+
+  useEffect(() => {
+    if (recommend === "carbonOffset") {
+      if (greenPowerScore > solarPowerScore) {
+        setHighLow({
+          second: "greenPower",
+          third: solarPowerScore > 0 ? "solar" : "none",
+        });
+      } else {
+        setHighLow({
+          second: "solar",
+          third: greenPowerScore > 0 ? "greenPower" : "none",
+        });
+      }
+    } else if (recommend === "greenPower") {
+      if (goZeroScore > solarPowerScore) {
+        setHighLow({
+          second: "carbonOffset",
+          third: solarPowerScore > 0 ? "solar" : "none",
+        });
+      } else {
+        setHighLow({
+          second: "solar",
+          third: goZeroScore > 0 ? "carbonOffset" : "none",
+        });
+      }
+    } else if (recommend === "solar") {
+      if (goZeroScore > greenPowerScore) {
+        setHighLow({
+          second: "carbonOffset",
+          third: greenPowerScore > 0 ? "greenPower" : "none",
+        });
+      } else {
+        setHighLow({
+          second: "greenPower",
+          third: goZeroScore > 0 ? "carbonOffset" : "none",
+        });
+      }
+    }
+  }, [goZeroScore, greenPowerScore, solarPowerScore, recommend]);
+
+  useEffect(() => {
+    console.log(recommend);
+  }, [recommend]);
+
+  useEffect(() => {
+    console.log(highLow);
+  }, [highLow]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -258,6 +313,7 @@ const Recommend = () => {
       industry,
       setOffSet,
       setDailyUsage,
+      setDailyCarbonEmissions,
       setIndustryCost,
       setWithSolar
     );
@@ -290,6 +346,7 @@ const Recommend = () => {
     if (value === 0) {
       setUsage("<40");
       setDailyUsage(industry?.dailyUsage?.low);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.low);
       setIndustryCost(industry?.industryCost?.low);
       setWithSolar(industry?.withSolarCost?.low);
       setBtn1(true);
@@ -298,6 +355,7 @@ const Recommend = () => {
     } else if (value === 1) {
       setUsage("40-440");
       setDailyUsage(industry?.dailyUsage?.medium);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.medium);
       setIndustryCost(industry?.industryCost?.medium);
       setWithSolar(industry?.withSolarCost?.medium);
       setBtn1(false);
@@ -306,6 +364,7 @@ const Recommend = () => {
     } else if (value === 2) {
       setUsage(">440");
       setDailyUsage(industry?.dailyUsage?.high);
+      setDailyCarbonEmissions(industry?.dailyCarbonEmissions.high);
       setIndustryCost(industry?.industryCost?.high);
       setWithSolar(industry?.withSolarCost?.high);
       setBtn1(false);
@@ -351,6 +410,7 @@ const Recommend = () => {
   useEffect(() => {
     setUsage("<40");
     setDailyUsage(industry?.dailyUsage?.low);
+    setDailyCarbonEmissions(industry?.dailyCarbonEmissions?.low);
     setIndustryCost(industry?.industryCost?.low);
     setWithSolar(industry?.withSolarCost?.low);
     setBtn1(true);
@@ -391,10 +451,21 @@ const Recommend = () => {
       JSON.stringify(otherRecommendations)
     );
     window.localStorage.setItem("TOP_RECOMMENDATION", recommend);
-  }, [storedData, otherRecommendations, recommend]);
+    window.localStorage.setItem(
+      "OTHER_PRODUCTS_RANKING",
+      JSON.stringify(highLow)
+    );
+  }, [storedData, otherRecommendations, recommend, highLow]);
 
   useEffect(() => {
-    handleImpactData(showContent, dailyUsage, level, setImpact, dayjs);
+    handleImpactData(
+      showContent,
+      dailyUsage,
+      dailyCarbonEmissions,
+      level,
+      setImpact,
+      dayjs
+    );
   }, [showContent, dailyUsage, level]);
 
   const showLocalStorage = () => {
@@ -579,6 +650,7 @@ const Recommend = () => {
                   low={industry?.dailyUsage?.low}
                   medium={industry?.dailyUsage?.medium}
                   high={industry?.dailyUsage?.high}
+                  carbonEmissions={industry?.dailyCarbonEmissions}
                 />
                 <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
                   <div className="break-inside-avoid">
@@ -611,10 +683,12 @@ const Recommend = () => {
                       openModal={openModal}
                     />
                   </div>
-                  <div>
+                  <div className="break-inside-avoid lg:block hidden">
                     {subCategory?.includes("greenPower") &&
                       showContent === "solar" && (
                         <GreenPowerToggle
+                          greenPower={greenPowerToggle}
+                          setGreenPower={setGreenPowerToggle}
                           recommend={showContent}
                           pledges={pledges}
                           setPledges={setPledges}
@@ -639,6 +713,18 @@ const Recommend = () => {
                         setPledges={setPledges}
                       />
                     )}
+                  </div>
+                  <div className="break-inside-avoid lg:hidden block">
+                    {subCategory?.includes("greenPower") &&
+                      showContent === "solar" && (
+                        <GreenPowerToggle
+                          greenPower={greenPowerToggle}
+                          setGreenPower={setGreenPowerToggle}
+                          recommend={showContent}
+                          pledges={pledges}
+                          setPledges={setPledges}
+                        />
+                      )}
                   </div>
                 </div>
               </ContentContainer>

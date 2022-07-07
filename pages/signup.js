@@ -225,9 +225,9 @@ function Signup() {
                   </div>
                   <p className="text-xs mt-6">
                     {product === "carbonOffset" &&
-                      `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
+                      `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact[0]} tree seedlings for 10 years.`}
                     {product === "greenPower" &&
-                      `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
+                      `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact.replace(',', ' and')} to put the same amount of renewable energy back into the grid.`}
                     {product === "solar" &&
                       `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
                   </p>
@@ -237,7 +237,7 @@ function Signup() {
                     <p className="font-medium">You&apos;ve chosen to do more</p>
                     <div className="flex justify-center">
                       <div className="flex flex-col max-w-[227px]">
-                        {biggerDiff.includes("interview") && (
+                        {biggerDiff.includes("decarbonisation interview") && (
                           <div className="flex gap-4 mt-4">
                             <div className="w-[20px] h-[20px]">
                               <Image

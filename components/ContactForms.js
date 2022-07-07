@@ -86,6 +86,11 @@ function ContactForms({ text }) {
         window.localStorage.getItem("PRODUCT_SELECTED")
     ) || null;
 
+  const otherProductsRanking = JSON.parse(
+    typeof window !== "undefined" &&
+      window.localStorage.getItem("OTHER_PRODUCTS_RANKING")
+  );
+
   // Redirect
   const userID =
     JSON.parse(
@@ -163,7 +168,9 @@ function ContactForms({ text }) {
             contact_data,
             topRecommend: topRecommendation,
             otherRecommendation: otherRecommendations,
+            otherRecommendationsRanking: otherProductsRanking,
             productSelected: selectedProduct.product,
+            pledgesSelected: selectedProduct.biggerDiff,
           }),
         }
       )

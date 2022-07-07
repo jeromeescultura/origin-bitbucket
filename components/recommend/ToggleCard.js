@@ -18,38 +18,40 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
   const [greenPower, setGreenPower] = useState(false);
 
   const [btn1, setBtn1] = useState(false);
-  const [btn2, setBtn2] = useState(true);
+  const [btn2, setBtn2] = useState(false);
 
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   useEffect(() => {
     setInterview(false);
-    setGreenPower(false);
-    handleButtonSelect(1);
     setPledges([]);
   }, [recommend]);
 
   const expandInterview = () => {
     setInterview(!interview);
-    handleButtonSelect(1);
+    if (interview) {
+      handleButtonSelect(1);
+    } else {
+      handleButtonSelect(0);
+    }
   };
 
   const handleButtonSelect = (value) => {
-    const isPresent = pledges.indexOf("interview");
+    const isPresent = pledges.indexOf("decarbonisation interview");
 
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
       if (recommend === "solar") {
-        setPledges((prevItems) => [...prevItems, "interview"]);
+        setPledges((prevItems) => [...prevItems, "decarbonisation interview"]);
       } else {
-        setPledges(["interview"]);
+        setPledges(["decarbonisation interview"]);
       }
     } else if (value === 1) {
       setBtn1(false);
       setBtn2(true);
       if (isPresent !== -1) {
-        const remaining = pledges.filter((item) => item !== "interview");
+        const remaining = pledges.filter((item) => item !== "decarbonisation interview");
         setPledges(remaining);
       }
     }
