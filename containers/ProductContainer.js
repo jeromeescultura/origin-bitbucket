@@ -9,7 +9,7 @@ function ProductContainer() {
     {
       title: "GreenPower",
       leaf: 3,
-      icon: "/icons/products/greenpower.svg",
+      icon: "/icons/products/windpower.png",
       impact: "Through supporting Australian renewables",
       plan: "Available on any Origin Electricity plan",
       siteChanges: "None",
@@ -19,7 +19,9 @@ function ProductContainer() {
           All standard{" "}
           <u
             className="hover:cursor-pointer"
-            onClick={() => document.getElementById("business-club").scrollIntoView()}
+            onClick={() =>
+              document.getElementById("business-club").scrollIntoView()
+            }
           >
             Business Club benefits
           </u>
@@ -40,7 +42,9 @@ function ProductContainer() {
           All standard{" "}
           <u
             className="hover:cursor-pointer"
-            onClick={() => document.getElementById("business-club").scrollIntoView()}
+            onClick={() =>
+              document.getElementById("business-club").scrollIntoView()
+            }
           >
             Business Club benefits
           </u>
@@ -61,7 +65,9 @@ function ProductContainer() {
           All standard{" "}
           <u
             className="hover:cursor-pointer"
-            onClick={() => document.getElementById("business-club").scrollIntoView()}
+            onClick={() =>
+              document.getElementById("business-club").scrollIntoView()
+            }
           >
             Business Club benefits
           </u>
@@ -71,7 +77,7 @@ function ProductContainer() {
     {
       title: "Decarbonisation Interview",
       leaf: 5,
-      icon: "/icons/products/net-zero.svg",
+      icon: "/icons/products/netzero.png",
       impact:
         "Participate in research to help develop future services tailored to your business",
       plan: "Available on any Origin Energy plan",
@@ -82,7 +88,9 @@ function ProductContainer() {
           All standard{" "}
           <u
             className="hover:cursor-pointer"
-            onClick={() => document.getElementById("business-club").scrollIntoView()}
+            onClick={() =>
+              document.getElementById("business-club").scrollIntoView()
+            }
           >
             Business Club benefits
           </u>

@@ -57,6 +57,18 @@ const Recommend = () => {
         window.localStorage.getItem("STEP_TWO_ANS")
     ) || null;
 
+  const startAssessment =
+    JSON.parse(
+      typeof window !== "undefined" &&
+        window.localStorage.getItem("STARTASSESSMENT")
+    ) || null;
+
+  useEffect(() => {
+    if (startAssessment === null) {
+      router.push("/");
+    }
+  }, [startAssessment]);
+
   const [loading, setLoading] = useState(true);
   const [animate, setAnimate] = useState(false);
 
