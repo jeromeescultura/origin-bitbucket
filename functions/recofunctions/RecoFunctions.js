@@ -744,7 +744,7 @@ export const handleOffset = (
   setWithSolar
 ) => {
   if (showContent === "carbonOffset") {
-    setOffSet(0.015);
+    setOffSet(0);
   } else if (showContent === "greenPower") {
     setOffSet(0.028);
   } else if (showContent === "solar") {
