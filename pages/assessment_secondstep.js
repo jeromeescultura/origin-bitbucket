@@ -392,7 +392,7 @@ const AssessmentSecondStep = () => {
         (data) =>
           router.push({
             pathname: "/recommend_dis",
-            query: { uuid: data.uuid },
+            query: { uuid: data.UUID },
           }),
       );
   };
