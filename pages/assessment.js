@@ -165,7 +165,7 @@ const Assessment = () => {
 
 //   const submitAssessment = () => {
 //     const data = 234234234;
-//     const json = fetch("https://dev.peek.net.au/origin/answers", {
+//     const json = fetch("https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/answers", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",

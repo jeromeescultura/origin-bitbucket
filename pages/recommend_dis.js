@@ -37,6 +37,7 @@ import {
 import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
+import GreenPowerToggle from "../components/recommend/GreenPowerToggle";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -394,12 +395,13 @@ const Recommend = () => {
 
   useEffect(() => {
     setUserID(router.query.uuid);
+    window.localStorage.setItem("USERID", JSON.stringify(router.query.uuid));
   }, [router.query]);
 
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
     router.push({
-      pathname: "/contact/signup",
+      pathname: "/signup",
       query: { uuid: userID },
     });
   };
@@ -450,10 +452,9 @@ const Recommend = () => {
                   </p>
                   <p className="text-subTextColor mt-6">
                     Based on what you&apos;ve told us, your business is
-                    interested in taking climate action, but aren&apos;t ready
-                    to invest too much yet. And that&apos;s okay. We want to be
-                    able to support everyone in the transition. Let&apos;s
-                    review your next steps below.
+                    interested in taking steps towards supporting cleaner
+                    energy. We want to be able to support everyone in the
+                    transition. Let&apos;s review your next steps below.
                   </p>
                 </div>
 
@@ -498,7 +499,7 @@ const Recommend = () => {
                         Previous option
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center justify-center px-6 !shadow-md">
-                        <p className='text-center'>
+                        <p className="text-center">
                           Keen to understand more options?
                           <br /> Toggle to view options at different cost
                           levels.
@@ -555,21 +556,6 @@ const Recommend = () => {
                       {showContent === "solar" && "Solar"}
                       {showContent === "greenPower" && "GreenPower"}
                     </h2>
-
-                    <div className="font-light text-xs mt-8 lg:mt-16 px-4 sm:px-0 md:w-[500px] lg:w-[768px] mx-auto">
-                      These impact estimates are based on electricity usage
-                      averages compiled from Origin&apos;s small and medium
-                      business customer base in the{" "}
-                      <span className="font-medium">{industry?.name}</span>.
-                      This will change based on your business&apos; specific
-                      usage.{" "}
-                      <span
-                        className="underline cursor-pointer"
-                        onClick={openModal}
-                      >
-                        See the range of possible outcomes.
-                      </span>
-                    </div>
                   </div>
                 </div>
                 <ImpactRanges
@@ -588,6 +574,9 @@ const Recommend = () => {
                       recommend={showContent}
                       impact={impact}
                       level={level}
+                      industry={industry?.name}
+                      dailyUsage={dailyUsage}
+                      openModal={openModal}
                     />
                   </div>
                   <div className="break-inside-avoid">
@@ -607,7 +596,18 @@ const Recommend = () => {
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
+                      openModal={openModal}
                     />
+                  </div>
+                  <div>
+                    {subCategory?.includes("greenPower") &&
+                      showContent === "solar" && (
+                        <GreenPowerToggle
+                          recommend={showContent}
+                          pledges={pledges}
+                          setPledges={setPledges}
+                        />
+                      )}
                   </div>
                   <div className="break-inside-avoid">
                     <RecommentCard
@@ -620,24 +620,18 @@ const Recommend = () => {
                     />
                   </div>
                   <div className="break-inside-avoid">
-                    {(subCategory?.includes("decarbEOI") ||
-                      (subCategory?.includes("greenPower") &&
-                        showContent === "solar")) && (
+                    {subCategory?.includes("decarbEOI") && (
                       <ToggleCard
                         recommend={showContent}
-                        adds={subCategory}
-                        level={level}
-                        handleLevel={handleLevel}
                         pledges={pledges}
                         setPledges={setPledges}
-                        setLevel={setLevel}
                       />
                     )}
                   </div>
                 </div>
               </ContentContainer>
-              <div ref={showref}>
-                <Faqs />
+              <div ref={showref} className="pt-44 md:pt-36">
+                {/* <Faqs /> */}
               </div>
             </div>
           ) : (
@@ -646,7 +640,7 @@ const Recommend = () => {
             </div>
           )}
         </div>
-        {showFooter && (
+        {showFooter && !loading && (
           <FooterReco
             handleButton={handleButton}
             handleExpress={handleExpress}

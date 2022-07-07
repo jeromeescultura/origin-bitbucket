@@ -16,12 +16,7 @@ import FormInputRadio from "../form-components/FormInputRadio";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function ContactForms({ text }) {
-  const [userID, setUserID] = useState();
   const router = useRouter();
-
-  useEffect(() => {
-    setUserID(router.query.uuid);
-  }, [router.query]);
 
   const states = [
     {
@@ -91,6 +86,12 @@ function ContactForms({ text }) {
         window.localStorage.getItem("PRODUCT_SELECTED")
     ) || null;
 
+  // Redirect
+  const userID =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("USERID")
+    ) || null;
+
   const [contactFormsDetails, setContactFormsDetails] = useState(defaultValues);
 
   // Retain Values
@@ -147,40 +148,45 @@ function ContactForms({ text }) {
   const methods = useForm({ defaultValues: contactFormsDetails });
   const { handleSubmit, control, watch, setValue } = methods;
 
-  const onSubmit = (data) => {
-    ButtonTrackingEvent("contact-submit", data);
+  const onSubmit = (contact_data) => {
+    ButtonTrackingEvent("contact-submit", contact_data);
     if (userID) {
-      const json = fetch("https://dev.peek.net.au/origin/contact/" + userID, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          topRecommend: topRecommendation,
-          otherRecommendation: otherRecommendations,
-          productSelected: selectedProduct.product,
-        }),
-      })
+      const json = fetch(
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact/" +
+          userID,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contact_data,
+            topRecommend: topRecommendation,
+            otherRecommendation: otherRecommendations,
+            productSelected: selectedProduct.product,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then(
-          (data) => console.log(data),
           router.push({ pathname: "/thankyou", query: { uuid: userID } }),
-          // Clear Forms
-          // Clear recommended product
-          // Clear Assessment
           window.localStorage.clear()
         );
     } else {
-      const json = fetch("https://dev.peek.net.au/origin/contact/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      const json = fetch(
+        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contact_data),
+        }
+      )
         .then((response) => response.json())
-        .then((data) => console.log(data), router.push("/thankyou"));
+        .then(() =>
+          router.push({ pathname: "/thankyou", query: { interest: 1 } })
+        );
     }
   };
 
@@ -244,58 +250,57 @@ function ContactForms({ text }) {
       <p className="font-medium text-sm">
         Do you have an existing business account with Origin?
       </p>
-      <ButtonGroup
-        variant="outlined"
-        aria-label="outlined button group"
-        size="large"
-        color="secondary"
-        arial-label="contained button group"
-        fullWidth
-      >
-        <Controller
-          control={control}
-          name="existingBusiness"
-          render={({}) => {
-            return (
-              <ButtonGroup aria-label="outlined primary button group" fullWidth>
-                <Button
-                  className={
-                    btn1 ? activeStyles : " hover:border hover:border-gray-300"
-                  }
-                  value={"Yes"}
-                  onClick={() => handleButtonSelect(true)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
-                >
-                  Yes
-                </Button>
-                <Button
-                  className={`${btn2 ? activeStyles : ""} ${
-                    btn1 &&
-                    "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
-                  }`}
-                  value={"No"}
-                  onClick={() => handleButtonSelect(false)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
-                >
-                  No
-                </Button>
-              </ButtonGroup>
-            );
-          }}
-        />
-      </ButtonGroup>
+
+      <Controller
+        control={control}
+        name="existingBusiness"
+        render={({}) => {
+          return (
+            <ButtonGroup
+              variant="outlined"
+              aria-label="outlined button group"
+              size="large"
+              color="secondary"
+              arial-label="contained button group"
+              fullWidth
+            >
+              <Button
+                className={
+                  btn1 ? activeStyles : " hover:border hover:border-gray-300"
+                }
+                value={"Yes"}
+                onClick={() => handleButtonSelect(true)}
+                sx={{
+                  color: "#505050",
+                  borderColor: "#E3E3E3",
+                  fontSize: "16",
+                }}
+                name="Do you have an existing business account with Origin?"
+                id="existing-business"
+              >
+                Yes
+              </Button>
+              <Button
+                className={`${btn2 ? activeStyles : ""} ${
+                  btn1 &&
+                  "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
+                }`}
+                value={"No"}
+                onClick={() => handleButtonSelect(false)}
+                sx={{
+                  color: "#505050",
+                  borderColor: "#E3E3E3",
+                  fontSize: "16",
+                }}
+                name="Do you have an existing business account with Origin?"
+                id="existing-business"
+              >
+                No
+              </Button>
+            </ButtonGroup>
+          );
+        }}
+      />
 
       {existingBusiness && (
         <>
@@ -549,8 +554,8 @@ function ContactForms({ text }) {
         Submit
       </Button>
       <p>
-        *Once you submit your application, one of our Business Club
-        representatives will get in contact to review your energy plan options.
+        *Once you submit your application, one of our Business Club Specialists
+        will get in contact to discuss your energy plan options.
       </p>
     </section>
   );

@@ -377,13 +377,16 @@ const AssessmentSecondStep = () => {
   }, [assessmentAnswers]);
 
   const submitAssessment = () => {
-    const json = fetch("https://dev.peek.net.au/origin/answers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ answers: assessmentAnswers }),
-    })
+    const json = fetch(
+      "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/answers",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ answers: assessmentAnswers }),
+      }
+    )
       .then((response) => response.json(), setIsSubmitting(true))
       .then(
         (data) =>
@@ -391,7 +394,6 @@ const AssessmentSecondStep = () => {
             pathname: "/recommend_dis",
             query: { uuid: data.uuid },
           }),
-        window.localStorage.removeItem("PAGE")
       );
   };
 

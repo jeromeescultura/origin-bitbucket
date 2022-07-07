@@ -10,7 +10,7 @@ function CaseStudyRow() {
           <h2 className="text-primaryText font-bold lg:w-[380px] xl:w-[330px]">
             Together we are driving the Australia&#39;s transition to net-zero.
           </h2>
-          <p className="mt-6 mb-8 lg:w-[415px] xl:w-[380px]">
+          <p className="mt-6 mb-8 lg w-[415px] xl:w-[380px]">
             Over 1,200 businesses of all shapes and sizes, have used the Origin
             assessment tool to transition to cleaner energy solutions, at a
             price point that suits them.
@@ -30,30 +30,37 @@ function CaseStudyRow() {
           </div>
           <p className="text-[112px] text-[#E3E3E3]">“</p>
           <p className="text-base">
-            Ian Gray Gray is an Operations Manager for an Australian grape, wine
+            Ian Gray is an Operations Manager for an Australian grape, wine
             &amp; chocolate business and an Origin customer. Ian manages the
-            energy portfolio for vineyards spread across the Barossa, Clare,
-            McLaren Vale, Langhorne Creek, Padthaway, Heathcote and Margaret
-            River regions along with their large chocolate factory located in
-            the heart of Barossa Valley. Like most small to medium businesses,
-            Ian wanted to shift towards cleaner and more cost-effective energy
-            for his portfolio but wasn’t sure how. When Ian took over the
-            portfolio, he was caught between engaging with energy brokers who he
-            didn&apos;t have a trusted relationship with. His other option was
-            to try to navigate and negotiate directly for the right combination
-            of products and for a better deal. We knew this wasn’t ok. Based on
-            his unique needs, the team at Origin stepped in to support Ian on
-            his journey towards running a more sustainable and energy efficient
-            business. Ian deserved expert guidance and tailored support to
-            reduce both his carbon footprint and manage his overhead costs. And
-            we found a way forward together. Now we have a focused team of
-            dedicated energy specialists equipped to talk customers through the
-            process and walk that journey with them, along with our online tool
-            that helps you understand which Origin sustainable energy products
-            will best suit you. Want your business to shift towards cleaner
-            energy? Use our online tool to find out how your business can
-            benefit. With Origin, you have the power. That’s good for business,
-            and good for our planet too. Origin – Where all GOOD change starts.
+            energy portfolio for vineyards spread across the Barossa, Clare
+            Valley, McLaren Vale, Langhorne Creek, Padthaway, Heathcote and
+            Margaret River regions along with their large chocolate factory
+            located in the heart of Barossa Valley.
+            <br />
+            Like most small to medium businesses, Ian wanted to shift towards
+            cleaner and more cost-effective energy for his portfolio but wasn’t
+            sure how. When Ian took over the portfolio, he was caught between
+            engaging with energy brokers who he didn&apos;t have a trusted
+            relationship with. His other option was to try to navigate and
+            negotiate directly for the right combination of products and for a
+            better deal. We thought we could help.
+            <br />
+            Based on his unique needs, the team at Origin stepped in to support
+            Ian on his journey towards running a more sustainable and energy
+            efficient business. Ian deserved expert guidance and tailored
+            support to reduce both his carbon footprint and manage his overhead
+            costs. And we found a way forward together.
+            <br />
+            Now we have a focused team of dedicated energy specialists equipped
+            to talk customers through the process and walk that journey with
+            them, along with our online tool to help you understand which Origin
+            sustainable energy products will best suit you.
+            <br />
+            Want your business to take steps towards supporting cleaner energy?
+            Use our online tool to find out how your business can benefit.
+            <br />
+            With Origin, you have the power. That&apos;s good for business, and good
+            for our planet too. Origin – Where all GOOD change starts.
           </p>
           <div>
             <p>Ian Gray</p>
