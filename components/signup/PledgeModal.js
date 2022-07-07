@@ -76,7 +76,7 @@ const PledgeModal = ({
                   <p className="font-medium">Plan</p>
                   {product === "solar" ? (
                     <p>
-                      Available on any Origin Electricity plan 
+                      Available on any Origin Electricity plan
                       {/* or as a
                       stand-alone product */}
                     </p>
@@ -107,8 +107,7 @@ const PledgeModal = ({
             <p className="text-xs text-subTextColor">
               extra {product === "solar" ? "p/month" : "p/day"} on any <br />
               Origin Electricity plan
-              {/* {product === "solar" ? " or as a stand-alone" : ""} */}
-              *
+              {/* {product === "solar" ? " or as a stand-alone" : ""} */}*
             </p>
           </div>
           <div className="mt-8">
@@ -143,7 +142,7 @@ const PledgeModal = ({
             </div>
             <p className="text-xs mt-6">
               {product === "carbonOffset" &&
-                `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact} tree seedlings for 10 years.`}
+                `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact[0]} tree seedlings for 10 years.`}
               {product === "greenPower" &&
                 `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact} to put the same amount of renewable energy back into the grid.`}
               {product === "solar" &&

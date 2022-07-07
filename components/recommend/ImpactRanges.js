@@ -73,26 +73,15 @@ const ImpactRanges = ({
                   Smaller customers (between 0 and 40kwh daily usage) on average
                   used {separator(Math.round(low * 365))} kwh per year. Which,
                   if offset would roughly be equivalent to the carbon{" "}
-                  {separator(
-                    Math.round(
-                      ((low * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) /
-                        100
-                    )
-                  )}{" "}
-                  trees absorb per year{" "}
+                  {separator(Math.round((carbonEmissions?.low * 365) / 10))} - {separator(Math.round((carbonEmissions?.low * 365) / 5))} trees
+                  absorb per year{" "}
                 </li>
                 <li>
                   Medium customers (between 40 and 440kwh daily usage) on
                   average used {separator(Math.round(medium * 365))} kwh per
                   year. Which, if offset would roughly be equivalent to the
                   carbon{" "}
-                  {separator(
-                    Math.round(
-                      ((medium * 365 * 0.0072 + 0.0482 + Number.EPSILON) *
-                        100) /
-                        100
-                    )
-                  )}{" "}
+                  {separator(Math.round((carbonEmissions?.medium * 365) / 10))} - {separator(Math.round((carbonEmissions?.medium * 365) / 5))}{" "}
                   trees absorb per year{" "}
                 </li>
                 {high && (
@@ -100,13 +89,7 @@ const ImpactRanges = ({
                     Larger customers (over 440 kwh daily usage) on average used{" "}
                     {separator(Math.round(high * 365))} kwh per year. Which, if
                     offset would roughly be equivalent to the carbon{" "}
-                    {separator(
-                      Math.round(
-                        ((high * 365 * 0.0072 + 0.0482 + Number.EPSILON) *
-                          100) /
-                          100
-                      )
-                    )}{" "}
+                    {separator(Math.round((carbonEmissions?.high * 365) / 10))} - {separator(Math.round((carbonEmissions?.high * 365) / 5))}{" "}
                     trees absorb per year{" "}
                   </li>
                 )}

@@ -651,6 +651,10 @@ export const handleImpactData = (
   setImpact,
   dayjs
 ) => {
+  let low;
+  let tempLow;
+  let high;
+  let tempHigh;
   let impactCalc;
   let tempImpactCalc;
   let metricTons;
@@ -659,15 +663,20 @@ export const handleImpactData = (
   let tempCars;
 
   if (showContent === "carbonOffset") {
-    impactCalc = Math.round(
-      ((dailyUsage * 365 * 0.0072 + 0.0482 + Number.EPSILON) * 100) / 100
-    );
-    if (impactCalc > 1) {
-      tempImpactCalc = Math.round(impactCalc);
+    low = Math.round((dailyCarbonEmissions * 365) / 10);
+    high = Math.round((dailyCarbonEmissions * 365) / 5);
+    if (low > 1) {
+      tempLow = Math.round(low);
     } else {
-      tempImpactCalc = Math.ceil(impactCalc);
+      tempLow = Math.ceil(low);
     }
-    setImpact(separator(tempImpactCalc));
+
+    if (high > 1) {
+      tempHigh = Math.round(high);
+    } else {
+      tempHigh = Math.ceil(high);
+    }
+    setImpact([separator(tempLow), separator(tempHigh)]);
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(dailyUsage * 365 * 0.001305873 * level, "h");
 
@@ -696,7 +705,7 @@ export const handleImpactData = (
             );
           } else {
             setImpact(
-              (prevState) => `${prevState}, ${impactCalc?.$d?.hours} hour`
+              (prevState) => `${prevState} ${impactCalc?.$d?.hours} hour`
             );
           }
         }
