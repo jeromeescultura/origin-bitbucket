@@ -5,6 +5,7 @@ import {
   CardContent,
   Collapse,
   Switch,
+  useMediaQuery,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
@@ -14,12 +15,14 @@ const GreenPowerToggle = ({ recommend, pledges, setPledges }) => {
   const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
 
+
   const activeStyles = "border-accentColor bg-highlight font-semibold";
 
   useEffect(() => {
     setGreenPower(false);
     setPledges([]);
   }, [recommend]);
+
 
   const expandGreenPower = () => {
     setGreenPower(!greenPower);
