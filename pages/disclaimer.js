@@ -96,7 +96,7 @@ const Disclaimer = () => {
           </div>
           <div className="relative hidden md:inline md:h-[250px] lg:h-[350px] xl:w-[350px] xl:h-full">
             <Image
-              src="/images/disclaimer-tree.png"
+              src="/images/eligibility.png"
               layout="fill"
               objectFit="cover"
               alt="trees"
