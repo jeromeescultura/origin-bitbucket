@@ -2,9 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import ContactForms from "../../components/ContactForms";
-import ContentContainer from "../../containers/ContentContainer";
-import { ButtonTrackingEvent } from "../../functions/analitycsEvents";
+import ContactForms from "../components/ContactForms";
+import ContentContainer from "../containers/ContentContainer";
+import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Interested() {
   const router = useRouter();
@@ -29,6 +29,15 @@ function Interested() {
       <div className="bg-primaryBG pb-32">
         <section className="pt-6 lg:pt-8 ">
           <div className="w-full xl:w-[1108px] mx-auto">
+            <img
+              src="/images/origin-logo.svg"
+              className="w-16 lg:w-20 cursor-pointer ml-auto pr-4"
+              alt="origin-logo"
+              name="go-home"
+              onClick={(e) => handleClick(e)}
+            />
+
+            {/*             
             <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
               <Image
                 src="/images/origin-logo.svg"
@@ -39,7 +48,7 @@ function Interested() {
                 name="go-home"
                 onClick={handleClick}
               />
-            </div>
+            </div> */}
           </div>
           <div className="text-center font-light w-full mt-4 lg:-mt-8">
             <h2 className="text-primaryText font-bold w-full sm:w-[60vw] lg:w-[50vw] mx-auto">

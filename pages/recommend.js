@@ -506,7 +506,13 @@ const Recommend = () => {
         <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
           <section className="pt-6 lg:pt-8">
             <div className="w-full xl:w-[1108px] mx-auto">
-              <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
+              <img
+                src="/images/origin-logo.svg"
+                className="w-16 lg:w-20 cursor-pointer ml-auto pr-4"
+                alt="origin-logo"
+                onClick={handleClick}
+              />
+              {/* <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
                 <Image
                   src="/images/origin-logo.svg"
                   width={90}
@@ -515,7 +521,7 @@ const Recommend = () => {
                   alt="origin-logo"
                   onClick={handleClick}
                 />
-              </div>
+              </div> */}
             </div>
           </section>
           {!loading ? (

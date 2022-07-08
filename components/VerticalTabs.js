@@ -94,7 +94,10 @@ export default function VerticalTabs() {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <div>
+        <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
+          <img src="images/perks.png" className="w-full" alt="perks" />
+        </div>
+        {/*           
           <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
               src="/images/perks.png"
@@ -104,15 +107,16 @@ export default function VerticalTabs() {
               alt="betty"
               className="rounded-xl"
             />
-          </div>
-        </div>
+          </div> */}
+
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             Direct line access to our dedicated Business Club Specialists for:
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -120,11 +124,12 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p> Bespoke site analysis for solar installs</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -132,11 +137,12 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p> Energy efficiency support for your business</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -144,7 +150,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p>Guidance on cleaner energy solutions</p>
             </li>
           </ul>
@@ -152,6 +158,11 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div>
+          <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
+            <img src="images/perks-2.jpg" className="w-full" alt="perks" />
+          </div>
+
+          {/*         
           <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
               src="/images/perks-2.jpg"
@@ -161,7 +172,7 @@ export default function VerticalTabs() {
               alt="betty"
               className="rounded-xl"
             />
-          </div>
+          </div> */}
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
@@ -169,7 +180,8 @@ export default function VerticalTabs() {
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -177,11 +189,12 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p>Insights on how your business has supported cleaner energy</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -189,11 +202,12 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p> Energy Efficiency Checklist</p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -201,7 +215,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p>
                 An opportunity to share what you would want from future
                 decarbonisation services
@@ -212,7 +226,11 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div>
-          <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
+          <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
+            <img src="images/perks-3.jpg" className="w-full" alt="perks" />
+          </div>
+
+          {/* <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
             <Image
               src="/images/perks-3.jpg"
               width={300}
@@ -221,7 +239,7 @@ export default function VerticalTabs() {
               alt="betty"
               className="rounded-xl"
             />
-          </div>
+          </div> */}
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
@@ -230,6 +248,8 @@ export default function VerticalTabs() {
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/*             
               <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
@@ -238,14 +258,15 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p>
                 Downloadable assets to help you and your employees share the
                 steps you&apos;ve made
               </p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
+              <img src="icons/check-yellow.svg" className="w-5" alt="check" />
+              {/* <div className="min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px]">
                 <Image
                   src="/icons/check-yellow.svg"
                   width={40}
@@ -253,7 +274,7 @@ export default function VerticalTabs() {
                   objectFit="contain"
                   alt="check"
                 />
-              </div>
+              </div> */}
               <p>
                 Opportunities to be recognised in our customer case studies
                 &amp; blogs

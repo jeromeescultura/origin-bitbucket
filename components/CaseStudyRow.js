@@ -17,12 +17,12 @@ function CaseStudyRow() {
         <div className="flex flex-col gap-2 md:gap-12 md:min-w-[200px] lg:min-w-[300px]  md:self-start">
           <img
             src="/images/customer_wine-glass.jpg"
-            alt="betty"
+            alt="Wine Glass"
             className="rounded-md w-full"
           />
           <img
             src="/images/customer_winery-post.jpg"
-            alt="betty"
+            alt="customer winery"
             className="rounded-md w-full"
           />
         </div>
