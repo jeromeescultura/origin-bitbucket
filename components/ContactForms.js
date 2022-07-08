@@ -188,7 +188,7 @@ function ContactForms({ text }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(contact_data),
+          body: JSON.stringify({ contact_data }),
         }
       )
         .then((response) => response.json())
