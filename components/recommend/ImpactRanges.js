@@ -170,7 +170,6 @@ const ImpactRanges = ({
           )}
           {showContent === "greenPower" && (
             <div>
-              <br />
               <ul className="text-sm list-disc pl-5 space-y-2">
                 <li>
                   <p className="font-medium mb-2">
@@ -328,7 +327,6 @@ const ImpactRanges = ({
           )}
           {showContent === "solar" && (
             <div>
-              <br />
               <ul className="text-sm list-disc pl-5 space-y-2">
                 <li>
                   <p className="font-medium mb-2">
@@ -444,7 +442,6 @@ const ImpactRanges = ({
             <p className="italic">
               For our estimates we leveraged the following data:
             </p>
-            <br />
             {showContent === "carbonOffset" && (
               <div className="p-2">
                 <p className="underline mb-1">
