@@ -48,9 +48,8 @@ const FinanceCalc = ({
         </p>
 
         <Typography sx={{ mt: "16px", fontSize: "14px" }}>
-          Toggle to compare how your{" "}
-          {recommend === "solar" ? "monthly" : "daily"} bills might change
-          depending on different usage levels
+          Toggle to compare how your monthly bills might change depending on
+          different usage levels
         </Typography>
         <ButtonGroup
           sx={{ mt: { xs: "12px", lg: "24px" } }}

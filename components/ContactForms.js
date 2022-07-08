@@ -155,6 +155,7 @@ function ContactForms({ text }) {
 
   const onSubmit = (contact_data) => {
     ButtonTrackingEvent("contact-submit", contact_data);
+    console.log(contact_data, "contact_data console");
     if (userID) {
       const json = fetch(
         "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact/" +
@@ -191,7 +192,8 @@ function ContactForms({ text }) {
         }
       )
         .then((response) => response.json())
-        .then(() =>
+        .then(
+          (res) => console.log(res, "response"),
           router.push({ pathname: "/thankyou", query: { interest: 1 } })
         );
     }

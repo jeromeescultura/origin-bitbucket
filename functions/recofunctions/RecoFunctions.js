@@ -796,7 +796,6 @@ export const formatPrice = (number) => {
   return Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "AUD",
-    maximumSignificantDigits: 3,
   }).format(number);
 };
 

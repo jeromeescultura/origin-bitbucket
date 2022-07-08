@@ -94,7 +94,13 @@ const Disclaimer = () => {
               </Button>
             </div>
           </div>
-          <div className="relative hidden md:inline md:h-[250px] lg:h-[350px] xl:w-[350px] xl:h-full">
+
+          <img
+            src="images/eligibility.png"
+            alt="icon"
+            className="relative hidden md:inline md:h-[250px] lg:h-[350px] xl:w-[350px] xl:h-full"
+          />
+          {/* <div className="relative hidden md:inline md:h-[250px] lg:h-[350px] xl:w-[350px] xl:h-full">
             <Image
               src="/images/eligibility.png"
               layout="fill"
@@ -102,7 +108,7 @@ const Disclaimer = () => {
               alt="trees"
               className="rounded-2xl"
             />
-          </div>
+          </div> */}
 
           {/* <Image
             src="/images/disclaimer-tree.png"

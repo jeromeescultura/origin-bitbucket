@@ -12,6 +12,7 @@ module.exports = {
       "reco-bg": "url('../public/images/reco-bg.png')",
       "reco-xs-bg": "url('../public/images/reco-xs-bg.png')",
       "reco-lg-bg": "url('../public/images/reco-lg-bg.png')",
+      "hero-bg": "url('../public/images/hero.jpg')",
     },
     screens: {
       xs: "375px",

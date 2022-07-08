@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    loader: "akamai",
-    path: "",
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
   },
+  reactStrictMode: true,
   exportPathMap: async function (
     defaultPathMap,
     { dev, dir, outDir, distDir, buildId }

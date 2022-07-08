@@ -12,8 +12,8 @@ function HeroComponent() {
     router.push(url);
   };
   return (
-    <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16">
-      <div className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]">
+    <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16 ">
+      {/* <div className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]">
         <Image
           src="/images/hero.jpg"
           layout="fill"
@@ -24,7 +24,25 @@ function HeroComponent() {
           priority
           name="Home"
         />
-      </div>
+      </div> */}
+      <div className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px] bg-hero-bg bg-no-repeat bg-cover rounded-xl bg-center"></div>
+      {/* <img
+        src="/images/hero.jpg"
+        alt="bg-image"
+        className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]"
+      /> */}
+      {/* <div className="w-full sm:w-[90vw] md:w-full relative h-[550px] sm:h-[400px] md:h-[350px] lg:h-[680px]">
+        <Image
+          src="/images/hero.jpg"
+          layout="fill"
+          objectFit="cover"
+          alt="bg-image"
+          className="rounded-2xl"
+          objectPosition="left"
+          priority
+          name="Home"
+        />
+      </div> */}
       <div className="absolute max-w-[920px] pt-2 xs:pt-10 lg:pt-28 text-center lg:text-left sm:w-[80%] md:w-[90%] lg:w-[75%] xl:w-[65%]">
         <h2 className="text-4xl lg:text-[56px] lg:leading-snug  text-primaryText font-bold px-10 sm:px-10 lg:px-0 lg:w-[600px]">
           We help your business take steps to support cleaner energy

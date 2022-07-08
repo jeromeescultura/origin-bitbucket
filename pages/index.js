@@ -177,14 +177,19 @@ export default function Home() {
                 </p>
                 <div className="flex justify-center mt-6">
                   <div className="flex items-start max-w-[254px] sm:max-w-full cursor-pointer">
-                    <div className="mr-1">
+                    <img
+                      src="/icons/pdf.svg"
+                      alt="document-icon"
+                      className="w-5 mr-1"
+                    />
+                    {/* <div className="mr-1">
                       <Image
                         src="/icons/pdf.svg"
                         width={20}
                         height={20}
                         alt="document-icon"
                       />
-                    </div>
+                    </div> */}
                     <p className="text-sm font-medium text-primaryText">
                       Start with our Energy Efficiency Checklist
                     </p>
