@@ -381,6 +381,9 @@ const Recommend = () => {
 
   const extraCost =
     Math.round((dailyUsage * offSet * level + Number.EPSILON) * 100) / 100;
+  // Math.round(
+  //   (((dailyUsage * 365) / 12) * offSet * level + Number.EPSILON) * 100
+  // ) / 100;
 
   const increasePercentage =
     Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
@@ -394,6 +397,7 @@ const Recommend = () => {
   const solarSavings = Math.round(
     Math.round((withoutSolar - withSolar + Number.EPSILON) * 100) / 100
   );
+
   const solarReduction =
     Math.round(
       (((withoutSolar - withSolar) / withoutSolar) * 100 + Number.EPSILON) * 100
@@ -636,9 +640,11 @@ const Recommend = () => {
                 <ImpactRanges
                   dayjs={dayjs}
                   level={level}
+                  offSet={offSet}
                   impactRanges={impactRanges}
                   closeModal={closeModal}
                   showContent={showContent}
+                  industry={industry}
                   low={industry?.dailyUsage?.low}
                   medium={industry?.dailyUsage?.medium}
                   high={industry?.dailyUsage?.high}
