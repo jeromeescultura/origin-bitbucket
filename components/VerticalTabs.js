@@ -94,21 +94,11 @@ export default function VerticalTabs() {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
-          <img src="images/perks.png" className="w-full" alt="perks" />
+        <div>
+          <div className="w-[80%] lg:w-[250px] xl:w-[300px] max-w-[300px]">
+            <img src="images/perks.jpg" className="w-full" alt="perks" />
+          </div>
         </div>
-        {/*           
-          <div className="lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px]">
-            <Image
-              src="/images/perks.png"
-              width={300}
-              height={300}
-              objectFit="cover"
-              alt="betty"
-              className="rounded-xl"
-            />
-          </div> */}
-
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             Direct line access to our dedicated Business Club Specialists for:
@@ -158,7 +148,7 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div>
-          <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
+          <div className="w-[80%] lg:w-[250px] xl:w-[300px] max-w-[300px]">
             <img src="images/perks-2.jpg" className="w-full" alt="perks" />
           </div>
 
@@ -226,7 +216,7 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div>
-          <div className="w-[80%] lg:w-[450px] xl:w-[500px] max-w-[300px]">
+          <div className="w-[80%] lg:w-[250px] xl:w-[300px] max-w-[300px]">
             <img src="images/perks-3.jpg" className="w-full" alt="perks" />
           </div>
 
