@@ -153,10 +153,10 @@ const PledgeModal = ({
             <div className="mt-8">
               <p className="font-medium">You&apos;ve chosen to do more</p>
               <div className="flex justify-center">
-                <div className="flex flex-col">
+                <div className="flex flex-col max-w-[300px]">
                   {biggerDiff.includes("decarbonisation interview") && (
                     <div className="flex gap-4 mt-4">
-                      <div className="w-[20px] h-[20px]">
+                      <div className="min-w-[20px] max-w-[20px]">
                         <Image
                           src="/icons/check-green.svg"
                           width={50}
@@ -173,7 +173,7 @@ const PledgeModal = ({
                   )}
                   {biggerDiff.includes("greenPower") && (
                     <div className="flex gap-4 mt-4">
-                      <div className="w-[20px] h-[20px]">
+                      <div className="min-w-[20px] max-w-[20px]">
                         <Image
                           src="/icons/check-green.svg"
                           width={50}
@@ -182,7 +182,14 @@ const PledgeModal = ({
                           alt="trees"
                         />
                       </div>
-                      <p className="text-left">GreenPower</p>
+                      <div>
+                        {" "}
+                        <p className="text-left">GreenPower</p>
+                        <p className="text-left">
+                          One of our Business Club representatives will get in
+                          contact to review your GreenPower options
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>

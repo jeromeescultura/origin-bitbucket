@@ -56,13 +56,14 @@ function Interested() {
             </h2>
             <p className="subtitle my-6 leading-loose w-[80vw] sm:w-[60vw] md:w-[65vw] lg:w-[40vw] xl:w-[40vw] mx-auto">
               Interested in speaking to one of our Business Club Specialists
-              about your options? Leave your details below.
+              about your options?
+              <br /> Leave your details below.
             </p>
           </div>
         </section>
 
         <ContentContainer style="grid gap-6 lg:gap-8 lg:grid-col-5 lg:grid-flow-col lg:grid-flow-col relative max-w-[610px] mx-auto z-10">
-          <ContactForms text="Please give us a few details, and one of our Business Club Specialists will contact you about other options that might be available to you." />
+          <ContactForms text="Please give us a few details, and one of our Business Club Specialists will contact you about options that might be available to you." />
         </ContentContainer>
       </div>
     </>

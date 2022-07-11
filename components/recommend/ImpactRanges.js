@@ -40,7 +40,7 @@ const ImpactRanges = ({
 
   return (
     <Modal open={impactRanges} onClose={closeModal}>
-      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[600px] min-w-[311px] p-6 rounded-lg">
+      <Box className="bg-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[350px] sm:max-w-[600px] min-w-[311px] p-6 rounded-lg">
         <div className={`flex items-start justify-between`}>
           <h1 className="font-GorditaMedium text-lg lg:text-xl ">
             Understanding your impact estimates with{" "}
@@ -60,7 +60,7 @@ const ImpactRanges = ({
             />
           </button>
         </div>
-        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll sm:overflow-visible max-h-[450px] sm:max-h-full">
+        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll max-h-[450px] lg:max-h-[550px] xl:max-h-[700px]">
           <p>
             These estimates are subject to change based on your business&apos;
             individual usage.{" "}
@@ -443,7 +443,7 @@ const ImpactRanges = ({
               For our estimates we leveraged the following data:
             </p>
             {showContent === "carbonOffset" && (
-              <div className="p-2">
+              <div className="p-2 break-words">
                 <p className="underline mb-1">
                   Australian Department of Agriculture, Fisheries and Forestry
                 </p>
@@ -467,7 +467,7 @@ const ImpactRanges = ({
               </div>
             )}
             {showContent === "greenPower" && (
-              <div className="p-2">
+              <div className="p-2 break-words">
                 <p className="underline mb-1">
                   Australian Energy Market Operator
                 </p>
@@ -491,8 +491,8 @@ const ImpactRanges = ({
               </div>
             )}
             {showContent === "solar" && (
-              <div className="p-2">
-                <p className="underline mb-1">
+              <div className="p-2  break-words">
+                <p className="underline mb-1 block">
                   Australian National Transport Commission
                 </p>
                 <a
@@ -508,9 +508,7 @@ const ImpactRanges = ({
                   className="hover:underline"
                   href="https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20kilometres%20a%20day."
                 >
-                  https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20
-                  <br />
-                  kilometres%20a%20day.
+                  https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20kilometres%20a%20day.
                 </a>
               </div>
             )}
