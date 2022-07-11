@@ -10,7 +10,7 @@ function CaseStudyRow() {
           className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto"
           id="business-club"
         >
-          Ian's Story
+          Ian&apos;s Story
         </h2>
       </div>
       <div className="flex flex-col lg:mx-[4rem] md:flex-row md:items-center gap-8 lg:gap-10  mt-16 pb-24 lg:pb-16">
@@ -57,9 +57,9 @@ function CaseStudyRow() {
             them, along with our online tool to help you understand which Origin
             sustainable energy products will best suit you. Want your business
             to take steps towards supporting cleaner energy? Use our online tool
-            to find out how your business can benefit With Origin, you have the
+            to find out how your business can benefit. With Origin, you have the
             power. That’s good for business, and good for our planet too. Origin
-            - where all GOOD change starts.
+            - where all good change starts.
           </p>
         </div>
       </div>
