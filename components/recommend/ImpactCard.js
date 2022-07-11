@@ -9,6 +9,9 @@ const ImpactCard = ({
   industry,
   openModal,
   dailyUsage,
+  btn1,
+  btn2,
+  btn3,
 }) => {
   const [icon, setIcon] = useState("trees.svg");
 
@@ -31,7 +34,7 @@ const ImpactCard = ({
   return (
     <div className="bg-white py-8 px-4 lg:p-8 rounded-xl space-y-8 max-w-[530px] mx-auto">
       <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center">
-        Your estimated impact
+        Illustrative impact
       </p>
       <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row">
         <div className="text-center min-w-[150px]">
@@ -44,34 +47,54 @@ const ImpactCard = ({
               alt="trees"
             />
           </div>
-          <div className="mt-2">
-            <h2 className="text-greenText font-bold">
-              {typeof impact === "object" && recommend === "solar" && impact[1]}
-              {recommend === "greenPower" && impact}
-              {recommend === "carbonOffset" && impact[0]}
-            </h2>
-            <p className="text-sm text-greenText">
-              {recommend === "carbonOffset" && "tree seedlings"}{" "}
-              {recommend === "solar" && "fuel powered cars off the road"}
-              {recommend === "greenPower" && "until fully matched"}
-            </p>
-          </div>
+
+          {btn1 || btn2 || btn3 ? (
+            <div className="mt-2">
+              <h2 className="text-greenText font-bold">
+                {typeof impact === "object" &&
+                  recommend === "solar" &&
+                  impact[1]}
+                {recommend === "greenPower" && impact}
+                {recommend === "carbonOffset" && impact[0]}
+              </h2>
+              <p className="text-sm text-greenText">
+                {recommend === "carbonOffset" && "tree seedlings"}{" "}
+                {recommend === "solar" && "fuel powered cars off the road"}
+                {recommend === "greenPower" && "until fully matched"}
+              </p>
+            </div>
+          ) : (
+            <p className="text-xl text-greenText font-bold">-</p>
+          )}
         </div>
-        <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
-          {recommend === "carbonOffset" &&
-            `As an example, if the average business in your industry offsets its electricity usage for one year, it would be roughly equivalent to the carbon absorbed by ${impact[0]} - ${impact[1]} 2 metre tall trees in one year.
+        {btn1 || btn2 || btn3 ? (
+          <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
+            {recommend === "carbonOffset" &&
+              `As an example, if the average business in your industry offsets its electricity usage for one year, it would be roughly equivalent to the carbon absorbed by ${impact[0]} - ${impact[1]} 2 metre tall trees in one year.
             `}
-          {recommend === "greenPower" &&
-            `As an example, if the average business in your industry buys (${
-              level * 100
-            }%) GreenPower, it would fund ${dailyUsage}Kw/h of renewable electricity to be put back into the grid by (for example) approximately ${
-              typeof impact === "string" && impact?.replace(",", " and")
-            } of a wind turbine.`}
-          {recommend === "solar" &&
-            `As an example, if the average business in your industry uses Solar energy for its electricity needs, the avoided carbon emissions could equal to the removal of up to ${
-              impact[1] > 1 ? `${impact[1]} cars` : `${impact[1]} car`
-            } from Australia’s roads.`}
-        </p>
+            {recommend === "greenPower" &&
+              `As an example, if the average business in your industry buys (${
+                level * 100
+              }%) GreenPower, it would fund ${dailyUsage}Kw/h of renewable electricity to be put back into the grid by (for example) approximately ${
+                typeof impact === "string" && impact?.replace(",", " and")
+              } of a wind turbine.`}
+            {recommend === "solar" &&
+              `As an example, if the average business in your industry uses Solar energy for its electricity needs, the avoided carbon emissions could equal to the removal of up to ${
+                impact[1] > 1 ? `${impact[1]} cars` : `${impact[1]} car`
+              } from Australia’s roads.`}
+          </p>
+        ) : (
+          <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
+            {recommend === "carbonOffset" &&
+              `As an example, if the average business in your industry offsets its electricity usage for one year, it would be roughly equivalent to the carbon absorbed by -x 2 metre tall trees in one year.
+            `}
+            {recommend === "greenPower" &&
+              `As an example, if the average business in your industry buys -% GreenPower, it would fund -Kw/h of renewable electricity to be put back into the grid by (for example) approximately -hrs of a wind turbine.`}
+            {recommend === "solar" &&
+              `As an example, if the average business in your industry uses Solar energy for its electricity needs, the avoided carbon emissions could equal to the removal of up to -x car
+               from Australia’s roads.`}
+          </p>
+        )}
       </div>
       <MoreDetailsComponent
         text={`How ${

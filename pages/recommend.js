@@ -83,7 +83,7 @@ const Recommend = () => {
   const [highLow, setHighLow] = useState({});
 
   const [offSet, setOffSet] = useState();
-  const [usage, setUsage] = useState("<40");
+  const [usage, setUsage] = useState("");
   const [dailyUsage, setDailyUsage] = useState(0);
   const [dailyCarbonEmissions, setDailyCarbonEmissions] = useState(0);
 
@@ -340,7 +340,7 @@ const Recommend = () => {
   const [industryCost, setIndustryCost] = useState(0);
   const [withSolar, setWithSolar] = useState(0);
 
-  const [btn1, setBtn1] = useState(true);
+  const [btn1, setBtn1] = useState(false);
   const [btn2, setBtn2] = useState(false);
   const [btn3, setBtn3] = useState(false);
 
@@ -406,12 +406,12 @@ const Recommend = () => {
     ) / 100;
 
   useEffect(() => {
-    setUsage("<40");
+    setUsage("");
     setDailyUsage(industry?.dailyUsage?.low);
     setDailyCarbonEmissions(industry?.dailyCarbonEmissions?.low);
     setIndustryCost(industry?.industryCost?.low);
     setWithSolar(industry?.withSolarCost?.low);
-    setBtn1(true);
+    setBtn1(false);
     setBtn2(false);
     setBtn3(false);
     setLevel(1);
@@ -688,6 +688,9 @@ const Recommend = () => {
                       industry={industry?.name}
                       dailyUsage={dailyUsage}
                       openModal={openModal}
+                      btn1={btn1}
+                      btn2={btn2}
+                      btn3={btn3}
                     />
                   </div>
                   <div className="break-inside-avoid">
@@ -730,6 +733,9 @@ const Recommend = () => {
                       extraCost={extraCost}
                       level={level}
                       handleLevel={handleLevel}
+                      btn1={btn1}
+                      btn2={btn2}
+                      btn3={btn3}
                     />
                   </div>
                   <div className="break-inside-avoid">

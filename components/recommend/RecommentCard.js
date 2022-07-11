@@ -20,6 +20,9 @@ const RecommentCard = ({
   level,
   handleLevel,
   topRecommend,
+  btn1,
+  btn2,
+  btn3,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
@@ -96,7 +99,7 @@ const RecommentCard = ({
         </div>
       </MoreDetailsComponent>
       <div className="flex flex-col  gap-4 lg:gap-0">
-        <div className="space-y-2  lg:pr-5  lg:border-r text-left ">
+        <div className="space-y-2  lg:pr-5  text-left ">
           {recommend === "solar" ? (
             <div className="">
               <p className="font-medium whitespace-nowrap">Estimated Savings</p>
@@ -140,7 +143,7 @@ const RecommentCard = ({
               your energy plan options and any potential costs specific to your
               business site.
             </p>
-          ) : (
+          ) : btn1 || btn2 || btn3 ? (
             <p className="text-xs text-subTextColor leading-6">
               This usage charge would roughly equate to an estimated cost of{" "}
               {formatPrice(extraCost)} per day (GST inclusive). This estimated
@@ -149,6 +152,16 @@ const RecommentCard = ({
               you submit your application, one of our Business Club Specialists
               will get in contact to discuss your energy plan options and any
               potential costs specific to your business site.
+            </p>
+          ) : (
+            <p className="text-xs text-subTextColor leading-6">
+              This usage charge would roughly equate to an estimated cost of -
+              per day (GST inclusive). This estimated cost is based on industry
+              averages using Origin SME customer data. The actual cost will
+              depend on your business’ specific usage. Once you submit your
+              application, one of our Business Club Specialists will get in
+              contact to discuss your energy plan options and any potential
+              costs specific to your business site.
             </p>
           )}
         </div>
