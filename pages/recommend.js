@@ -508,7 +508,7 @@ const Recommend = () => {
       </Head>
 
       <div className="bg-primaryBG h-full">
-        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
+        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-72 lg:mb-56">
           <section className="pt-6 lg:pt-8">
             <div className="w-full xl:w-[1108px] mx-auto">
               <img
@@ -805,7 +805,7 @@ const Recommend = () => {
           </div>
         )}
         {bigScreen && (
-          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
+          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0">
             <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
               <UsageButtons
                 recommend={showContent}
