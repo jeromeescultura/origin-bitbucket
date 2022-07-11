@@ -51,7 +51,9 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
       setBtn1(false);
       setBtn2(true);
       if (isPresent !== -1) {
-        const remaining = pledges.filter((item) => item !== "decarbonisation interview");
+        const remaining = pledges.filter(
+          (item) => item !== "decarbonisation interview"
+        );
         setPledges(remaining);
       }
     }
@@ -59,7 +61,7 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
   return (
     <Card
       variant="outlined"
-      className="border-none rounded-xl max-w-[530px] mx-auto"
+      className="border-none rounded-xl max-w-[530px] mx-auto "
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">

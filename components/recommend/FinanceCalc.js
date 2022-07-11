@@ -40,18 +40,18 @@ const FinanceCalc = ({
   return (
     <Card
       variant="outlined"
-      className="border-none rounded-xl max-w-[530px] mx-auto"
+      className="border-none rounded-xl max-w-[530px] mx-auto lg:px-6"
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-          Estimated financial impact
+          Illustrative financial impact
         </p>
 
         <Typography sx={{ mt: "16px", fontSize: "14px" }}>
-          Toggle to compare how your monthly bills might change depending on
-          different usage levels
+          Illustrative monthly financial impact from other Origin customers in
+          your selected industry
         </Typography>
-        <ButtonGroup
+        {/* <ButtonGroup
           sx={{ mt: { xs: "12px", lg: "24px" } }}
           variant="outlined"
           aria-label="outlined button group"
@@ -161,7 +161,7 @@ const FinanceCalc = ({
               );
             }}
           />
-        </ButtonGroup>
+        </ButtonGroup> */}
         {/* <Typography sx={{ mt: "32px", mb: "16px", fontSize: "14px" }}>
           Bill impact on {usage} kWh average monthly use
         </Typography> */}
@@ -233,20 +233,20 @@ const FinanceCalc = ({
             <div className="flex items-center gap-4">
               <div className="flex items-center">
                 <div className="w-3 h-3 inline-block bg-lime-400 rounded-full mr-2"></div>
-                Without {recommend === "carbonOffset" && "Go Zero"}{" "}
+                Without {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
                 {recommend === "solar" && "Solar"}
                 {recommend === "greenPower" && "GreenPower"}
               </div>
               <div className="flex items-center">
                 <div className="w-3 h-3 inline-block bg-green-800 rounded-full mr-2"></div>
-                With {recommend === "carbonOffset" && "Go Zero"}{" "}
+                With {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
                 {recommend === "solar" && "Solar"}
                 {recommend === "greenPower" && "GreenPower"}
               </div>
             </div>
           </div>
         </Grid>
-        {increasePercentage <= 0 && (
+        {/* {increasePercentage <= 0 && (
           <MoreDetailsComponent text="Why it costs you nothing extra">
             <p>
               Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
@@ -256,12 +256,12 @@ const FinanceCalc = ({
               lectus.
             </p>
           </MoreDetailsComponent>
-        )}
-        <div className="font-light text-xs text-center text-subTextColor leading-5">
+        )} */}
+        <div className="font-light text-xs text-left text-subTextColor leading-5">
           These cost estimates are based on electricity usage averages compiled
           from Origin&apos;s small and medium business customer base in the{" "}
-          <span className="font-medium">{industry?.name}</span>. This will
-          change based on your business&apos; specific usage.{" "}
+          <span className="font-medium">{industry?.name}</span> industry. This
+          will change based on your business&apos; specific usage.{" "}
           <span className="underline cursor-pointer" onClick={openModal}>
             See the range of possible outcomes.
           </span>

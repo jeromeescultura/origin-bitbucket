@@ -38,6 +38,8 @@ import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 import GreenPowerToggle from "../components/recommend/GreenPowerToggle";
+import { Controller } from "react-hook-form";
+import UsageButtons from "../components/recommend/UsageButtons";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -229,7 +231,7 @@ const Recommend = () => {
     handleContent(recommend, pageNo, products, pages, productPages, setContent);
   }, [pageNo, products, industry, pages, pageNo]);
 
-  const [showFooter, setShowFooter] = useState(true);
+  const [showFooter, setShowFooter] = useState(false);
   const [bigScreen, setBigScreen] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
   const showref = useRef();
@@ -506,7 +508,7 @@ const Recommend = () => {
         />
       </Head>
 
-      <div className="bg-primaryBG h-full  ">
+      <div className="bg-primaryBG h-full">
         <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg">
           <section className="pt-6 lg:pt-8">
             <div className="w-full xl:w-[1108px] mx-auto">
@@ -530,32 +532,53 @@ const Recommend = () => {
           </section>
           {!loading ? (
             <div>
-              <ContentContainer style="space-y-8">
-                <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8">
+              <ContentContainer style="space-y-8 ">
+                <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8 ">
                   <p className="text-[18px] text-secondaryText font-bold">
                     Your assessment is ready!
                   </p>
                   <p className="text-subTextColor mt-6">
                     Based on what you&apos;ve told us, your business is
                     interested in taking steps towards supporting cleaner
-                    energy. We want to be able to support everyone in the
-                    transition. Let&apos;s review your next steps below.
+                    energy. Let&apos;s review your next steps below.
                   </p>
                 </div>
-
+                <div
+                  className={`${
+                    animate
+                      ? "opacity-0 translate-x-2"
+                      : "opacity-100 translate-x-0"
+                  } transition ease-in-out pt-6`}
+                >
+                  <div
+                    className={`${pages === 1 && "pt-12"} text-center mb-8 `}
+                    ref={hideref}
+                  >
+                    <h2 className="text-primaryText font-bold">
+                      Making a difference
+                    </h2>
+                    <h2 className="text-primaryText">
+                      with{" "}
+                      {showContent === "carbonOffset" &&
+                        "Origin Go Zero 100% carbon neutral"}{" "}
+                      {showContent === "solar" && "Solar"}
+                      {showContent === "greenPower" && "GreenPower"}
+                    </h2>
+                  </div>
+                </div>
                 {pages !== 1 && (
                   <div
-                    className={`text-center  ${
-                      pages !== 1 ? "py-6 md:py-12" : "py-4 md:py-10"
+                    className={`text-center ${
+                      pages !== 1 ? "py-6 md:py-10" : "py-4 md:py-10"
                     }`}
                   >
-                    <p className="text-subTextColor lg:hidden mt-16">
+                    <p className="text-subTextColor lg:hidden">
                       Keen to understand more options? Toggle to view options at
                       different cost levels.
                     </p>
                     <ButtonGroup
                       fullWidth
-                      className="mt-6 md:w-[500px] lg:w-[730px] max-w-[750px]"
+                      className="mt-6 md:w-[500px] lg:w-full max-w-full"
                       aria-label="outlined button group"
                     >
                       <Button
@@ -565,7 +588,7 @@ const Recommend = () => {
                         variant="contained"
                         className={`${
                           pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-                        } text-sm font-medium !bg-white p-6 !rounded-l-full !shadow-md`}
+                        } text-sm font-medium !bg-white p-6 !rounded-l-full !shadow-md lg:py-8`}
                         startIcon={
                           <svg
                             width="12"
@@ -620,29 +643,29 @@ const Recommend = () => {
                     </ButtonGroup>
                   </div>
                 )}
-                <div
-                  className={`${
-                    animate
-                      ? "opacity-0 translate-x-2"
-                      : "opacity-100 translate-x-0"
-                  } transition ease-in-out `}
-                >
-                  <div
-                    className={`${pages === 1 && "pt-12"} text-center mb-8 `}
-                    ref={hideref}
-                  >
-                    <h2 className="text-primaryText font-bold">
-                      Making a difference
-                    </h2>
-                    <h2 className="text-primaryText">
-                      with{" "}
-                      {showContent === "carbonOffset" &&
-                        "Origin Go Zero 100% carbon offset"}{" "}
-                      {showContent === "solar" && "Solar"}
-                      {showContent === "greenPower" && "GreenPower"}
-                    </h2>
-                  </div>
+
+                <div className="text-center" ref={showref}>
+                  <p>Select usage to change the illustrative examples below</p>
+                  <UsageButtons
+                    recommend={showContent}
+                    impactLevel={impactLevel}
+                    handleButtonSelect={handleButtonSelect}
+                    industry={industry}
+                    btn1={btn1}
+                    btn2={btn2}
+                    btn3={btn3}
+                  />
+                  <p className="text-xs md:text-sm">
+                    {usage === "<40"
+                      ? "Low"
+                      : usage === "40-440"
+                      ? "Medium"
+                      : "High"}{" "}
+                    usage is below {usage} kWh average{" "}
+                    {showContent === "solar" ? "monthly" : "daily"} use
+                  </p>
                 </div>
+
                 <ImpactRanges
                   dayjs={dayjs}
                   level={level}
@@ -656,7 +679,7 @@ const Recommend = () => {
                   high={industry?.dailyUsage?.high}
                   carbonEmissions={industry?.dailyCarbonEmissions}
                 />
-                <div className="lg:columns-2 gap-3 space-y-3 pb-12  ">
+                <div className="lg:columns-2 gap-3 space-y-3 pb-12 ">
                   <div className="break-inside-avoid">
                     <ImpactCard
                       recommend={showContent}
@@ -732,9 +755,8 @@ const Recommend = () => {
                   </div>
                 </div>
               </ContentContainer>
-              <div ref={showref} className="pt-44 md:pt-36">
-                {/* <Faqs /> */}
-              </div>
+
+              <div ref={showref}>{/* <Faqs /> */}</div>
             </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
@@ -743,26 +765,70 @@ const Recommend = () => {
           )}
         </div>
         {showFooter && !loading && (
-          <FooterReco
-            handleButton={handleButton}
-            handleExpress={handleExpress}
-            handleChoose={handleChoose}
-            recommend={showContent}
-            enableBtn={enableBtn}
-            pageNo={pageNo}
-            pages={pages}
-          />
+          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
+            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
+              <UsageButtons
+                recommend={showContent}
+                impactLevel={impactLevel}
+                handleButtonSelect={handleButtonSelect}
+                industry={industry}
+                btn1={btn1}
+                btn2={btn2}
+                btn3={btn3}
+              />
+              <p className="text-xs md:text-sm mt-2">
+                {usage === "<40"
+                  ? "Low"
+                  : usage === "40-440"
+                  ? "Medium"
+                  : "High"}{" "}
+                usage is below {usage} kWh average{" "}
+                {showContent === "solar" ? "monthly" : "daily"} use
+              </p>
+            </div>
+            <FooterReco
+              handleButton={handleButton}
+              handleExpress={handleExpress}
+              handleChoose={handleChoose}
+              recommend={showContent}
+              enableBtn={enableBtn}
+              pageNo={pageNo}
+              pages={pages}
+            />
+          </div>
         )}
         {bigScreen && (
-          <FooterReco
-            handleButton={handleButton}
-            handleExpress={handleExpress}
-            handleChoose={handleChoose}
-            recommend={showContent}
-            enableBtn={enableBtn}
-            pageNo={pageNo}
-            pages={pages}
-          />
+          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
+            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
+              <UsageButtons
+                recommend={showContent}
+                impactLevel={impactLevel}
+                handleButtonSelect={handleButtonSelect}
+                industry={industry}
+                btn1={btn1}
+                btn2={btn2}
+                btn3={btn3}
+              />
+              <p className="text-xs md:text-sm mt-2">
+                {usage === "<40"
+                  ? "Low"
+                  : usage === "40-440"
+                  ? "Medium"
+                  : "High"}{" "}
+                usage is below {usage} kWh average{" "}
+                {showContent === "solar" ? "monthly" : "daily"} use
+              </p>
+            </div>
+            <FooterReco
+              handleButton={handleButton}
+              handleExpress={handleExpress}
+              handleChoose={handleChoose}
+              recommend={showContent}
+              enableBtn={enableBtn}
+              pageNo={pageNo}
+              pages={pages}
+            />
+          </div>
         )}
       </div>
     </>
