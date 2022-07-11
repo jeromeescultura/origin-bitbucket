@@ -12,7 +12,7 @@ const PageIntro = () => {
     },
     {
       header: "Your site & energy needs",
-      desc: "To understand what options may be applicable to reduce your business impact from an energy perspective, tell us a little bit about what happens on-site to keep your business running.",
+      desc: "Tell us a little bit about what happens on-site so that we can try to find a suitable option for you.",
     },
   ];
   const [pageIntro, setPageIntro] = useState(

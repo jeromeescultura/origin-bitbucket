@@ -44,17 +44,17 @@ const Disclaimer = () => {
               Get started - assess how your business can support cleaner energy
             </h2>
             <div>
-              <p className="font-medium subtitle">Eligibility</p>
+              <p className="font-medium subtitle">Location eligibility</p>
               <p className="my-4 lg:my-6">
-                Our online assessment is available for small &amp; medium
-                businesses in{" "}
+                The products offered from our online assessment are available for small &amp; medium
+                businesses with operations in{" "}
                 <span className="font-bold">
                   South Australia, Victoria, New South Wales
                 </span>{" "}
                 and <span className="font-bold">Queensland.</span>
               </p>
               <p>
-                If your business does not operate in these states, but you would
+                If your business does not have operations in these states, but you would
                 like to find out how your business can support cleaner energy,
                 please let us know by completing your expression of interest
                 below.

@@ -66,7 +66,7 @@ const AssessmentFirstStep = () => {
           {
             id: 6,
             value: "carbon_offsets",
-            text: "Switch to an energy plan that carbon offsets your energy use",
+            text: "Adopted an energy plan that includes carbon offsets to offset your energy use",
           },
           {
             id: 7,
@@ -93,7 +93,7 @@ const AssessmentFirstStep = () => {
           {
             id: 3,
             value: "digitized",
-            text: "Digitised some or all paper based processes at your sites(s)",
+            text: "Digitised some or all paper based processes at your site(s)",
           },
           {
             id: 4,

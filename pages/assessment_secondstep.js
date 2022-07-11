@@ -541,7 +541,7 @@ const AssessmentSecondStep = () => {
                       }}
                       onClick={handleSubmit(handleAnswers)}
                     >
-                      View recommendations
+                      View options
                     </Button>
                   </div>
                 </div>
