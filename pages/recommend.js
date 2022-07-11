@@ -37,7 +37,7 @@ import {
 import ImpactRanges from "../components/recommend/ImpactRanges";
 import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
-import GreenPowerToggle from "../components/recommend/GreenPowerToggle";
+// import GreenPowerToggle from "../components/recommend/GreenPowerToggle";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -91,7 +91,7 @@ const Recommend = () => {
   const [pageNo, setPageNo] = useState(0);
   const [showContent, setContent] = useState();
 
-  const [greenPowerToggle, setGreenPowerToggle] = useState(false);
+  // const [greenPowerToggle, setGreenPowerToggle] = useState(false);
 
   const [goZero, setGoZero] = useState({
     carbonOffset: 0,
@@ -687,7 +687,7 @@ const Recommend = () => {
                       openModal={openModal}
                     />
                   </div>
-                  <div className="break-inside-avoid lg:block hidden">
+                  {/* <div className="break-inside-avoid lg:block hidden">
                     {subCategory?.includes("greenPower") &&
                       showContent === "solar" && (
                         <GreenPowerToggle
@@ -698,9 +698,10 @@ const Recommend = () => {
                           setPledges={setPledges}
                         />
                       )}
-                  </div>
+                  </div> */}
                   <div className="break-inside-avoid">
                     <RecommentCard
+                      subCategory={subCategory}
                       topRecommend={recommend}
                       recommend={showContent}
                       solarSavings={solarSavings}
@@ -710,7 +711,8 @@ const Recommend = () => {
                     />
                   </div>
                   <div className="break-inside-avoid">
-                    {subCategory?.includes("decarbEOI") && (
+                    {(subCategory?.includes("decarbEOI") ||
+                      subCategory?.includes("greenPower")) && (
                       <ToggleCard
                         recommend={showContent}
                         pledges={pledges}
@@ -718,7 +720,7 @@ const Recommend = () => {
                       />
                     )}
                   </div>
-                  <div className="break-inside-avoid lg:hidden block">
+                  {/* <div className="break-inside-avoid lg:hidden block">
                     {subCategory?.includes("greenPower") &&
                       showContent === "solar" && (
                         <GreenPowerToggle
@@ -729,7 +731,7 @@ const Recommend = () => {
                           setPledges={setPledges}
                         />
                       )}
-                  </div>
+                  </div> */}
                 </div>
               </ContentContainer>
               <div ref={showref} className="pt-44 md:pt-36">
