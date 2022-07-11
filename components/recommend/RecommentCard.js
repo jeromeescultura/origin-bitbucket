@@ -20,6 +20,9 @@ const RecommentCard = ({
   level,
   handleLevel,
   topRecommend,
+  btn1,
+  btn2,
+  btn3,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
@@ -95,8 +98,8 @@ const RecommentCard = ({
           </div>
         </div>
       </MoreDetailsComponent>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
-        <div className="space-y-2  lg:pr-5  lg:border-r text-center lg:text-left ">
+      <div className="flex flex-col  gap-4 lg:gap-0">
+        <div className="space-y-2  lg:pr-5  text-left ">
           {recommend === "solar" ? (
             <div className="">
               <p className="font-medium whitespace-nowrap">Estimated Savings</p>
@@ -104,26 +107,69 @@ const RecommentCard = ({
                 {formatPrice(solarSavings)}
               </h2>
               <p className="text-xs text-subTextColor">
-                extra p/month on any <br />
-                Origin Electricity plan or as a stand-alone*
+                extra p/month on any Origin Electricity plan or as a
+                stand-alone*
+              </p>
+            </div>
+          ) : recommend === "greenPower" ? (
+            <div className="">
+              <p className="font-medium whitespace-nowrap">
+                Cost of {level * 100}% GreenPower
+              </p>
+              <h2 className="text-secondaryText mt-2">{2.8 * level}c/kWh</h2>
+              <p className="text-xs text-subTextColor">
+                extra p/day on any Origin Electricity plan*
               </p>
             </div>
           ) : (
             <div className="">
-              <p className="font-medium whitespace-nowrap">Estimated cost</p>
-              <h2 className="text-secondaryText">{formatPrice(extraCost)}</h2>
+              <p className="font-medium whitespace-nowrap">
+                Cost of Origin Zero
+              </p>
+              <h2 className="text-secondaryText mt-2">1.5c/kWh</h2>
               <p className="text-xs text-subTextColor">
-                extra p/day on any <br />
-                Origin Electricity plan*
+                extra p/day on any Origin Electricity plan*
               </p>
             </div>
           )}
         </div>
-        <div className="space-y-2  pl-5">
+        <div className="my-3 lg:my-8">
+          {recommend === "solar" ? (
+            <p className="text-xs text-subTextColor leading-6">
+              This estimated savings is based on industry averages. The actual
+              savings will depend on your business’ specific usage, system size,
+              feed-in tariff and location. Once you submit your application, one
+              of our Business Club Specialists will get in contact to discuss
+              your energy plan options and any potential costs specific to your
+              business site.
+            </p>
+          ) : btn1 || btn2 || btn3 ? (
+            <p className="text-xs text-subTextColor leading-6">
+              This usage charge would roughly equate to an estimated cost of{" "}
+              {formatPrice(extraCost)} per day (GST inclusive). This estimated
+              cost is based on industry averages using Origin SME customer data.
+              The actual cost will depend on your business’ specific usage. Once
+              you submit your application, one of our Business Club Specialists
+              will get in contact to discuss your energy plan options and any
+              potential costs specific to your business site.
+            </p>
+          ) : (
+            <p className="text-xs text-subTextColor leading-6">
+              This usage charge would roughly equate to an estimated cost of -
+              per day (GST inclusive). This estimated cost is based on industry
+              averages using Origin SME customer data. The actual cost will
+              depend on your business’ specific usage. Once you submit your
+              application, one of our Business Club Specialists will get in
+              contact to discuss your energy plan options and any potential
+              costs specific to your business site.
+            </p>
+          )}
+        </div>
+        <div className="space-y-2">
           <p className="font-medium  text-center lg:text-left">
             In addition, we will support you with
           </p>
-          <List dense={true} className="space-y-4 text-left py-3">
+          <List dense={true} className="space-y-1 text-left py-3">
             <ListItem className="flex items-center lg:items-start pl-0">
               <ListItemIcon>
                 <Image
@@ -193,14 +239,6 @@ const RecommentCard = ({
           </List>
         </div>
       </div>
-      <p className="text-xs text-subTextColor text-center leading-6">
-        *This estimated cost is based on industry averages. The actual cost will
-        depend on your business&apos; specific usage. <br />
-        <br />
-        *Once you submit your application, one of our Business Club Specialists
-        will get in contact to discuss your energy plan options and any
-        potential costs in greater detail.
-      </p>
     </div>
   );
 };

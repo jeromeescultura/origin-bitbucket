@@ -191,7 +191,7 @@ export default function Home() {
                       />
                     </div> */}
                     <p className="text-sm font-medium text-primaryText">
-                      Start with our Energy Efficiency Checklist
+                      Start with our Business Energy Efficiency Checklist
                     </p>
                   </div>
                 </div>

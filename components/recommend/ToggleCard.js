@@ -95,7 +95,7 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
   return (
     <Card
       variant="outlined"
-      className="border-none rounded-xl max-w-[530px] mx-auto"
+      className="border-none rounded-xl max-w-[530px] mx-auto "
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">

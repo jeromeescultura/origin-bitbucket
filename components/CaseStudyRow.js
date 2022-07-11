@@ -10,7 +10,7 @@ function CaseStudyRow() {
           className="text-center font-bold text-primaryText w-[300px] lg:w-[500px] xl:w-[600px] mx-auto"
           id="business-club"
         >
-          Why are we doing this?
+          Ian's Story
         </h2>
       </div>
       <div className="flex flex-col lg:mx-[4rem] md:flex-row md:items-center gap-8 lg:gap-10  mt-16 pb-24 lg:pb-16">

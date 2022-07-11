@@ -13,7 +13,7 @@ function FooterReco({
   pages,
 }) {
   return (
-    <div className="bg-white w-full py-2 shadow-t-sm z-50 fixed bottom-0 ">
+    <div className="pb-2">
       {pages !== 1 && (
         <div className="flex justify-evenly lg:px-8 lg:justify-between  xl:max-w-[920px] mx-auto items-center ">
           <Button
@@ -73,7 +73,7 @@ function FooterReco({
           </Button>
         </div>
       )}
-      <div className="flex flex-col sm:flex-row w-full max-w-[230px] sm:max-w-none gap-2 p-2 mb-1 mx-auto justify-center pt-3">
+      <div className="flex flex-col sm:flex-row w-full max-w-[230px] sm:max-w-none gap-2 px-2 mb-1 mx-auto justify-center pt-2">
         <Button
           className="w-[230px] lg:py-3"
           variant="contained"

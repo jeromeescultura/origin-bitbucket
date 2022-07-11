@@ -40,18 +40,18 @@ const FinanceCalc = ({
   return (
     <Card
       variant="outlined"
-      className="border-none rounded-xl max-w-[530px] mx-auto"
+      className="border-none rounded-xl max-w-[530px] mx-auto lg:px-6"
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-          Estimated financial impact
+          Illustrative financial impact
         </p>
 
         <Typography sx={{ mt: "16px", fontSize: "14px" }}>
-          Toggle to compare how your monthly bills might change depending on
-          different usage levels
+          Illustrative monthly financial impact from other Origin customers in
+          your selected industry
         </Typography>
-        <ButtonGroup
+        {/* <ButtonGroup
           sx={{ mt: { xs: "12px", lg: "24px" } }}
           variant="outlined"
           aria-label="outlined button group"
@@ -161,92 +161,101 @@ const FinanceCalc = ({
               );
             }}
           />
-        </ButtonGroup>
+        </ButtonGroup> */}
         {/* <Typography sx={{ mt: "32px", mb: "16px", fontSize: "14px" }}>
           Bill impact on {usage} kWh average monthly use
         </Typography> */}
-        <Grid container spacing={2} className={"mt-4"}>
-          <Grid item xs={12} sx={{ p: 0 }}>
-            <div className="bg-[#F8F8F8] rounded-lg h-[125px] w-full ">
-              {recommend === "solar" ? (
-                <div className="flex items-end w-full h-full justify-center">
-                  <div className="mb-4 text-right">
-                    <p className="mt-10 text-xs">{formatPrice(withoutSolar)}</p>
-                  </div>
-                  <Box className="-rotate-90 mb-4 w-[100px] ">
-                    <LinearProgress
-                      className="h-7"
-                      variant="determinate"
-                      value={100}
-                    />
+        {(btn1 || btn2 || btn3) && (
+          <>
+            <Grid container spacing={2} className={"mt-4"}>
+              <Grid item xs={12} sx={{ p: 0 }}>
+                <div className="bg-[#F8F8F8] rounded-lg h-[125px] w-full ">
+                  {recommend === "solar" ? (
+                    <div className="flex items-end w-full h-full justify-center">
+                      <div className="mb-4 text-right">
+                        <p className="mt-10 text-xs">
+                          {formatPrice(withoutSolar)}
+                        </p>
+                      </div>
+                      <Box className="-rotate-90 mb-4 w-[100px] ">
+                        <LinearProgress
+                          className="h-7"
+                          variant="determinate"
+                          value={100}
+                        />
 
-                    <LinearProgress
-                      color="secondary"
-                      className="h-7 mt-2"
-                      variant="determinate"
-                      value={100 - solarReduction}
-                    />
-                  </Box>
-                  <div className="mb-4 text-left">
-                    <div className="bg-[#FFC72C] text-center rounded-md">
-                      <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
-                        {solarReduction}% saving
-                      </p>
+                        <LinearProgress
+                          color="secondary"
+                          className="h-7 mt-2"
+                          variant="determinate"
+                          value={100 - solarReduction}
+                        />
+                      </Box>
+                      <div className="mb-4 text-left">
+                        <div className="bg-[#FFC72C] text-center rounded-md">
+                          <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
+                            {solarReduction}% saving
+                          </p>
+                        </div>
+                        <p className="mt-2 text-xs">{formatPrice(withSolar)}</p>
+                      </div>
                     </div>
-                    <p className="mt-2 text-xs">{formatPrice(withSolar)}</p>
+                  ) : (
+                    <div className="flex items-end w-full h-full justify-center">
+                      <div className="mb-4 text-right">
+                        <p className="mt-10 text-xs">
+                          {formatPrice(industryCost)}
+                        </p>
+                      </div>
+                      <Box className="-rotate-90 mb-4 w-[100px] ">
+                        <LinearProgress
+                          className="h-7"
+                          variant="determinate"
+                          value={50}
+                        />
+
+                        <LinearProgress
+                          color="secondary"
+                          className="h-7 mt-2"
+                          variant="determinate"
+                          value={50 + increasePercentage}
+                        />
+                      </Box>
+                      <div className="mb-4 text-left">
+                        <div className=" bg-[#FFC72C] rounded-md text-center">
+                          <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
+                            {increasePercentage}% increase
+                          </p>
+                        </div>
+                        <p className="mt-2 text-xs">{formatPrice(totalCost)}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} lg={6} sx={{ p: 0 }}>
+              <div className="my-5 flex items-center justify-left font-light text-xs">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 inline-block bg-lime-400 rounded-full mr-2"></div>
+                    Without {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
+                    {recommend === "solar" && "Solar"}
+                    {recommend === "greenPower" && "GreenPower"}
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 inline-block bg-green-800 rounded-full mr-2"></div>
+                    With {recommend === "carbonOffset" && "Origin Go Zero"}{" "}
+                    {recommend === "solar" && "Solar"}
+                    {recommend === "greenPower" && "GreenPower"}
                   </div>
                 </div>
-              ) : (
-                <div className="flex items-end w-full h-full justify-center">
-                  <div className="mb-4 text-right">
-                    <p className="mt-10 text-xs">{formatPrice(industryCost)}</p>
-                  </div>
-                  <Box className="-rotate-90 mb-4 w-[100px] ">
-                    <LinearProgress
-                      className="h-7"
-                      variant="determinate"
-                      value={50}
-                    />
+              </div>
+            </Grid>
+          </>
+        )}
 
-                    <LinearProgress
-                      color="secondary"
-                      className="h-7 mt-2"
-                      variant="determinate"
-                      value={50 + increasePercentage}
-                    />
-                  </Box>
-                  <div className="mb-4 text-left">
-                    <div className=" bg-[#FFC72C] rounded-md text-center">
-                      <p className="text-xs font-medium whitespace-nowrap px-2 py-1">
-                        {increasePercentage}% increase
-                      </p>
-                    </div>
-                    <p className="mt-2 text-xs">{formatPrice(totalCost)}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} lg={6} sx={{ p: 0 }}>
-          <div className="my-5 flex items-center justify-left font-light text-xs">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center">
-                <div className="w-3 h-3 inline-block bg-lime-400 rounded-full mr-2"></div>
-                Without {recommend === "carbonOffset" && "Go Zero"}{" "}
-                {recommend === "solar" && "Solar"}
-                {recommend === "greenPower" && "GreenPower"}
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 inline-block bg-green-800 rounded-full mr-2"></div>
-                With {recommend === "carbonOffset" && "Go Zero"}{" "}
-                {recommend === "solar" && "Solar"}
-                {recommend === "greenPower" && "GreenPower"}
-              </div>
-            </div>
-          </div>
-        </Grid>
-        {increasePercentage <= 0 && (
+        {/* {increasePercentage <= 0 && (
           <MoreDetailsComponent text="Why it costs you nothing extra">
             <p>
               Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
@@ -256,12 +265,12 @@ const FinanceCalc = ({
               lectus.
             </p>
           </MoreDetailsComponent>
-        )}
-        <div className="font-light text-xs text-center text-subTextColor leading-5">
+        )} */}
+        <div className="font-light text-xs text-left text-subTextColor leading-5">
           These cost estimates are based on electricity usage averages compiled
           from Origin&apos;s small and medium business customer base in the{" "}
-          <span className="font-medium">{industry?.name}</span>. This will
-          change based on your business&apos; specific usage.{" "}
+          <span className="font-medium">{industry?.name}</span> industry. This
+          will change based on your business&apos; specific usage.{" "}
           <span className="underline cursor-pointer" onClick={openModal}>
             See the range of possible outcomes.
           </span>

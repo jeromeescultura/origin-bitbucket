@@ -83,7 +83,7 @@ export default function VerticalTabs() {
           {...a11yProps(0)}
         />
         <Tab
-          label="Impact reduction tracking"
+          label="Business club insights and guidance"
           className="md:items-start md:text-left text-sm text-secondaryText"
           {...a11yProps(1)}
         />
@@ -166,7 +166,7 @@ export default function VerticalTabs() {
         </div>
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
-            All businesses choosing to participate with us will receive
+            All businesses choosing to participate with us will receive:
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
@@ -180,7 +180,9 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div> */}
-              <p>Insights on how your business has supported cleaner energy</p>
+              <p>
+                Insights on how the Business Club has supported cleaner energy
+              </p>
             </li>
             <li className="flex items-start gap-4">
               <img src="icons/check-yellow.svg" className="w-5" alt="check" />
@@ -193,7 +195,7 @@ export default function VerticalTabs() {
                   alt="check"
                 />
               </div> */}
-              <p> Energy Efficiency Checklist</p>
+              <p> Business Energy Efficiency Checklist</p>
             </li>
             <li className="flex items-start gap-4">
               <img src="icons/check-yellow.svg" className="w-5" alt="check" />
@@ -234,7 +236,7 @@ export default function VerticalTabs() {
         <div className="py-10 lg:pt-0 pr-2 pl-2 lg:pl-8">
           <p className="text-[20px] leading-6 mb-4">
             Let others know about the steps you&apos;re making through our free
-            toolkit which includes
+            toolkit which includes:
           </p>
           <ul className="space-y-8 text-left py-8">
             <li className="flex items-start gap-4">
