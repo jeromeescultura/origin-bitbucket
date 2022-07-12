@@ -46,6 +46,21 @@ const Recommend = () => {
   var duration = require("dayjs/plugin/duration");
   dayjs.extend(duration);
 
+  const source =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("SOURCE")
+    ) || null;
+
+  const version =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("VERSION")
+    ) || null;
+
+  useEffect(() => {
+    console.log("SOURCE: ", source);
+    console.log("VERSION: ", version);
+  }, []);
+
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -736,6 +751,8 @@ const Recommend = () => {
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
+                      source={source}
+                      version={version}
                     />
                   </div>
                   <div className="break-inside-avoid">
