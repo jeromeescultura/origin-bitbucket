@@ -15,7 +15,7 @@ import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function ContactForms({ text }) {
+function ContactForms({ text, source, version }) {
   const router = useRouter();
 
   const states = [
@@ -257,7 +257,23 @@ function ContactForms({ text }) {
     <>
       <section
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
-        id={userID !== null ? "signup" : "eoi"}
+        id={
+          userID !== null
+            ? source === "edm"
+              ? version === "a"
+                ? "edm-v-a signup"
+                : "edm-v-b signup"
+              : source === "csr"
+              ? "csr signup"
+              : "signup"
+            : source === "edm"
+            ? version === "a"
+              ? "edm-v-a eoi"
+              : "edm-v-b eoi"
+            : source === "csr"
+            ? "csr eoi"
+            : "eoi"
+        }
       >
         <p>{text}</p>
         <p className="font-medium text-sm">

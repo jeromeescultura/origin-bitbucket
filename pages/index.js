@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
       window.localStorage.setItem("SOURCE", JSON.stringify(query.src));
-      window.localStorage.setItem("VERSION", JSON.stringify(query.v));
+      window.localStorage.setItem("VERSION", JSON.stringify(query.v === undefined ? '' : query.v));
     }
   }, [query]);
 
