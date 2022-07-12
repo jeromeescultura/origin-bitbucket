@@ -768,10 +768,16 @@ export const handleOffset = (
   setDailyUsage,
   setDailyCarbonEmissions,
   setIndustryCost,
-  setWithSolar
+  setWithSolar,
+  source,
+  version
 ) => {
   if (showContent === "carbonOffset") {
-    setOffSet(0.015);
+    if (source === "edm" && version === "a") {
+      setOffSet(0);
+    } else {
+      setOffSet(0.015);
+    }
   } else if (showContent === "greenPower") {
     setOffSet(0.028);
   } else if (showContent === "solar") {

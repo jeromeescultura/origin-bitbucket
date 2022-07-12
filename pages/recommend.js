@@ -331,7 +331,9 @@ const Recommend = () => {
       setDailyUsage,
       setDailyCarbonEmissions,
       setIndustryCost,
-      setWithSolar
+      setWithSolar,
+      source,
+      version
     );
   }, [industry, showContent]);
 
