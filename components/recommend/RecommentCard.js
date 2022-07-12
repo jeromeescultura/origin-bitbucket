@@ -109,8 +109,7 @@ const RecommentCard = ({
                 {formatPrice(solarSavings)}
               </h2>
               <p className="text-xs text-subTextColor">
-                extra p/month on any Origin Electricity plan or as a
-                stand-alone*
+                extra p/month on any Origin Electricity plan or as a stand-alone
               </p>
             </div>
           ) : recommend === "greenPower" ? (
@@ -120,7 +119,7 @@ const RecommentCard = ({
               </p>
               <h2 className="text-secondaryText mt-2">{2.8 * level}c/kWh</h2>
               <p className="text-xs text-subTextColor">
-                extra p/day on any Origin Electricity plan*
+                extra p/day on any Origin Electricity plan
               </p>
             </div>
           ) : (
@@ -130,7 +129,7 @@ const RecommentCard = ({
               </p>
               <h2 className="text-secondaryText mt-2">1.5c/kWh</h2>
               <p className="text-xs text-subTextColor">
-                extra p/day on any Origin Electricity plan*
+                extra p/day on any Origin Electricity plan
               </p>
             </div>
           )}
