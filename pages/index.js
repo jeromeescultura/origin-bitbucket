@@ -11,8 +11,19 @@ import VerticalTabs from "../components/VerticalTabs";
 import CaseStudyRow from "../components/CaseStudyRow";
 import Head from "next/head";
 import ProductModal from "../components/ProductModal";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const query = router.query;
+
+  useEffect(() => {
+    if (Object.keys(query).length !== 0) {
+      window.localStorage.setItem("SOURCE", JSON.stringify(query.src));
+      window.localStorage.setItem("VERSION", JSON.stringify(query.v));
+    }
+  }, [query]);
+  
   const [showFooter, setShowFooter] = useState(false);
   const showref = useRef();
   const hideref = useRef();

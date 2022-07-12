@@ -740,11 +740,13 @@ const Recommend = () => {
                   </div>
                   <div className="break-inside-avoid">
                     {(subCategory?.includes("decarbEOI") ||
-                      subCategory?.includes("greenPower")) && (
+                      (subCategory?.includes("greenPower") &&
+                        showContent === "solar")) && (
                       <ToggleCard
                         recommend={showContent}
                         pledges={pledges}
                         setPledges={setPledges}
+                        subCategory={subCategory}
                       />
                     )}
                   </div>

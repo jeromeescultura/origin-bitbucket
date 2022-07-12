@@ -55,10 +55,10 @@ const ImpactCard = ({
                   recommend === "solar" &&
                   impact[1]}
                 {recommend === "greenPower" && impact}
-                {recommend === "carbonOffset" && impact[0]}
+                {recommend === "carbonOffset" && impact}
               </h2>
               <p className="text-sm text-greenText">
-                {recommend === "carbonOffset" && "tree seedlings"}{" "}
+                {recommend === "carbonOffset" && "approximately offset"}{" "}
                 {recommend === "solar" && "fuel powered cars off the road"}
                 {recommend === "greenPower" && "until fully matched"}
               </p>
@@ -70,7 +70,7 @@ const ImpactCard = ({
         {btn1 || btn2 || btn3 ? (
           <p className="text-subTextColor mt-6 text-center lg:text-left col-span-2">
             {recommend === "carbonOffset" &&
-              `As an example, if the average business in your industry offsets its electricity usage for one year, it would be roughly equivalent to the carbon absorbed by ${impact[0]} - ${impact[1]} 2 metre tall trees in one year.
+              `If offset for one year, the average usage of an Origin small to medium business customer in your industry would be roughly equivalent to avoiding ${impact}kg of carbon emissions.
             `}
             {recommend === "greenPower" &&
               `As an example, if the average business in your industry buys (${
@@ -109,8 +109,8 @@ const ImpactCard = ({
           <div className="space-y-4 text-secondaryText">
             <p>
               Our Origin Go Zero add-on is 100% carbon neutral and certified by
-              Climate Active – an initiative backed by the Australian Government
-              to help reduce electricity emissions.
+              Climate Active – a partnership between the Australian Government
+              and Australian businesses to drive voluntary climate action.
             </p>
 
             <p>

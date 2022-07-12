@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const ToggleCard = ({ recommend, pledges, setPledges }) => {
+const ToggleCard = ({ recommend, pledges, setPledges, subCategory }) => {
   const [interview, setInterview] = useState(false);
   const [greenPower, setGreenPower] = useState(false);
 
@@ -32,20 +32,10 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
 
   const expandInterview = () => {
     setInterview(!interview);
-    if (interview) {
-      handleInterviewButtonSelect(1);
-    } else {
-      handleInterviewButtonSelect(0);
-    }
   };
 
   const expandGreenPower = () => {
     setGreenPower(!greenPower);
-    if (greenPower) {
-      handleGreenPowerButtonSelect(1);
-    } else {
-      handleGreenPowerButtonSelect(0);
-    }
   };
 
   const handleInterviewButtonSelect = (value) => {
@@ -92,6 +82,8 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
     }
   };
 
+  useEffect(() => {console.log(subCategory)},[])
+
   return (
     <Card
       variant="outlined"
@@ -101,120 +93,129 @@ const ToggleCard = ({ recommend, pledges, setPledges }) => {
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
           Make a bigger difference
         </p>
-        <div className="mt-4 space-y-5 font-light">
-          <Card
-            variant="contained"
-            className={`${
-              interview ? "bg-white border border-accentColor" : "bg-[#F8F8F8]"
-            }`}
-          >
-            <CardContent>
-              <div>
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-                  <div>
-                    Interested in participating in the Decarbonisation
-                    Interview?
-                  </div>
-                  <Switch
-                    className="order-first lg:order-last"
-                    color="secondary"
-                    onChange={expandInterview}
-                    checked={interview}
-                    sx={{ willChange: "transform" }}
-                  />
-                </div>
-                <Collapse in={interview} sx={{ willChange: "transform" }}>
-                  <List dense={true} className="lg:max-w-[280px]">
-                    <ListItem className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Free to participate" />
-                    </ListItem>
-                    <ListItem alignItems="flex-start" className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
-                    </ListItem>
-                    <ListItem className="p-0">
-                      <ListItemIcon>
-                        <Image
-                          src="/icons/check-yellow.svg"
-                          width={30}
-                          height={30}
-                          alt="check"
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Help us understand how to support businesses like yours to decarbonise " />
-                    </ListItem>
-                  </List>
-                  <div>
-                    <ButtonGroup
-                      variant="outlined"
-                      aria-label="outlined button group"
-                      size="large"
+        <p className="text-center">
+          Move the lever
+          {recommend === "solar" && subCategory?.length > 1 && "s"} to find out
+          more
+        </p>
+        {subCategory?.includes("decarbEOI") && (
+          <div className="mt-4 space-y-5 font-light">
+            <Card
+              variant="contained"
+              className={`${
+                interview
+                  ? "bg-white border border-accentColor"
+                  : "bg-[#F8F8F8]"
+              }`}
+            >
+              <CardContent>
+                <div>
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between">
+                    <div>
+                      Interested in participating in the Decarbonisation
+                      Interview?
+                    </div>
+                    <Switch
+                      className="order-first lg:order-last"
                       color="secondary"
-                      arial-label="contained button group"
-                      fullWidth
-                    >
-                      <Button
-                        className={
-                          decarbBtn1
-                            ? activeStyles
-                            : "hover:border hover:border-gray-300"
-                        }
-                        onClick={() => {
-                          if (!decarbBtn1) {
-                            handleInterviewButtonSelect(0);
-                          }
-                        }}
-                        sx={{
-                          color: "#505050",
-                          borderColor: "#E3E3E3",
-                          fontSize: "16",
-                          py: 1,
-                        }}
-                      >
-                        {"Yes, please!"}
-                      </Button>
-                      <Button
-                        className={`${
-                          decarbBtn2
-                            ? activeStyles
-                            : "hover:border hover:border-gray-300"
-                        } ${
-                          decarbBtn1 &&
-                          "border-l-accentColor hover:border-l-accentColor"
-                        }`}
-                        onClick={() => handleInterviewButtonSelect(1)}
-                        sx={{
-                          color: "#505050",
-                          borderColor: "#E3E3E3",
-                          fontSize: "16",
-                          py: 1,
-                        }}
-                      >
-                        {"No thanks"}
-                      </Button>
-                    </ButtonGroup>
+                      onChange={expandInterview}
+                      checked={interview}
+                      sx={{ willChange: "transform" }}
+                    />
                   </div>
-                </Collapse>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        {recommend === "solar" && (
+                  <Collapse in={interview} sx={{ willChange: "transform" }}>
+                    <List dense={true} className="lg:max-w-[280px]">
+                      <ListItem className="p-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Free to participate" />
+                      </ListItem>
+                      <ListItem alignItems="flex-start" className="p-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Requires your participation in 1x research interview at your chosen interview time " />
+                      </ListItem>
+                      <ListItem className="p-0">
+                        <ListItemIcon>
+                          <Image
+                            src="/icons/check-yellow.svg"
+                            width={30}
+                            height={30}
+                            alt="check"
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="Help us understand how to support businesses like yours to decarbonise " />
+                      </ListItem>
+                    </List>
+                    <div>
+                      <ButtonGroup
+                        variant="outlined"
+                        aria-label="outlined button group"
+                        size="large"
+                        color="secondary"
+                        arial-label="contained button group"
+                        fullWidth
+                      >
+                        <Button
+                          className={
+                            decarbBtn1
+                              ? activeStyles
+                              : "hover:border hover:border-gray-300"
+                          }
+                          onClick={() => {
+                            if (!decarbBtn1) {
+                              handleInterviewButtonSelect(0);
+                            }
+                          }}
+                          sx={{
+                            color: "#505050",
+                            borderColor: "#E3E3E3",
+                            fontSize: "16",
+                            py: 1,
+                          }}
+                        >
+                          {"Yes, please!"}
+                        </Button>
+                        <Button
+                          className={`${
+                            decarbBtn2
+                              ? activeStyles
+                              : "hover:border hover:border-gray-300"
+                          } ${
+                            decarbBtn1 &&
+                            "border-l-accentColor hover:border-l-accentColor"
+                          }`}
+                          onClick={() => handleInterviewButtonSelect(1)}
+                          sx={{
+                            color: "#505050",
+                            borderColor: "#E3E3E3",
+                            fontSize: "16",
+                            py: 1,
+                          }}
+                        >
+                          {"No thanks"}
+                        </Button>
+                      </ButtonGroup>
+                    </div>
+                  </Collapse>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+        {recommend === "solar" && subCategory?.includes("greenPower") && (
           <div className="mt-4 space-y-5 font-light">
             <Card
               variant="contained"
