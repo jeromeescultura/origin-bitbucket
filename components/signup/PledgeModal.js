@@ -95,7 +95,7 @@ const PledgeModal = ({
               </div>
             </MoreDetailsComponent>
           </div>
-          <div className="space-y-2 mt-6">
+          {/* <div className="space-y-2 mt-6">
             <p className="font-medium">
               {product === "solar" ? "Estimated savings" : "Estimated cost"}
             </p>
@@ -107,10 +107,9 @@ const PledgeModal = ({
             <p className="text-xs text-subTextColor">
               extra {product === "solar" ? "p/month" : "p/day"} on any <br />
               Origin Electricity plan
-              {/* {product === "solar" ? " or as a stand-alone" : ""} */}*
             </p>
-          </div>
-          <div className="mt-8">
+          </div> */}
+          {/* <div className="mt-8">
             <div className="w-24 h-24 mx-auto">
               {product === "carbonOffset" && (
                 <Image
@@ -148,7 +147,7 @@ const PledgeModal = ({
               {product === "solar" &&
                 `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immediately taking ${impact[1]} cars off the road.`}
             </p>
-          </div>
+          </div> */}
           {biggerDiff.length > 0 && (
             <div className="mt-8">
               <p className="font-medium">You&apos;ve chosen to do more</p>
