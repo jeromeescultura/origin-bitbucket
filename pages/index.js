@@ -23,6 +23,8 @@ export default function Home() {
       window.localStorage.setItem("VERSION", JSON.stringify(query.v));
     }
   }, [query]);
+
+  
   
   const [showFooter, setShowFooter] = useState(false);
   const showref = useRef();
@@ -209,7 +211,7 @@ export default function Home() {
               </div>
             </ContentContainer>
             <FullWidth>
-              <ProductContainer />
+              <ProductContainer source={query.src} version={query.v} />
             </FullWidth>
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">

@@ -4,7 +4,7 @@ import ProductModal from "../components/ProductModal";
 import { useState } from "react";
 import { Button } from "@mui/material";
 
-function ProductContainer() {
+function ProductContainer({ source, version }) {
   const productDetails = [
     {
       title: "GreenPower",
@@ -57,7 +57,9 @@ function ProductContainer() {
       leaf: 2,
       icon: "/icons/products/go-zero.svg",
       impact: "Through offsetting your electricity use",
-      plan: "Available on any Origin Electricity plan",
+      plan: `Available on ${
+        source === "edm" && version === "a" ? "select" : "any"
+      } Origin Electricity plan`,
       siteChanges: "None",
       contracts: "None",
       benefits: [
