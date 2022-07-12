@@ -44,13 +44,13 @@ const FinanceCalc = ({
     >
       <CardContent>
         <p className="font-medium text-[18px] lg:text-[20px] text-primaryText text-center pt-8 pb-6">
-          Illustrative financial impact
+          Guidance - financial impact
         </p>
 
-        <Typography sx={{ mt: "16px", fontSize: "14px" }}>
+        {/* <Typography sx={{ mt: "16px", fontSize: "14px" }}>
           Illustrative monthly financial impact from other Origin customers in
           your selected industry
-        </Typography>
+        </Typography> */}
         {/* <ButtonGroup
           sx={{ mt: { xs: "12px", lg: "24px" } }}
           variant="outlined"
@@ -267,6 +267,27 @@ const FinanceCalc = ({
           </MoreDetailsComponent>
         )} */}
         <div className="font-light text-xs text-left text-subTextColor leading-5">
+          This estimate is illustrative only for businesses with{" "}
+          <span className="font-medium">
+            {usage === "<40"
+              ? "Low"
+              : usage === "40-440"
+              ? "Medium"
+              : usage === ">440"
+              ? "High"
+              : "-"}
+          </span>{" "}
+          usage in your industry and is based on electricity usage averages
+          complied from Origin&apos;s small and medium business customer base in
+          the <span className="font-medium">{industry?.name}</span> industry.
+          This estimated monthly cost would be in addition to the cost of your
+          business&apos;s Origin electricity plan. The actual monthly cost will
+          depend on your business&apos; specific usage.{" "}
+          <span className="underline cursor-pointer" onClick={openModal}>
+            See the range of possible outcomes.
+          </span>
+        </div>
+        {/* <div className="font-light text-xs text-left text-subTextColor leading-5">
           These cost estimates are based on electricity usage averages compiled
           from Origin&apos;s small and medium business customer base in the{" "}
           <span className="font-medium">{industry?.name}</span> industry. This
@@ -274,7 +295,7 @@ const FinanceCalc = ({
           <span className="underline cursor-pointer" onClick={openModal}>
             See the range of possible outcomes.
           </span>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );

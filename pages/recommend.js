@@ -572,8 +572,8 @@ const Recommend = () => {
                     }`}
                   >
                     <p className="text-subTextColor lg:hidden">
-                      Keen to understand more options? Toggle to view options at
-                      different cost levels.
+                      Keen to understand more options with Origin? Toggle to
+                      view options at different cost levels.
                     </p>
                     <ButtonGroup
                       fullWidth
@@ -607,7 +607,7 @@ const Recommend = () => {
                       </Button>
                       <div className="hidden lg:inline-flex bg-white z-50  min-w-[450px] align-text-bottom items-center justify-center px-6 !shadow-md">
                         <p className="text-center">
-                          Keen to understand more options?
+                          Keen to understand more options with Origin?
                           <br /> Toggle to view options at different cost
                           levels.
                         </p>
@@ -644,7 +644,10 @@ const Recommend = () => {
                 )}
 
                 <div className="text-center" ref={showref}>
-                  <p>Select usage to change the illustrative examples below</p>
+                  <p>
+                    The examples below vary depending on usage. Please select
+                    the usage specific to your business site.
+                  </p>
                   <UsageButtons
                     recommend={showContent}
                     impactLevel={impactLevel}
@@ -774,6 +777,10 @@ const Recommend = () => {
         {showFooter && !loading && (
           <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
             <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
+              <p>
+                The examples above vary depending on usage. Please select the
+                usage specific to your business site.
+              </p>
               <UsageButtons
                 recommend={showContent}
                 impactLevel={impactLevel}
@@ -807,6 +814,10 @@ const Recommend = () => {
         {bigScreen && (
           <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0">
             <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
+              <p>
+                The examples above vary depending on usage. Please select the
+                usage specific to your business site.
+              </p>
               <UsageButtons
                 recommend={showContent}
                 impactLevel={impactLevel}

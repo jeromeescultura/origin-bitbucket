@@ -181,7 +181,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                <u>Insights</u> on your impact
+                <u>Insights</u> on the Business Club&apos;s impact
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -195,8 +195,8 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                <u>Free marketing toolkit</u> to communicate your impact
-                externally
+                <u>Free marketing toolkit</u> to communicate the steps
+                you&apos;ve take to support cleaner energy
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
