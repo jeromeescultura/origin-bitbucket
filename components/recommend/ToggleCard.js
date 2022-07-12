@@ -82,8 +82,6 @@ const ToggleCard = ({ recommend, pledges, setPledges, subCategory }) => {
     }
   };
 
-  useEffect(() => {console.log(subCategory)},[])
-
   return (
     <Card
       variant="outlined"

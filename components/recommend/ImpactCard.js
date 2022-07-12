@@ -13,12 +13,12 @@ const ImpactCard = ({
   btn2,
   btn3,
 }) => {
-  const [icon, setIcon] = useState("trees.svg");
+  const [icon, setIcon] = useState("");
 
   useEffect(() => {
     switch (recommend) {
       case "carbonOffset":
-        setIcon("trees.svg");
+        setIcon("carbonemissions.png");
         break;
       case "greenPower":
         setIcon("wind.svg");
