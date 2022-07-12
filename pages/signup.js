@@ -183,7 +183,7 @@ function Signup() {
                     </div>
                   </MoreDetailsComponent>
                 </div>
-                <div className="space-y-2 mt-8">
+                {/* <div className="space-y-2 mt-8">
                   <p className="font-medium">
                     {product === "solar"
                       ? "Estimated savings"
@@ -241,7 +241,7 @@ function Signup() {
                     {product === "solar" &&
                       `If all businesses like yours did this, we could prevent ${impact[0]} tonnes of carbon from ever being emitted per year, equivalent to immidiately taking ${impact[1]} cars off the road.`}
                   </p>
-                </div>
+                </div> */}
                 {biggerDiff.length > 0 && (
                   <div className="mt-16">
                     <p className="font-medium">You&apos;ve chosen to do more</p>

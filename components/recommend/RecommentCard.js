@@ -23,6 +23,8 @@ const RecommentCard = ({
   btn1,
   btn2,
   btn3,
+  usage,
+  industry,
   source,
   version,
 }) => {
@@ -109,8 +111,7 @@ const RecommentCard = ({
                 {formatPrice(solarSavings)}
               </h2>
               <p className="text-xs text-subTextColor">
-                extra p/month on any Origin Electricity plan or as a
-                stand-alone*
+                extra p/month on any Origin Electricity plan or as a stand-alone
               </p>
             </div>
           ) : recommend === "greenPower" ? (
@@ -120,7 +121,7 @@ const RecommentCard = ({
               </p>
               <h2 className="text-secondaryText mt-2">{2.8 * level}c/kWh</h2>
               <p className="text-xs text-subTextColor">
-                extra p/day on any Origin Electricity plan*
+                extra p/day on any Origin Electricity plan
               </p>
             </div>
           ) : (
@@ -132,7 +133,7 @@ const RecommentCard = ({
               <p className="text-xs text-subTextColor">
                 extra p/day on{" "}
                 {source === "edm" && version === "a" ? "select" : "any"} Origin
-                Electricity plan*
+                Electricity plan
               </p>
             </div>
           )}
@@ -140,32 +141,82 @@ const RecommentCard = ({
         <div className="my-3 lg:my-8">
           {recommend === "solar" ? (
             <p className="text-xs text-subTextColor leading-6">
-              This estimated savings is based on industry averages. The actual
-              savings will depend on your business’ specific usage, system size,
-              feed-in tariff and location. Once you submit your application, one
+              This estimated savings are for a business with{" "}
+              <span className="font-medium">
+                {usage === "<40"
+                  ? "Low"
+                  : usage === "40-440"
+                  ? "Medium"
+                  : usage === ">440"
+                  ? "High"
+                  : "-"}
+              </span>{" "}
+              usage in your industry, based on electricity usage averages
+              compiled from Origin&apos;s small and medium business customer
+              base in the <span className="font-medium">{industry?.name}</span>.
+              The actual solar savings will depend on your business&apos;
+              specific usage, system size, feed-in tariff and location. Once you
+              submit your application, one of our Business Club Specialists will
+              get in contact to discuss your options, potential costs and solar
+              savings specific to your business site.
+            </p>
+          ) : // <p className="text-xs text-subTextColor leading-6">
+          //   This estimated savings is based on industry averages. The actual
+          //   savings will depend on your business&apos; specific usage, system size,
+          //   feed-in tariff and location. Once you submit your application, one
+          //   of our Business Club Specialists will get in contact to discuss
+          //   your energy plan options and any potential costs specific to your
+          //   business site.
+          // </p>
+          recommend === "greenPower" ? (
+            <p className="text-xs text-subTextColor leading-6">
+              We estimate that this charge would result in a {level * 100}{" "}
+              GreenPower daily cost of approximately{" "}
+              {usage === "" ? "-" : formatPrice(extraCost)} per day (GST
+              inclusive) for a business with{" "}
+              <span className="font-medium">
+                {usage === "<40"
+                  ? "Low"
+                  : usage === "40-440"
+                  ? "Medium"
+                  : usage === ">440"
+                  ? "High"
+                  : "-"}
+              </span>{" "}
+              usage in your industry, based on electricity usage averages
+              compiled from Origin’s small and medium business customer base in
+              the <span className="font-medium">{industry?.name}</span>. This
+              cost is in addition to the cost of your business’s Origin
+              electricity plan. The actual daily cost will depend on your
+              business’s specific usage. Once you submit your application, one
               of our Business Club Specialists will get in contact to discuss
               your energy plan options and any potential costs specific to your
               business site.
             </p>
-          ) : btn1 || btn2 || btn3 ? (
-            <p className="text-xs text-subTextColor leading-6">
-              This usage charge would roughly equate to an estimated cost of{" "}
-              {formatPrice(extraCost)} per day (GST inclusive). This estimated
-              cost is based on industry averages using Origin SME customer data.
-              The actual cost will depend on your business’ specific usage. Once
-              you submit your application, one of our Business Club Specialists
-              will get in contact to discuss your energy plan options and any
-              potential costs specific to your business site.
-            </p>
           ) : (
             <p className="text-xs text-subTextColor leading-6">
-              This usage charge would roughly equate to an estimated cost of -
-              per day (GST inclusive). This estimated cost is based on industry
-              averages using Origin SME customer data. The actual cost will
-              depend on your business’ specific usage. Once you submit your
-              application, one of our Business Club Specialists will get in
-              contact to discuss your energy plan options and any potential
-              costs specific to your business site.
+              We estimate that this charge would result in an Origin Go Zero
+              daily cost of approximately{" "}
+              {usage === "" ? "-" : formatPrice(extraCost)} per day (GST
+              inclusive) for a business with{" "}
+              <span className="font-medium">
+                {usage === "<40"
+                  ? "Low"
+                  : usage === "40-440"
+                  ? "Medium"
+                  : usage === ">440"
+                  ? "High"
+                  : "-"}
+              </span>{" "}
+              usage in your industry, based on electricity usage averages
+              compiled from Origin’s small and medium business customer base in
+              the <span className="font-medium">{industry?.name}</span>. This
+              cost is in addition to the cost of your business’s Origin
+              electricity plan. The actual daily cost will depend on your
+              business’s specific usage. Once you submit your application, one
+              of our Business Club Specialists will get in contact to discuss
+              your energy plan options and any potential costs specific to your
+              business site.
             </p>
           )}
         </div>
@@ -185,7 +236,7 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                <u>Insights</u> on your impact
+                <u>Insights</u> on the Business Club&apos;s impact
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">
@@ -199,8 +250,8 @@ const RecommentCard = ({
                 />
               </ListItemIcon>
               <p>
-                <u>Free marketing toolkit</u> to communicate your impact
-                externally
+                <u>Free marketing toolkit</u> to communicate the steps
+                you&apos;ve take to support cleaner energy
               </p>
             </ListItem>
             <ListItem className="flex items-center lg:items-start pl-0">

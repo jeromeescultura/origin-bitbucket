@@ -241,7 +241,9 @@ export default function Home() {
                 ))}
               </div> */}
             </ContentContainer>
-            <CaseStudyRow />
+            <div id="story">
+              <CaseStudyRow />
+            </div>
           </div>
         </div>
       </div>

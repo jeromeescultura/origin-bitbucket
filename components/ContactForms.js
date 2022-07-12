@@ -254,290 +254,291 @@ function ContactForms({ text }) {
   }, [existingBusiness]);
 
   return (
-    <section
-      className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
-      id={userID !== null ? "signup" : "eoi"}
-    >
-      <p>{text}</p>
-      <p className="font-medium text-sm">
-        Do you have an existing business account with Origin?
-      </p>
+    <>
+      <section
+        className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
+        id={userID !== null ? "signup" : "eoi"}
+      >
+        <p>{text}</p>
+        <p className="font-medium text-sm">
+          Do you have an existing business account with Origin?
+        </p>
 
-      <Controller
-        control={control}
-        name="existingBusiness"
-        render={({}) => {
-          return (
-            <ButtonGroup
-              variant="outlined"
-              aria-label="outlined button group"
-              size="large"
-              color="secondary"
-              arial-label="contained button group"
-              fullWidth
-            >
-              <Button
-                className={
-                  btn1 ? activeStyles : " hover:border hover:border-gray-300"
-                }
-                value={"Yes"}
-                onClick={() => handleButtonSelect(true)}
-                sx={{
-                  color: "#505050",
-                  borderColor: "#E3E3E3",
-                  fontSize: "16",
-                }}
-                name="Do you have an existing business account with Origin?"
-                id="existing-business"
+        <Controller
+          control={control}
+          name="existingBusiness"
+          render={({}) => {
+            return (
+              <ButtonGroup
+                variant="outlined"
+                aria-label="outlined button group"
+                size="large"
+                color="secondary"
+                arial-label="contained button group"
+                fullWidth
               >
-                Yes
-              </Button>
-              <Button
-                className={`${btn2 ? activeStyles : ""} ${
-                  btn1 &&
-                  "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
-                }`}
-                value={"No"}
-                onClick={() => handleButtonSelect(false)}
-                sx={{
-                  color: "#505050",
-                  borderColor: "#E3E3E3",
-                  fontSize: "16",
-                }}
-                name="Do you have an existing business account with Origin?"
-                id="existing-business"
-              >
-                No
-              </Button>
-            </ButtonGroup>
-          );
-        }}
-      />
-
-      {existingBusiness && (
-        <>
-          <p className="font-medium text-sm">
-            What is your Origin Account Number?
-          </p>
-          <Grid container>
-            <Grid item xs={12}>
-              <FormInputText
-                name="accountNumber"
-                label="Account number"
-                control={control}
-                setValue={setValue}
-                inputValue={accountNumber}
-                onChange={watch(handleChange)}
-                validation={{ required: "Required" }}
-              />
-            </Grid>
-          </Grid>
-        </>
-      )}
-      <p className="font-medium text-sm">
-        What is the address of your primary site on the account?
-      </p>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <FormInputText
-            name="unitNo"
-            label="Unit no."
-            control={control}
-            setValue={setValue}
-            inputValue={unitNo}
-            onChange={watch(handleChange)}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <FormInputText
-            name="streetNo"
-            label="Street no."
-            control={control}
-            setValue={setValue}
-            inputValue={streetNo}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="street"
-            label="Street"
-            control={control}
-            setValue={setValue}
-            inputValue={street}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="city"
-            label="City/Suburb"
-            control={control}
-            setValue={setValue}
-            inputValue={city}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <FormInputDropdown
-            name="state"
-            control={control}
-            label="State"
-            states={states}
-            setValue={setValue}
-            dropdownValue={state}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <FormInputText
-            name="postcode"
-            label="Postcode"
-            control={control}
-            setValue={setValue}
-            inputValue={postcode}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-            type="number"
-            minValue={1000}
-            maxValue={9999}
-          />
-        </Grid>
-      </Grid>
-      <p className="font-medium text-sm">Your contact details</p>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="firstName"
-            label="First Name"
-            control={control}
-            setValue={setValue}
-            inputValue={firstName}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="lastName"
-            label="Last Name"
-            control={control}
-            setValue={setValue}
-            inputValue={lastName}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="email"
-            label="Email Address"
-            control={control}
-            setValue={setValue}
-            inputValue={email}
-            onChange={watch(handleChange)}
-            validation={{
-              required: "Required",
-              pattern: {
-                value:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: "Please enter a valid email",
-              },
-            }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <FormInputText
-            name="phone"
-            label="Phone number"
-            control={control}
-            setValue={setValue}
-            inputValue={phone}
-            onChange={watch(handleChange)}
-            validation={{ required: "Required" }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <Controller
-            control={control}
-            name="primaryAccountHolder"
-            render={() => {
-              return (
-                <FormControlLabel
-                  label="I am the primary account holder for this account"
-                  control={
-                    <Checkbox
-                      color="secondary"
-                      size="large"
-                      checked={primaryAccountHolder}
-                      onChange={checkboxHandler}
-                    />
+                <Button
+                  className={
+                    btn1 ? activeStyles : " hover:border hover:border-gray-300"
                   }
-                />
-              );
-            }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <p className="text-sm font-medium mb-3">Contact preferences</p>
-          <FormInputMultiCheckbox
-            name="contactMethod"
-            control={control}
-            validation={{ required: "Required" }}
-            options={[
-              { label: "Email", value: "email" },
-              { label: "Phone", value: "phone" },
-            ]}
-            checkboxValue={contactMethod}
-            setCheckboxValue={setContactMethod}
-            setValue={setValue}
-          />
-        </Grid>
-      </Grid>
-      {contactFormsDetails?.contactMethod.includes("phone") && (
-        <Grid container>
-          <Grid item xs={12}>
-            <p className="text-sm font-medium mb-3">
-              What time would you like us to contact you?
+                  value={"Yes"}
+                  onClick={() => handleButtonSelect(true)}
+                  sx={{
+                    color: "#505050",
+                    borderColor: "#E3E3E3",
+                    fontSize: "16",
+                  }}
+                  name="Do you have an existing business account with Origin?"
+                  id="existing-business"
+                >
+                  Yes
+                </Button>
+                <Button
+                  className={`${btn2 ? activeStyles : ""} ${
+                    btn1 &&
+                    "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
+                  }`}
+                  value={"No"}
+                  onClick={() => handleButtonSelect(false)}
+                  sx={{
+                    color: "#505050",
+                    borderColor: "#E3E3E3",
+                    fontSize: "16",
+                  }}
+                  name="Do you have an existing business account with Origin?"
+                  id="existing-business"
+                >
+                  No
+                </Button>
+              </ButtonGroup>
+            );
+          }}
+        />
+
+        {existingBusiness && (
+          <>
+            <p className="font-medium text-sm">
+              What is your Origin Account Number?
             </p>
-            <FormInputMultiCheckbox
-              name="preferredTime"
+            <Grid container>
+              <Grid item xs={12}>
+                <FormInputText
+                  name="accountNumber"
+                  label="Account number"
+                  control={control}
+                  setValue={setValue}
+                  inputValue={accountNumber}
+                  onChange={watch(handleChange)}
+                  validation={{ required: "Required" }}
+                />
+              </Grid>
+            </Grid>
+          </>
+        )}
+        <p className="font-medium text-sm">
+          What is the address of your primary site on the account?
+        </p>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <FormInputText
+              name="unitNo"
+              label="Unit no."
               control={control}
               setValue={setValue}
-              options={[
-                { label: "Morning", value: "morning" },
-                { label: "Afternoon", value: "afternoon" },
-                { label: "Evening", value: "evening" },
-              ]}
-              checkboxValue={preferredTime}
-              setCheckboxValue={setPreferredTime}
+              inputValue={unitNo}
+              onChange={watch(handleChange)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <FormInputText
+              name="streetNo"
+              label="Street no."
+              control={control}
+              setValue={setValue}
+              inputValue={streetNo}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
             />
           </Grid>
         </Grid>
-      )}
-      {/* <Grid container>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="street"
+              label="Street"
+              control={control}
+              setValue={setValue}
+              inputValue={street}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="city"
+              label="City/Suburb"
+              control={control}
+              setValue={setValue}
+              inputValue={city}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <FormInputDropdown
+              name="state"
+              control={control}
+              label="State"
+              states={states}
+              setValue={setValue}
+              dropdownValue={state}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <FormInputText
+              name="postcode"
+              label="Postcode"
+              control={control}
+              setValue={setValue}
+              inputValue={postcode}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+              type="number"
+              minValue={1000}
+              maxValue={9999}
+            />
+          </Grid>
+        </Grid>
+        <p className="font-medium text-sm">Your contact details</p>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="firstName"
+              label="First Name"
+              control={control}
+              setValue={setValue}
+              inputValue={firstName}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="lastName"
+              label="Last Name"
+              control={control}
+              setValue={setValue}
+              inputValue={lastName}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="email"
+              label="Email Address"
+              control={control}
+              setValue={setValue}
+              inputValue={email}
+              onChange={watch(handleChange)}
+              validation={{
+                required: "Required",
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Please enter a valid email",
+                },
+              }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormInputText
+              name="phone"
+              label="Phone number"
+              control={control}
+              setValue={setValue}
+              inputValue={phone}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <Controller
+              control={control}
+              name="primaryAccountHolder"
+              render={() => {
+                return (
+                  <FormControlLabel
+                    label="I am the primary account holder for this account"
+                    control={
+                      <Checkbox
+                        color="secondary"
+                        size="large"
+                        checked={primaryAccountHolder}
+                        onChange={checkboxHandler}
+                      />
+                    }
+                  />
+                );
+              }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <p className="text-sm font-medium mb-3">Contact preferences</p>
+            <FormInputMultiCheckbox
+              name="contactMethod"
+              control={control}
+              validation={{ required: "Required" }}
+              options={[
+                { label: "Email", value: "email" },
+                { label: "Phone", value: "phone" },
+              ]}
+              checkboxValue={contactMethod}
+              setCheckboxValue={setContactMethod}
+              setValue={setValue}
+            />
+          </Grid>
+        </Grid>
+        {contactFormsDetails?.contactMethod.includes("phone") && (
+          <Grid container>
+            <Grid item xs={12}>
+              <p className="text-sm font-medium mb-3">
+                What time would you like us to contact you?
+              </p>
+              <FormInputMultiCheckbox
+                name="preferredTime"
+                control={control}
+                setValue={setValue}
+                options={[
+                  { label: "Morning", value: "morning" },
+                  { label: "Afternoon", value: "afternoon" },
+                  { label: "Evening", value: "evening" },
+                ]}
+                checkboxValue={preferredTime}
+                setCheckboxValue={setPreferredTime}
+              />
+            </Grid>
+          </Grid>
+        )}
+        {/* <Grid container>
         <Grid item xs={12}>
           <FormInputMultiCheckbox
             control={control}
@@ -550,26 +551,49 @@ function ContactForms({ text }) {
         </Grid>
       </Grid> */}
 
-      <Button
-        onClick={handleSubmit(onSubmit)}
-        variant="contained"
-        color="primary"
-        size="large"
-        style={{
-          backgroundColor: "#EC0000",
-          borderRadius: 200,
-          boxShadow: "none",
-          paddingLeft: "2rem",
-          paddingRight: "2rem",
-        }}
-      >
-        Submit
-      </Button>
-      <p>
-        Once you submit your application, one of our Business Club Specialists
-        will get in contact to discuss your energy plan options.
-      </p>
-    </section>
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          variant="contained"
+          color="primary"
+          size="large"
+          style={{
+            backgroundColor: "#EC0000",
+            borderRadius: 200,
+            boxShadow: "none",
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+          }}
+        >
+          Submit
+        </Button>
+        <p>
+          Once you submit your application, one of our Business Club Specialists
+          will get in contact to discuss your energy plan options.
+        </p>
+      </section>
+      <div className="grid grid-cols-2 divide-x py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
+        <div className="">
+          <p>Or want to know more now?</p>
+          <div className="flex gap-2 mt-2 items-start">
+            <img src="/icons/icon_phone.svg" alt="phone-icon" className="h-7" />
+            <div>
+              <p className="font-bold text-lg">1800 240 240</p>
+              <p>(Pin 124)</p>
+            </div>
+          </div>
+        </div>
+        <div className="pl-6">
+          <p>We&apos;re around</p>
+          <div className="flex gap-2 mt-2">
+            <img src="/icons/icon_alarm.svg" alt="phone-icon" className="h-7" />
+            <div className="mt-1">
+              <p>8:30am - 4:30pm,</p>
+              <p className="mt-1">Mon to Fri</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
