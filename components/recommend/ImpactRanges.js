@@ -83,11 +83,10 @@ const ImpactRanges = ({
                   </p>
                   <ul className="text-sm pl-5 space-y-2 list-[circle]">
                     <li>
-                      If offset would roughly be equivalent to the carbon{" "}
-                      {separator(Math.round((carbonEmissions?.low * 365) / 10))}{" "}
-                      -{" "}
-                      {separator(Math.round((carbonEmissions?.low * 365) / 5))}{" "}
-                      2 metre trees absorb per year{" "}
+                      If offset for one year would
+                      be roughly equivalent to avoiding{" "}
+                      {separator(Math.round(carbonEmissions?.low * 365))}kg of
+                      carbon emissions.
                     </li>
                     <li>
                       This would add approximately{" "}
@@ -109,16 +108,11 @@ const ImpactRanges = ({
                     year.
                   </p>
                   <ul className="text-sm pl-5 space-y-2 list-[circle]">
-                    <li>
-                      If offset would roughly be equivalent to the carbon{" "}
-                      {separator(
-                        Math.round((carbonEmissions?.medium * 365) / 10)
-                      )}{" "}
-                      -{" "}
-                      {separator(
-                        Math.round((carbonEmissions?.medium * 365) / 5)
-                      )}{" "}
-                      2 metre trees absorb per year{" "}
+                  <li>
+                      If offset for one year would
+                      be roughly equivalent to avoiding{" "}
+                      {separator(Math.round(carbonEmissions?.medium * 365))}kg of
+                      carbon emissions.
                     </li>
                     <li>
                       This would add approximately{" "}
@@ -140,17 +134,12 @@ const ImpactRanges = ({
                       {separator(Math.round(high * 365))} kwh per year.
                     </p>
                     <ul className="text-sm pl-5 space-y-2 list-[circle]">
-                      <li>
-                        If offset would roughly be equivalent to the carbon{" "}
-                        {separator(
-                          Math.round((carbonEmissions?.high * 365) / 10)
-                        )}{" "}
-                        -{" "}
-                        {separator(
-                          Math.round((carbonEmissions?.high * 365) / 5)
-                        )}{" "}
-                        2 metre trees absorb per year{" "}
-                      </li>
+                    <li>
+                      If offset for one year would
+                      be roughly equivalent to avoiding{" "}
+                      {separator(Math.round(carbonEmissions?.high * 365))}kg of
+                      carbon emissions.
+                    </li>
                       <li>
                         This would add approximately{" "}
                         {formatPrice(

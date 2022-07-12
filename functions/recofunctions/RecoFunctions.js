@@ -554,24 +554,21 @@ export const handleSubCategory = (recommend, gz, gp, sp, setSC) => {
     case "carbonOffset":
       setSC(
         Object.keys(gz).filter(
-          (item) =>
-            gz[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
+          (item) => gz[item] >= 0 && item !== "solar" && item !== "carbonOffset"
         )
       );
       break;
     case "greenPower":
       setSC(
         Object.keys(gp).filter(
-          (item) =>
-            gp[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
+          (item) => gp[item] >= 0 && item !== "solar" && item !== "carbonOffset"
         )
       );
       break;
     case "solar":
       setSC(
         Object.keys(sp).filter(
-          (item) =>
-            sp[item] >= 0 && (item !== "solar" || item !== "carbonOffset")
+          (item) => sp[item] >= 0 && item !== "solar" && item !== "carbonOffset"
         )
       );
       break;
@@ -686,6 +683,8 @@ export const handleImpactData = (
   setImpact,
   dayjs
 ) => {
+  let yearlyCarbonEmissions;
+  let tempYearlyCarbonEmissions;
   let low;
   let tempLow;
   let high;
@@ -698,20 +697,13 @@ export const handleImpactData = (
   let tempCars;
 
   if (showContent === "carbonOffset") {
-    low = Math.round((dailyCarbonEmissions * 365) / 10);
-    high = Math.round((dailyCarbonEmissions * 365) / 5);
-    if (low > 1) {
-      tempLow = Math.round(low);
+    yearlyCarbonEmissions = Math.round(dailyCarbonEmissions * 365);
+    if (yearlyCarbonEmissions > 1) {
+      tempYearlyCarbonEmissions = Math.round(yearlyCarbonEmissions);
     } else {
-      tempLow = Math.ceil(low);
+      tempYearlyCarbonEmissions = Math.ceil(yearlyCarbonEmissions);
     }
-
-    if (high > 1) {
-      tempHigh = Math.round(high);
-    } else {
-      tempHigh = Math.ceil(high);
-    }
-    setImpact([separator(tempLow), separator(tempHigh)]);
+    setImpact(separator(tempYearlyCarbonEmissions));
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(dailyUsage * 365 * 0.001305873 * level, "h");
 

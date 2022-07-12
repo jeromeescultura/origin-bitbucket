@@ -8,7 +8,7 @@ import {
   Select,
 } from "@mui/material";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { formatPrice } from "../../functions/recofunctions/RecoFunctions";
 import LeafRating from "../LeafRating";
 import MoreDetailsComponent from "../MoreDetailsComponent";
@@ -25,6 +25,8 @@ const RecommentCard = ({
   btn3,
   usage,
   industry,
+  source,
+  version,
 }) => {
   return (
     <div className="bg-white py-8 px-4 lg:p-12 rounded-xl space-y-8 max-w-[530px] mx-auto">
@@ -129,7 +131,9 @@ const RecommentCard = ({
               </p>
               <h2 className="text-secondaryText mt-2">1.5c/kWh</h2>
               <p className="text-xs text-subTextColor">
-                extra p/day on any Origin Electricity plan
+                extra p/day on{" "}
+                {source === "edm" && version === "a" ? "select" : "any"} Origin
+                Electricity plan
               </p>
             </div>
           )}
