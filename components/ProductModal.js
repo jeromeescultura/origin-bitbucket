@@ -75,8 +75,9 @@ const ProductModal = ({ product, closeModal, open }) => {
             <div className="font-light subtitle text-sm">
               <p>
                 Our Origin Go Zero add-on is 100% carbon neutral and certified
-                by Climate Active – an initiative backed by the Australian
-                Government to help reduce electricity emissions.
+                by Climate Active – a partnership between the Australian
+                Government and Australian businesses to drive voluntary climate
+                action.
               </p>
               <br />
               <p>

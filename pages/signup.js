@@ -232,7 +232,7 @@ function Signup() {
                   </div>
                   <p className="text-xs mt-6">
                     {product === "carbonOffset" &&
-                      `If your business offset its electricity use for a year, it would be equivalent to planting and growing ${impact[0]} tree seedlings for 10 years.`}
+                      `If offset for one year, the average usage of an Origin small to medium business customer in your industry would be roughly equivalent to avoiding ${impact}kg of carbon emissions.`}
                     {product === "greenPower" &&
                       `If your business matched their electricity use to ${greenPowerLevel}% GreenPower, it would only take ${impact.replace(
                         ",",
