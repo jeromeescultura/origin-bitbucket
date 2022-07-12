@@ -739,6 +739,8 @@ const Recommend = () => {
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
+                      usage={usage}
+                      industry={industry}
                     />
                   </div>
                   <div className="break-inside-avoid">
