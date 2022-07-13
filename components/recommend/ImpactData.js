@@ -252,10 +252,10 @@ const ImpactData = ({
                 {high && (
                   <li>
                     <p className="mb-2">
-                      Larger customers (over 440kwh daily usage) on
-                      average used {separator(Math.round(high * 365))}kwh per
-                      year. Which, if replaced with Solar energy equals to
-                      emission reduction of removing approximately{" "}
+                      Larger customers (over 440kwh daily usage) on average used{" "}
+                      {separator(Math.round(high * 365))}kwh per year. Which, if
+                      replaced with Solar energy equals to emission reduction of
+                      removing approximately{" "}
                       {cars(carbonEmissions?.high) > 1
                         ? `${separator(cars(carbonEmissions?.high))} cars`
                         : `${cars(carbonEmissions?.high)} car`}{" "}
@@ -271,8 +271,15 @@ const ImpactData = ({
               To understand which approximation may best reflect your
               business&apos; circumstances, please call 1300-674-446 (PIN 124)
               or email{" "}
-              <span className="font-medium">shift@originenergy.com.au</span> and
-              speak with one of our Business Club Specialists.{" "}
+              <span className="font-medium">
+                <a
+                  href="mailto:shift@originenergy.com.au"
+                  className="hover:underline"
+                >
+                  shift@originenergy.com.au
+                </a>
+              </span>{" "}
+              and speak with one of our Business Club Specialists.{" "}
             </p>
             <br />
             <p className="italic">

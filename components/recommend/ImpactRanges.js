@@ -60,7 +60,7 @@ const ImpactRanges = ({
             />
           </button>
         </div>
-        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll max-h-[450px] lg:max-h-[550px] xl:max-h-[700px]">
+        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll max-h-[470px] lg:max-h-[550px] xl:max-h-[700px]">
           <p>
             These estimates are subject to change based on your business&apos;
             individual usage.{" "}
@@ -424,8 +424,15 @@ const ImpactRanges = ({
               To understand which approximation may best reflect your
               business&apos; circumstances, please call 1300-674-446 (PIN 124)
               or email{" "}
-              <span className="font-medium">shift@originenergy.com.au</span> and
-              speak with one of our Business Club Specialists.{" "}
+              <span className="font-medium">
+                <a
+                  href="mailto:shift@originenergy.com.au"
+                  className="hover:underline"
+                >
+                  shift@originenergy.com.au
+                </a>
+              </span>{" "}
+              and speak with one of our Business Club Specialists.{" "}
             </p>
             <br />
             <p className="italic">
