@@ -721,8 +721,8 @@ const Recommend = () => {
                   high={industry?.dailyUsage?.high}
                   carbonEmissions={industry?.dailyCarbonEmissions}
                 />
-                <div className="lg:columns-2 gap-3 space-y-3 pb-12 ">
-                  <div className="break-inside-avoid">
+                <div className="lg:columns-2 gap-3 space-y-3 pb-12">
+                  <div className="break-inside-avoid block">
                     <RecommentCard
                       subCategory={subCategory}
                       topRecommend={recommend}
@@ -739,40 +739,29 @@ const Recommend = () => {
                       source={source}
                       version={version}
                     />
+                    <div className="pt-3 ">
+                      <FinanceCalc
+                        recommend={showContent}
+                        industry={industry}
+                        level={level}
+                        impactLevel={impactLevel}
+                        handleButtonSelect={handleButtonSelect}
+                        usage={usage}
+                        industryCost={industryCost}
+                        increasePercentage={increasePercentage}
+                        withoutSolar={withoutSolar}
+                        withSolar={withSolar}
+                        solarReduction={solarReduction}
+                        totalCost={totalCost}
+                        btn1={btn1}
+                        btn2={btn2}
+                        btn3={btn3}
+                        openModal={openModal}
+                      />
+                    </div>
                   </div>
-                  <div className="break-inside-avoid">
-                    <FinanceCalc
-                      recommend={showContent}
-                      industry={industry}
-                      level={level}
-                      impactLevel={impactLevel}
-                      handleButtonSelect={handleButtonSelect}
-                      usage={usage}
-                      industryCost={industryCost}
-                      increasePercentage={increasePercentage}
-                      withoutSolar={withoutSolar}
-                      withSolar={withSolar}
-                      solarReduction={solarReduction}
-                      totalCost={totalCost}
-                      btn1={btn1}
-                      btn2={btn2}
-                      btn3={btn3}
-                      openModal={openModal}
-                    />
-                  </div>
-                  {/* <div className="break-inside-avoid lg:block hidden">
-                    {subCategory?.includes("greenPower") &&
-                      showContent === "solar" && (
-                        <GreenPowerToggle
-                          greenPower={greenPowerToggle}
-                          setGreenPower={setGreenPowerToggle}
-                          recommend={showContent}
-                          pledges={pledges}
-                          setPledges={setPledges}
-                        />
-                      )}
-                  </div> */}
-                  <div className="break-inside-avoid">
+
+                  <div className="break-inside-avoid block">
                     <ImpactCard
                       recommend={showContent}
                       impact={impact}
@@ -785,8 +774,7 @@ const Recommend = () => {
                       btn3={btn3}
                     />
                   </div>
-
-                  <div className="break-inside-avoid">
+                  <div className="break-inside-avoid lg:pb-52">
                     {(subCategory?.includes("decarbEOI") ||
                       (subCategory?.includes("greenPower") &&
                         showContent === "solar")) && (
