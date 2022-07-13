@@ -15,7 +15,7 @@ import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function ContactForms({ text }) {
+function ContactForms({ text, source, version }) {
   const router = useRouter();
 
   const states = [
@@ -257,7 +257,23 @@ function ContactForms({ text }) {
     <>
       <section
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
-        id={userID !== null ? "signup" : "eoi"}
+        id={
+          userID !== null
+            ? source === "edm"
+              ? version === "a"
+                ? "edm-v-a signup"
+                : "edm-v-b signup"
+              : source === "csr"
+              ? "csr signup"
+              : "signup"
+            : source === "edm"
+            ? version === "a"
+              ? "edm-v-a eoi"
+              : "edm-v-b eoi"
+            : source === "csr"
+            ? "csr eoi"
+            : "eoi"
+        }
       >
         <p>{text}</p>
         <p className="font-medium text-sm">
@@ -571,7 +587,7 @@ function ContactForms({ text }) {
           will get in contact to discuss your energy plan options.
         </p>
       </section>
-      <div className="grid grid-cols-2 divide-x py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
+      <div className="sm:grid sm:grid-cols-2 sm:divide-x space-y-8 sm:space-y-0 py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
         <div className="">
           <p>Or want to know more now?</p>
           <div className="flex gap-2 mt-2 items-start">
@@ -582,13 +598,13 @@ function ContactForms({ text }) {
             </div>
           </div>
         </div>
-        <div className="pl-6">
+        <div className="sm:pl-6">
           <p>We&apos;re around</p>
           <div className="flex gap-2 mt-2">
             <img src="/icons/icon_alarm.svg" alt="phone-icon" className="h-7" />
             <div className="mt-1">
-              <p>8:30am - 4:30pm,</p>
-              <p className="mt-1">Mon to Fri</p>
+              <p>8:30am - 4:30pm, <span>Mon to Fri</span></p>
+              <p className="sm:mt-1 sm:block"></p>
             </div>
           </div>
         </div>

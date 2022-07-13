@@ -39,6 +39,9 @@ function Signup() {
     router.push("/");
   };
 
+  const source = JSON.parse( typeof window !== "undefined" && window.localStorage.getItem("SOURCE")) || null;
+  const version = JSON.parse( typeof window !== "undefined" && window.localStorage.getItem("VERSION")) || null;
+
   // Redirect
   const userID =
     JSON.parse(
@@ -292,6 +295,8 @@ function Signup() {
           </section>
           <div className="lg:col-span-3 lg:order-1 ">
             <ContactForms
+            source={source}
+            version={version}
               text="Please give us a few details, and one of our Business Club Specialists will contact
         you about finalising your application."
             />

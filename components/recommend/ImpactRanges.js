@@ -60,7 +60,7 @@ const ImpactRanges = ({
             />
           </button>
         </div>
-        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll max-h-[450px] lg:max-h-[550px] xl:max-h-[700px]">
+        <div className="font-GorditaRegular text-sm mt-6 overflow-y-scroll max-h-[470px] lg:max-h-[550px] xl:max-h-[700px]">
           <p>
             These estimates are subject to change based on your business&apos;
             individual usage.{" "}
@@ -83,8 +83,8 @@ const ImpactRanges = ({
                   </p>
                   <ul className="text-sm pl-5 space-y-2 list-[circle]">
                     <li>
-                      If offset for one year would
-                      be roughly equivalent to avoiding{" "}
+                      If offset for one year would be roughly equivalent to
+                      avoiding{" "}
                       {separator(Math.round(carbonEmissions?.low * 365))}kg of
                       carbon emissions.
                     </li>
@@ -108,11 +108,11 @@ const ImpactRanges = ({
                     year.
                   </p>
                   <ul className="text-sm pl-5 space-y-2 list-[circle]">
-                  <li>
-                      If offset for one year would
-                      be roughly equivalent to avoiding{" "}
-                      {separator(Math.round(carbonEmissions?.medium * 365))}kg of
-                      carbon emissions.
+                    <li>
+                      If offset for one year would be roughly equivalent to
+                      avoiding{" "}
+                      {separator(Math.round(carbonEmissions?.medium * 365))}kg
+                      of carbon emissions.
                     </li>
                     <li>
                       This would add approximately{" "}
@@ -134,12 +134,12 @@ const ImpactRanges = ({
                       {separator(Math.round(high * 365))} kwh per year.
                     </p>
                     <ul className="text-sm pl-5 space-y-2 list-[circle]">
-                    <li>
-                      If offset for one year would
-                      be roughly equivalent to avoiding{" "}
-                      {separator(Math.round(carbonEmissions?.high * 365))}kg of
-                      carbon emissions.
-                    </li>
+                      <li>
+                        If offset for one year would be roughly equivalent to
+                        avoiding{" "}
+                        {separator(Math.round(carbonEmissions?.high * 365))}kg
+                        of carbon emissions.
+                      </li>
                       <li>
                         This would add approximately{" "}
                         {formatPrice(
@@ -424,8 +424,15 @@ const ImpactRanges = ({
               To understand which approximation may best reflect your
               business&apos; circumstances, please call 1300-674-446 (PIN 124)
               or email{" "}
-              <span className="font-medium">shift@originenergy.com.au</span> and
-              speak with one of our Business Club Specialists.{" "}
+              <span className="font-medium">
+                <a
+                  href="mailto:shift@originenergy.com.au"
+                  className="hover:underline"
+                >
+                  shift@originenergy.com.au
+                </a>
+              </span>{" "}
+              and speak with one of our Business Club Specialists.{" "}
             </p>
             <br />
             <p className="italic">
@@ -439,6 +446,8 @@ const ImpactRanges = ({
                 <a
                   className="hover:underline"
                   href="https://www.awe.gov.au/agriculture-land/land/publications/20-million-trees-program-review"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://www.awe.gov.au/agriculture-land/land/publications/20-million-trees-program-review
                 </a>
@@ -449,7 +458,9 @@ const ImpactRanges = ({
                 </p>
                 <a
                   className="hover:underline"
-                  href="https://www.industry.gov.au/regulations-and-standards/methods-for-the-emissions-reduction-fund "
+                  href="https://www.industry.gov.au/regulations-and-standards/methods-for-the-emissions-reduction-fund"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://www.industry.gov.au/regulations-and-standards/methods-for-the-emissions-reduction-fund
                 </a>
@@ -463,6 +474,8 @@ const ImpactRanges = ({
                 <a
                   className="hover:underline"
                   href="https://aemo.com.au/newsroom/news-updates/aemo-welcomes-new-connections-lead-as-the-grid-prepares-for-influx-of-renewables"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://aemo.com.au/newsroom/news-updates/aemo-welcomes-new-connections-lead-as-the-grid-prepares-for-influx-of-renewables
                 </a>
@@ -474,6 +487,8 @@ const ImpactRanges = ({
                 <a
                   className="hover:underline"
                   href="https://aemo.com.au/en/energy-systems/electricity/national-electricity-market-nem/data-nem/data-dashboard-nem"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://aemo.com.au/en/energy-systems/electricity/national-electricity-market-nem/data-nem/data-dashboard-nem
                 </a>
@@ -487,6 +502,8 @@ const ImpactRanges = ({
                 <a
                   className="hover:underline"
                   href="https://www.ntc.gov.au/sites/default/files/assets/files/Carbon-dioxide-emissions-intensity-for-new-Australian-light-vehicles-2019.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://www.ntc.gov.au/sites/default/files/assets/files/Carbon-dioxide-emissions-intensity-for-new-Australian-light-vehicles-2019.pdf
                 </a>
@@ -496,6 +513,8 @@ const ImpactRanges = ({
                 <a
                   className="hover:underline"
                   href="https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20kilometres%20a%20day."
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   https://www.budgetdirect.com.au/car-insurance/research/average-kilometers-driven.html#:~:text=This%20means%20that%20Victorian%20drivers,or%2037.9%20kilometres%20a%20day.
                 </a>

@@ -32,10 +32,16 @@ const ToggleCard = ({ recommend, pledges, setPledges, subCategory }) => {
 
   const expandInterview = () => {
     setInterview(!interview);
+    if(interview) {
+      handleInterviewButtonSelect('')
+    }
   };
 
   const expandGreenPower = () => {
     setGreenPower(!greenPower);
+    if(greenPower) {
+      handleGreenPowerButtonSelect('')
+    }
   };
 
   const handleInterviewButtonSelect = (value) => {
@@ -52,6 +58,15 @@ const ToggleCard = ({ recommend, pledges, setPledges, subCategory }) => {
     } else if (value === 1) {
       setDecarbBtn1(false);
       setDecarbBtn2(true);
+      if (isPresent !== -1) {
+        const remaining = pledges.filter(
+          (item) => item !== "decarbonisation interview"
+        );
+        setPledges(remaining);
+      }
+    } else {
+      setDecarbBtn1(false);
+      setDecarbBtn2(false);
       if (isPresent !== -1) {
         const remaining = pledges.filter(
           (item) => item !== "decarbonisation interview"
@@ -79,7 +94,14 @@ const ToggleCard = ({ recommend, pledges, setPledges, subCategory }) => {
         const remaining = pledges.filter((item) => item !== "greenPower");
         setPledges(remaining);
       }
-    }
+    } else {
+      setGreenPowerBtn1(false);
+      setGreenPowerBtn2(false);
+      if (isPresent !== -1) {
+        const remaining = pledges.filter((item) => item !== "greenPower");
+        setPledges(remaining);
+      }
+    } 
   };
 
   return (
