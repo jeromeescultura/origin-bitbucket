@@ -587,7 +587,7 @@ function ContactForms({ text, source, version }) {
           will get in contact to discuss your energy plan options.
         </p>
       </section>
-      <div className="grid grid-cols-2 divide-x py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
+      <div className="sm:grid sm:grid-cols-2 sm:divide-x space-y-8 sm:space-y-0 py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
         <div className="">
           <p>Or want to know more now?</p>
           <div className="flex gap-2 mt-2 items-start">
@@ -598,13 +598,13 @@ function ContactForms({ text, source, version }) {
             </div>
           </div>
         </div>
-        <div className="pl-6">
+        <div className="sm:pl-6">
           <p>We&apos;re around</p>
           <div className="flex gap-2 mt-2">
             <img src="/icons/icon_alarm.svg" alt="phone-icon" className="h-7" />
             <div className="mt-1">
-              <p>8:30am - 4:30pm,</p>
-              <p className="mt-1">Mon to Fri</p>
+              <p>8:30am - 4:30pm, <span>Mon to Fri</span></p>
+              <p className="sm:mt-1 sm:block"></p>
             </div>
           </div>
         </div>

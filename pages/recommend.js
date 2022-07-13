@@ -39,6 +39,7 @@ import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 import UsageButtons from "../components/recommend/UsageButtons";
+import ImpactData from "../components/recommend/ImpactData";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -510,8 +511,13 @@ const Recommend = () => {
   };
 
   const [impactRanges, setImpactRanges] = useState(false);
+  const [impactDataModal, setImpactDataModal] = useState(false);
+
   const openModal = () => setImpactRanges(true);
   const closeModal = () => setImpactRanges(false);
+
+  const openImpactData = () => setImpactDataModal(true);
+  const closeImpactData = () => setImpactDataModal(false);
 
   return (
     <>
@@ -698,18 +704,37 @@ const Recommend = () => {
                   high={industry?.dailyUsage?.high}
                   carbonEmissions={industry?.dailyCarbonEmissions}
                 />
+
+                <ImpactData
+                  dayjs={dayjs}
+                  level={level}
+                  offSet={offSet}
+                  impactRanges={impactDataModal}
+                  closeModal={closeImpactData}
+                  showContent={showContent}
+                  industry={industry}
+                  low={industry?.dailyUsage?.low}
+                  medium={industry?.dailyUsage?.medium}
+                  high={industry?.dailyUsage?.high}
+                  carbonEmissions={industry?.dailyCarbonEmissions}
+                />
                 <div className="lg:columns-2 gap-3 space-y-3 pb-12 ">
                   <div className="break-inside-avoid">
-                    <ImpactCard
+                    <RecommentCard
+                      subCategory={subCategory}
+                      topRecommend={recommend}
                       recommend={showContent}
-                      impact={impact}
+                      solarSavings={solarSavings}
+                      extraCost={extraCost}
                       level={level}
-                      industry={industry?.name}
-                      dailyUsage={dailyUsage}
-                      openModal={openModal}
+                      handleLevel={handleLevel}
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
+                      usage={usage}
+                      industry={industry}
+                      source={source}
+                      version={version}
                     />
                   </div>
                   <div className="break-inside-avoid">
@@ -745,23 +770,19 @@ const Recommend = () => {
                       )}
                   </div> */}
                   <div className="break-inside-avoid">
-                    <RecommentCard
-                      subCategory={subCategory}
-                      topRecommend={recommend}
+                    <ImpactCard
                       recommend={showContent}
-                      solarSavings={solarSavings}
-                      extraCost={extraCost}
+                      impact={impact}
                       level={level}
-                      handleLevel={handleLevel}
+                      industry={industry?.name}
+                      dailyUsage={dailyUsage}
+                      openModal={openImpactData}
                       btn1={btn1}
                       btn2={btn2}
                       btn3={btn3}
-                      usage={usage}
-                      industry={industry}
-                      source={source}
-                      version={version}
                     />
                   </div>
+
                   <div className="break-inside-avoid">
                     {(subCategory?.includes("decarbEOI") ||
                       (subCategory?.includes("greenPower") &&
