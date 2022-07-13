@@ -404,10 +404,13 @@ const Recommend = () => {
   // ) / 100;
 
   const increasePercentage =
-    Math.round(((extraCost / industryCost) * 100 + Number.EPSILON) * 100) / 100;
+    Math.round(
+      (((extraCost * 365) / 12 / industryCost) * 100 + Number.EPSILON) * 100
+    ) / 100;
 
   const totalCost =
-    Math.round((extraCost + industryCost + Number.EPSILON) * 100) / 100;
+    Math.round(((extraCost * 365) / 12 + industryCost + Number.EPSILON) * 100) /
+    100;
 
   const withoutSolar =
     Math.round(((dailyUsage * offSet * 365) / 12 + Number.EPSILON) * 100) / 100;
