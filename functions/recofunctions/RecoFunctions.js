@@ -707,8 +707,6 @@ export const handleImpactData = (
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(dailyUsage * 365 * 0.001305873 * level, "h");
 
-    console.log(dailyUsage * 365 * 0.001305873, "wwww");
-
     if (impactCalc?.$d?.days > 0) {
       if (impactCalc?.$d?.days > 1) {
         setImpact(`${impactCalc?.$d?.days} days`);

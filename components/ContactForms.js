@@ -140,12 +140,6 @@ function ContactForms({ text, source, version }) {
   }, []);
 
   useEffect(() => {
-    console.log("top", topRecommendation);
-    console.log("other", otherRecommendations);
-    console.log("selected", selectedProduct);
-  }, [topRecommendation]);
-
-  useEffect(() => {
     window.localStorage.setItem(
       "CONTACT_FORMS_DETAILS",
       JSON.stringify(contactFormsDetails)
@@ -153,9 +147,7 @@ function ContactForms({ text, source, version }) {
   }, [contactFormsDetails]);
 
   const methods = useForm({ defaultValues: contactFormsDetails });
-  const { handleSubmit, control, watch, setValue, formState: { errors } } = methods;
-
-  console.log(errors)
+  const { handleSubmit, control, watch, setValue } = methods;
 
   const onSubmit = (contact_data) => {
     ButtonTrackingEvent("contact-submit", contact_data);
