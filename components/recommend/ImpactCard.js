@@ -111,7 +111,7 @@ const ImpactCard = ({
             ? "carbon offsets work"
             : recommend === "greenPower"
             ? "GreenPower works"
-            : "How solar benefits all"
+            : "solar benefits all"
         }`}
       >
         {recommend === "carbonOffset" ? (

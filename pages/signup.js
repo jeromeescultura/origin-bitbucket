@@ -39,8 +39,14 @@ function Signup() {
     router.push("/");
   };
 
-  const source = JSON.parse( typeof window !== "undefined" && window.localStorage.getItem("SOURCE")) || null;
-  const version = JSON.parse( typeof window !== "undefined" && window.localStorage.getItem("VERSION")) || null;
+  const source =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("SOURCE")
+    ) || null;
+  const version =
+    JSON.parse(
+      typeof window !== "undefined" && window.localStorage.getItem("VERSION")
+    ) || null;
 
   // Redirect
   const userID =
@@ -262,8 +268,7 @@ function Signup() {
                               />
                             </div>
                             <p className="text-left">
-                              Participate in our net zero <br />
-                              strategy review
+                              Participate in our Decarbonisation Interview
                             </p>
                           </div>
                         )}
@@ -295,8 +300,8 @@ function Signup() {
           </section>
           <div className="lg:col-span-3 lg:order-1 ">
             <ContactForms
-            source={source}
-            version={version}
+              source={source}
+              version={version}
               text="Please give us a few details, and one of our Business Club Specialists will contact
         you about finalising your application."
             />
