@@ -165,10 +165,10 @@ export default function Home() {
                     Understand how your support is making a difference
                   </p>
                   <p className="font-light" ref={hideref}>
-                    We&apos;ll provide updates on how your support has made a
-                    difference through your Business Club insights. This is so
-                    you can understand the good change your business has made
-                    and further actions to continue your sustainability journey.
+                    We&apos;ll provide an update on how your support has made a
+                    difference through our Business Club Insights. This is so
+                    you can understand the impact the Business Club has made,
+                    thanks to businesses like you participating.
                   </p>
                 </div>
               </div>

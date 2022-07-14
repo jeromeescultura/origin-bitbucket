@@ -50,6 +50,10 @@ const ImpactCard = ({
 
           {btn1 || btn2 || btn3 ? (
             <div className="mt-2">
+              {(recommend === "greenPower" ||
+                (typeof impact === "object" && recommend === "solar")) && (
+                <p className="text-greenText text-sm">Approximately</p>
+              )}
               <h2 className="text-greenText font-bold">
                 {typeof impact === "object" &&
                   recommend === "solar" &&
