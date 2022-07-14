@@ -20,12 +20,13 @@ export default function Home() {
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
       window.localStorage.setItem("SOURCE", JSON.stringify(query.src));
-      window.localStorage.setItem("VERSION", JSON.stringify(query.v === undefined ? '' : query.v));
+      window.localStorage.setItem(
+        "VERSION",
+        JSON.stringify(query.v === undefined ? "" : query.v)
+      );
     }
   }, [query]);
 
-  
-  
   const [showFooter, setShowFooter] = useState(false);
   const showref = useRef();
   const hideref = useRef();
@@ -203,9 +204,15 @@ export default function Home() {
                         alt="document-icon"
                       />
                     </div> */}
-                    <p className="text-sm font-medium text-primaryText">
+                    <a
+                      href="/files/Business_Energy_Efficiency_Checklist.pdf"
+                      alt="alt text"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-primaryText"
+                    >
                       Start with our Business Energy Efficiency Checklist
-                    </p>
+                    </a>
                   </div>
                 </div>
               </div>
