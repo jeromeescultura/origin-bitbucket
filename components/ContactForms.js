@@ -2,8 +2,10 @@ import {
   Button,
   ButtonGroup,
   Checkbox,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  FormHelperText,
   Grid,
 } from "@mui/material";
 import { useRouter } from "next/router";
@@ -138,12 +140,6 @@ function ContactForms({ text, source, version }) {
   }, []);
 
   useEffect(() => {
-    console.log("top", topRecommendation);
-    console.log("other", otherRecommendations);
-    console.log("selected", selectedProduct);
-  }, [topRecommendation]);
-
-  useEffect(() => {
     window.localStorage.setItem(
       "CONTACT_FORMS_DETAILS",
       JSON.stringify(contactFormsDetails)
@@ -176,10 +172,7 @@ function ContactForms({ text, source, version }) {
         }
       )
         .then((response) => response.json())
-        .then(
-          router.push({ pathname: "/thankyou", query: { uuid: userID } }),
-          window.localStorage.clear()
-        );
+        .then(router.push({ pathname: "/thankyou", query: { uuid: userID } }));
     } else {
       const json = fetch(
         "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact",
@@ -226,8 +219,8 @@ function ContactForms({ text, source, version }) {
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
   const handleButtonSelect = (value) => {
-    setExistingBusiness(value);
-    if (value === true) {
+    setExistingBusiness(value === 0 ? 'yes' : 'no');
+    if (value === 0) {
       setBtn1(true);
       setBtn2(false);
     } else {
@@ -249,7 +242,7 @@ function ContactForms({ text, source, version }) {
   useEffect(() => {
     setValue("existingBusiness", existingBusiness);
     if (existingBusiness !== null) {
-      handleButtonSelect(existingBusiness);
+      handleButtonSelect(existingBusiness === 'yes' ? 0 : 1);
     }
   }, [existingBusiness]);
 
@@ -283,55 +276,74 @@ function ContactForms({ text, source, version }) {
         <Controller
           control={control}
           name="existingBusiness"
-          render={({}) => {
+          rules={{ required: "Please choose one" }}
+          render={({ field: { onChange }, fieldState: { error } }) => {
             return (
-              <ButtonGroup
-                variant="outlined"
-                aria-label="outlined button group"
-                size="large"
-                color="secondary"
-                arial-label="contained button group"
-                fullWidth
-              >
-                <Button
-                  className={
-                    btn1 ? activeStyles : " hover:border hover:border-gray-300"
-                  }
-                  value={"Yes"}
-                  onClick={() => handleButtonSelect(true)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
+              <FormControl component="fieldset">
+                <ButtonGroup
+                sx={{
+                  border:
+                    error &&
+                    existingBusiness === null &&
+                    "2px solid red",
+                  p:
+                    error &&
+                    existingBusiness === null &&
+                    1,
+                }}
+                  variant="outlined"
+                  aria-label="outlined button group"
+                  size="large"
+                  color="secondary"
+                  arial-label="contained button group"
+                  fullWidth
+                  onChange={onChange}
                 >
-                  Yes
-                </Button>
-                <Button
-                  className={`${btn2 ? activeStyles : ""} ${
-                    btn1 &&
-                    "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
-                  }`}
-                  value={"No"}
-                  onClick={() => handleButtonSelect(false)}
-                  sx={{
-                    color: "#505050",
-                    borderColor: "#E3E3E3",
-                    fontSize: "16",
-                  }}
-                  name="Do you have an existing business account with Origin?"
-                  id="existing-business"
-                >
-                  No
-                </Button>
-              </ButtonGroup>
+                  <Button
+                    className={
+                      btn1
+                        ? activeStyles
+                        : " hover:border hover:border-gray-300"
+                    }
+                    value={"Yes"}
+                    onClick={() => handleButtonSelect(0)}
+                    sx={{
+                      color: "#505050",
+                      borderColor: "#E3E3E3",
+                      fontSize: "16",
+                    }}
+                    name="Do you have an existing business account with Origin?"
+                    id="existing-business"
+                  >
+                    Yes
+                  </Button>
+                  <Button
+                    className={`${btn2 ? activeStyles : ""} ${
+                      btn1 &&
+                      "border-l-accentColor hover:border-l-accentColor hover:border hover:border-gray-300"
+                    }`}
+                    value={"No"}
+                    onClick={() => handleButtonSelect(1)}
+                    sx={{
+                      color: "#505050",
+                      borderColor: "#E3E3E3",
+                      fontSize: "16",
+                    }}
+                    name="Do you have an existing business account with Origin?"
+                    id="existing-business"
+                  >
+                    No
+                  </Button>
+                </ButtonGroup>
+                {error && existingBusiness === null ? (
+                  <FormHelperText>Please choose one</FormHelperText>
+                ) : null}
+              </FormControl>
             );
           }}
         />
 
-        {existingBusiness && (
+        {existingBusiness === 'yes' && (
           <>
             <p className="font-medium text-sm">
               What is your Origin Account Number?
@@ -603,7 +615,9 @@ function ContactForms({ text, source, version }) {
           <div className="flex gap-2 mt-2">
             <img src="/icons/icon_alarm.svg" alt="phone-icon" className="h-7" />
             <div className="mt-1">
-              <p>8:30am - 4:30pm, <span>Mon to Fri</span></p>
+              <p>
+                8:30am - 4:30pm, <span>Mon to Fri</span>
+              </p>
               <p className="sm:mt-1 sm:block"></p>
             </div>
           </div>

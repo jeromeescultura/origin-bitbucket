@@ -370,7 +370,7 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
       return { ...prevState, greenPower: prevState.greenPower + 1 };
     });
   }
-  if (val.energySourceChanges.includes("ev")) {
+  if (val.energySourceChanges.includes("electric_vehicles")) {
     setGZ((prevState) => {
       return { ...prevState, carbonOffset: prevState.carbonOffset + 1 };
     });
@@ -706,8 +706,6 @@ export const handleImpactData = (
     setImpact(separator(tempYearlyCarbonEmissions));
   } else if (showContent === "greenPower") {
     impactCalc = dayjs.duration(dailyUsage * 365 * 0.001305873 * level, "h");
-
-    console.log(dailyUsage * 365 * 0.001305873, "wwww");
 
     if (impactCalc?.$d?.days > 0) {
       if (impactCalc?.$d?.days > 1) {

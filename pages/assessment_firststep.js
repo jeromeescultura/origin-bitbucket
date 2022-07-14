@@ -257,7 +257,6 @@ const AssessmentFirstStep = () => {
 
   useEffect(() => {
     if (implementSustainability?.length > 1) {
-      console.log("fired", implementSustainability);
       setValue("implementSustainability", implementSustainability);
       handleButtonSelect(implementSustainability === "yes" ? 1 : 0);
     }

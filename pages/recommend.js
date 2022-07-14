@@ -57,11 +57,6 @@ const Recommend = () => {
       typeof window !== "undefined" && window.localStorage.getItem("VERSION")
     ) || null;
 
-  useEffect(() => {
-    console.log("SOURCE: ", source);
-    console.log("VERSION: ", version);
-  }, []);
-
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -129,9 +124,7 @@ const Recommend = () => {
   const goZeroScore = goZero.carbonOffset;
   const greenPowerScore = greenPower.greenPower;
   const solarPowerScore = solarPower.solar;
-  // console.log("goZeroScore: ", goZeroScore);
-  // console.log("greenPowerScore: ", greenPowerScore);
-  // console.log("solarPowerScore", solarPowerScore);
+
 
   useEffect(() => {
     if (recommend === "carbonOffset") {
@@ -173,13 +166,6 @@ const Recommend = () => {
     }
   }, [goZeroScore, greenPowerScore, solarPowerScore, recommend]);
 
-  useEffect(() => {
-    console.log(recommend);
-  }, [recommend]);
-
-  useEffect(() => {
-    console.log(highLow);
-  }, [highLow]);
 
   useEffect(() => {
     setTimeout(() => {

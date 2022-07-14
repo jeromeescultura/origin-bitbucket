@@ -108,7 +108,7 @@ const RecommentCard = ({
             <div className="">
               <p className="font-medium whitespace-nowrap">Estimated Savings</p>
               <h2 className="text-secondaryText my-4 lg:my-3">
-                {formatPrice(solarSavings)}
+                {usage === '' ? '-' : formatPrice(solarSavings)}
               </h2>
               <p className="text-xs text-subTextColor">
                 p/month on any Origin Electricity plan or as a stand-alone
