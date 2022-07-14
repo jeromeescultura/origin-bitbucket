@@ -370,7 +370,7 @@ export const stepOneScore = (val, setGZ, setGP, setSP) => {
       return { ...prevState, greenPower: prevState.greenPower + 1 };
     });
   }
-  if (val.energySourceChanges.includes("ev")) {
+  if (val.energySourceChanges.includes("electric_vehicles")) {
     setGZ((prevState) => {
       return { ...prevState, carbonOffset: prevState.carbonOffset + 1 };
     });

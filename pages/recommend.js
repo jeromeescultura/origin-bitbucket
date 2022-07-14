@@ -452,6 +452,12 @@ const Recommend = () => {
   });
 
   useEffect(() => {
+    console.log("GoZero: ", goZeroScore);
+    console.log("GreenPower: ", greenPowerScore);
+    console.log("solarPower: ", solarPowerScore);
+  }, [goZeroScore, greenPowerScore, solarPowerScore]);
+
+  useEffect(() => {
     setStoredData({
       product: showContent,
       greenPowerLevel: showContent === "greenPower" ? level * 100 : 0,
