@@ -16,14 +16,16 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   const query = router.query;
+  const [source, setSource] = useState(null);
+  const [version, setVersion] = useState(null);
+
+  console.log("source: ", source);
+  console.log("version: ", version);
 
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
-      window.localStorage.setItem("SOURCE", JSON.stringify(query.src));
-      window.localStorage.setItem(
-        "VERSION",
-        JSON.stringify(query.v === undefined ? "" : query.v)
-      );
+      setSource(query.src);
+      setVersion(query.v);
     }
   }, [query]);
 
@@ -99,7 +101,7 @@ export default function Home() {
       </Head>
       <NavBar />
       <div className="w-full bg-white overflow-auto h-full">
-        <HeroComponent />
+        <HeroComponent source={source} version={version} />
         <ContentContainer>
           <div className="text-center font-light md:w-[80vw] lg:w-full mx-auto">
             {/* <h2>
@@ -218,7 +220,7 @@ export default function Home() {
               </div>
             </ContentContainer>
             <FullWidth>
-              <ProductContainer source={query.src} version={query.v} />
+              <ProductContainer source={source} version={version} />
             </FullWidth>
             <ContentContainer>
               <div className="md:w-[80vw] lg:w-full mx-auto">
@@ -257,7 +259,7 @@ export default function Home() {
         </div>
       </div>
       <div />
-      {showFooter && <Footer />}
+      {showFooter && <Footer source={source} version={version} />}
     </div>
   );
 }

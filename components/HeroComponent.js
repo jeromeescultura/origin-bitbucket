@@ -4,12 +4,12 @@ import Image from "next/image";
 import { Button } from "@mui/material";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function HeroComponent() {
+function HeroComponent({source, version}) {
   const router = useRouter();
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
-    router.push(url);
+    router.push({pathname: url, query:{src:source, v:version}}, url);
   };
   return (
     <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16 ">

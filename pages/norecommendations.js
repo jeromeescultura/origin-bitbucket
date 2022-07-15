@@ -7,10 +7,16 @@ import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 const NoRecommendations = () => {
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push("/");
+    router.push(
+      `/${source !== "" && source !== undefined ? `?src=${source}&` : ""}${
+        version !== "" && version !== undefined ? `v=${version}` : ""
+      }`
+    );
   };
 
   const startAssesment =

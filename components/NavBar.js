@@ -3,9 +3,16 @@ import { useRouter } from "next/router";
 
 function NavBar() {
   const router = useRouter();
+  const source = router.query.src || "";
+  const version = router.query.v || "";
   const handleClick = (e) => {
     e.preventDefault();
-    router.push("/");
+    router.push(
+      { pathname: "/", query: { src: source, v: version } },
+      `/${source !== "" && source !== undefined ? `?src=${source}&` : ""}${
+        version !== "" && version !== undefined ? `v=${version}` : ""
+      }`
+    );
   };
   return (
     <div className="bg-white py-3 lg:pt-8 w-[90vw] sm:w-[80vw] md:w-[90vw] lg:w-[95vw] max-w-[1140px] mx-auto ">
