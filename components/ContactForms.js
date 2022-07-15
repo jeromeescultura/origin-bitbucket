@@ -154,7 +154,7 @@ function ContactForms({ text, source, version, path }) {
     console.log(contact_data, "contact_data console");
     if (userID) {
       const json = fetch(
-        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact/" +
+        "https://bwnwkszix6.execute-api.ap-southeast-2.amazonaws.com/Prod/contact/" +
           userID,
         {
           method: "PUT",
@@ -175,7 +175,7 @@ function ContactForms({ text, source, version, path }) {
         .then(router.push({ pathname: "/thankyou", query: { uuid: userID } }));
     } else {
       const json = fetch(
-        "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/contact",
+        "https://bwnwkszix6.execute-api.ap-southeast-2.amazonaws.com/Prod/contact",
         {
           method: "POST",
           headers: {
