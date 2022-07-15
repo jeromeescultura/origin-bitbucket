@@ -21,6 +21,7 @@ import {
   List,
   ListItem,
   ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import FormInputButton from "../form-components/FormInputButton";
 import ButtonQuestion from "../components/ButtonQuestion";
@@ -38,9 +39,11 @@ function Signup() {
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push(`/${source !== "" ? `?src=${source}&` : ""}${
-      version !== "" ? `v=${version}` : ""
-    }`);
+    router.push(
+      `/${source !== "" ? `?src=${source}&` : ""}${
+        version !== "" ? `v=${version}` : ""
+      }`
+    );
   };
 
   // Redirect
@@ -250,10 +253,10 @@ function Signup() {
                   <div className="mt-16">
                     <p className="font-medium">You&apos;ve chosen to do more</p>
                     <div className="flex justify-center">
-                      <div className="flex flex-col max-w-[227px]">
+                      <List className="space-y-5 text-sm max-w-[200px]">
                         {biggerDiff.includes("decarbonisation interview") && (
-                          <div className="flex gap-4 mt-4">
-                            <div className="w-[20px] h-[20px]">
+                          <ListItem className="p-0 items-start">
+                            <ListItemIcon className="mt-1 w-[20px] h-[20px]">
                               <Image
                                 src="/icons/check-green.svg"
                                 width={50}
@@ -261,15 +264,15 @@ function Signup() {
                                 objectFit="contain"
                                 alt="trees"
                               />
-                            </div>
-                            <p className="text-left">
+                            </ListItemIcon>
+                            <ListItemText className="m-0" disableTypography>
                               Participate in our Decarbonisation Interview
-                            </p>
-                          </div>
+                            </ListItemText>
+                          </ListItem>
                         )}
                         {biggerDiff.includes("greenPower") && (
-                          <div className="flex justify-between gap-4 mt-4">
-                            <div className="w-[70px] h-[70px]">
+                          <ListItem className="p-0 items-start">
+                            <ListItemIcon className="mt-1 w-[20px] h-[20px]">
                               <Image
                                 src="/icons/check-green.svg"
                                 width={50}
@@ -277,16 +280,16 @@ function Signup() {
                                 objectFit="contain"
                                 alt="trees"
                               />
-                            </div>
-                            <p className="text-left">
+                            </ListItemIcon>
+                            <ListItemText className="m-0" disableTypography>
                               GreenPower
                               <br />
                               One of our Business Club representatives will get
                               in contact to review your GreenPower options
-                            </p>
-                          </div>
+                            </ListItemText>
+                          </ListItem>
                         )}
-                      </div>
+                      </List>
                     </div>
                   </div>
                 )}
