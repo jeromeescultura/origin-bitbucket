@@ -252,14 +252,37 @@ function ContactForms({ text, source, version, path }) {
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
         id={
           userID !== null
-            ? source !== null && version !== null
-              ? path
-                ? `${source}-v-${version} eoi`
-                : `${source}-v-${version} signup`
-              : "signup"
-            : source !== null && version !== null
-            ? `${source}-v-${version} eoi`
-            : "eoi"
+            ? path
+              ? `${
+                  source !== null &&
+                  source !== undefined &&
+                  source !== "" &&
+                  version !== null &&
+                  version !== undefined &&
+                  version !== ""
+                    ? `${source}-v-${version} `
+                    : ""
+                }eoi`
+              : `${
+                  source !== null &&
+                  source !== undefined &&
+                  source !== "" &&
+                  version !== null &&
+                  version !== undefined &&
+                  version !== ""
+                    ? `${source}-v-${version} `
+                    : ""
+                }signup`
+            : `${
+                source !== null &&
+                source !== undefined &&
+                source !== "" &&
+                version !== null &&
+                version !== undefined &&
+                version !== ""
+                  ? `${source}-v-${version} `
+                  : ""
+              }eoi`
         }
       >
         <p>{text}</p>

@@ -21,6 +21,11 @@ import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 const AssessmentFirstStep = () => {
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
+
+  console.log("source: ", source);
+  console.log("version: ", version);
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -316,7 +321,13 @@ const AssessmentFirstStep = () => {
     });
 
   const actionHandler = () => {
-    router.push("/assessment_secondstep");
+    router.push(
+      {
+        pathname: "/assessment_secondstep",
+        query: { src: source, v: version },
+      },
+      "/assessment_secondstep"
+    );
   };
 
   const startAssesment =

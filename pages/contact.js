@@ -7,20 +7,18 @@ import ContentContainer from "../containers/ContentContainer";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Interested() {
-  const source =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("SOURCE")
-    ) || null;
-  const version =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("VERSION")
-    ) || null;
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
 
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push("/");
+    router.push(
+      `/${source !== "" && source !== undefined ? `?src=${source}&` : ""}${
+        version !== "" && version !== undefined ? `v=${version}` : ""
+      }`
+    );
   };
 
   return (
@@ -71,7 +69,12 @@ function Interested() {
         </section>
 
         <ContentContainer style="pt-0">
-          <ContactForms path={router.query.path} source={source} version={version} text="Please give us a few details, and one of our Business Club Specialists will contact you about options that might be available to you." />
+          <ContactForms
+            path={router.query.path}
+            source={source}
+            version={version}
+            text="Please give us a few details, and one of our Business Club Specialists will contact you about options that might be available to you."
+          />
         </ContentContainer>
       </div>
     </>

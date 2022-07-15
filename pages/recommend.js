@@ -47,16 +47,6 @@ const Recommend = () => {
   var duration = require("dayjs/plugin/duration");
   dayjs.extend(duration);
 
-  const source =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("SOURCE")
-    ) || null;
-
-  const version =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("VERSION")
-    ) || null;
-
   const storedStepOneData =
     JSON.parse(
       typeof window !== "undefined" &&
@@ -275,9 +265,18 @@ const Recommend = () => {
   }, [recommend, pages, products]);
 
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
+
+  console.log("source: ", source);
+  console.log("version: ", version);
   const handleClick = (e) => {
     e.preventDefault();
-    router.push("/");
+    router.push(
+      `/${source !== "" ? `?src=${source}&` : ""}${
+        version !== "" ? `v=${version}` : ""
+      }`
+    );
   };
 
   const handleButton = (value) => {
@@ -485,16 +484,22 @@ const Recommend = () => {
 
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
-    router.push({
-      pathname: "/signup",
-      query: { uuid: userID },
-    });
+    router.push(
+      {
+        pathname: "/signup",
+        query: { uuid: userID, src: source, v: version },
+      },
+      `/signup&uuid=${userID}`
+    );
   };
   const handleExpress = () => {
-    router.push({
-      pathname: "/contact/",
-      query: { path: "eoi", uuid: userID },
-    });
+    router.push(
+      {
+        pathname: "/contact/",
+        query: { path: "eoi", uuid: userID, src: source, v: version },
+      },
+      `/contact/&uuid=${userID}`
+    );
   };
 
   const [impactRanges, setImpactRanges] = useState(false);
