@@ -45,7 +45,7 @@ export default class MyDocument extends Document {
           ></script> */}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {/* Google Tag Manager */}
-          <Script
+          {/* <Script
             id="gtag-base"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
@@ -57,7 +57,7 @@ export default class MyDocument extends Document {
             })(window,document,'script','dataLayer', '${GTM_ID}');
           `,
             }}
-          />
+          /> */}
 
           {/* FB Pixel */}
           <noscript>
@@ -70,14 +70,14 @@ export default class MyDocument extends Document {
           </noscript>
         </Head>
         <body>
-          <noscript>
+          {/* <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
               height="0"
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             />
-          </noscript>
+          </noscript> */}
           <Main />
           <NextScript />
         </body>

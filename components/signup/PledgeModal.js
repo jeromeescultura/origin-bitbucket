@@ -165,8 +165,7 @@ const PledgeModal = ({
                         />
                       </div>
                       <p className="text-left">
-                        Participate in our net zero <br />
-                        strategy review
+                        Participate in our Decarbonisation Interview
                       </p>
                     </div>
                   )}

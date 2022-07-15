@@ -21,8 +21,8 @@ export default function MyApp(props) {
 
   useEffect(() => {
     fbq.pageview();
-    const handleRouteChange = () => {
-      ga.pageview();
+    const handleRouteChange = (url) => {
+      ga.pageview(url);
       fbq.pageview();
     };
 
@@ -39,6 +39,19 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {/* Google Tag Manager */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${ga.GTM_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics-script"
+          strategy="afterInteractive"
+        >{`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', '${ga.GTM_ID}');`}</Script>
 
         {/* Global Site Code Pixel - Facebook Pixel */}
         <Script
