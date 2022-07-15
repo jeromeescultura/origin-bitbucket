@@ -58,7 +58,7 @@ function ProductContainer({ source, version }) {
       icon: "/icons/products/go-zero.svg",
       impact: "Through offsetting your electricity use",
       plan: `Available on ${
-        source === "edm" && version === "a" ? "select" : "any"
+        version === "a" ? "select" : "any"
       } Origin Electricity plan`,
       siteChanges: "None",
       contracts: "None",

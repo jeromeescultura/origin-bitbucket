@@ -130,11 +130,11 @@ const RecommentCard = ({
                 Cost of Origin Zero
               </p>
               <h2 className="text-secondaryText mt-2">
-                {source === "edm" && version === "a" ? "0.00" : "1.50"}c/kWh
+                {version === "a" ? "0.00" : "1.50"}c/kWh
               </h2>
               <p className="text-xs text-subTextColor">
                 extra p/day on{" "}
-                {source === "edm" && version === "a" ? "select" : "any"} Origin
+                {version === "a" ? "select" : "any"} Origin
                 Electricity plan
               </p>
             </div>
