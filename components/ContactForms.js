@@ -17,7 +17,7 @@ import { FormInputText } from "../form-components/FormInputText";
 import FormInputRadio from "../form-components/FormInputRadio";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function ContactForms({ text, source, version }) {
+function ContactForms({ text, source, version, path }) {
   const router = useRouter();
 
   const states = [
@@ -219,7 +219,7 @@ function ContactForms({ text, source, version }) {
   const activeStyles = "border-accentColor bg-highlight font-medium";
 
   const handleButtonSelect = (value) => {
-    setExistingBusiness(value === 0 ? 'yes' : 'no');
+    setExistingBusiness(value === 0 ? "yes" : "no");
     if (value === 0) {
       setBtn1(true);
       setBtn2(false);
@@ -242,7 +242,7 @@ function ContactForms({ text, source, version }) {
   useEffect(() => {
     setValue("existingBusiness", existingBusiness);
     if (existingBusiness !== null) {
-      handleButtonSelect(existingBusiness === 'yes' ? 0 : 1);
+      handleButtonSelect(existingBusiness === "yes" ? 0 : 1);
     }
   }, [existingBusiness]);
 
@@ -252,19 +252,13 @@ function ContactForms({ text, source, version }) {
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
         id={
           userID !== null
-            ? source === "edm"
-              ? version === "a"
-                ? "edm-v-a signup"
-                : "edm-v-b signup"
-              : source === "csr"
-              ? "csr signup"
+            ? source !== null && version !== null
+              ? path
+                ? `${source}-v-${version} eoi`
+                : `${source}-v-${version} signup`
               : "signup"
-            : source === "edm"
-            ? version === "a"
-              ? "edm-v-a eoi"
-              : "edm-v-b eoi"
-            : source === "csr"
-            ? "csr eoi"
+            : source !== null && version !== null
+            ? `${source}-v-${version} eoi`
             : "eoi"
         }
       >
@@ -281,16 +275,11 @@ function ContactForms({ text, source, version }) {
             return (
               <FormControl component="fieldset">
                 <ButtonGroup
-                sx={{
-                  border:
-                    error &&
-                    existingBusiness === null &&
-                    "2px solid red",
-                  p:
-                    error &&
-                    existingBusiness === null &&
-                    1,
-                }}
+                  sx={{
+                    border:
+                      error && existingBusiness === null && "2px solid red",
+                    p: error && existingBusiness === null && 1,
+                  }}
                   variant="outlined"
                   aria-label="outlined button group"
                   size="large"
@@ -343,7 +332,7 @@ function ContactForms({ text, source, version }) {
           }}
         />
 
-        {existingBusiness === 'yes' && (
+        {existingBusiness === "yes" && (
           <>
             <p className="font-medium text-sm">
               What is your Origin Account Number?

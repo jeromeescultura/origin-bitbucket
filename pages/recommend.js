@@ -125,7 +125,6 @@ const Recommend = () => {
   const greenPowerScore = greenPower.greenPower;
   const solarPowerScore = solarPower.solar;
 
-
   useEffect(() => {
     if (recommend === "carbonOffset") {
       if (greenPowerScore > solarPowerScore) {
@@ -165,7 +164,6 @@ const Recommend = () => {
       }
     }
   }, [goZeroScore, greenPowerScore, solarPowerScore, recommend]);
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -495,7 +493,7 @@ const Recommend = () => {
   const handleExpress = () => {
     router.push({
       pathname: "/contact/",
-      query: { uuid: userID },
+      query: { path: "eoi", uuid: userID },
     });
   };
 

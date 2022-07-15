@@ -71,7 +71,7 @@ function Interested() {
         </section>
 
         <ContentContainer style="pt-0">
-          <ContactForms source={source} version={version} text="Please give us a few details, and one of our Business Club Specialists will contact you about options that might be available to you." />
+          <ContactForms path={router.query.path} source={source} version={version} text="Please give us a few details, and one of our Business Club Specialists will contact you about options that might be available to you." />
         </ContentContainer>
       </div>
     </>
