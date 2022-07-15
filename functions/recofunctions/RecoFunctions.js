@@ -771,7 +771,7 @@ export const handleOffset = (
   version
 ) => {
   if (showContent === "carbonOffset") {
-    if (source === "edm" && version === "a") {
+    if (version === "a") {
       setOffSet(0);
     } else {
       setOffSet(0.015);
