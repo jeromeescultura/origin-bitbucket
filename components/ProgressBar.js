@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 
 const ProgressBar = () => {
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
   const location = router.pathname;
   const [animate, setAnimate] = useState(true);
 
@@ -15,7 +17,11 @@ const ProgressBar = () => {
   const handleClick = (e) => {
     e.preventDefault();
     window.localStorage.clear();
-    router.push("/");
+    router.push(
+      `/${source !== "" ? `?src=${source}&` : ""}${
+        version !== "" ? `v=${version}` : ""
+      }`
+    );
   };
   return (
     <div className="flex flex-col items-start mt-6">

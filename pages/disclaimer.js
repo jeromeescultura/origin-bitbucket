@@ -7,11 +7,16 @@ import * as fbq from "../lib/fpixel";
 
 const Disclaimer = () => {
   const router = useRouter();
+  const source = router.query.src || '';
+  const version = router.query.v || '';
+
+  console.log("source: ", source);
+  console.log("version: ", version);
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
     localStorage.setItem("STARTASSESSMENT", true);
-    router.push(url);
+    router.push({ pathname: url, query: { src: source, v: version } }, url);
   };
 
   return (
@@ -34,7 +39,9 @@ const Disclaimer = () => {
             objectFit="contain"
             alt="origin-logo"
             name="go-home"
-            onClick={(e) => handleClick(e, "/")}
+            onClick={(e) => handleClick(e, `/${source !== "" ? `?src=${source}&` : ""}${
+              version !== "" ? `v=${version}` : ""
+            }`)}
             priority
           />
         </div>
@@ -46,18 +53,18 @@ const Disclaimer = () => {
             <div>
               <p className="font-medium subtitle">Location eligibility</p>
               <p className="my-4 lg:my-6">
-                The products offered from our online assessment are available for small &amp; medium
-                businesses with operations in{" "}
+                The products offered from our online assessment are available
+                for small &amp; medium businesses with operations in{" "}
                 <span className="font-bold">
                   South Australia, Victoria, New South Wales
                 </span>{" "}
                 and <span className="font-bold">Queensland.</span>
               </p>
               <p>
-                If your business does not have operations in these states, but you would
-                like to find out how your business can support cleaner energy,
-                please let us know by completing your expression of interest
-                below.
+                If your business does not have operations in these states, but
+                you would like to find out how your business can support cleaner
+                energy, please let us know by completing your expression of
+                interest below.
               </p>
             </div>
             <div className="flex flex-col gap-4 md:w-2/3 lg:flex-row lg:w-full xl:pr-12">

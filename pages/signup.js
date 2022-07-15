@@ -33,20 +33,15 @@ import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 function Signup() {
   const router = useRouter();
+  const source = router.query.src;
+  const version = router.query.v;
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push("/");
+    router.push(`/${source !== "" ? `?src=${source}&` : ""}${
+      version !== "" ? `v=${version}` : ""
+    }`);
   };
-
-  const source =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("SOURCE")
-    ) || null;
-  const version =
-    JSON.parse(
-      typeof window !== "undefined" && window.localStorage.getItem("VERSION")
-    ) || null;
 
   // Redirect
   const userID =

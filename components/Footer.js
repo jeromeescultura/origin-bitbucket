@@ -5,14 +5,14 @@ import ButtonComponent from "./ButtonComponent";
 import * as fbq from "../lib/fpixel";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function Footer() {
+function Footer({source, version}) {
   const router = useRouter();
 
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
 
-    router.push(url);
+    router.push({pathname:url, query:{src:source, v:version}}, url);
   };
 
   return (

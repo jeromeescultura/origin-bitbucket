@@ -545,7 +545,7 @@ export const recommendProduct = (gz, gp, sp, router, userID, setRP) => {
     router.push({
       pathname: "/norecommendations",
       query: { uuid: userID },
-    });
+    }, '/norecommendations');
   }
 };
 
