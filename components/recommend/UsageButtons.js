@@ -24,7 +24,7 @@ function UsageButtons({
       color="secondary"
       arial-label="contained button group"
       fullWidth
-      className="max-w-[550px] my-2"
+      className="max-w-[550px] my-2 bg-white !shadow-md"
     >
       <Controller
         onChange={watch(handleUsage)}
@@ -43,6 +43,7 @@ function UsageButtons({
                   color: "#505050",
                   borderColor: "#E3E3E3",
                   fontSize: "16",
+                  py: "18px",
                 }}
               >
                 <div className="flex justify-around flex-col h-full">
@@ -70,6 +71,7 @@ function UsageButtons({
                   color: "#505050",
                   borderColor: "#E3E3E3",
                   fontSize: "16",
+                  py: "18px",
                 }}
               >
                 <div className="flex justify-around flex-col h-full">
@@ -98,6 +100,7 @@ function UsageButtons({
                     color: "#505050",
                     borderColor: "#E3E3E3",
                     fontSize: "16",
+                    py: "18px",
                   }}
                 >
                   <div className="flex justify-around flex-col h-full">

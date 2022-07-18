@@ -23,7 +23,7 @@ function FooterReco({
             variant="contained"
             className={`${
               pageNo === 0 ? "text-[#ABABAB]" : "text-primaryText"
-            } text-sm font-medium !bg-white p-6 !rounded-l-full shadow-none lg:-mb-20`}
+            } text-sm font-medium !bg-white p-6 !rounded-l-full shadow-none hover:shadow-none lg:-mb-20`}
             startIcon={
               <svg
                 width="12"
@@ -55,7 +55,7 @@ function FooterReco({
             variant="contained"
             className={`${
               pageNo === 2 ? "text-[#ABABAB]" : "text-primaryText"
-            } text-sm font-medium !bg-white p-6 !rounded-r-full shadow-none lg:-mb-20`}
+            } text-sm font-medium !bg-white p-6 !rounded-r-full shadow-none hover:shadow-none lg:-mb-20`}
             endIcon={
               <svg
                 width="12"
@@ -73,7 +73,7 @@ function FooterReco({
           </Button>
         </div>
       )}
-      <div className="flex flex-col sm:flex-row w-full max-w-[230px] sm:max-w-none gap-2 px-2 mb-1 mx-auto justify-center pt-2">
+      <div className="flex sm:flex-row w-full sm:max-w-none gap-2 px-2 mb-1 mx-auto justify-center">
         <Button
           className="w-[230px] lg:py-3"
           variant="contained"
@@ -89,7 +89,7 @@ function FooterReco({
             fontSize: 14,
           }}
         >
-          I&apos;m interested in this
+          I&apos;m interested
         </Button>
         <Button
           className="w-[230px] lg:py-3"

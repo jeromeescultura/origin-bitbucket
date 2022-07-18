@@ -32,7 +32,7 @@ const generateRadioOptions = (options, name) => {
               {singleOption?.label}
             </span>
             {singleOption?.subText && (
-              <p className="text-base font-light ml-20">
+              <p className="text-base font-light ml-2">
                 {singleOption?.subText}
               </p>
             )}
