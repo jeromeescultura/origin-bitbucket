@@ -523,7 +523,7 @@ const Recommend = () => {
       </Head>
 
       <div className="bg-primaryBG h-full">
-        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-80 lg:mb-56">
+        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-[17rem] lg:mb-56">
           <section className="pt-6 lg:pt-8">
             <div className="w-full xl:w-[1108px] mx-auto">
               <img
@@ -674,12 +674,21 @@ const Recommend = () => {
                   />
                   <p className="text-xs md:text-sm">
                     {usage === "<40"
-                      ? "Low"
+                      ? "Low usage is"
                       : usage === "40-440"
-                      ? "Medium"
-                      : "High"}{" "}
-                    usage is below {usage} kWh average{" "}
-                    {showContent === "solar" ? "monthly" : "daily"} use
+                      ? "Medium usage is"
+                      : usage === ">440"
+                      ? "High usage is"
+                      : ""}{" "}
+                    {usage === "<40"
+                      ? "below 40 kWh average"
+                      : usage === "40-440"
+                      ? "between 40-440 kWh average"
+                      : usage === ">440"
+                      ? "above 440 kWh average"
+                      : ""}{" "}
+                    {usage !== "" && showContent === "solar" && "monthly use"}
+                    {usage !== "" && showContent !== "solar" && "daily use"}
                   </p>
                 </div>
 
@@ -799,9 +808,9 @@ const Recommend = () => {
           )}
         </div>
         {showFooter && !loading && (
-          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
-            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
-              <p>
+          <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0 ">
+            <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
+              <p className="">
                 The examples above vary depending on usage. Please select the
                 usage specific to your business site.
               </p>
@@ -816,12 +825,21 @@ const Recommend = () => {
               />
               <p className="text-xs md:text-sm mt-2">
                 {usage === "<40"
-                  ? "Low"
+                  ? "Low usage is"
                   : usage === "40-440"
-                  ? "Medium"
-                  : "High"}{" "}
-                usage is below {usage} kWh average{" "}
-                {showContent === "solar" ? "monthly" : "daily"} use
+                  ? "Medium usage is"
+                  : usage === ">440"
+                  ? "High usage is"
+                  : ""}{" "}
+                {usage === "<40"
+                  ? "below 40 kWh average"
+                  : usage === "40-440"
+                  ? "between 40-440 kWh average"
+                  : usage === ">440"
+                  ? "above 440 kWh average"
+                  : ""}{" "}
+                {usage !== "" && showContent === "solar" && "monthly use"}
+                {usage !== "" && showContent !== "solar" && "daily use"}
               </p>
             </div>
             <FooterReco
@@ -836,9 +854,9 @@ const Recommend = () => {
           </div>
         )}
         {bigScreen && (
-          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0">
-            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
-              <p>
+          <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0">
+            <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
+              <p className="text-xs">
                 The examples above vary depending on usage. Please select the
                 usage specific to your business site.
               </p>
@@ -853,12 +871,26 @@ const Recommend = () => {
               />
               <p className="text-xs md:text-sm mt-2">
                 {usage === "<40"
-                  ? "Low"
+                  ? "Low usage is"
                   : usage === "40-440"
-                  ? "Medium"
-                  : "High"}{" "}
-                usage is below {usage} kWh average{" "}
-                {showContent === "solar" ? "monthly" : "daily"} use
+                  ? "Medium usage is"
+                  : usage === ">440"
+                  ? "High usage is"
+                  : ""}{" "}
+                {usage === "<40"
+                  ? "below 40 kWh average"
+                  : usage === "40-440"
+                  ? "between 40-440 kWh average"
+                  : usage === ">440"
+                  ? "above 440 kWh average"
+                  : ""}{" "}
+                {usage !== "" && showContent === "solar" && (
+                  <span>
+                    <br />
+                    monthly use
+                  </span>
+                )}
+                {usage !== "" && showContent !== "solar" && "daily use"}
               </p>
             </div>
             <FooterReco

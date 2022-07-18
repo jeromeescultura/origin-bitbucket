@@ -177,7 +177,7 @@ export default function Home() {
             </div>
           </div>
         </ContentContainer>
-        <div className="bg-primaryBG pb-80 sm:pb-56 md:pb-48 ">
+        <div className="bg-primaryBG pb-24 sm:pb-56 md:pb-48 ">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             <ContentContainer>
               <div>
