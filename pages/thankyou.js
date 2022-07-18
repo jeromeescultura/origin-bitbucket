@@ -24,6 +24,24 @@ function Thankyou() {
     }, 3000);
   }, [router]);
 
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
+  }, []);
+
   return (
     <>
       <Head>

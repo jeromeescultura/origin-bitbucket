@@ -89,6 +89,25 @@ export default function Home() {
       desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
     },
   ];
+
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
+  }, []);
+
   return (
     <div>
       <Head>

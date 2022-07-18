@@ -52,6 +52,17 @@ export default function MyApp(props) {
         gtag('js', new Date());
       
         gtag('config', '${ga.GTM_ID}');`}</Script>
+        {/* <Script
+          id="google-analytics-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', '${ga.GTM_ID}');`,
+          }}
+        /> */}
 
         {/* Global Site Code Pixel - Facebook Pixel */}
         <Script

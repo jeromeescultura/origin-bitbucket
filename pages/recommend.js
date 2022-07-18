@@ -480,6 +480,19 @@ const Recommend = () => {
   useEffect(() => {
     setUserID(router.query.uuid);
     window.localStorage.setItem("USERID", JSON.stringify(router.query.uuid));
+    // Survey tracking
+    var detail = {
+      eventType: "task",
+      data: {
+        action: "complete",
+        appName: "origin-shift-survey",
+        uuid: router.query.uuid, // answer uuid
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
   }, [router.query]);
 
   const handleChoose = () => {
@@ -510,6 +523,24 @@ const Recommend = () => {
 
   const openImpactData = () => setImpactDataModal(true);
   const closeImpactData = () => setImpactDataModal(false);
+
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
+  }, []);
 
   return (
     <>

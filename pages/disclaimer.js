@@ -2,13 +2,14 @@ import { Button } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 import * as fbq from "../lib/fpixel";
 
 const Disclaimer = () => {
   const router = useRouter();
-  const source = router.query.src || '';
-  const version = router.query.v || '';
+  const source = router.query.src || "";
+  const version = router.query.v || "";
 
   console.log("source: ", source);
   console.log("version: ", version);
@@ -18,6 +19,24 @@ const Disclaimer = () => {
     localStorage.setItem("STARTASSESSMENT", true);
     router.push({ pathname: url, query: { src: source, v: version } }, url);
   };
+
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
+  }, []);
 
   return (
     <>
@@ -39,9 +58,14 @@ const Disclaimer = () => {
             objectFit="contain"
             alt="origin-logo"
             name="go-home"
-            onClick={(e) => handleClick(e, `/${source !== "" ? `?src=${source}&` : ""}${
-              version !== "" ? `v=${version}` : ""
-            }`)}
+            onClick={(e) =>
+              handleClick(
+                e,
+                `/${source !== "" ? `?src=${source}&` : ""}${
+                  version !== "" ? `v=${version}` : ""
+                }`
+              )
+            }
             priority
           />
         </div>

@@ -153,6 +153,19 @@ function ContactForms({ text, source, version, path }) {
     ButtonTrackingEvent("contact-submit", contact_data);
     console.log(contact_data, "contact_data console");
     if (userID) {
+      // Survey tracking
+      var detail = {
+        eventType: "task",
+        data: {
+          action: "complete",
+          appName: "origin-shift-survey",
+          uuid: userID, // answer uuid
+        },
+      };
+      // Dispatch the event
+      document
+        .querySelector("body")
+        .dispatchEvent(new CustomEvent("analyticsEvent", detail));
       const json = fetch(
         "https://bwnwkszix6.execute-api.ap-southeast-2.amazonaws.com/Prod/contact/" +
           userID,

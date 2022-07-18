@@ -38,9 +38,11 @@ function Signup() {
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push(`/${source !== "" ? `?src=${source}&` : ""}${
-      version !== "" ? `v=${version}` : ""
-    }`);
+    router.push(
+      `/${source !== "" ? `?src=${source}&` : ""}${
+        version !== "" ? `v=${version}` : ""
+      }`
+    );
   };
 
   // Redirect
@@ -82,6 +84,24 @@ function Signup() {
       setBiggerDiff(recommendData.biggerDiff);
       setImpact(recommendData.impact);
     }
+  }, []);
+
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
   }, []);
 
   return (

@@ -390,10 +390,14 @@ const AssessmentSecondStep = () => {
       .then((response) => response.json(), setIsSubmitting(true))
       .then(
         (data) =>
-          router.push({
-            pathname: "/recommend",
-            query: { src:source, v:version, uuid: data.UUID },
-          },`/recommend&uuid=${data.UUID}`),
+          router.push(
+            {
+              pathname: "/recommend",
+              query: { src: source, v: version, uuid: data.UUID },
+            },
+            `/recommend&uuid=${data.UUID}`
+          ),
+
         window.localStorage.removeItem("PAGE")
       );
   };
@@ -401,8 +405,24 @@ const AssessmentSecondStep = () => {
   const router = useRouter();
   const source = router.query.src;
   const version = router.query.v;
-  console.log("source: ", source);
-  console.log("version: ", version);
+
+  // Analytics
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    // Dispatch the event
+    document
+      .querySelector("body")
+      .dispatchEvent(new CustomEvent("analyticsEvent", detail));
+  }, []);
   return (
     <>
       <Head>
