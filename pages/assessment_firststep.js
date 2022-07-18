@@ -24,9 +24,6 @@ const AssessmentFirstStep = () => {
   const source = router.query.src;
   const version = router.query.v;
 
-  console.log("source: ", source);
-  console.log("version: ", version);
-
   useEffect(() => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);

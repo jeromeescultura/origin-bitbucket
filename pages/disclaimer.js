@@ -7,11 +7,9 @@ import * as fbq from "../lib/fpixel";
 
 const Disclaimer = () => {
   const router = useRouter();
-  const source = router.query.src || '';
-  const version = router.query.v || '';
+  const source = router.query.src || "";
+  const version = router.query.v || "";
 
-  console.log("source: ", source);
-  console.log("version: ", version);
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
@@ -39,9 +37,14 @@ const Disclaimer = () => {
             objectFit="contain"
             alt="origin-logo"
             name="go-home"
-            onClick={(e) => handleClick(e, `/${source !== "" ? `?src=${source}&` : ""}${
-              version !== "" ? `v=${version}` : ""
-            }`)}
+            onClick={(e) =>
+              handleClick(
+                e,
+                `/${source !== "" ? `?src=${source}&` : ""}${
+                  version !== "" ? `v=${version}` : ""
+                }`
+              )
+            }
             priority
           />
         </div>
