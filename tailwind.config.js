@@ -25,6 +25,7 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
       xl: "1440px",
       // => @media (min-width: 1440px) { ... }
+      "3xl": "2880px",
     },
 
     // box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
