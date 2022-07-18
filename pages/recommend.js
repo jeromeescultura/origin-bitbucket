@@ -808,9 +808,9 @@ const Recommend = () => {
           )}
         </div>
         {showFooter && !loading && (
-          <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0 ">
+          <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0">
             <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
-              <p className="">
+              <p className="text-xs leading-5">
                 The examples above vary depending on usage. Please select the
                 usage specific to your business site.
               </p>
@@ -856,7 +856,7 @@ const Recommend = () => {
         {bigScreen && (
           <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0">
             <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
-              <p className="text-xs">
+              <p className="text-xs leading-5">
                 The examples above vary depending on usage. Please select the
                 usage specific to your business site.
               </p>
