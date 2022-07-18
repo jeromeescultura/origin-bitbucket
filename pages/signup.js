@@ -53,7 +53,6 @@ function Signup() {
     ) || null;
 
   useEffect(() => {
-    console.log(userID, "sdasd");
     if (userID === null || undefined || "") {
       router.push("/");
     }

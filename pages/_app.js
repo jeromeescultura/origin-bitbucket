@@ -27,10 +27,25 @@ export default function MyApp(props) {
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
+
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    _satellite.track("dcr:navigation", detail);
+  }, [router]);
 
   return (
     <CacheProvider value={emotionCache}>

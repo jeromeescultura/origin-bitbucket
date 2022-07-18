@@ -268,8 +268,6 @@ const Recommend = () => {
   const source = router.query.src;
   const version = router.query.v;
 
-  console.log("source: ", source);
-  console.log("version: ", version);
   const handleClick = (e) => {
     e.preventDefault();
     router.push(

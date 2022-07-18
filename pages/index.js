@@ -19,9 +19,6 @@ export default function Home() {
   const [source, setSource] = useState(null);
   const [version, setVersion] = useState(null);
 
-  console.log("source: ", source);
-  console.log("version: ", version);
-
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
       setSource(query.src);
@@ -89,6 +86,7 @@ export default function Home() {
       desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
     },
   ];
+
   return (
     <div>
       <Head>
