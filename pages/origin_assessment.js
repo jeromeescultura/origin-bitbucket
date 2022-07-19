@@ -85,8 +85,6 @@ const OriginAssessment = () => {
   };
 
   const submitAssessment = () => {
-    console.log("STORED ASSESMENT NO SETTIMEOUT", assessmentAnswers);
-
     const json = fetch(
       "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/answers",
       {

@@ -221,7 +221,6 @@ const Recommend = () => {
   }, [pageNo, products, industry, pages, pageNo]);
 
   const [showFooter, setShowFooter] = useState(false);
-  const [bigScreen, setBigScreen] = useState(false);
   const [enableBtn, setEnableBtn] = useState(false);
   const showref = useRef();
   const hideref = useRef();
@@ -236,25 +235,25 @@ const Recommend = () => {
       }
     });
 
-    if (hideref.current) {
-      observer.observe(hideref.current);
-    }
-  }, [loading]);
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        setBigScreen(true);
-      } else {
-        setBigScreen(false);
-        setShowFooter(false);
-      }
-    });
-
-    if (hideref.current) {
+    if (showref.current) {
       observer.observe(showref.current);
     }
   }, [loading]);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     const entry = entries[0];
+  //     if (entry.isIntersecting) {
+  //       setBigScreen(true);
+  //     } else {
+  //       setBigScreen(false);
+  //       setShowFooter(false);
+  //     }
+  //   });
+
+  //   if (hideref.current) {
+  //     observer.observe(showref.current);
+  //   }
+  // }, [loading]);
 
   useEffect(() => {
     setPages(products.length);
@@ -268,13 +267,17 @@ const Recommend = () => {
   const source = router.query.src;
   const version = router.query.v;
 
-  console.log("source: ", source);
-  console.log("version: ", version);
   const handleClick = (e) => {
     e.preventDefault();
     router.push(
-      `/${source !== "" ? `?src=${source}&` : ""}${
-        version !== "" ? `v=${version}` : ""
+      `/${
+        source !== "" && source !== undefined && source !== null
+          ? `?src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== undefined && source !== null
+          ? `v=${version}`
+          : ""
       }`
     );
   };
@@ -523,7 +526,7 @@ const Recommend = () => {
       </Head>
 
       <div className="bg-primaryBG h-full">
-        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-80 lg:mb-56">
+        <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-[17rem] lg:mb-56">
           <section className="pt-6 lg:pt-8">
             <div className="w-full xl:w-[1108px] mx-auto">
               <img
@@ -566,7 +569,6 @@ const Recommend = () => {
                 >
                   <div
                     className={`${pages === 1 && "pt-12"} text-center mb-8 `}
-                    ref={hideref}
                   >
                     <h2 className="text-primaryText font-bold">
                       Making a difference
@@ -674,12 +676,21 @@ const Recommend = () => {
                   />
                   <p className="text-xs md:text-sm">
                     {usage === "<40"
-                      ? "Low"
+                      ? "Low usage is"
                       : usage === "40-440"
-                      ? "Medium"
-                      : "High"}{" "}
-                    usage is below {usage} kWh average{" "}
-                    {showContent === "solar" ? "monthly" : "daily"} use
+                      ? "Medium usage is"
+                      : usage === ">440"
+                      ? "High usage is"
+                      : ""}{" "}
+                    {usage === "<40"
+                      ? "below 40 kWh average"
+                      : usage === "40-440"
+                      ? "between 40-440 kWh average"
+                      : usage === ">440"
+                      ? "above 440 kWh average"
+                      : ""}{" "}
+                    {usage !== "" && showContent === "solar" && "monthly use"}
+                    {usage !== "" && showContent !== "solar" && "daily use"}
                   </p>
                 </div>
 
@@ -763,7 +774,7 @@ const Recommend = () => {
                       btn3={btn3}
                     />
                   </div>
-                  <div className="break-inside-avoid lg:pb-52">
+                  <div className="break-inside-avoid lg:pb-12">
                     {(subCategory?.includes("decarbEOI") ||
                       (subCategory?.includes("greenPower") &&
                         showContent === "solar")) && (
@@ -790,7 +801,7 @@ const Recommend = () => {
                 </div>
               </ContentContainer>
 
-              <div ref={showref}>{/* <Faqs /> */}</div>
+              <div>{/* <Faqs /> */}</div>
             </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center w-full h-full  bg-gray-300 bg-opacity-50 backdrop-blur-lg">
@@ -799,9 +810,9 @@ const Recommend = () => {
           )}
         </div>
         {showFooter && !loading && (
-          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0 ">
-            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
-              <p>
+          <div className="bg-white w-full shadow-t-lg z-50 fixed bottom-0">
+            <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
+              <p className="text-xs leading-5">
                 The examples above vary depending on usage. Please select the
                 usage specific to your business site.
               </p>
@@ -816,49 +827,21 @@ const Recommend = () => {
               />
               <p className="text-xs md:text-sm mt-2">
                 {usage === "<40"
-                  ? "Low"
+                  ? "Low usage is"
                   : usage === "40-440"
-                  ? "Medium"
-                  : "High"}{" "}
-                usage is below {usage} kWh average{" "}
-                {showContent === "solar" ? "monthly" : "daily"} use
-              </p>
-            </div>
-            <FooterReco
-              handleButton={handleButton}
-              handleExpress={handleExpress}
-              handleChoose={handleChoose}
-              recommend={showContent}
-              enableBtn={enableBtn}
-              pageNo={pageNo}
-              pages={pages}
-            />
-          </div>
-        )}
-        {bigScreen && (
-          <div className="bg-white w-full shadow-t-sm z-50 fixed bottom-0">
-            <div className="w-full border-b border-[#E3E3E3] p-6 text-center">
-              <p>
-                The examples above vary depending on usage. Please select the
-                usage specific to your business site.
-              </p>
-              <UsageButtons
-                recommend={showContent}
-                impactLevel={impactLevel}
-                handleButtonSelect={handleButtonSelect}
-                industry={industry}
-                btn1={btn1}
-                btn2={btn2}
-                btn3={btn3}
-              />
-              <p className="text-xs md:text-sm mt-2">
+                  ? "Medium usage is"
+                  : usage === ">440"
+                  ? "High usage is"
+                  : ""}{" "}
                 {usage === "<40"
-                  ? "Low"
+                  ? "below 40 kWh average"
                   : usage === "40-440"
-                  ? "Medium"
-                  : "High"}{" "}
-                usage is below {usage} kWh average{" "}
-                {showContent === "solar" ? "monthly" : "daily"} use
+                  ? "between 40-440 kWh average"
+                  : usage === ">440"
+                  ? "above 440 kWh average"
+                  : ""}{" "}
+                {usage !== "" && showContent === "solar" && "monthly use"}
+                {usage !== "" && showContent !== "solar" && "daily use"}
               </p>
             </div>
             <FooterReco
@@ -872,6 +855,56 @@ const Recommend = () => {
             />
           </div>
         )}
+
+        <div className="hidden 3xl:block bg-white w-full shadow-t-lg z-50 fixed bottom-0 ">
+          <div className="w-full border-b border-[#E3E3E3] p-5 text-center">
+            <p className="text-xs leading-5">
+              The examples above vary depending on usage. Please select the
+              usage specific to your business site.
+            </p>
+            <UsageButtons
+              recommend={showContent}
+              impactLevel={impactLevel}
+              handleButtonSelect={handleButtonSelect}
+              industry={industry}
+              btn1={btn1}
+              btn2={btn2}
+              btn3={btn3}
+            />
+            <p className="text-xs md:text-sm mt-2">
+              {usage === "<40"
+                ? "Low usage is"
+                : usage === "40-440"
+                ? "Medium usage is"
+                : usage === ">440"
+                ? "High usage is"
+                : ""}{" "}
+              {usage === "<40"
+                ? "below 40 kWh average"
+                : usage === "40-440"
+                ? "between 40-440 kWh average"
+                : usage === ">440"
+                ? "above 440 kWh average"
+                : ""}{" "}
+              {usage !== "" && showContent === "solar" && (
+                <span>
+                  <br />
+                  monthly use
+                </span>
+              )}
+              {usage !== "" && showContent !== "solar" && "daily use"}
+            </p>
+          </div>
+          <FooterReco
+            handleButton={handleButton}
+            handleExpress={handleExpress}
+            handleChoose={handleChoose}
+            recommend={showContent}
+            enableBtn={enableBtn}
+            pageNo={pageNo}
+            pages={pages}
+          />
+        </div>
       </div>
     </>
   );

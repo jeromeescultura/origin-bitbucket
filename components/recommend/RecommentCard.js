@@ -155,7 +155,7 @@ const RecommentCard = ({
               </span>{" "}
               usage in your industry, based on electricity usage averages
               compiled from Origin&apos;s small and medium business customer
-              base in the <span className="font-medium">{industry?.name}</span>.
+              base in the <span className="font-medium">{industry?.name}</span> industry.
               The actual solar savings will depend on your business&apos;
               specific usage, system size, feed-in tariff and location. Once you
               submit your application, one of our Business Club Specialists will
@@ -172,7 +172,7 @@ const RecommentCard = ({
           // </p>
           recommend === "greenPower" ? (
             <p className="text-xs text-subTextColor leading-6">
-              We estimate that this charge would result in a {level * 100}{" "}
+              We estimate that this charge would result in a {level * 100}%{" "}
               GreenPower daily cost of approximately{" "}
               {usage === "" ? "-" : formatPrice(extraCost)} per day (GST
               inclusive) for a business with{" "}
@@ -187,7 +187,7 @@ const RecommentCard = ({
               </span>{" "}
               usage in your industry, based on electricity usage averages
               compiled from Origin’s small and medium business customer base in
-              the <span className="font-medium">{industry?.name}</span>. This
+              the <span className="font-medium">{industry?.name}</span> industry. This
               cost is in addition to the cost of your business’s Origin
               electricity plan. The actual daily cost will depend on your
               business’s specific usage. Once you submit your application, one
@@ -212,7 +212,7 @@ const RecommentCard = ({
               </span>{" "}
               usage in your industry, based on electricity usage averages
               compiled from Origin’s small and medium business customer base in
-              the <span className="font-medium">{industry?.name}</span>. This
+              the <span className="font-medium">{industry?.name}</span> industry. This
               cost is in addition to the cost of your business’s Origin
               electricity plan. The actual daily cost will depend on your
               business’s specific usage. Once you submit your application, one

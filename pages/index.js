@@ -19,9 +19,6 @@ export default function Home() {
   const [source, setSource] = useState(null);
   const [version, setVersion] = useState(null);
 
-  console.log("source: ", source);
-  console.log("version: ", version);
-
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
       setSource(query.src);
@@ -89,6 +86,7 @@ export default function Home() {
       desc: "Get rewarded as a result of the environmental and sustainability initiatives undertaken.",
     },
   ];
+
   return (
     <div>
       <Head>
@@ -155,7 +153,7 @@ export default function Home() {
                     Select the actions you&apos;re interested in doing at the
                     end of your assessment, and a Business Club Specialist will
                     reach out to help you find the best way forward for your
-                    business. Up to this point - its free. No payment, no
+                    business. Up to this point - it&apos;s free. No payment, no
                     commitment.
                   </p>
                 </div>
@@ -177,7 +175,7 @@ export default function Home() {
             </div>
           </div>
         </ContentContainer>
-        <div className="bg-primaryBG pb-80 sm:pb-56 md:pb-48 ">
+        <div className="bg-primaryBG pb-24 sm:pb-56 md:pb-48 ">
           <div className="bg-landing-bg bg-no-repeat bg-contain h-full w-full">
             <ContentContainer>
               <div>
