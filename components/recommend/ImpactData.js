@@ -68,7 +68,10 @@ const ImpactData = ({
           <br />
           <p>
             These estimates are subject to change based on your business&apos;
-            specific site usage.
+            specific site usage
+            {showContent === 'solar'
+              ? ", as the solar savings estimates have been calculated by using a percentage of the total cost for the average usage and corresponding average system size for the chosen industry."
+              : "."}
           </p>
           <br />
           <p>
