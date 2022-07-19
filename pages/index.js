@@ -153,7 +153,7 @@ export default function Home() {
                     Select the actions you&apos;re interested in doing at the
                     end of your assessment, and a Business Club Specialist will
                     reach out to help you find the best way forward for your
-                    business. Up to this point - its free. No payment, no
+                    business. Up to this point - it&apos;s free. No payment, no
                     commitment.
                   </p>
                 </div>
