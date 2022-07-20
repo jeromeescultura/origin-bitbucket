@@ -5,14 +5,24 @@ import ButtonComponent from "./ButtonComponent";
 import * as fbq from "../lib/fpixel";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
-function Footer({source, version}) {
+function Footer({ source, version }) {
   const router = useRouter();
 
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
 
-    router.push({pathname:url, query:{src:source, v:version}}, url);
+    router.push(
+      `${url}/${
+        source !== "" && source !== null && source !== undefined
+          ? `?src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== null && version !== undefined
+          ? `v=${version}`
+          : ""
+      }`
+    );
   };
 
   return (
@@ -40,7 +50,6 @@ function Footer({source, version}) {
               backgroundColor: "#EC0000",
               borderRadius: 200,
               boxShadow: "none",
-            
             }}
           >
             Start assessment
@@ -55,7 +64,6 @@ function Footer({source, version}) {
             style={{
               borderRadius: 200,
               boxShadow: "none",
-            
             }}
           >
             Let&#39;s have a chat

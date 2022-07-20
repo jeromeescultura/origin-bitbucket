@@ -390,11 +390,11 @@ const AssessmentSecondStep = () => {
       .then((response) => response.json(), setIsSubmitting(true))
       .then(
         (data) =>
-
-          router.push({
-            pathname: "/recommend",
-            query: { src:source, v:version, uuid: data.UUID },
-          },`/recommend?uuid=${data.UUID}`),
+          router.push(
+            `/recommend?uuid=${data.UUID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
+              version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+            }`
+          ),
 
         window.localStorage.removeItem("PAGE")
       );

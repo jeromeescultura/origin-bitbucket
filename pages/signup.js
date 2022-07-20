@@ -40,8 +40,14 @@ function Signup() {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push(
-      `/${source !== "" ? `?src=${source}&` : ""}${
-        version !== "" ? `v=${version}` : ""
+      `/${
+        source !== "" && source !== undefined && source !== null
+          ? `?src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== undefined && source !== null
+          ? `v=${version}`
+          : ""
       }`
     );
   };
@@ -176,7 +182,12 @@ function Signup() {
                     <div className="grid grid-rows-3 text-left">
                       <div className="grid grid-cols-2 items-center border-t py-2">
                         <p className="font-medium">Plan</p>
-                        <p>Available on any Origin Electricity plan{product === 'solar' ? ' or as a stand-alone product' : ''}</p>
+                        <p>
+                          Available on any Origin Electricity plan
+                          {product === "solar"
+                            ? " or as a stand-alone product"
+                            : ""}
+                        </p>
                       </div>
                       <div className="grid grid-cols-2 items-center border-t py-2">
                         <p>Site changes</p>
