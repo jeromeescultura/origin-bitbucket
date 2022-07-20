@@ -14,7 +14,11 @@ const Disclaimer = () => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
     localStorage.setItem("STARTASSESSMENT", true);
-    router.push({ pathname: url, query: { src: source, v: version } }, url);
+    router.push(
+      `${url}/${source !== "" ? `?src=${source}&` : ""}${
+        version !== "" ? `v=${version}` : ""
+      }`
+    );
   };
 
   return (
