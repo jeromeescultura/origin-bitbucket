@@ -34,15 +34,15 @@ export default class MyDocument extends Document {
           {this.props.emotionStyleTags}
           {/* Analytics */}
           {/* Adobe */}
-          {/* <script
+          <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-EN92bec34db9c84af69ed78945eed39c3d-development.min.js"
             async
-          ></script> */}
+          ></script>
 
-          <script
+          {/* <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
             async
-          ></script>
+          ></script> */}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {/* Google Tag Manager */}
           {/* <Script

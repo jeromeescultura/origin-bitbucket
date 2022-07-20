@@ -492,16 +492,16 @@ const Recommend = () => {
         pathname: "/signup",
         query: { uuid: userID, src: source, v: version },
       },
-      `/signup&uuid=${userID}`
+      `/signup?uuid=${userID}`
     );
   };
   const handleExpress = () => {
     router.push(
       {
-        pathname: "/contact/",
+        pathname: "/contact",
         query: { path: "eoi", uuid: userID, src: source, v: version },
       },
-      `/contact/&uuid=${userID}`
+      `/contact?uuid=${userID}`
     );
   };
 
