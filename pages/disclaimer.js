@@ -139,3 +139,9 @@ const Disclaimer = () => {
 };
 
 export default Disclaimer;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Disclaimer Page" },
+  };
+}

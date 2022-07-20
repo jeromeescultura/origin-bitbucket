@@ -20,6 +20,14 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   useEffect(() => {
+    const mainDataLayer = {
+      pageTypeName: pageProps.page || null,
+      url: router.pathname,
+    };
+    ga.pageview(mainDataLayer);
+  }, [pageProps]);
+
+  useEffect(() => {
     fbq.pageview();
     const handleRouteChange = (url) => {
       ga.pageview(url);
@@ -33,19 +41,19 @@ export default function MyApp(props) {
     };
   }, [router.events]);
 
-  // useEffect(() => {
-  //   var detail = {
-  //     eventType: "navigation",
-  //     type: "screen",
-  //     data: {
-  //       currentUri: location.href,
-  //       friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
-  //       path: location.pathname,
-  //       appName: "origin-shift",
-  //     },
-  //   };
-  //   _satellite.track("dcr:navigation", detail);
-  // }, [router]);
+  useEffect(() => {
+    var detail = {
+      eventType: "navigation",
+      type: "screen",
+      data: {
+        currentUri: location.href,
+        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
+        path: location.pathname,
+        appName: "origin-shift",
+      },
+    };
+    return _satellite.track("dcr:navigation", detail);
+  }, [router]);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -55,18 +63,30 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {/* Google Tag Manager */}
+
+        {/* <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${ga.GTM_ID}');
+      `}
+        </Script> */}
+
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${ga.GTM_ID}`}
+          src="https://www.googletagmanager.com/gtag/js?id=DC-11918918"
           strategy="afterInteractive"
         />
-        <Script
-          id="google-analytics-script"
-          strategy="afterInteractive"
-        >{`window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', '${ga.GTM_ID}');`}</Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'DC-11918918');
+        `}
+        </Script>
 
         {/* Global Site Code Pixel - Facebook Pixel */}
         <Script

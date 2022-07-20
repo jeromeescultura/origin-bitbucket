@@ -63,3 +63,9 @@ function Thankyou() {
 }
 
 export default Thankyou;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Thank you Page" },
+  };
+}

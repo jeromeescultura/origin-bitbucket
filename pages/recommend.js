@@ -911,3 +911,9 @@ const Recommend = () => {
 };
 
 export default Recommend;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Recommend Page" },
+  };
+}
