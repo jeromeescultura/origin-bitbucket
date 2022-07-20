@@ -15,7 +15,7 @@ const Disclaimer = () => {
     e.preventDefault();
     localStorage.setItem("STARTASSESSMENT", true);
     router.push(
-      `${url}/${source !== "" ? `?src=${source}&` : ""}${
+      `${url}${source !== "" ? `?src=${source}&` : ""}${
         version !== "" ? `v=${version}` : ""
       }`
     );
@@ -80,7 +80,7 @@ const Disclaimer = () => {
                 color="primary"
                 size="large"
                 className="lg:w-full"
-                onClick={(e) => handleClick(e, "/assessment_firststep")}
+                onClick={(e) => handleClick(e, "/assessment_firststep/")}
                 name="Disclaimer Accepted"
                 id="disclaimer-accepted"
                 style={{
@@ -96,7 +96,7 @@ const Disclaimer = () => {
                 size="large"
                 color="error"
                 className="lg:w-full"
-                onClick={(e) => handleClick(e, "/contact")}
+                onClick={(e) => handleClick(e, "/contact/")}
                 name="Submit expression of interest"
                 id="submit-expression-of-interest"
                 style={{
