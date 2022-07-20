@@ -32,6 +32,7 @@ export default function MyApp(props) {
     const handleRouteChange = (url) => {
       ga.pageview(url);
       fbq.pageview();
+      ga.adobeview(url);
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -40,20 +41,6 @@ export default function MyApp(props) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-
-  useEffect(() => {
-    var detail = {
-      eventType: "navigation",
-      type: "screen",
-      data: {
-        currentUri: location.href,
-        friendlyUri: location.pathname.replace("/", ":"), // "/level1/level2" produces "level1:level2"
-        path: location.pathname,
-        appName: "origin-shift",
-      },
-    };
-    return _satellite.track("dcr:navigation", detail);
-  }, [router]);
 
   return (
     <CacheProvider value={emotionCache}>
