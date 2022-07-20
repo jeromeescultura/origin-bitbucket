@@ -91,3 +91,9 @@ const NoRecommendations = () => {
 };
 
 export default NoRecommendations;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "No recommend Page" },
+  };
+}

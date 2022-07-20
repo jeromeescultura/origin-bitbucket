@@ -560,3 +560,9 @@ const AssessmentSecondStep = () => {
 };
 
 export default AssessmentSecondStep;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Assessment Page 2" },
+  };
+}

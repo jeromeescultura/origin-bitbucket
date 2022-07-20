@@ -82,3 +82,9 @@ function Interested() {
 }
 
 export default Interested;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Contact Page" },
+  };
+}

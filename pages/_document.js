@@ -13,8 +13,34 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <meta name="theme-color" content="#ffffff" />
+          <link rel="shortcut icon" href="fav/favicon.ico" />
+
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="fav/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="fav/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="fav/favicon-16x16.png"
+          />
+          <link rel="manifest" href="fav/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="fav/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
+          <meta name="msapplication-TileColor" content="#da532c" />
+
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -34,15 +60,15 @@ export default class MyDocument extends Document {
           {this.props.emotionStyleTags}
           {/* Analytics */}
           {/* Adobe */}
-          <script
+          {/* <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-EN92bec34db9c84af69ed78945eed39c3d-development.min.js"
             async
-          ></script>
+          ></script> */}
 
-          {/* <script
+          <script
             src="https://assets.adobedtm.com/52e6c31223bb/da58a2b2287a/launch-ENf697fd9614a3432f8f0fb26672a1149d.min.js"
             async
-          ></script> */}
+          ></script>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {/* Google Tag Manager */}
           {/* <Script
@@ -72,12 +98,18 @@ export default class MyDocument extends Document {
         <body>
           {/* <noscript>
             <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
               height="0"
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             />
           </noscript> */}
+          {/* <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=DC-11918918" height="0" width="0" style="display: none; visibility: hidden;" />`,
+            }}
+          /> */}
+
           <Main />
           <NextScript />
         </body>

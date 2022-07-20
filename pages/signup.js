@@ -321,3 +321,9 @@ function Signup() {
 }
 
 export default Signup;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Signup Page" },
+  };
+}
