@@ -12,11 +12,7 @@ const NoRecommendations = () => {
   const handleClick = (e) => {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
-    router.push(
-      `/${source !== "" && source !== undefined ? `?src=${source}&` : ""}${
-        version !== "" && version !== undefined ? `v=${version}` : ""
-      }`
-    );
+    router.push(`/`);
   };
 
   const startAssesment =

@@ -9,7 +9,9 @@ function HeroComponent({source, version}) {
   const handleClick = (e, url) => {
     ButtonTrackingEvent(e.target.name, url);
     e.preventDefault();
-    router.push({pathname: url, query:{src:source, v:version}}, url);
+    router.push(`${url}/${source !== "" && source !== null && source !== undefined ? `?src=${source}&` : ""}${
+      version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+    }`);
   };
   return (
     <div className="flex justify-center flex-grow rounded-lg w-[92vw] max-w-[1140px] sm:w-[84vw] md:w-[94vw] mx-auto mb-16 ">

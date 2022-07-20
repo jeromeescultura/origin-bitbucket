@@ -488,20 +488,16 @@ const Recommend = () => {
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
     router.push(
-      {
-        pathname: "/signup",
-        query: { uuid: userID, src: source, v: version },
-      },
-      `/signup?uuid=${userID}`
+      `/signup?uuid=${userID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
+        version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+      }`
     );
   };
   const handleExpress = () => {
     router.push(
-      {
-        pathname: "/contact",
-        query: { path: "eoi", uuid: userID, src: source, v: version },
-      },
-      `/contact?uuid=${userID}`
+      `/contact?path=eoi&uuid=${userID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
+        version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+      }`
     );
   };
 

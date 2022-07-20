@@ -40,8 +40,14 @@ function Signup() {
     ButtonTrackingEvent(e.target.name, "/");
     e.preventDefault();
     router.push(
-      `/${source !== "" ? `?src=${source}&` : ""}${
-        version !== "" ? `v=${version}` : ""
+      `/${
+        source !== "" && source !== undefined && source !== null
+          ? `?src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== undefined && source !== null
+          ? `v=${version}`
+          : ""
       }`
     );
   };

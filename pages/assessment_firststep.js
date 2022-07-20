@@ -318,13 +318,9 @@ const AssessmentFirstStep = () => {
     });
 
   const actionHandler = () => {
-    router.push(
-      {
-        pathname: "/assessment_secondstep",
-        query: { src: source, v: version },
-      },
-      "/assessment_secondstep"
-    );
+    router.push(`/assessment_secondstep/${source !== "" && source !== null && source !== undefined ? `?src=${source}&` : ""}${
+      version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+    }`);
   };
 
   const startAssesment =

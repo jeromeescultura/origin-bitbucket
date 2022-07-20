@@ -44,9 +44,7 @@ const Disclaimer = () => {
             onClick={(e) =>
               handleClick(
                 e,
-                `/${source !== "" ? `?src=${source}&` : ""}${
-                  version !== "" ? `v=${version}` : ""
-                }`
+                `/`
               )
             }
             priority
