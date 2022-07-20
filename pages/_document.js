@@ -98,12 +98,18 @@ export default class MyDocument extends Document {
         <body>
           {/* <noscript>
             <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
               height="0"
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             />
           </noscript> */}
+          {/* <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=DC-11918918" height="0" width="0" style="display: none; visibility: hidden;" />`,
+            }}
+          /> */}
+
           <Main />
           <NextScript />
         </body>

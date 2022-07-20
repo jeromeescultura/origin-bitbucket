@@ -665,3 +665,9 @@ const AssessmentFirstStep = () => {
 };
 
 export default AssessmentFirstStep;
+
+export async function getStaticProps() {
+  return {
+    props: { page: "Assessment Page 1" },
+  };
+}
