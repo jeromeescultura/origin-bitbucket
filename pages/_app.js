@@ -25,15 +25,6 @@ export default function MyApp(props) {
       ga.pageview(url);
       fbq.pageview();
     };
-
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
-
-  useEffect(() => {
     var detail = {
       eventType: "navigation",
       type: "screen",
@@ -45,7 +36,13 @@ export default function MyApp(props) {
       },
     };
     _satellite.track("dcr:navigation", detail);
-  }, [router]);
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <CacheProvider value={emotionCache}>
