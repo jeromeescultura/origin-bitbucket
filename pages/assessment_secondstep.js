@@ -378,7 +378,7 @@ const AssessmentSecondStep = () => {
 
   const submitAssessment = () => {
     const json = fetch(
-      "https://bwnwkszix6.execute-api.ap-southeast-2.amazonaws.com/Prod/answers",
+      "https://y22dnwyvbl.execute-api.ap-southeast-2.amazonaws.com/NonProd/answers",
       {
         method: "POST",
         headers: {
