@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -18,10 +19,6 @@ function Thankyou() {
   useEffect(() => {
     setUserID(router.query.uuid);
     setEoi(router.query.interest);
-    setTimeout(() => {
-      router.push("/");
-      window.localStorage.clear();
-    }, 3000);
   }, [router]);
 
   return (
@@ -53,6 +50,24 @@ function Thankyou() {
                 ? "Thank you for choosing to make a difference. One of our Business Club Specialists will contact you to finalise your choice in energy shift."
                 : "One of our Business Club Specialists will contact you about other bespoke options that might be available to you."}
             </p>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={(e) => handleClick(e)}
+              name="go-home"
+              id="go-home"
+              style={{
+                backgroundColor: "#EC0000",
+                borderRadius: 200,
+                boxShadow: "none",
+                paddingLeft: "2rem",
+                paddingRight: "2rem",
+                marginTop: "4rem",
+              }}
+            >
+              back to home
+            </Button>
           </div>
         </section>
       ) : (
