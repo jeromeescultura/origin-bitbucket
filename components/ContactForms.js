@@ -270,7 +270,7 @@ function ContactForms({ text, source, version, path }) {
             <img src="/icons/icon_phone.svg" alt="phone-icon" className="h-7" />
             <div>
               <p className="text-[12px]">
-                <span className="font-bold text-[15px]">1800 240 240</span> (Pin
+                <a href='tel:01800240240' className="font-bold text-[15px] break-all cursor-pointer">1800 240 240</a> (Pin
                 124)
               </p>
               <p className="text-[12px]">
