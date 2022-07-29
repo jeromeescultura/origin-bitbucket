@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import NavBar from "../components/NavBar";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 import * as fbq from "../lib/fpixel";
 
@@ -31,25 +32,8 @@ const Disclaimer = () => {
           key="title"
         />
       </Head>
-
+      <NavBar />
       <div className="w-[90vw] sm:w-[80vw] md:w-[90vw] max-w-[1140px] mx-auto">
-        <div className="w-16 lg:w-20 cursor-pointer pt-4 lg:pt-8">
-          <Image
-            src="/images/origin-logo.svg"
-            width={90}
-            height={90}
-            objectFit="contain"
-            alt="origin-logo"
-            name="go-home"
-            onClick={(e) =>
-              handleClick(
-                e,
-                `/`
-              )
-            }
-            priority
-          />
-        </div>
         <div className="inline-grid md:grid-cols-3 gap-8 xl:gap-32 mt-8 lg:mt-24">
           <div className="space-y-8 lg:space-y-12 col-span-2">
             <h2 className="text-primaryText font-bold">

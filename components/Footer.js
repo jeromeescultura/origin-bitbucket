@@ -66,7 +66,7 @@ function Footer({ source, version }) {
               boxShadow: "none",
             }}
           >
-            Let&#39;s have a chat
+            Get in touch
           </Button>
         </div>
       </div>

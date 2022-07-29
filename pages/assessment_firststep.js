@@ -18,6 +18,7 @@ import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
 import Head from "next/head";
 import { ButtonTrackingEvent } from "../functions/analitycsEvents";
+import NavBar from "../components/NavBar";
 
 const AssessmentFirstStep = () => {
   const router = useRouter();
@@ -318,9 +319,17 @@ const AssessmentFirstStep = () => {
     });
 
   const actionHandler = () => {
-    router.push(`/assessment_secondstep/${source !== "" && source !== null && source !== undefined ? `?src=${source}&` : ""}${
-      version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
-    }`);
+    router.push(
+      `/assessment_secondstep/${
+        source !== "" && source !== null && source !== undefined
+          ? `?src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== null && version !== undefined
+          ? `v=${version}`
+          : ""
+      }`
+    );
   };
 
   const startAssesment =
@@ -356,17 +365,16 @@ const AssessmentFirstStep = () => {
           key="title"
         />
       </Head>
-
+      <NavBar />
       <div className="bg-primaryBG h-full pb-16">
         <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
           <div
-            className={`w-[90%] md:w-[80%] mx-auto h-full  ${
+            className={`w-[90%] sm:w-[80%] md:w-[90%] lg:w-[95%] max-w-[1140px] mx-auto h-full  ${
               displayContents === true ? "visible" : "invisible"
             }  `}
           >
             <ProgressBar />
             <PageIntro />
-
             <div
               className={`space-y-8 ${
                 animate
