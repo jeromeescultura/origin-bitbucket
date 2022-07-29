@@ -58,6 +58,7 @@ function ContactForms({ text, source, version, path }) {
     lastName: "",
     email: "",
     phone: "",
+    businessName: "",
     existingBusiness: null,
     accountNumber: "",
     primaryAccountHolder: false,
@@ -114,6 +115,7 @@ function ContactForms({ text, source, version, path }) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [businessName, setBusinessName] = useState("");
   const [primaryAccountHolder, setPrimaryAccountHolder] = useState(false);
   const [contactMethod, setContactMethod] = useState([]);
   const [preferredTime, setPreferredTime] = useState([]);
@@ -133,6 +135,7 @@ function ContactForms({ text, source, version, path }) {
       setLastName(storedData?.lastName);
       setEmail(storedData?.email);
       setPhone(storedData?.phone);
+      setBusinessName(storedData?.businessName);
       setPrimaryAccountHolder(storedData?.primaryAccountHolder);
       setContactMethod(storedData?.contactMethod);
       setPreferredTime(storedData?.preferredTime);
@@ -217,6 +220,7 @@ function ContactForms({ text, source, version, path }) {
       lastName: data.lastName,
       email: data.email,
       phone: data.phone,
+      businessName: data.businessName,
       primaryAccountHolder: data.primaryAccountHolder,
       contactMethod: data.contactMethod,
       preferredTime: data.preferredTime,
@@ -259,6 +263,41 @@ function ContactForms({ text, source, version, path }) {
 
   return (
     <>
+      <div className="sm:grid sm:grid-cols-2 xs:divide-y sm:divide-x sm:divide-y-0 space-y-8 sm:space-y-0 py-8 px-6 sm:px-8 sm:py-6 md:p-10 bg-white gap-6 rounded-lg mb-4">
+        <div className="">
+          <p className="text-sm">Want to know more now?</p>
+          <div className="flex gap-2 mt-2 items-start">
+            <img src="/icons/icon_phone.svg" alt="phone-icon" className="h-7" />
+            <div>
+              <p className="text-[12px]">
+                <span className="font-bold text-[15px]">1800 240 240</span> (Pin
+                124)
+              </p>
+              <p className="text-[12px]">
+                8:30am - 4:30pm, <span>Mon to Fri</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="sm:pl-6 xs:pt-5 sm:pt-0">
+          <p className="text-sm">Email us</p>
+          <div className="flex gap-2 mt-2">
+            <img src="/icons/icon_email.svg" alt="email-icon" className="h-7" />
+            <div className="mt-1">
+              <a
+                href="mailto:shift@originenergy.com.au"
+                className="underline font-gorditaLight cursor-pointer break-all text-sm"
+              >
+                shift@originenergy.com.au
+              </a>
+              <p className="sm:mt-1 sm:block"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {(path || userID === null) && (
+        <div className="my-8 text-center">Or leave your details below</div>
+      )}
       <section
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
         id={
@@ -530,6 +569,19 @@ function ContactForms({ text, source, version, path }) {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
+            <FormInputText
+              name="businessName"
+              label="Business name"
+              control={control}
+              setValue={setValue}
+              inputValue={businessName}
+              onChange={watch(handleChange)}
+              validation={{ required: "Required" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
             <Controller
               control={control}
               name="primaryAccountHolder"
@@ -617,35 +669,7 @@ function ContactForms({ text, source, version, path }) {
         >
           Submit
         </Button>
-        <p>
-          Once you submit your application, one of our Business Club Specialists
-          will get in contact to discuss your energy plan options.
-        </p>
       </section>
-      <div className="sm:grid sm:grid-cols-2 sm:divide-x space-y-8 sm:space-y-0 py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg mt-4">
-        <div className="">
-          <p>Or want to know more now?</p>
-          <div className="flex gap-2 mt-2 items-start">
-            <img src="/icons/icon_phone.svg" alt="phone-icon" className="h-7" />
-            <div>
-              <p className="font-bold text-lg">1800 240 240</p>
-              <p>(Pin 124)</p>
-            </div>
-          </div>
-        </div>
-        <div className="sm:pl-6">
-          <p>We&apos;re around</p>
-          <div className="flex gap-2 mt-2">
-            <img src="/icons/icon_alarm.svg" alt="phone-icon" className="h-7" />
-            <div className="mt-1">
-              <p>
-                8:30am - 4:30pm, <span>Mon to Fri</span>
-              </p>
-              <p className="sm:mt-1 sm:block"></p>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
