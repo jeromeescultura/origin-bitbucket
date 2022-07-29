@@ -263,41 +263,7 @@ function ContactForms({ text, source, version, path }) {
 
   return (
     <>
-      <div className="sm:grid sm:grid-cols-2 xs:divide-y sm:divide-x sm:divide-y-0 space-y-8 sm:space-y-0 py-8 px-6 sm:px-8 sm:py-6 md:p-10 bg-white gap-6 rounded-lg mb-4">
-        <div className="">
-          <p className="text-sm">Want to know more now?</p>
-          <div className="flex gap-2 mt-2 items-start">
-            <img src="/icons/icon_phone.svg" alt="phone-icon" className="h-7" />
-            <div>
-              <p className="text-[12px]">
-                <a href='tel:01800240240' className="font-bold text-[15px] break-all cursor-pointer">1800 240 240</a> (Pin
-                124)
-              </p>
-              <p className="text-[12px]">
-                8:30am - 4:30pm, <span>Mon to Fri</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="sm:pl-6 xs:pt-5 sm:pt-0">
-          <p className="text-sm">Email us</p>
-          <div className="flex gap-2 mt-2">
-            <img src="/icons/icon_email.svg" alt="email-icon" className="h-7" />
-            <div className="mt-1">
-              <a
-                href="mailto:shift@originenergy.com.au"
-                className="underline font-gorditaLight cursor-pointer break-all text-sm"
-              >
-                shift@originenergy.com.au
-              </a>
-              <p className="sm:mt-1 sm:block"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {(path || userID === null) && (
-        <div className="my-8 text-center">Or leave your details below</div>
-      )}
+      
       <section
         className="flex flex-col py-8 px-6 sm:px-8 sm:py-6 md:p-12 bg-white gap-6 rounded-lg"
         id={
