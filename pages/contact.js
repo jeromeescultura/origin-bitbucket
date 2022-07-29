@@ -37,7 +37,7 @@ function Interested() {
           <div className="w-full xl:w-[1108px] mx-auto">
             <img
               src="/images/origin-logo.svg"
-              className="w-16 lg:w-20 cursor-pointer ml-auto pr-4"
+              className="w-16 lg:w-20 cursor-pointer pl-4"
               alt="origin-logo"
               name="go-home"
               onClick={(e) => handleClick(e)}
@@ -63,7 +63,6 @@ function Interested() {
             <p className="subtitle my-6 leading-loose w-[80vw] sm:w-[60vw] md:w-[65vw] lg:w-[40vw] xl:w-[40vw] mx-auto">
               Interested in speaking to one of our Business Club Specialists
               about your options?
-              <br /> Leave your details below.
             </p>
           </div>
         </section>

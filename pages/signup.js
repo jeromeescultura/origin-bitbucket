@@ -104,7 +104,7 @@ function Signup() {
           <div className="w-full xl:w-[1108px] mx-auto">
             <img
               src="/images/origin-logo.svg"
-              className="w-16 lg:w-20 cursor-pointer ml-auto pr-4"
+              className="w-16 lg:w-20 cursor-pointer pl-4"
               alt="origin-logo"
               name="go-home"
               onClick={(e) => handleClick(e)}
