@@ -40,6 +40,7 @@ import { ButtonTrackingEvent } from "../functions/analitycsEvents";
 
 import UsageButtons from "../components/recommend/UsageButtons";
 import ImpactData from "../components/recommend/ImpactData";
+import NavBar from "../components/NavBar";
 
 const Recommend = () => {
   const dayjs = require("dayjs");
@@ -488,15 +489,27 @@ const Recommend = () => {
   const handleChoose = () => {
     ButtonTrackingEvent("Selected Product", recommend);
     router.push(
-      `/signup?uuid=${userID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
-        version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+      `/signup?uuid=${userID}${
+        source !== "" && source !== null && source !== undefined
+          ? `&src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== null && version !== undefined
+          ? `v=${version}`
+          : ""
       }`
     );
   };
   const handleExpress = () => {
     router.push(
-      `/contact?path=eoi&uuid=${userID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
-        version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+      `/contact?path=eoi&uuid=${userID}${
+        source !== "" && source !== null && source !== undefined
+          ? `&src=${source}&`
+          : ""
+      }${
+        version !== "" && version !== null && version !== undefined
+          ? `v=${version}`
+          : ""
       }`
     );
   };
@@ -523,30 +536,11 @@ const Recommend = () => {
 
       <div className="bg-primaryBG h-full">
         <div className="bg-reco-xs-bg sm:bg-reco-bg bg-top bg-no-repeat bg-contain h-full lg:bg-reco-lg-bg mb-[17rem] lg:mb-56">
-          <section className="pt-6 lg:pt-8">
-            <div className="w-full xl:w-[1108px] mx-auto">
-              <img
-                src="/images/origin-logo.svg"
-                className="w-16 lg:w-20 cursor-pointer ml-auto pr-4"
-                alt="origin-logo"
-                onClick={handleClick}
-              />
-              {/* <div className="w-16 lg:w-20 cursor-pointer ml-auto pr-4">
-                <Image
-                  src="/images/origin-logo.svg"
-                  width={90}
-                  height={90}
-                  objectFit="contain"
-                  alt="origin-logo"
-                  onClick={handleClick}
-                />
-              </div> */}
-            </div>
-          </section>
+          <NavBar />
           {!loading ? (
             <div>
-              <ContentContainer style="space-y-8 ">
-                <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8 lg:-mt-8 ">
+              <ContentContainer style="space-y-8 !max-w-[1140px]">
+                <div className="text-center w-full md:w-[500px] lg:w-[730px] max-w-[750px] mx-auto mt-8  ">
                   <p className="text-[18px] text-secondaryText font-bold">
                     Your assessment is ready!
                   </p>

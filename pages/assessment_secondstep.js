@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import ProgressBar from "../components/ProgressBar";
 import PageIntro from "../components/PageIntro";
 import Head from "next/head";
+import NavBar from "../components/NavBar";
 
 const AssessmentSecondStep = () => {
   const [displayContents, setDisplayContents] = useState();
@@ -391,8 +392,14 @@ const AssessmentSecondStep = () => {
       .then(
         (data) =>
           router.push(
-            `/recommend?uuid=${data.UUID}${source !== "" && source !== null && source !== undefined ? `&src=${source}&` : ""}${
-              version !== "" && version !== null && version !== undefined ? `v=${version}` : ""
+            `/recommend?uuid=${data.UUID}${
+              source !== "" && source !== null && source !== undefined
+                ? `&src=${source}&`
+                : ""
+            }${
+              version !== "" && version !== null && version !== undefined
+                ? `v=${version}`
+                : ""
             }`
           ),
 
@@ -414,11 +421,11 @@ const AssessmentSecondStep = () => {
           key="title"
         />
       </Head>
-
+      <NavBar />
       <div className="bg-primaryBG h-full pb-16">
         <div className="bg-assessment-small-bg bg-top sm:bg-assessment-bg bg-no-repeat bg-contain h-full">
           <div
-            className={`w-[90%] md:w-[80%] mx-auto h-full  ${
+            className={`w-[90%] sm:w-[80%] md:w-[90%] lg:w-[95%] max-w-[1140px] mx-auto h-full  ${
               displayContents === true ? "visible" : "invisible"
             }  `}
           >

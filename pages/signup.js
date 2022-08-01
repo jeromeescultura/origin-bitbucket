@@ -101,7 +101,7 @@ function Signup() {
 
       <div className="bg-primaryBG pb-32">
         <section className="pt-6 lg:pt-8 ">
-          <div className="w-full xl:w-[1108px] mx-auto">
+          <div className="w-full sm:w-[80vw] md:w-[95vw] lg:w-[90vw] xl:w-[1108px] mx-auto">
             <img
               src="/images/origin-logo.svg"
               className="w-16 lg:w-20 cursor-pointer pl-4"
@@ -121,9 +121,9 @@ function Signup() {
               />
             </div> */}
           </div>
-          <div className="text-center font-light w-full mt-4 lg:-mt-8">
-            <h2 className="text-primaryText font-bold w-full sm:w-[60vw] lg:w-[50vw] mx-auto">
-              Applying to Origin&#39;s Business Club
+          <div className="text-center font-light w-full mt-4 lg:-mt-6">
+            <h2 className="text-primaryText font-bold w-full sm:w-[430px] md:w-[450px] lg:w-[700px] mx-auto">
+              You are about to shift your business towards cleaner energy
             </h2>
             <p className="subtitle my-6 leading-loose w-[300px] sm:w-full mx-auto">
               Thank you for showing interest in the Business Club!
@@ -131,7 +131,7 @@ function Signup() {
           </div>
         </section>
 
-        <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5">
+        <ContentContainer style="gap-6 lg:gap-8 grid grid-cols-1 lg:grid-cols-5 md:!w-[80vw] lg:!w-[90vw]">
           <section className="lg:col-span-2 lg:order-2 relative z-10">
             <div className="bg-white py-8 px-4 lg:p-12 rounded-lg">
               <div className="text-center space-y-2">

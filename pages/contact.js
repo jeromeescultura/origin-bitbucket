@@ -34,7 +34,7 @@ function Interested() {
 
       <div className="bg-primaryBG pb-32">
         <section className="pt-6 lg:pt-8 ">
-          <div className="w-full xl:w-[1108px] mx-auto">
+          <div className="w-full sm:w-[80vw] md:w-[95vw] lg:w-[90vw] xl:w-[1108px] mx-auto">
             <img
               src="/images/origin-logo.svg"
               className="w-16 lg:w-20 cursor-pointer pl-4"
@@ -127,6 +127,7 @@ function Interested() {
           </div>
 
           <div className="my-8 text-center">Or leave your details below</div>
+
           <ContactForms
             path={router.query.path}
             source={source}
